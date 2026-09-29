@@ -1,0 +1,10 @@
+import { open } from './pw.mjs';
+const { browser, page } = await open('http://localhost:4321/');
+await page.waitForTimeout(5200);
+const y = await page.evaluate(() => document.querySelector('.proof').getBoundingClientRect().top + scrollY + 60);
+await page.evaluate((y) => scrollTo(0, y), y); await page.waitForTimeout(1500);
+console.log(await page.evaluate(() => { const q = document.querySelector('.quote'); const r = q.getBoundingClientRect(); const cs = getComputedStyle(q); return `quote top=${Math.round(r.top)} h=${Math.round(r.height)} op=${cs.opacity} vis=${cs.visibility} transform=${cs.transform}`; }));
+await page.evaluate(() => scrollBy(0, 250)); await page.waitForTimeout(1500);
+console.log(await page.evaluate(() => { const q = document.querySelector('.quote'); const r = q.getBoundingClientRect(); const cs = getComputedStyle(q); return `after +250: quote top=${Math.round(r.top)} op=${cs.opacity} vis=${cs.visibility}`; }));
+await page.screenshot({ path: '../review/dbg-proof.png' });
+await browser.close();

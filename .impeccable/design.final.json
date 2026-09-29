@@ -1,0 +1,662 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-29T13:26:17.521Z",
+  "title": "Design System: XionTechs",
+  "extensions": {
+    "colorMeta": {
+      "night": {
+        "role": "neutral",
+        "displayName": "Night",
+        "canonical": "#030813",
+        "oklch": "oklch(13.4% 0.027 258.5)",
+        "tonalRamp": [
+          "#050b17",
+          "#1c2431",
+          "#37404e",
+          "#545e6d",
+          "#768191",
+          "#9aa5b6",
+          "#c0cbdd",
+          "#e5efff"
+        ]
+      },
+      "night-band": {
+        "role": "neutral",
+        "displayName": "Night Band",
+        "canonical": "#07101F",
+        "oklch": "oklch(17.3% 0.034 259.5)",
+        "tonalRamp": [
+          "#040b19",
+          "#1a2435",
+          "#354052",
+          "#525e71",
+          "#748195",
+          "#98a6bb",
+          "#becce2",
+          "#e6effe"
+        ]
+      },
+      "brand-navy": {
+        "role": "primary",
+        "displayName": "Brand Navy",
+        "canonical": "#103060",
+        "oklch": "oklch(31.5% 0.093 258.7)",
+        "tonalRamp": [
+          "#000923",
+          "#022150",
+          "#1e3f70",
+          "#3c5e92",
+          "#5d81b8",
+          "#81a6df",
+          "#abccff",
+          "#e5efff"
+        ]
+      },
+      "navy-ink": {
+        "role": "neutral",
+        "displayName": "Navy Ink",
+        "canonical": "#0B1A33",
+        "oklch": "oklch(22.0% 0.053 260.0)",
+        "tonalRamp": [
+          "#010a21",
+          "#14243e",
+          "#2f405c",
+          "#4c5e7c",
+          "#6e81a1",
+          "#91a6c7",
+          "#b7ccee",
+          "#e6efff"
+        ]
+      },
+      "glacier": {
+        "role": "secondary",
+        "displayName": "Glacier",
+        "canonical": "#2E6BF0",
+        "oklch": "oklch(56.8% 0.210 262.9)",
+        "tonalRamp": [
+          "#00052c",
+          "#001961",
+          "#002f9e",
+          "#134ed1",
+          "#3775fb",
+          "#74a2ff",
+          "#b0cbfe",
+          "#e7effe"
+        ]
+      },
+      "xion-amber": {
+        "role": "primary",
+        "displayName": "Xion Amber",
+        "canonical": "#F8C000",
+        "oklch": "oklch(83.5% 0.171 87.3)",
+        "tonalRamp": [
+          "#110a00",
+          "#2f2200",
+          "#513d01",
+          "#755904",
+          "#9f7a00",
+          "#cc9d03",
+          "#fac208",
+          "#ffedc4"
+        ]
+      },
+      "amber-hi": {
+        "role": "primary",
+        "displayName": "Amber Hi",
+        "canonical": "#FFD23D",
+        "oklch": "oklch(87.9% 0.163 91.1)",
+        "tonalRamp": [
+          "#100a00",
+          "#2e2300",
+          "#4e3e01",
+          "#725b04",
+          "#9b7c08",
+          "#c7a002",
+          "#f2c529",
+          "#ffeebd"
+        ]
+      },
+      "ember": {
+        "role": "secondary",
+        "displayName": "Ember (3D only)",
+        "canonical": "#FF6A1A",
+        "oklch": "oklch(70.2% 0.199 43.0)",
+        "tonalRamp": [
+          "#1a0400",
+          "#411400",
+          "#6c2601",
+          "#9b3b02",
+          "#d25203",
+          "#ff7637",
+          "#ffb79a",
+          "#feeae2"
+        ]
+      },
+      "snow": {
+        "role": "neutral",
+        "displayName": "Snow",
+        "canonical": "#FFFFFF",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
+        ]
+      },
+      "ice": {
+        "role": "neutral",
+        "displayName": "Ice",
+        "canonical": "#F3F5F9",
+        "oklch": "oklch(97.0% 0.006 264.5)",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#232427",
+          "#3e4043",
+          "#5c5e61",
+          "#7e8084",
+          "#a3a5a8",
+          "#c9cace",
+          "#eceef2"
+        ]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Mist",
+        "canonical": "#A9B4CC",
+        "oklch": "oklch(76.9% 0.036 265.9)",
+        "tonalRamp": [
+          "#050a1a",
+          "#1c2436",
+          "#373f53",
+          "#545d73",
+          "#768097",
+          "#9aa5bc",
+          "#bfcbe3",
+          "#e7effe"
+        ]
+      },
+      "slate": {
+        "role": "neutral",
+        "displayName": "Slate",
+        "canonical": "#4A5670",
+        "oklch": "oklch(45.3% 0.045 265.4)",
+        "tonalRamp": [
+          "#040a1e",
+          "#19233a",
+          "#343f58",
+          "#515d78",
+          "#73809c",
+          "#97a5c2",
+          "#bccbe9",
+          "#e7efff"
+        ]
+      },
+      "dim-ink": {
+        "role": "neutral",
+        "displayName": "Dim Ink",
+        "canonical": "#858FA1",
+        "oklch": "oklch(64.8% 0.029 262.3)",
+        "tonalRamp": [
+          "#050b17",
+          "#1c2432",
+          "#374050",
+          "#555e6f",
+          "#778192",
+          "#9ba5b8",
+          "#c0cbde",
+          "#e6efff"
+        ]
+      },
+      "dim-night": {
+        "role": "neutral",
+        "displayName": "Dim Night",
+        "canonical": "#6B7894",
+        "oklch": "oklch(57.2% 0.046 265.4)",
+        "tonalRamp": [
+          "#04091e",
+          "#19233a",
+          "#343f58",
+          "#515d78",
+          "#73809c",
+          "#97a5c2",
+          "#bccbea",
+          "#e7effe"
+        ]
+      },
+      "limb-deep": {
+        "role": "tertiary",
+        "displayName": "Limb Deep",
+        "canonical": "#10277A",
+        "oklch": "oklch(31.9% 0.143 265.9)",
+        "tonalRamp": [
+          "#010035",
+          "#061468",
+          "#1b368a",
+          "#3757ad",
+          "#577bd5",
+          "#7aa1fe",
+          "#b3cafe",
+          "#e7efff"
+        ]
+      },
+      "limb-mid": {
+        "role": "tertiary",
+        "displayName": "Limb Mid",
+        "canonical": "#6F9AF5",
+        "oklch": "oklch(69.5% 0.142 263.9)",
+        "tonalRamp": [
+          "#000036",
+          "#011567",
+          "#163789",
+          "#3358ad",
+          "#547cd5",
+          "#76a2fe",
+          "#b1cbff",
+          "#e7effe"
+        ]
+      },
+      "limb-pale": {
+        "role": "tertiary",
+        "displayName": "Limb Pale",
+        "canonical": "#DBE6FD",
+        "oklch": "oklch(92.4% 0.033 265.2)",
+        "tonalRamp": [
+          "#050a19",
+          "#1c2434",
+          "#374052",
+          "#545e71",
+          "#778095",
+          "#9aa5ba",
+          "#c0cbe1",
+          "#e7efff"
+        ]
+      },
+      "giant-ink": {
+        "role": "neutral",
+        "displayName": "Giant Ink",
+        "canonical": "#E6EBF3",
+        "oklch": "oklch(93.9% 0.012 259.8)",
+        "tonalRamp": [
+          "#080b10",
+          "#21242a",
+          "#3c4046",
+          "#5a5e65",
+          "#7c8088",
+          "#a0a5ac",
+          "#c6cbd3",
+          "#eaeff7"
+        ]
+      },
+      "map-dot-night": {
+        "role": "neutral",
+        "displayName": "Map Dot Night",
+        "canonical": "#1F3566",
+        "oklch": "oklch(33.9% 0.090 264.0)",
+        "tonalRamp": [
+          "#000330",
+          "#0c204f",
+          "#273d6f",
+          "#435c91",
+          "#657fb7",
+          "#88a4de",
+          "#b1cbff",
+          "#e7effe"
+        ]
+      },
+      "map-dot-loader": {
+        "role": "neutral",
+        "displayName": "Map Dot Loader",
+        "canonical": "#2A3B63",
+        "oklch": "oklch(35.8% 0.073 265.5)",
+        "tonalRamp": [
+          "#010629",
+          "#132147",
+          "#2d3e66",
+          "#4a5d87",
+          "#6b80ad",
+          "#8fa4d3",
+          "#b4cafb",
+          "#e7efff"
+        ]
+      },
+      "map-dot-snow": {
+        "role": "neutral",
+        "displayName": "Map Dot Snow",
+        "canonical": "#C9D2E3",
+        "oklch": "oklch(86.2% 0.026 263.3)",
+        "tonalRamp": [
+          "#060b16",
+          "#1e2431",
+          "#39404e",
+          "#565e6c",
+          "#788090",
+          "#9ca5b5",
+          "#c2cbdc",
+          "#e6efff"
+        ]
+      },
+      "pending": {
+        "role": "neutral",
+        "displayName": "Pending",
+        "canonical": "#B8470F",
+        "oklch": "oklch(54.5% 0.158 41.6)",
+        "tonalRamp": [
+          "#1a0400",
+          "#411300",
+          "#6e2500",
+          "#9d3903",
+          "#cb5827",
+          "#f57e4f",
+          "#ffb79c",
+          "#feeae2"
+        ]
+      },
+      "error": {
+        "role": "neutral",
+        "displayName": "Error",
+        "canonical": "#FF9A7A",
+        "oklch": "oklch(78.4% 0.130 38.3)",
+        "tonalRamp": [
+          "#1b0300",
+          "#431000",
+          "#712001",
+          "#983d1f",
+          "#c06143",
+          "#e98667",
+          "#feb7a0",
+          "#ffe9e2"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero H1 only; third line amber."
+      },
+      "display-sm": {
+        "displayName": "Display SM",
+        "purpose": "Hero H1 at ≤767px."
+      },
+      "giant": {
+        "displayName": "Giant",
+        "purpose": "aria-hidden background type over the service track, Giant Ink on snow."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Every section H2, always two-tone."
+      },
+      "headline-compact": {
+        "displayName": "Headline Compact",
+        "purpose": "Two-tone H2 inside the service band."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Count-up statistics, tabular."
+      },
+      "stage": {
+        "displayName": "Stage",
+        "purpose": "4-D stage names on the ascent."
+      },
+      "title-lg": {
+        "displayName": "Title LG",
+        "purpose": "Case names."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Service, office, FAQ question names."
+      },
+      "logo": {
+        "displayName": "Logo",
+        "purpose": "Header and preloader wordmark."
+      },
+      "quote": {
+        "displayName": "Quote",
+        "purpose": "Testimonials."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Hero and intro paragraphs."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Prose."
+      },
+      "body-small": {
+        "displayName": "Body Small",
+        "purpose": "Service and office descriptions, footer addresses."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Every pill and the menu toggle."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Stat labels, stage lines, form labels, footer heads."
+      },
+      "micro": {
+        "displayName": "Micro",
+        "purpose": "Ticker, chips, altimeter, captions, pending and legal tags; 10px floor."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-ui",
+        "value": "cubic-bezier(0.445, 0.05, 0.55, 0.95)",
+        "purpose": "Hover and state color, border, opacity at 0.4s (UC curve)."
+      },
+      {
+        "name": "ease-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Entrances 1.0–1.4s, menu wipe, header translate."
+      },
+      {
+        "name": "ease-inout",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Logo fold 0.7s, choreography."
+      },
+      {
+        "name": "scrub",
+        "value": "GSAP ScrollTrigger scrub:true, ease:none",
+        "purpose": "Hero dive, dawn, pinned track, giant drift, headline fill, route fill."
+      },
+      {
+        "name": "lenis",
+        "value": "lerp 0.1, wheelMultiplier 1",
+        "purpose": "Page smooth scroll."
+      },
+      {
+        "name": "cursor-follow",
+        "value": "lerp 0.15 / frame",
+        "purpose": "Ring cursor."
+      },
+      {
+        "name": "scramble",
+        "value": "28ms tick, 3-tick head start, anagram shuffle",
+        "purpose": "Mono label hover."
+      },
+      {
+        "name": "count-up",
+        "value": "power1.out 1s at top 85%",
+        "purpose": "Figures."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "≤767px"
+      },
+      {
+        "name": "tablet",
+        "value": "768–991px"
+      },
+      {
+        "name": "desktop",
+        "value": "≥992px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Filled Button · night",
+      "kind": "button",
+      "refersTo": "button-filled-dark",
+      "description": "Primary action on night: snow pill, amber on hover.",
+      "html": "<a class=\"ds-btn-fill-dark\" href=\"#\">Talk with us</a>",
+      "css": ".ds-btn-fill-dark{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 26px;border-radius:999px;font:500 12px/1 var(--mono, \"Martian Mono Variable\", monospace);letter-spacing:.03em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background-color .4s cubic-bezier(.445,.05,.55,.95),color .4s cubic-bezier(.445,.05,.55,.95),border-color .4s cubic-bezier(.445,.05,.55,.95);background:#fff;color:#0b1a33;border:1px solid transparent}.ds-btn-fill-dark:hover,.ds-btn-fill-dark:focus-visible{background:#f8c000;color:#0b1a33}.ds-btn-fill-dark:active{background:#ffd23d}.ds-btn-fill-dark:focus-visible{outline:2px solid #f8c000;outline-offset:3px}"
+    },
+    {
+      "name": "Filled Button · daylight",
+      "kind": "button",
+      "refersTo": "button-filled-light",
+      "description": "Primary action on snow: navy pill, amber on hover.",
+      "html": "<a class=\"ds-btn-fill-light\" href=\"#\">Start a project</a>",
+      "css": ".ds-btn-fill-light{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 26px;border-radius:999px;font:500 12px/1 var(--mono, \"Martian Mono Variable\", monospace);letter-spacing:.03em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background-color .4s cubic-bezier(.445,.05,.55,.95),color .4s cubic-bezier(.445,.05,.55,.95),border-color .4s cubic-bezier(.445,.05,.55,.95);background:#103060;color:#fff;border:1px solid transparent}.ds-btn-fill-light:hover,.ds-btn-fill-light:focus-visible{background:#f8c000;color:#0b1a33}.ds-btn-fill-light:focus-visible{outline:2px solid #103060;outline-offset:3px}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline-dark",
+      "description": "Secondary action; border brightens on hover.",
+      "html": "<div style=\"background:#030813;padding:24px\"><a class=\"ds-btn-line\" href=\"#\">Our services</a></div>",
+      "css": ".ds-btn-line{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 26px;border-radius:999px;font:500 12px/1 var(--mono, \"Martian Mono Variable\", monospace);letter-spacing:.03em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background-color .4s cubic-bezier(.445,.05,.55,.95),color .4s cubic-bezier(.445,.05,.55,.95),border-color .4s cubic-bezier(.445,.05,.55,.95);color:#fff;border:1px solid rgba(255,255,255,.32)}.ds-btn-line:hover,.ds-btn-line:focus-visible{border-color:#fff}"
+    },
+    {
+      "name": "Two-tone Headline",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "Every H2: dim statement over ink statement; ink words fill dim→glacier→ink on scroll.",
+      "html": "<h2 class=\"ds-tt\"><span class=\"a\">Tech made simple.</span><span class=\"b\">Solutions made powerful.</span></h2>",
+      "css": ".ds-tt{font:760 56px/.94 \"Saira Variable\",Saira,sans-serif;font-stretch:125%;text-transform:uppercase;letter-spacing:-.01em;margin:0}.ds-tt .a{display:block;color:#858fa1}.ds-tt .b{display:block;color:#0b1a33}"
+    },
+    {
+      "name": "Map Chip",
+      "kind": "chip",
+      "refersTo": "chip-map",
+      "description": "City label on the dot map with live local time; amber on hover or focus.",
+      "html": "<div style=\"background:#030813;padding:24px\"><button class=\"ds-chip\"><b>Dallas, TX</b> 08:15 CT</button></div>",
+      "css": ".ds-chip{padding:5px 8px;background:#07101f;border:1px solid rgba(255,255,255,.12);border-radius:2px;font:400 10px/1.2 \"Martian Mono Variable\",monospace;letter-spacing:.05em;text-transform:uppercase;color:#a9b4cc;cursor:pointer;transition:background-color .4s,color .4s,border-color .4s}.ds-chip b{font-weight:500;color:#fff}.ds-chip:hover,.ds-chip:focus-visible{background:#f8c000;border-color:#f8c000;color:#0b1a33}.ds-chip:hover b,.ds-chip:focus-visible b{color:#0b1a33}"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Bottom-rule field on the night form panel; amber rule on focus.",
+      "html": "<label class=\"ds-field\">Work email<input type=\"email\" placeholder=\"\"></label>",
+      "css": ".ds-field{display:grid;gap:8px;padding:24px;background:#07101f;font:500 10.5px/1.3 \"Martian Mono Variable\",monospace;letter-spacing:.05em;text-transform:uppercase;color:#a9b4cc}.ds-field input{font:400 17px/1.4 \"Host Grotesk Variable\",sans-serif;color:#fff;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.28);padding:10px 0;caret-color:#f8c000;transition:border-color .4s,box-shadow .4s}.ds-field input:hover{border-bottom-color:rgba(255,255,255,.55)}.ds-field input:focus{outline:none;border-bottom-color:#f8c000;box-shadow:0 1px 0 #f8c000}"
+    },
+    {
+      "name": "Menu Toggle",
+      "kind": "nav",
+      "refersTo": "button",
+      "description": "Four stepped dots and a MENU/CLOSE roll.",
+      "html": "<button class=\"ds-menu\"><span class=\"dots\"><i></i><i></i><i></i><i></i></span>Menu</button>",
+      "css": ".ds-menu{display:inline-flex;align-items:center;gap:10px;height:36px;background:none;border:0;color:#0b1a33;font:500 12px/1 \"Martian Mono Variable\",monospace;letter-spacing:.03em;text-transform:uppercase;cursor:pointer}.ds-menu .dots{display:flex;gap:2px}.ds-menu i{width:3px;height:3px;background:currentColor;transition:opacity .3s,translate .4s cubic-bezier(.16,1,.3,1)}.ds-menu i:nth-child(1){opacity:.24}.ds-menu i:nth-child(2){opacity:.5}.ds-menu i:nth-child(3){opacity:.7}.ds-menu:hover i{opacity:1}.ds-menu:hover i:nth-child(odd){translate:0 -2px}"
+    },
+    {
+      "name": "FAQ Row",
+      "kind": "custom",
+      "refersTo": "faq-row",
+      "description": "Hairline row; plus turns 45° into a cross when open.",
+      "html": "<div class=\"ds-qa\"><button aria-expanded=\"false\">Where is your team?<span class=\"plus\"></span></button></div>",
+      "css": ".ds-qa{background:#f3f5f9;border-bottom:1px solid rgba(11,26,51,.12)}.ds-qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:26px 0;background:none;border:0;text-align:left;font:700 20px/1.04 \"Saira Variable\",sans-serif;font-stretch:125%;text-transform:uppercase;color:#0b1a33;cursor:pointer;transition:color .4s}.ds-qa button:hover{color:#103060}.ds-qa .plus{position:relative;width:14px;height:14px;transition:rotate .5s cubic-bezier(.16,1,.3,1)}.ds-qa .plus::before,.ds-qa .plus::after{content:\"\";position:absolute;left:0;top:6px;width:14px;height:2px;background:currentColor}.ds-qa .plus::after{rotate:90deg}.ds-qa button:hover .plus{rotate:45deg}"
+    },
+    {
+      "name": "Altimeter HUD",
+      "kind": "custom",
+      "refersTo": "altimeter",
+      "description": "Fixed climb reading, difference blend.",
+      "html": "<div class=\"ds-hud\"><span>Alt <b>4,490</b> m</span><span>V/S <b>10</b> m/s</span></div>",
+      "css": ".ds-hud{display:inline-flex;gap:18px;padding:12px 16px;background:#030813;color:#fff;font:500 10.5px/1 \"Martian Mono Variable\",monospace;letter-spacing:.05em;text-transform:uppercase}.ds-hud b{font-weight:500;font-variant-numeric:tabular-nums}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Night Ascent",
+    "overview": "Xion means a legendary mountain, and the landing page is a climb up it. It opens at night at base camp: a Three.js massif made of white particle dots under stars. An amber dawn glows behind the ridge and a glacier-blue rim light catches the lower slopes. Chips mark the camps where the team lives, Dallas, TX and Ho Chi Minh City. As the visitor scrolls, the camera climbs toward the summit and dawn breaks. A curved atmospheric limb, glacier blue with an amber sunrise line, hands the page to snow-white daylight. From there the page alternates daylight and night bands like weather on a mountain. An altimeter in the corner counts the climb in meters. The last night section is the summit, where the visitor names their project. The footer closes in daylight with the wordmark at mountain scale.\n\nThe mechanics come from unitedcarriers.com (Awwwards Site of the Day, teardown in the appendix), because the user named it as the quality bar:\n- Lenis smooth scroll and GSAP ScrollTrigger scenes scrubbed to scroll.\n- A preloader with a dot world map and a counter.\n- A ring-and-dot cursor in difference blend.\n- Mono button labels that shuffle their own letters on hover.\n- Two-tone uppercase headlines whose ink line fills word by word.\n- A giant background type band over a dark service track.\n- Hairline grids, dot-matrix icons, and a strict dark and light rhythm joined by atmospheric horizons.\n\nOnly the story and the palette are XionTechs': the globe becomes the mountain, freight lanes become routes to the summit, the KM/H speedometer becomes an altimeter, and UC's electric blue and orange become the logo navy and amber.",
+    "keyCharacteristics": [
+      "One continuous story: night, dawn, daylight, dusk, summit, daylight.",
+      "Saira at 125% width, uppercase, carries every heading. Host Grotesk carries prose. Martian Mono carries every control, label, and reading.",
+      "Flat surfaces and 1px hairlines. No shadows, no cards with depth, no glass.",
+      "Pills for controls, a 2px radius for chips, square for everything else.",
+      "Motion is scrubbed to scroll or answers a gesture. The only things that loop are the 3D scene, the map beacons, and the route arcs, and only while on screen.",
+      "Every interactive element answers the pointer: a letter scramble, an amber fill, a cell tint, or a cursor state."
+    ],
+    "rules": [
+      {
+        "name": "The Dawn Rule",
+        "body": "Full-bleed night and daylight never meet at a straight edge. Night to daylight goes through a dawn limb (a snow dome rising from below, glacier band, amber sunrise). Daylight to night goes through a dusk limb (a night dome rising under a white or ice sky). Bands inside a section, like the service track under the giant type, may cut hard: they are ground, not sky.",
+        "section": "colors"
+      },
+      {
+        "name": "The Amber Ration Rule",
+        "body": "At rest, amber covers at most about 5% of any viewport: one headline line, beacons, a route, a few links. It floods a surface only as a response: the hover fill of a filled button, or the focus fill of a chip.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Amber-On-Snow Rule",
+        "body": "Amber is never text or a thin rule on white (1.6:1). On daylight, amber appears only as a fill that carries navy ink, or as a 2px graphic line with no job of carrying meaning (the topo contour).",
+        "section": "colors"
+      },
+      {
+        "name": "The Placeholder Is Loud Rule",
+        "body": "Anything the user must still supply (case write-ups, testimonials) carries the Pending mono tag. A placeholder that looks finished is a fabrication.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Tone Rule",
+        "body": "Every H2 is two statements: a dim line (`.tt-a`) and an ink line (`.tt-b`), each `display:block`. On scroll, each word of the ink line passes from dim through Glacier to ink, stepping 0.14 per word, scrubbed between `top 85%` and `top 40%`. Without JS or with reduced motion, the final colors show at once.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono-Means-Machine Rule",
+        "body": "Mono is only for what you press or read as data: buttons, the menu, chips, clocks, coordinates, altitude, vertical speed, counters' labels, legal and pending tags. Paragraphs are never mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The Uppercase-Is-Display Rule",
+        "body": "Uppercase belongs to Saira headings and mono labels. Body text is always sentence case.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Every number that changes in place (clocks, altitude, V/S, figures, the loader counter) uses `font-variant-numeric: tabular-nums` so digits never jitter.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Shadow Rule",
+        "body": "No element casts a box shadow. To lift, a surface changes field (snow to ice, night to night band) or gains a hairline. The one box-shadow in the system is a 1px amber underline on a focused field, and it is a rule, not a shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Light-Is-Depth Rule",
+        "body": "Glow belongs to light sources in the world: the dawn behind the ridge, the glacier limb, the beacons. It is never a halo around a UI element.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do drive every scroll-linked scene with GSAP ScrollTrigger `scrub: true`, `ease: \"none\"`, under a Lenis instance at `lerp: 0.1` synced through `gsap.ticker`. Create pinned triggers before the triggers below them.",
+      "Do run entrances from an already-visible default: set hidden states in JS only, and ease with expo.out over 1.0–1.2s. Vary the entrance per section: mask rise (hero), rise (intro copy), wipe (stats), clip rise (cases), blur (chips), scrub fill (headlines).",
+      "Do keep reduced-motion users on native scroll: no preloader, no pins, no cursor, no scramble, final states visible, counters at their true values.",
+      "Do put `scene.background` on the Three.js scene, not only the clear color. The bloom pass restores the clear color outside a render target and double-encodes the night to #1C324D.",
+      "Do keep the render loop gated: it runs only while the hero or the summit is on screen and the tab is visible.",
+      "Do pass every full-bleed night and daylight change through a horizon limb (the Dawn Rule).",
+      "Do keep amber at or under 5% of a resting viewport (the Amber Ration Rule).",
+      "Do tag every placeholder with the Pending mono tag until the user supplies the real content."
+    ],
+    "donts": [
+      "Don't put an eyebrow or kicker above a heading. UC's \"ONE OPERATOR\" was deliberately not carried over.",
+      "Don't set amber text or thin amber rules on snow.",
+      "Don't use box shadows, glass or blur panels, or gradient text at rest.",
+      "Don't lift the night into pale blue haze or wash the palette toward pastel. The soft rewrite of 2026-09-29 was rejected for exactly that.",
+      "Don't animate layout properties (margin, padding, width, height) outside the FAQ panel height tween. Use transforms, clip-path, opacity, and filter.",
+      "Don't tween transforms with GSAP on elements whose position depends on the CSS `translate` property (map chips, 3D chips). GSAP inlines `translate: none`.",
+      "Don't invent claims: no client logos, per-case metrics, pricing, certifications, or testimonials.",
+      "Don't use mono for prose or uppercase for body text."
+    ]
+  }
+}

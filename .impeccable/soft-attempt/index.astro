@@ -1,0 +1,263 @@
+---
+import "@fontsource-variable/bricolage-grotesque/standard.css";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/500.css";
+import "../styles/global.css";
+
+const services = [
+  ["Product Engineering", "Market-ready digital products, built to scale and centered on the people who use them."],
+  ["AI-Driven Analytics", "Turn raw data into decisions your team can act on."],
+  ["Product Co-Creation", "Your domain knowledge plus our engineering, shaping the product together."],
+  ["Staffing", "Specialist engineers who join your team when you need them."],
+  ["Custom Apps", "Bespoke software, plus modernization of the legacy systems you already run."],
+  ["Low-code", "Power Platform, Make, n8n, Retool, and Bubble, set up for real workflows."],
+  ["AI Solutions", "Intelligent automation, predictive models, and conversational interfaces."],
+  ["Cloud Computing", "Migration and optimization on Azure, AWS, and GCP."],
+];
+
+const stages = [
+  ["Discovery", "Base camp", "We map the terrain: users, constraints, and the real problem behind the brief."],
+  ["Design", "Route set", "Flows, architecture, and a prototype you can click before a line of production code."],
+  ["Development", "The climb", "Short sprints, working builds every step, and nothing hidden from you."],
+  ["Deployment", "Summit", "Launch, monitoring, and handover. Then we plan the next peak with you."],
+];
+
+const cases = ["Cloud Security Service", "Data Analytics System", "IT Solution & Consultancy"];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XionTechs — Get IT Done</title>
+  <meta name="description" content="XionTechs builds digital products from base camp to summit. Product engineering, AI, low-code, and cloud, from Dallas, Texas and Ho Chi Minh City." />
+  <meta name="theme-color" content="#030813" />
+  <link rel="icon" href="/xiontechs-logo.png" />
+</head>
+<body>
+<!--
+THESIS: Xion is a legendary mountain; the page is the climb. It refuses the category default of a stock hero and a grid of service cards: the product is a mountain, the services are routes to its summit, the process is the ascent.
+OWN-WORLD: A night expedition chart. A particle massif on deep navy (#030813 to #103060), glowing contour bands, route arcs from ember orange to Xion amber (#F8C000). Bricolage Grotesque sentence case, weight 560, frosted rounded panels, dusk haze; softened after client note "not soft enough". Mono only for real data: coordinates, altitudes, local times.
+STORY: A B2B buyer sees who XionTechs is, where the two base camps are (Dallas, TX and Ho Chi Minh City), which route fits their product, how the ascent works, and then starts the conversation at the summit.
+FIRST VIEWPORT: The massif fills the right two-thirds. The headline sits bottom-left at display scale with "Talk with us" under it. A base-camp locator (Dallas and HCMC, with live local times) sits bottom-right, and it lights the matching camp on the mountain.
+FORM: Brief-pinned (unitedcarriers.com particle world, globe replaced by a mountain), outranking roll position 7. Seed bb9e9a62.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+-->
+  <canvas id="mountain" aria-hidden="true"></canvas>
+  <div id="pins" class="pins" aria-hidden="true"></div>
+
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="XionTechs home">
+      <svg viewBox="0 0 40 28" aria-hidden="true"><path d="M3 3h7l10 11L30 3h7L23.5 17.5 33 25h-7l-6-5-6 5H7l9.5-7.5z" fill="currentColor"/><path d="M1 22c9-1 17-6 25-15" fill="none" stroke="#F8C000" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <span>XionTechs</span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="#camps">Base camps</a>
+      <a href="#routes">Services</a>
+      <a href="#ascent">Process</a>
+      <a href="#proof">Work</a>
+    </nav>
+    <a class="btn btn-solid" href="#summit">Start a project</a>
+  </header>
+
+  <main>
+    <section class="panel hero" data-station="0" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Your route, your pace.<br/>We walk it with you.<br/><em>Get IT done.</em></h1>
+        <p class="lede">XionTechs shapes each engagement around you. Build with us, co-create, or add engineers to your team, from Texas and Vietnam.</p>
+        <div class="actions">
+          <a class="btn btn-solid" href="#summit">Talk with us</a>
+          <a class="btn btn-ghost" href="#routes">Explore services</a>
+        </div>
+      </div>
+
+      <aside class="locator" aria-label="Office locations">
+        <p class="locator-title">Base camps</p>
+        <button class="camp" data-camp="dallas" type="button">
+          <span class="camp-name">Dallas, Texas</span>
+          <span class="camp-meta"><span data-clock="America/Chicago">--:--</span> CT · 32.78°N 96.80°W</span>
+        </button>
+        <button class="camp" data-camp="hcmc" type="button">
+          <span class="camp-name">Ho Chi Minh City</span>
+          <span class="camp-meta"><span data-clock="Asia/Ho_Chi_Minh">--:--</span> ICT · 10.78°N 106.69°E</span>
+        </button>
+      </aside>
+    </section>
+
+    <section id="camps" class="panel panel-band" data-station="1" aria-labelledby="camps-title">
+      <div class="col col-band">
+        <div>
+        <h2 id="camps-title">Two base camps,<br/>one rope team.</h2>
+        <p class="body">You talk to us in Texas, in your time zone. Our engineering teams build in Ho Chi Minh City and Da Nang, on the other side of the clock.</p>
+
+        <div class="daybar" aria-label="Working hours in Dallas and Vietnam, on a shared 24-hour clock">
+          <div class="daybar-row"><span>Dallas</span><div class="track"><i class="work" data-zone="America/Chicago"></i></div></div>
+          <div class="daybar-row"><span>Vietnam</span><div class="track"><i class="work" data-zone="Asia/Ho_Chi_Minh"></i></div></div>
+          <div class="daybar-axis"><span>00 UTC</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+          <i class="now" aria-hidden="true"></i>
+        </div>
+        </div>
+
+        <ul class="offices">
+          <li data-camp="dallas">
+            <b>Dallas, Texas, USA</b>
+            <span>Client office</span>
+            <a href="tel:+14693229899">+1 469 322 9899</a>
+          </li>
+          <li data-camp="hcmc">
+            <b>Ho Chi Minh City, Vietnam</b>
+            <span>Viettel Tower, Floor 12, 285 CMT8</span>
+            <a href="tel:+84908107552">+84 908 107 552</a>
+          </li>
+          <li data-camp="danang">
+            <b>Da Nang, Vietnam</b>
+            <span>Floor 15, B1 Building, 279 Nguyen Tri Phuong</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="routes" class="panel" data-station="2" aria-labelledby="routes-title">
+      <div class="col col-wide">
+        <h2 id="routes-title">Eight routes up.<br/>Or a new one, made with you.</h2>
+        <p class="body">Start with the route that fits, mix a few, or change course as you learn. Every route ends with working software in your users' hands.</p>
+        <ol class="routes">
+          {services.map(([name, text]) => (
+            <li><b>{name}</b><span>{text}</span></li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section id="ascent" class="panel" data-station="3" aria-labelledby="ascent-title">
+      <div class="col">
+        <h2 id="ascent-title">How we climb together.</h2>
+        <p class="body">Four stages you can see and steer. You stay in the loop at every step.</p>
+        <ol class="ascent">
+          {stages.map(([name, camp, text], i) => (
+            <li>
+              <span class="alt">{String(i + 1).padStart(2, "0")} · {camp}</span>
+              <b>{name}</b>
+              <p>{text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section id="proof" class="panel" data-station="4" aria-labelledby="proof-title">
+      <div class="col col-wide">
+        <h2 id="proof-title">From the expedition log.</h2>
+        <dl class="log">
+          <div><dt>Years of leadership</dt><dd>25+</dd></div>
+          <div><dt>Offices in 2 countries</dt><dd>3</dd></div>
+          <div><dt>Tech stacks in use</dt><dd>20+</dd></div>
+        </dl>
+        <ul class="cases">
+          {cases.map((c) => (
+            <li>
+              <b>{c}</b>
+              <span class="placeholder">Case write-up pending. Replace with the real client story.</span>
+            </li>
+          ))}
+        </ul>
+        <figure class="quote placeholder-block">
+          <blockquote>Client testimonial goes here. The current site only has template text, so real quotes are needed before launch.</blockquote>
+          <figcaption>Placeholder · name, role, company</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="summit" class="panel summit" data-station="5" aria-labelledby="summit-title">
+      <div class="col">
+        <h2 id="summit-title">Tell us where you're headed.</h2>
+        <p class="body">Share as much or as little as you know. We reply by email.</p>
+        <form class="brief" novalidate>
+          <label>Your name<input name="name" autocomplete="name" required /></label>
+          <label>Work email<input name="email" type="email" autocomplete="email" required /></label>
+          <label>What are you building?<textarea name="msg" rows="3" required></textarea></label>
+          <p class="form-status" role="status" aria-live="polite"></p>
+          <button class="btn btn-solid" type="submit">Start the conversation</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>© XionTechs · Get IT Done</span>
+    <span>Dallas · Ho Chi Minh City · Da Nang</span>
+  </footer>
+
+  <script>
+    import { mountMountain } from "../scripts/mountain";
+
+    const canvas = document.getElementById("mountain") as HTMLCanvasElement;
+    const pins = document.getElementById("pins")!;
+    const scene = mountMountain(canvas, pins);
+    if (!scene) document.documentElement.classList.add("no-webgl");
+
+    /* scroll → camera station */
+    const panels = [...document.querySelectorAll<HTMLElement>("[data-station]")];
+    function onScroll() {
+      const mid = scrollY + innerHeight * 0.5;
+      let value = 0;
+      panels.forEach((p, i) => {
+        const top = p.offsetTop, h = p.offsetHeight;
+        if (mid >= top) value = i + Math.min(1, (mid - top) / h) - 0.5;
+      });
+      scene?.setStation(Math.max(0, value));
+    }
+    addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    /* base camp focus */
+    document.querySelectorAll<HTMLElement>("[data-camp]").forEach((el) => {
+      const id = el.dataset.camp!;
+      const on = () => scene?.setFocus(id);
+      const off = () => scene?.setFocus(null);
+      el.addEventListener("pointerenter", on);
+      el.addEventListener("pointerleave", off);
+      el.addEventListener("focusin", on);
+      el.addEventListener("focusout", off);
+    });
+
+    /* live clocks and the shared day bar */
+    const hm = (zone: string) => new Intl.DateTimeFormat("en-GB", { timeZone: zone, hour: "2-digit", minute: "2-digit" }).format(new Date());
+    function offsetHours(zone: string) {
+      const d = new Date();
+      const local = new Date(d.toLocaleString("en-US", { timeZone: zone }));
+      const utc = new Date(d.toLocaleString("en-US", { timeZone: "UTC" }));
+      return (local.getTime() - utc.getTime()) / 3.6e6;
+    }
+    function tickClocks() {
+      document.querySelectorAll<HTMLElement>("[data-clock]").forEach((el) => (el.textContent = hm(el.dataset.clock!)));
+      document.querySelectorAll<HTMLElement>(".work[data-zone]").forEach((el) => {
+        const start = (((8 - offsetHours(el.dataset.zone!)) % 24) + 24) % 24; // 08:00 local, in UTC hours
+        el.style.setProperty("--start", String(start / 24));
+        el.style.setProperty("--len", String(9 / 24));
+      });
+      const n = new Date();
+      document.querySelector<HTMLElement>(".now")?.style.setProperty("--now", String((n.getUTCHours() + n.getUTCMinutes() / 60) / 24));
+    }
+    tickClocks();
+    setInterval(tickClocks, 30_000);
+
+    /* brief form — client-side states until a backend exists */
+    const form = document.querySelector<HTMLFormElement>(".brief")!;
+    const status = form.querySelector<HTMLElement>(".form-status")!;
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        const bad = form.querySelector<HTMLInputElement>(":invalid")!;
+        status.dataset.state = "error";
+        status.textContent = bad.type === "email" && bad.value ? "That email looks incomplete. Check it and send again." : "Fill in all three fields so we know where to start.";
+        bad.focus();
+        return;
+      }
+      status.dataset.state = "ok";
+      status.textContent = "Brief ready. Sending is not connected yet in this prototype.";
+      form.reset();
+    });
+  </script>
+</body>
+</html>

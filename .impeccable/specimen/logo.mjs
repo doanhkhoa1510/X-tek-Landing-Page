@@ -1,0 +1,8 @@
+import { chromium } from '/Users/persiedacoder/.dev-browser/node_modules/playwright/index.mjs';
+import fs from 'node:fs';
+const logo = 'data:image/png;base64,' + fs.readFileSync('/private/tmp/claude-502/-Users-persiedacoder-coding-xt-landing-page/261f1f7d-953d-4e4a-a3f8-0ef6f0586f13/images/1.png').toString('base64');
+const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 900, height: 600 } });
+await p.setContent(`<body style="margin:0;background:#fff"><div style="position:relative;width:900px;height:600px;overflow:hidden"><img src="${logo}" style="position:absolute;left:0;top:-60px;width:900px"><svg width=900 height=600 style="position:absolute;inset:0">${Array.from({length:19},(_, i)=>`<line x1=${i*50} y1=0 x2=${i*50} y2=600 stroke="#f0f" stroke-opacity=.25 /><text x=${i*50+2} y=10 font-size=9 fill="#f0f">${i*50/3|0}</text>`).join('')}${Array.from({length:13},(_, i)=>`<line y1=${i*50} x1=0 y2=${i*50} x2=900 stroke="#0af" stroke-opacity=.25 /><text y=${i*50-2} x=2 font-size=9 fill="#0af">${(i*50+60)/3|0}</text>`).join('')}</svg></div>`);
+const px = await p.evaluate(async (src) => { const im = new Image(); im.src = src; await im.decode(); const c = document.createElement('canvas'); c.width = im.width; c.height = im.height; const g = c.getContext('2d'); g.drawImage(im, 0, 0); const at = (x, y) => Array.from(g.getImageData(x, y, 1, 1).data.slice(0, 3)).map(v => v.toString(16).padStart(2, '0')).join(''); return { size: [im.width, im.height], navy: at(215, 150), amber: at(120, 78), swoosh: at(60, 185), word: at(150, 238) }; }, logo);
+console.log(JSON.stringify(px));
+await p.screenshot({ path: '.impeccable/specimen/logo-grid.png' }); await b.close();

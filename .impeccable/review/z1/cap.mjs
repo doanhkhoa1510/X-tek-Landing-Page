@@ -1,0 +1,30 @@
+import { open } from "../../uc-research/pw.mjs";
+const mobile = process.argv[2] === "m", dir = new URL(".", import.meta.url).pathname + (mobile ? "m-" : "d-");
+const { browser, page } = await open("http://localhost:4321/", mobile ? { w: 390, h: 844, mobile: true } : {});
+const errs = []; page.on("pageerror", (e) => errs.push(String(e)));
+await page.waitForTimeout(1400);
+await page.screenshot({ path: dir + "0-loader.png" });
+await page.waitForTimeout(5200);
+await page.screenshot({ path: dir + "1-hero.png" });
+const H = await page.evaluate(() => innerHeight);
+const shoot = async (y, name, wait = 1600) => {
+  await page.evaluate((y) => window.scrollTo(0, y), y);
+  await page.waitForTimeout(wait);
+  await page.screenshot({ path: dir + name + ".png" });
+};
+await shoot(H * 0.5, "2-dive");
+await shoot(H * 1.2, "3-dive-deep");
+const top = (sel) => page.evaluate((s) => document.querySelector(s).getBoundingClientRect().top + scrollY, sel);
+await shoot((await top("#intro")) + 60, "4-intro");
+await shoot((await top("#routes")) + H * 0.5, "5-routes");
+await shoot((await top("#summit")) + 40, "6-summit", 2400);
+await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+await page.waitForTimeout(1600);
+await page.screenshot({ path: dir + "7-foot.png" });
+const glyph = await page.evaluate(() => {
+  const c = document.createElement("canvas").getContext("2d");
+  c.font = '16px "Martian Mono Variable"';
+  return { a: c.measureText("a").width, open: c.measureText("ɒ").width, len: c.measureText("ː").width };
+});
+console.log(JSON.stringify({ glyph, errs }));
+await browser.close();

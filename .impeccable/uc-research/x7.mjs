@@ -1,0 +1,17 @@
+import { open } from './pw.mjs';
+const out = process.argv[2];
+const { browser, page } = await open('http://localhost:4321/');
+await page.waitForTimeout(5200);
+const y = await page.evaluate(() => document.querySelector('.summit').getBoundingClientRect().top + scrollY + 520);
+await page.evaluate((y) => scrollTo(0, y), y); await page.waitForTimeout(1800);
+const clip = await page.evaluate(() => { const r = document.querySelector('.brief').getBoundingClientRect(); return { x: r.x - 10, y: r.y - 10, width: r.width + 20, height: r.height + 20 }; });
+await page.click('.brief button[type=submit]'); await page.waitForTimeout(400);
+await page.screenshot({ path: `${out}/form-error.png`, clip });
+await page.fill('input[name=name]', 'Alex Nguyen'); await page.fill('input[name=email]', 'alex@example');
+await page.fill('textarea[name=msg]', 'A B2B ordering portal on Azure.');
+await page.click('.brief button[type=submit]'); await page.waitForTimeout(400);
+await page.screenshot({ path: `${out}/form-bad-email.png`, clip });
+await page.fill('input[name=email]', 'alex@example.com');
+await page.click('.brief button[type=submit]'); await page.waitForTimeout(400);
+await page.screenshot({ path: `${out}/form-not-sent.png`, clip });
+await browser.close();
