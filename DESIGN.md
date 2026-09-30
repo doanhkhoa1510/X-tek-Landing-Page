@@ -422,6 +422,17 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
   - The cursor and scramble turn off with no fine pointer.
 - **Header geometry:** a 32px ticker plus a 64px row (96px total). After 40px of scroll the whole header translates up 32px, so the ticker slides away with a transform, not a layout change.
 
+### Subpages
+
+The landing page is for a new buyer and stays lean. Everything else from the old xiontechs.com lives on subpages at its old URL, because app store listings link to `/support/` and `/privacy-policy/`.
+- **Pages:** `/about-us/`, `/faqs/`, `/careers/` plus five closed `/job/<slug>/` posts, `/contact-us/`, `/support/`, `/privacy-policy/`, `/terms-of-service/`, `/cookie-policy/`, and a 404. Long texts are Markdown in `src/content/` (collections in `src/content.config.ts`).
+- **Head (night):** `layouts/Sub.astro`. The H1 is a two-tone Headline at 1/9, and the lede and meta chips sit at 9/13 on the baseline. Mount Zion's contour map (the intro tile, recoloured for night, `cover`) fills the right side under a radial mask, and its amber contour follows the altimeter. A dawn limb (`clamp(200px, 30vh, 320px)`) rises whole on load, which is the Dawn Rule, and the first daylight band starts close under it. Contact has no limb; it stays on night down to its own dawn above the footer.
+- **Bands (daylight):** hairline cell grids (`.cells`; the 1px gaps are the rules), a sticky side head against a body at 8/13 (`.split`), and figure rows (`.figures`). Long texts use a sticky "On this page" index at 1/4 (mono, a navy square marks the section being read, and it ends above the altimeter) against prose at 5/12, max 68ch.
+- **Closing ask:** an ice band (`components/Cta.astro`) before the footer on About, FAQs, Careers, and jobs. Legal texts end on their own content.
+- **Menu:** landing sections, a hairline, then About us, Careers, and Support, in a flat panel (Night Band or Snow) so ten links never sit on the headline. Subpages link to landing sections as `/#id`. An arrival with a hash skips the preloader and lands on the section.
+- **Footer:** map 1/4, then base camps, call, explore, and company columns. The legal row carries the three legal links.
+- **Scripts:** `chrome.ts` is shared (scroll, header, scramble, cursor, altimeter, clocks, accordion, forms). `app.ts` is the landing page and `page.ts` is the subpages. Terrain math lives in `relief.ts`, so subpages never load Three.js (about 183 KB of JS against 690 KB).
+
 ## Elevation & Depth
 
 The system is flat. Depth comes from light and from layers sliding over each other, never from box shadows. The layers:

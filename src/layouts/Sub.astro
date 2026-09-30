@@ -1,0 +1,41 @@
+---
+/* Subpages: a night head with Mount Zion's contours behind a two-tone title, then dawn hands over to daylight (the Dawn Rule). */
+import Base from "./Base.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  a: string;
+  b: string;
+  lede?: string;
+  meta?: string[];
+  /** false when the page body stays on night (contact) and closes its own limb */
+  dawn?: boolean;
+}
+const { title, description, a, b, lede, meta = [], dawn = true } = Astro.props;
+const aside = !!lede || meta.length > 0 || Astro.slots.has("aside");
+---
+<Base title={`${title} · XionTechs`} description={description}>
+  <section id="top" class:list={["page-head", { "no-dawn": !dawn }]} data-on="dark" aria-labelledby="page-title">
+    <div class="page-topo" aria-hidden="true"><canvas></canvas></div>
+    <div class="wrap page-head-grid">
+      <h1 id="page-title" class="tt page-title"><span class="tt-a">{a}</span> <span class="tt-b">{b}</span></h1>
+      {aside && (
+        <div class="page-aside">
+          {lede && <p class="page-lede">{lede}</p>}
+          <slot name="aside" />
+          {meta.length > 0 && <ul class="page-meta">{meta.map((m) => <li>{m}</li>)}</ul>}
+        </div>
+      )}
+    </div>
+    {dawn && <div class="horizon dawn page-dawn" aria-hidden="true"></div>}
+  </section>
+
+  <slot />
+
+  <Fragment slot="script">
+    <script>
+      import "../scripts/page";
+    </script>
+  </Fragment>
+</Base>

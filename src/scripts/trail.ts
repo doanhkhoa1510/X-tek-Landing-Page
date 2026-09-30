@@ -4,7 +4,7 @@
    the climber reaches camp s as stage s crosses the centre of the viewport. */
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { BASE_M, heightAt, SUMMIT_M, unitsAt } from "./mountain";
+import { BASE_M, heightAt, SUMMIT_M, unitsAt } from "./relief";
 import { ZION } from "./zion-data";
 
 const X0 = -10, X1 = 11, N = 420; // closer than the routes sky: the dome fills the frame, the west shoulder at its edge

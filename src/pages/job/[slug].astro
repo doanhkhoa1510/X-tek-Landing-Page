@@ -1,0 +1,38 @@
+---
+/* Closed posts from the old careers board, kept at their old /job/<slug>/ URLs. */
+import { getCollection, render } from "astro:content";
+import Sub from "../../layouts/Sub.astro";
+import Cta from "../../components/Cta.astro";
+
+export async function getStaticPaths() {
+  const jobs = await getCollection("jobs");
+  return jobs.map((job) => ({ params: { slug: job.id }, props: { job } }));
+}
+
+const { job } = Astro.props;
+const { Content } = await render(job);
+const { title, type, location, posted, validThrough, category, status, summary } = job.data;
+const facts = [
+  ["Employment type", type],
+  ["Job location", location],
+  ["Date posted", posted],
+  ["Valid through", validThrough],
+];
+---
+<Sub title={title} description={summary} a="Careers." b={title} lede={summary} meta={[status, category]}>
+  <section class="doc job" data-on="light" aria-label={`${title}, role details`}>
+    <div class="wrap doc-grid">
+      <aside class="doc-toc job-facts" aria-label="Role facts">
+        <dl>
+          {facts.map(([k, v]) => <div><dt class="label">{k}</dt><dd>{v}</dd></div>)}
+        </dl>
+        <a class="btn btn-line" href="/careers/" data-scramble><span class="scr">All careers</span></a>
+      </aside>
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <Cta a="Next campaign." b="Send us your resume." href="mailto:recruit@xiontechs.com" label="recruit@xiontechs.com" call={false} />
+</Sub>

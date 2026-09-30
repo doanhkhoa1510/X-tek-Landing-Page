@@ -1,7 +1,7 @@
 /* The intro tile: a top-down contour map of Mount Zion, the same relief the hero renders in 3D.
    Real 10 m contours in navy (index contour every 50 m); one amber contour follows the altimeter. */
 
-import { BASE_M, heightAt, PEAK, SUMMIT_M, unitsAt } from "./mountain";
+import { BASE_M, heightAt, PEAK, SUMMIT_M, unitsAt } from "./relief";
 
 // a 5:3 excerpt of the real ground: Mount Zion, the Hinnom bend, and the Kidron edge (1.26 km x 0.76 km)
 const NX = 130, NY = 78, X0 = -9, X1 = 9, Z0 = -7.4, Z1 = 3.4;

@@ -1,0 +1,52 @@
+---
+import "@fontsource-variable/saira/wdth.css";
+import "@fontsource-variable/martian-mono/wdth.css";
+import "@fontsource-variable/host-grotesk";
+import "@fontsource-variable/noto-sans-mono"; // IPA glyphs (ɒ, ː) for the pronunciation; the three brand faces lack them
+import "lenis/dist/lenis.css";
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props { title: string; description: string; home?: boolean }
+const { title, description, home = false } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#030813" />
+  <link rel="icon" href="/xiontechs-logo.png" />
+  <script is:inline>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <slot name="stage" />
+
+  <Header home={home} />
+
+  <div class="hud" aria-hidden="true">
+    <span>Alt <b class="hud-alt">0</b> m</span>
+    <span>V/S <b class="hud-vs">0</b> m/s</span>
+    <span>Mount Zion <b>31.77°N 35.23°E</b></span>
+  </div>
+
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor-main">
+      <svg class="cursor-ring" viewBox="0 0 60 60"><circle class="cursor-track" r="28.5" cx="30" cy="30"></circle><circle class="cursor-prog" r="28.5" cx="30" cy="30"></circle></svg>
+      <i class="cursor-dot"></i>
+      <span class="cursor-label"></span>
+    </div>
+  </div>
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <Footer home={home} />
+  <slot name="script" />
+</body>
+</html>

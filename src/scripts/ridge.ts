@@ -2,7 +2,7 @@
    UC's truck stands on its road. The amber climber rides the ridge from the left base
    to the summit while the service track slides past, then carries on down the ascent rail. */
 
-import { heightAt } from "./mountain";
+import { heightAt } from "./relief";
 import { ZION } from "./zion-data";
 
 const X0 = -14, X1 = 14, N = 280, TOP_U = (ZION.peakAt[0] - X0) / (X1 - X0);

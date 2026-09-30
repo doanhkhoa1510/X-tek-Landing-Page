@@ -1,0 +1,16 @@
+---
+/* The closing band of a subpage: one ask, one field of ice, then the footer. */
+import { phones } from "../data/site";
+
+interface Props { a?: string; b?: string; href?: string; label?: string; call?: boolean }
+const { a = "Connect with us.", b = "Request for services.", href = "/contact-us/", label = "Send a request", call = true } = Astro.props;
+---
+<section class="page-cta" data-on="light" aria-labelledby="cta-title">
+  <div class="wrap page-cta-grid">
+    <h2 id="cta-title" class="tt"><span class="tt-a">{a}</span> <span class="tt-b">{b}</span></h2>
+    <div class="actions">
+      <a class="btn btn-fill" href={href} data-scramble><span class="scr">{label}</span></a>
+      {call && <a class="btn btn-line" href={phones.us.href} data-scramble><span class="scr">Call {phones.us.label}</span></a>}
+    </div>
+  </div>
+</section>
