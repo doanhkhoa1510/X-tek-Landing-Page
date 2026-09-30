@@ -1,10 +1,10 @@
 ---
-import { cities, company, legal, mark, pct, phones } from "../data/site";
+import { cities, company, email, legal, mark, offices, pct, phones } from "../data/site";
 
 interface Props { home?: boolean }
 const { home = false } = Astro.props;
 const to = (id: string) => (home ? `#${id}` : `/#${id}`);
-const explore = [["routes", "Services"], ["ascent", "Process"], ["camps", "Base camps"], ["faq", "FAQ"]];
+const explore = [["mindset", "Mindset"], ["values", "Core values"], ["work", "Work"], ["faq", "FAQ"]];
 ---
 <footer class="foot" data-on="light">
   <div class="wrap foot-grid">
@@ -14,14 +14,13 @@ const explore = [["routes", "Services"], ["ascent", "Process"], ["camps", "Base 
     </div>
     <div class="foot-col">
       <p class="label">Base camps</p>
-      <address>Dallas, Texas, USA</address>
-      <address>Viettel Tower, Floor 12, 285 CMT8, Ho Chi Minh City</address>
-      <address>Floor 15, B1 Building, 279 Nguyen Tri Phuong, Da Nang</address>
+      {offices.map((o) => <address>{o.lines.length > 0 ? o.lines.join(", ") : o.name}</address>)}
     </div>
     <div class="foot-col">
-      <p class="label">Call</p>
+      <p class="label">Reach us</p>
       <a href={phones.us.href} data-scramble><span class="scr">{phones.us.label}</span></a>
-      <a href={phones.vn.href} data-scramble><span class="scr">{phones.vn.label}</span></a>
+      <a href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">WhatsApp</span></a>
+      <a class="foot-mail" href={`mailto:${email}`}>{email.split("@")[0]}@<wbr />{email.split("@")[1]}</a>
     </div>
     <nav class="foot-col" aria-label="Landing page">
       <p class="label">Explore</p>
@@ -37,11 +36,11 @@ const explore = [["routes", "Services"], ["ascent", "Process"], ["camps", "Base 
     <dt class="entry-word">Xi·on·techs</dt>
     <dd class="entry-ipa"><span class="say">/siː.ɒn.teks/</span><i>noun</i></dd>
     <dd class="entry-sound">Say it: <b>see</b> · <b>on</b> · <b>techs</b></dd>
-    <dd class="entry-def">Named for Mount Zion, the legendary mountain. The team that takes a product from base camp to summit.</dd>
+    <dd class="entry-def">Inspired by a mountain. The team that takes a product from base camp to summit.</dd>
   </dl>
   <div class="wrap foot-legal">
-    <span>© 2026 XionTechs · Get IT Done</span>
-    <span>Tech made simple, solutions made powerful</span>
+    <span>© 2026 XionTechs · AI-powered IT services and products</span>
+    <span>Get IT done. Make your mark.</span>
     <nav class="foot-legal-links" aria-label="Legal">
       {legal.map(([href, name]) => <a href={href}>{name}</a>)}
     </nav>

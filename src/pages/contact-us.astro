@@ -1,20 +1,15 @@
 ---
 /* Contact stays on night from head to form, like the summit: the brief is the last thing asked before daylight. */
 import Sub from "../layouts/Sub.astro";
-import { arc, cities, email, MAP_H, MAP_W, pct, phones } from "../data/site";
+import { arc, cities, email, MAP_H, MAP_W, offices, pct, phones, services } from "../data/site";
 
 const maps = (q: string) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
-const offices = [
-  { name: "Head office", place: "Viettel Tower, Floor 12", address: "285 Cach Mang Thang 8, Ward 12, District 10, Ho Chi Minh City, Vietnam", q: "285 Cách Mạng Tháng 8, Phường 12, Quận 10, Hồ Chí Minh 700000, Việt Nam" },
-  { name: "US office", place: "TRUE Space Building", address: "18383 Preston Rd #202, Dallas, Texas 75252, USA", q: "TRUE Space Building, 18383 Preston Rd #202, Dallas, Texas 75252, United States" },
-  { name: "Da Nang office", place: "Floor 15, B1 Building", address: "279 Nguyen Tri Phuong, Da Nang, Vietnam", q: "279 Nguyễn Tri Phương, Đà Nẵng, Việt Nam" },
-];
-const subjects = ["Product engineering", "Product co-creation", "AI/ML solutions", "Staffing services", "Tailored software", "Cloud computing", "Analytics and insights", "Low-code solutions"];
-const [dal, hcm, dan] = cities;
+const subjects = services.map(([name]) => name);
+const [plano, hcm, dan] = cities;
 ---
 <Sub
   title="Contact us"
-  description="Request services from XionTechs: offices in Dallas, Texas, Ho Chi Minh City, and Da Nang. Call +1 469 322 9899 or email contact@xiontechs.com."
+  description={`Request services from XionTechs: offices in Plano, Texas, Ho Chi Minh City, and Da Nang. Call ${phones.us.label} or email ${email}.`}
   a="Contact us."
   b="Request for services."
   lede="Tell us what you are building and where you want it to be. We reply by email."
@@ -28,15 +23,15 @@ const [dal, hcm, dan] = cities;
           {offices.map((o) => (
             <div class="office">
               <h2>{o.name}</h2>
-              <address>{o.place}<br />{o.address}</address>
-              <a href={maps(o.q)} target="_blank" rel="noopener" data-scramble><span class="scr">Open in maps</span></a>
+              <address>{o.role}{o.lines.map((l) => <><br />{l}</>)}</address>
+              {o.lines.length > 0 && <a href={maps(o.lines.join(", "))} target="_blank" rel="noopener" data-scramble><span class="scr">Open in maps</span></a>}
             </div>
           ))}
         </div>
         <div class="contact-block">
           <p class="label">Call us anytime</p>
           <a class="contact-line" href={phones.us.href} data-scramble><span class="scr">{phones.us.label}</span></a>
-          <a class="contact-line" href={phones.vn.href} data-scramble><span class="scr">{phones.vn.label}</span></a>
+          <a class="contact-line" href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">WhatsApp {phones.wa.label}</span></a>
         </div>
         <div class="contact-block">
           <p class="label">Send an email</p>
@@ -68,8 +63,8 @@ const [dal, hcm, dan] = cities;
       <div class="worldmap contact-map">
         <canvas class="dotmap" data-dotmap="#1f3566" aria-hidden="true"></canvas>
         <svg class="worldmap-arcs" viewBox={`0 0 ${MAP_W} ${MAP_H.toFixed(1)}`} preserveAspectRatio="none" aria-hidden="true">
-          <path class="arc-base" d={arc(dal, hcm, 110)} pathLength="1" />
-          <path class="arc-run" d={arc(dal, hcm, 110)} pathLength="1" />
+          <path class="arc-base" d={arc(plano, hcm, 110)} pathLength="1" />
+          <path class="arc-run" d={arc(plano, hcm, 110)} pathLength="1" />
           <path class="arc-base" d={arc(hcm, dan, 30)} pathLength="1" />
           <path class="arc-run arc-run-short" d={arc(hcm, dan, 30)} pathLength="1" />
         </svg>

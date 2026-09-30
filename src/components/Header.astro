@@ -11,12 +11,12 @@ const here = Astro.url.pathname;
 <header class="hdr" data-on="dark">
   <div class="ticker">
     <p class="ticker-clocks">
-      <span><span class="t-long">Dallas, TX</span><span class="t-short">Dallas</span> <b data-clock="America/Chicago">--:--</b> CT</span>
+      <span><span class="t-long">Plano, TX</span><span class="t-short">Plano</span> <b data-clock="America/Chicago">--:--</b> CT</span>
       <span><span class="t-long">Ho Chi Minh City</span><span class="t-short">HCMC</span> <b data-clock="Asia/Ho_Chi_Minh">--:--</b> ICT</span>
     </p>
     <p class="ticker-links">
-      <a href={phones.us.href} data-scramble><span class="scr">US {phones.us.label}</span></a>
-      <a href={phones.vn.href} data-scramble><span class="scr">VN {phones.vn.label}</span></a>
+      <a href={phones.us.href} data-scramble><span class="scr">Call {phones.us.label}</span></a>
+      <a href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">WhatsApp {phones.wa.label}</span></a>
     </p>
   </div>
   <div class="hdr-row">

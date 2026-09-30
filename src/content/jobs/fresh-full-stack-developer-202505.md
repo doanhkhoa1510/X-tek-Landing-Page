@@ -22,7 +22,7 @@ summary: "We are seeking talented, fresh Full stack Developer to join our team, 
 - Have experience in Azure Cloud development is a plus.
 - Good in oral and writing English communication is a plus.
 
-## Why XionTech?
+## Why XionTechs?
 
 - Enjoy work-life harmony in a dynamic start-up culture with a youthful environment.
 - Receive a competitive salary, performance bonuses, and a pro-rata 13th-month salary.

@@ -35,8 +35,9 @@ ScrollTrigger.create({
   trigger: ".hero", start: "top bottom", end: "bottom top",
   onToggle: (s) => gate("hero", s.isActive), onEnter: () => scene?.setMode("hero"), onEnterBack: () => scene?.setMode("hero"),
 });
+// the base camps fade into the summit scene, so the scene wakes before their last rows leave
 ScrollTrigger.create({
-  trigger: ".summit", start: "top bottom", end: "bottom top",
+  trigger: ".summit", start: "top bottom+=400", end: "bottom top",
   onToggle: (s) => gate("summit", s.isActive), onEnter: () => scene?.setMode("summit"), onEnterBack: () => scene?.setMode("summit"),
 });
 
@@ -57,18 +58,14 @@ mm.add({ wide: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-prefer
     // y:0 clears the px offset GSAP parses from the CSS resting transform, so only yPercent drives the rise
     .fromTo(".hero-dawn", { y: 0, yPercent: 100 }, { y: 0, yPercent: 0, ease: "none", duration: 0.58 }, 0.42);
 
-  // intro: paragraphs rise, stats wipe in and count
-  gsap.from(".intro-right .lede, .intro-right .btn", {
+  // mindset: the story rises, then the mission
+  gsap.from(".intro-right .lede, .mission, .intro-right .btn", {
     autoAlpha: 0, y: 28, duration: 1.1, ease: "expo.out", stagger: 0.08,
     scrollTrigger: { trigger: ".intro-right", start: "top 80%" },
   });
   gsap.from(".topo", { clipPath: "inset(0 0 100% 0)", duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: ".topo", start: "top 85%" } });
-  gsap.from(".stat", {
-    clipPath: "inset(0 100% 0 0)", duration: 1.2, ease: "expo.out", stagger: 0.12,
-    scrollTrigger: { trigger: ".stats", start: "top 85%" },
-  });
 
-  // routes: pinned; the service track slides past while the giant type drifts behind
+  // core values: pinned; the value track slides past while the giant type drifts behind
   const track = $(".track"), giant = $(".giant");
   if (wide) {
     const clip = track.parentElement!;
@@ -89,9 +86,17 @@ mm.add({ wide: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-prefer
   // two-tone headlines: the ink line fills word by word, dim → glacier → ink
   $$(".tt").forEach(twoTone);
 
-  // ascent: the climber walks the trail up Mount Zion (trail.ts); each stage wakes as it nears the centre
+  // the log: the climber walks the trail up Mount Zion (trail.ts); each camp's entry wakes as it nears the centre
   $$(".stage").forEach((s) =>
     ScrollTrigger.create({ trigger: s, start: "top 62%", onEnter: () => s.classList.add("is-on"), onLeaveBack: () => s.classList.remove("is-on") }),
+  );
+  // stats wipe in and count; log rows rise out of their rules
+  gsap.from(".stat", {
+    clipPath: "inset(0 100% 0 0)", duration: 1.2, ease: "expo.out", stagger: 0.12,
+    scrollTrigger: { trigger: ".stats", start: "top 85%" },
+  });
+  $$(".log").forEach((log) =>
+    gsap.from(log.children, { autoAlpha: 0, y: 20, duration: 1, ease: "expo.out", stagger: 0.06, scrollTrigger: { trigger: log, start: "top 82%" } }),
   );
 
   // base camps: arcs draw, chips blur in, beacons ping while in view
@@ -101,10 +106,6 @@ mm.add({ wide: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-prefer
   // chips keep their CSS translate offsets, so no transform tween here (GSAP would inline translate: none)
   gsap.from(".city-chip", { autoAlpha: 0, filter: "blur(5px)", duration: 0.6, stagger: 0.08, ease: "power2.out", scrollTrigger: { trigger: map, start: "top 70%" } });
   gsap.from(".offices li", { autoAlpha: 0, filter: "blur(6px)", duration: 0.9, stagger: 0.1, ease: "power2.out", scrollTrigger: { trigger: ".offices", start: "top 85%" } });
-
-  // expedition log: cells rise out of their own frames
-  gsap.from(".case", { clipPath: "inset(100% 0 0 0)", duration: 1.1, stagger: 0.1, ease: "expo.out", scrollTrigger: { trigger: ".cases", start: "top 80%" } });
-  gsap.from(".quote", { autoAlpha: 0, y: 30, duration: 1.1, ease: "expo.out", scrollTrigger: { trigger: ".quote", start: "top 95%" } });
 
   // the altimeter steps aside for the footer's legal row
   ScrollTrigger.create({ trigger: ".foot-word", start: "top bottom", onEnter: () => hud.classList.add("is-off"), onLeaveBack: () => hud.classList.remove("is-off") });

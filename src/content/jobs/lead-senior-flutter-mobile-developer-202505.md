@@ -33,7 +33,7 @@ summary: "We are seeking talented, Senior Flutter Mobile Developer and Flutter T
 - 2+ years of experiences as a Technical Lead.
 - Ability to lead and mentor a team of developers.
 
-## Why XionTech?
+## Why XionTechs?
 
 - Enjoy work-life harmony in a dynamic start-up culture with a youthful environment.
 - Receive a competitive salary, performance bonuses, and a pro-rata 13th-month salary.

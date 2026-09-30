@@ -31,7 +31,7 @@ summary: "We are seeking a highly skilled and forward-thinking Technical Archite
 - Ability to work effectively in a fast-paced, dynamic environment.
 - Excellent interpersonal, English oral & writing communication skills and ability to effectively. collaborate with diverse people such as clients, developers, quality assurances, subject matter experts, and architects.
 
-## Why XionTech?
+## Why XionTechs?
 
 - Enjoy work-life harmony in a dynamic start-up culture with a youthful environment.
 - Receive a competitive salary, performance bonuses, and a pro-rata 13th-month salary.

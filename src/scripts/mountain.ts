@@ -15,7 +15,7 @@ function hash(x: number, y: number) {
 /* ---------- places on the mountain ---------- */
 
 export const CAMPS = [
-  { id: "dallas", name: "Dallas, TX", x: -1.5, z: 4.5 },
+  { id: "plano", name: "Plano, TX", x: -1.5, z: 4.5 },
   { id: "hcmc", name: "Ho Chi Minh City", x: 2.4, z: 3.6 },
   { id: "danang", name: "Da Nang", x: 3.4, z: 2.4 },
 ] as const;
@@ -248,7 +248,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     anchors.push({ el: chip(c.name, "camp", c.id), pos, id: c.id, kind: "camp" });
   });
   beacon(summit, "summit");
-  anchors.push({ el: chip(`Mount Zion · ${SUMMIT_M} m`, "summit", "summit"), pos: summit, id: "summit", kind: "summit" });
+  anchors.push({ el: chip(`Summit · ${SUMMIT_M} m`, "summit", "summit"), pos: summit, id: "summit", kind: "summit" });
 
   /* post */
   const composer = new EffectComposer(renderer);
@@ -345,7 +345,14 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     rig,
     labels,
     setHero: (p) => (hero = Math.max(0, Math.min(1, p))),
-    setMode: (m) => (mode = m),
+    // hero and summit are never on screen together, so the camera changes station unseen: no swing on arrival
+    setMode: (m) => {
+      if (m === mode) return;
+      mode = m;
+      target();
+      pos.copy(tPos);
+      look.copy(tLook);
+    },
     setActive: (on) => {
       active = on;
       labelLayer.classList.toggle("is-hidden", !on);
