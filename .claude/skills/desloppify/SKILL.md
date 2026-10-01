@@ -1,6 +1,6 @@
 ---
 name: desloppify
-description: Rework the sentence structure of user-facing copy so it does not read as AI-generated slop. Use when the user invokes /desloppify, or asks to de-AI, humanize, or clean up the visible text of the site (headings, paragraphs, buttons, labels, meta descriptions, markdown content). Only text a visitor sees is in scope; code comments and identifiers are not.
+description: Rework the sentence structure of user-facing copy so it does not read as AI-generated slop. Use when the user invokes /desloppify, or asks to de-AI, humanize, or clean up the visible text of the site (headings, paragraphs, buttons, labels, meta descriptions, markdown content). Covers the English copy in src/i18n/locales/en/*.json and the English markdown; translations and legal docs are excluded. Only text a visitor sees is in scope; code comments and identifiers are not.
 user-invocable: true
 argument-hint: "[file, page, or section; default is all user-facing text]"
 ---
@@ -35,19 +35,35 @@ Good: leave it.
 
 ## Scope
 
-In scope, text that renders to a visitor:
+The site is translated (see `src/i18n/README.md`). English is the source; the other six languages are drafts that translators replace. Desloppify English only.
 
-- Text nodes in `src/pages/**/*.astro`, `src/components/**/*.astro`, `src/layouts/**/*.astro`.
-- Attributes a visitor or screen reader gets: `alt`, `aria-label`, `title`, `placeholder`, `<meta name="description">`, Open Graph text.
-- Strings in `src/data/site.ts`.
-- Frontmatter and body of `src/content/**/*.md` (jobs, `support.md`), except the legal docs below.
-- Strings in `src/scripts/**/*.ts` that are written into the DOM (labels, chips, counters, button text).
+In scope, English text that renders to a visitor:
 
-Out of scope: code comments, class names, identifiers, console output, CSS. Leave them as they are, even when they contain an em dash.
+- Values in `src/i18n/locales/en/*.json`. Almost all page and component copy lives here, one namespace per component or page (`hero.json`, `work.json`, `site.json`, and so on). Each component reads its namespace with `t("key")`.
+- Frontmatter values and body of `src/content/jobs/en/*.md` and `src/content/docs/en/support.md`.
+- Visible text still written directly in `src/pages/**/*.astro`, `src/components/**/*.astro`, `src/layouts/**/*.astro`: text nodes and the attributes a visitor or screen reader gets (`alt`, `aria-label`, `title`, `placeholder`, `<meta name="description">`, Open Graph text). Most of it now comes from `t()`, so edit the JSON value, not the call.
+- Strings in `src/scripts/**/*.ts` that are written into the DOM (labels, chips, counters, button text). Most scripts now read their words from the markup, so check the JSON first.
 
-Never touch the legal docs: `src/content/docs/privacy-policy.md`, `src/content/docs/terms-of-service.md`, `src/content/docs/cookie-policy.md`. Do not scan, edit, or report on them, not even for dashes. This holds even when the user names one of them as the target: say they are excluded and stop.
+Out of scope:
 
-If the user passes a target, work only on that target. Otherwise cover everything above.
+- Code comments, class names, identifiers, console output, CSS, and JSON keys. Leave them as they are, even when they contain an em dash.
+- `src/data/site.ts`: it holds structure (ids, places, numbers, links) and the brand constants; its words live in `src/i18n/locales/en/site.json`.
+- Every non-English locale: `src/i18n/locales/<locale>/` and `src/content/{docs,jobs}/<locale>/` for `vi`, `zh-Hans`, `ja`, `ar`, `fr`, `hi`. The rules below describe English sentence shapes, and dash conventions differ by language. Do not edit, scan, or report on them; translators update them from the changed English.
+
+Never touch the legal docs, in any language: `src/content/docs/*/privacy-policy.md`, `src/content/docs/*/terms-of-service.md`, `src/content/docs/*/cookie-policy.md`. Do not scan, edit, or report on them, not even for dashes. Exclude them from every Grep (`glob` such as `!**/docs/*/{privacy-policy,terms-of-service,cookie-policy}.md`). This holds even when the user names one of them as the target: say they are excluded and stop.
+
+If the user passes a target, work only on that target. A page or section name maps to its namespace, for example "the log" to `work.json` and "the footer" to `footer.json`. Otherwise cover everything above.
+
+## Editing the JSON
+
+The copy files feed i18next and the typed `t()` keys, so a rewrite must keep their shape:
+
+- Change values only. Never rename, add, remove, or reorder keys.
+- Keep every placeholder (`{{phone}}`, `{{brand}}`, `{{type}}`) exactly as written. Move it within the sentence if the rewrite needs that.
+- Keep every tag pair (`<call>...</call>`, `<faqs>...</faqs>`) and the words that make the link meaningful.
+- Keep the value type: a string stays a string, a list stays a list. A list such as `hero.json › lines` may change length only if the headline still fits.
+- Two-tone headlines are stored as `{ "a": "...", "b": "..." }` under `title`. Keep both halves.
+- Keep the typographic quotes (`“Get IT Done”`) and the JSON escaping valid.
 
 ## Hard rules
 
@@ -111,7 +127,7 @@ Fix these when you see them. They matter less than the hard rules, so judge each
 
 Read `PRODUCT.md` (Brand Commitments, Evidence on Hand) and `DESIGN.md` before editing. These constraints win over every rule above:
 
-- Brand lines stay verbatim: "Get IT Done", "Where intelligence meets identity", "Get IT done. Make your mark."
+- Brand lines stay verbatim: "Get IT Done", "Where intelligence meets identity", "Get IT done. Make your mark." In the copy files they sit in `hero.json › lines` (the headline split one line per entry) and `hero.json › accent`, `footer.json › tagline`, `home.json › title`, and the “Get IT Done” attitude in `about.json`, `values.json`, `careers.json`, and `faqs.json`.
 - Never add facts. No new stats, customers, logos, testimonials, certifications, or prices. If a rewrite needs a fact the docs do not have, cut the claim or flag it.
 - The Two-Tone Rule: every H2 is two statements (`.tt-a` and `.tt-b`). Keep two lines, and keep each line short enough that the headline still fits its column.
 - The Symbol Rule and the One-Name Rule from DESIGN.md and PRODUCT.md: Mount Zion is named once, in the story; XionTechs is the only company named.
@@ -120,7 +136,7 @@ Read `PRODUCT.md` (Brand Commitments, Evidence on Hand) and `DESIGN.md` before e
 ## Workflow
 
 1. **Resolve the target** from the argument, or take the full scope above.
-2. **Scan the mechanical tells** with the Grep tool across the target:
+2. **Scan the mechanical tells** with the Grep tool across the target, which by default is `src/i18n/locales/en/`, `src/content/jobs/en/`, `src/content/docs/en/support.md`, and the `.astro` and script files above:
    - Dashes: `[\x{2014}\x{2013}]|&mdash;|&ndash;|&#8212;|&#8211;|\\u2014|\\u2013`
    - Negation reveal: `(?i)not (just|only|merely)|isn't (just|only|about)|more than just`
    - Triad candidates: `\b[\w-]+, [\w-]+,? (and|or) [\w-]+\b`
@@ -129,7 +145,9 @@ Read `PRODUCT.md` (Brand Commitments, Evidence on Hand) and `DESIGN.md` before e
 3. **Read the copy in full.** Triads, repeated words, and same-shape runs slip past a regex. Read all of the target, labels included, page by page.
 4. **Edit** each flagged sentence by restructuring it, following "Structure, not vocabulary" and "Keep the meaning and the voice". Stay near the original length, since layout depends on it.
 5. **Re-scan** with the same patterns. The dash pattern must return nothing inside the scope.
-6. **Verify in the browser.** Copy edits in `.astro` files are UI changes, so follow `CLAUDE.md`: run `npx astro dev --port 4400`, open each changed page with the dev-browser skill, and check that headlines still fit and nothing wraps badly.
-7. **Report** to the user:
+6. **Check the copy files** with `npm run i18n:check`. It must report 0 broken; a broken finding means a key, placeholder, tag, or value shape changed. Fix the English file, not the check.
+7. **Verify in the browser.** Copy edits in the JSON, markdown, and `.astro` files are UI changes, so follow `CLAUDE.md`: run `npx astro dev --port 4400`, open each changed English page with the dev-browser skill, and check that headlines still fit and nothing wraps badly.
+8. **Report** to the user:
    - Each change as `file:line`, before, after.
    - Findings you left alone (brand lines, items that need a fact you do not have, fixes that would change meaning) with the reason.
+   - The changed keys per namespace (for example `work.json › achieved.text`) and the changed markdown files, as the list translators need. `i18n:check` does not flag a translation whose English source changed, so this list is the only record.
