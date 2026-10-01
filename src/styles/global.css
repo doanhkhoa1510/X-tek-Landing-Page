@@ -119,6 +119,9 @@ address { font-style: normal; }
 }
 .skip:focus { translate: 0 0; }
 
+/* Arabic letters join: any tracking pulls the word apart, so Arabic text never takes letter-spacing */
+:lang(ar) { letter-spacing: 0 !important; }
+
 .wrap { padding-inline: var(--gutter); }
 .label, .mono {
   font: 500 var(--fs-label) / 1.3 var(--mono);
@@ -333,6 +336,31 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
   opacity: 0; transition: opacity 0.4s var(--ui);
 }
 .menu.is-open .menu-rule { opacity: 1; }
+/* language: the current code ends the ticker and opens the list, each language named in itself
+   (Noto Sans Mono carries the Vietnamese marks Martian Mono lacks; other scripts take the system face) */
+.ticker-end { display: flex; align-items: center; gap: 22px; }
+.lang { position: relative; }
+.lang-toggle { display: inline-flex; align-items: center; gap: 6px; height: 32px; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--fg); }
+.lang-toggle svg { width: 8px; height: 5px; fill: none; stroke: currentColor; stroke-width: 1.3; transition: rotate 0.5s var(--expo); }
+.lang-toggle[aria-expanded="true"] svg { rotate: 180deg; }
+.lang-list {
+  position: absolute; inset-inline-end: -16px; top: 100%; z-index: 2;
+  display: grid; gap: 2px; min-width: 196px;
+  padding: 8px 16px 10px;
+  background: var(--menu-bg); border: 1px solid var(--line);
+  visibility: hidden;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.6s var(--expo), visibility 0s linear 0.6s;
+}
+.lang.is-open .lang-list { visibility: visible; clip-path: inset(0 0 0 0); transition: clip-path 0.6s var(--expo); }
+.lang-list a {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 6px 0;
+  font: 500 12px / 1.3 var(--ipa); letter-spacing: 0.03em; text-decoration: none;
+  color: var(--fg-soft); transition: color var(--t-ui) var(--ui);
+}
+.lang-list a:hover, .lang-list a:focus-visible, .lang-list a[aria-current] { color: var(--fg); }
+.lang-code { font: 400 var(--fs-micro) / 1 var(--mono); color: var(--dim); }
+.lang-list a[aria-current] .lang-code { color: var(--amber); }
 .hdr-cta { grid-column: 10 / 13; justify-self: end; transition: opacity 0.6s var(--ui), background-color var(--t-ui) var(--ui), color var(--t-ui) var(--ui), border-color var(--t-ui) var(--ui); }
 
 /* ---------- HUD altimeter ---------- */
@@ -824,6 +852,15 @@ section { position: relative; color: var(--fg); }
   font: 400 10.5px / 1.3 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate);
 }
 .to-top { text-decoration: none; color: var(--ink); }
+.foot-langs {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px;
+  margin-top: clamp(28px, 3vw, 44px); padding-top: 20px; border-top: 1px solid var(--line);
+  font: 400 10.5px / 1.3 var(--ipa); letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate);
+}
+.foot-langs .label { margin-inline-end: 4px; }
+.foot-langs a { text-decoration: none; transition: color var(--t-ui) var(--ui); }
+.foot-langs a:hover, .foot-langs a[aria-current] { color: var(--ink); }
+.foot-langs + .foot-legal { margin-top: 20px; }
 .foot-legal-links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
 .foot-legal-links a { text-decoration: none; transition: color var(--t-ui) var(--ui); }
 .foot-legal-links a:hover { color: var(--ink); }
@@ -1073,7 +1110,7 @@ section { position: relative; color: var(--fg); }
 @media (max-width: 767px) {
   :root { --hdr-h: 88px; }
   .ticker .ticker-links, .hud, .chip-camp { display: none; }
-  .ticker { justify-content: flex-start; }
+  .ticker { justify-content: space-between; }
   .ticker p { gap: 14px; }
   .t-long { display: none; }
   .t-short { display: inline; }

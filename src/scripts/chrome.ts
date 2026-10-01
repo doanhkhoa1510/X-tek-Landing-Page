@@ -30,30 +30,34 @@ const scrollMax = () => Math.max(1, root.scrollHeight - innerHeight);
 mountIcons();
 $$<HTMLCanvasElement>("canvas[data-dotmap]").forEach((c) => paintDotMap(c, c.dataset.dotmap!));
 
-/* ---------- header ---------- */
+/* ---------- header: the menu and the language list open from a toggle; Escape or a press outside closes them ---------- */
 export const hdr = $(".hdr");
-const menu = $(".menu");
-const toggle = $<HTMLButtonElement>(".menu-toggle");
-function setMenu(open: boolean) {
-  menu.classList.toggle("is-open", open);
-  toggle.setAttribute("aria-expanded", String(open));
+function popover(host: HTMLElement, button: HTMLButtonElement) {
+  const set = (open: boolean) => {
+    host.classList.toggle("is-open", open);
+    button.setAttribute("aria-expanded", String(open));
+  };
+  button.addEventListener("click", () => set(!host.classList.contains("is-open")));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && host.classList.contains("is-open")) {
+      set(false);
+      button.focus();
+    }
+  });
+  document.addEventListener("pointerdown", (e) => {
+    if (!host.contains(e.target as Node)) set(false);
+  });
+  return set;
 }
-toggle.addEventListener("click", () => setMenu(!menu.classList.contains("is-open")));
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && menu.classList.contains("is-open")) {
-    setMenu(false);
-    toggle.focus();
-  }
-});
-document.addEventListener("pointerdown", (e) => {
-  if (!menu.contains(e.target as Node)) setMenu(false);
-});
+const setMenu = popover($(".menu"), $<HTMLButtonElement>(".menu-toggle"));
+const setLang = popover($(".lang"), $<HTMLButtonElement>(".lang-toggle"));
 
 let themeQueued = false;
 export function syncHeader() {
   themeQueued = false;
   const y = scrollPos();
   hdr.classList.toggle("is-scrolled", y > 40);
+  if (y > 40) setLang(false); // the list leaves with the ticker
   hdr.classList.toggle("is-compact", y > 80);
   const py = hdr.classList.contains("is-scrolled") ? 32 : 64;
   const probe = document.elementsFromPoint(innerWidth / 2, py);

@@ -1,5 +1,6 @@
 ---
 import { brand, cities, company, email, legal, mark, offices, pct, phones } from "../data/site";
+import LangSwitch from "./LangSwitch.astro";
 import { localize } from "../i18n/config";
 import { useT } from "../i18n";
 
@@ -42,6 +43,7 @@ const explore = ["mindset", "values", "work", "faq"] as const;
     <dd class="entry-sound">{t("entry.sayIt")} {brand.syllables.map((s, i) => <>{i > 0 && " · "}<b>{s}</b></>)}</dd>
     <dd class="entry-def">{t("entry.def")}</dd>
   </dl>
+  <LangSwitch variant="row" />
   <div class="wrap foot-legal">
     <span>{t("rights", { year: 2026, brand: brand.name })}</span>
     <span>{t("tagline")}</span>

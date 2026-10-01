@@ -1,5 +1,6 @@
 ---
 import { brand, mark, phones, sections } from "../data/site";
+import LangSwitch from "./LangSwitch.astro";
 import { localize, unlocalize } from "../i18n/config";
 import { useT } from "../i18n";
 
@@ -18,10 +19,13 @@ const here = unlocalize(Astro.url.pathname);
       <span><span class="t-long">{ts("cities.plano.name")}</span><span class="t-short">{ts("cities.plano.short")}</span> <b data-clock="America/Chicago">--:--</b> CT</span>
       <span><span class="t-long">{ts("cities.hcmc.name")}</span><span class="t-short">{ts("cities.hcmc.short")}</span> <b data-clock="Asia/Ho_Chi_Minh">--:--</b> ICT</span>
     </p>
-    <p class="ticker-links">
-      <a href={phones.us.href} data-scramble><span class="scr">{tc("call", { phone: phones.us.label })}</span></a>
-      <a href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">{tc("whatsapp", { phone: phones.wa.label })}</span></a>
-    </p>
+    <div class="ticker-end">
+      <p class="ticker-links">
+        <a href={phones.us.href} data-scramble><span class="scr">{tc("call", { phone: phones.us.label })}</span></a>
+        <a href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">{tc("whatsapp", { phone: phones.wa.label })}</span></a>
+      </p>
+      <LangSwitch variant="menu" />
+    </div>
   </div>
   <div class="hdr-row">
     <a class="logo" href={home ? "#top" : localize("/", lang)} aria-label={t(home ? "logoTop" : "logoHome", { brand: brand.name, say: brand.say })}>
