@@ -15,19 +15,21 @@ function hash(x: number, y: number) {
 /* ---------- places on the mountain ---------- */
 
 // chip words come from the label layer's data-labels, in the page's language
+// three teams, three ways up, one summit: Plano from the far south-west ridge, Da Nang from the north-west
+// (the plateau by Jaffa Gate), Ho Chi Minh City from the north-east (the slope over the Kidron)
 export const CAMPS = [
-  { id: "plano", x: -1.5, z: 4.5 },
-  { id: "hcmc", x: 2.4, z: 3.6 },
-  { id: "danang", x: 3.4, z: 2.4 },
+  { id: "plano", x: -9.5, z: 6.5 },
+  { id: "hcmc", x: 8.8, z: -7.45 },
+  { id: "danang", x: -5.4, z: -4.1 },
 ] as const;
 
 type Station = { pos: [number, number, number]; look: [number, number, number] };
-// the top of Mount Zion sits at ZION.peakAt (x 0.75, z -4); the dive and the summit frame it, not the origin
+// the top of Mount Zion sits at ZION.peakAt (the origin); the plateau behind it runs on north, higher
 const HERO: Station[] = [
   { pos: [-2.5, 5.4, 20], look: [-5.2, 3.2, 0] }, // base camp: the whole hill from the Hinnom valley, right of the headline
   { pos: [1.4, 9.4, 8], look: [0.4, 5.8, -4] }, // the dive: up the south face to the crest
 ];
-const SUMMIT: Station = { pos: [0.75, 14.5, 21], look: [0.75, 4.6, -4] }; // the crest centred in the gap between headline and brief form
+const SUMMIT: Station = { pos: [0, 14.5, 21], look: [0, 4.6, -4] }; // the crest centred in the gap between headline and brief form
 
 export type Rig = { scale: number; shift: number; glow: number; arcs: number };
 export type Scene = {
@@ -49,13 +51,19 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const small = innerWidth < 768;
   if (small) {
-    HERO[0] = { pos: [0, 6.8, 25], look: [0, 1.6, 0] };
+    HERO[0] = { pos: [-12, 7, 12], look: [-1, 0, -4] }; // from the south-west the three camps line up in depth, above the headline
     HERO[1] = { pos: [1.1, 9.8, 9], look: [0.7, 5.4, -4] };
     SUMMIT.pos = [2.6, 10, 16];
     SUMMIT.look = [1.1, 6.2, -4];
   }
-  // right to left, the headline sits on the right: the camera mirrors across the summit, so the hill rises on the left
-  if (document.documentElement.dir === "rtl") {
+  // the camps are placed for a 1.9:1 window; narrower ones pan the hero east so Ho Chi Minh City stays in frame
+  const pan = small ? 0 : Math.max(0, (1.9 - innerWidth / innerHeight) * 4.5);
+  HERO[0].pos[0] += pan;
+  HERO[0].look[0] += pan;
+  // right to left, the headline sits on the right: the whole scene mirrors across the summit (the camera here, the massif
+  // in the frame loop), so the hill rises on the left and every camp keeps its place in the picture
+  const flip = document.documentElement.dir === "rtl" ? -1 : 1;
+  if (flip < 0) {
     for (const s of [...HERO, SUMMIT]) {
       s.pos[0] = 2 * ZION.peakAt[0] - s.pos[0];
       s.look[0] = 2 * ZION.peakAt[0] - s.look[0];
@@ -70,7 +78,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   // which double-encodes it to #1c324d; a scene background is cleared in the right color space every frame
   scene.background = new THREE.Color(0x030813);
   scene.fog = new THREE.FogExp2(0x030813, 0.035);
-  const camera = new THREE.PerspectiveCamera(small ? 54 : 40, innerWidth / innerHeight, 0.1, 200);
+  const camera = new THREE.PerspectiveCamera(small ? 62 : 40, innerWidth / innerHeight, 0.1, 200);
   const massif = new THREE.Group();
   scene.add(massif);
 
@@ -84,6 +92,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     for (let z = -EXT * 0.7; z <= EXT * 0.75; z += STEP) {
       const jx = x + (hash(x, z) - 0.5) * STEP;
       const jz = z + (hash(z, x) - 0.5) * STEP;
+      if (Math.hypot(jx, jz) > 15) continue; // past the shader's radial fade: invisible
       const h = heightAt(jx, jz);
       if (h < 0.05 && hash(jx * 3, jz * 7) > 0.06) continue;
       positions.push(jx, h, jz);
@@ -138,8 +147,10 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
         vec3 p = position;
         p.y += sin(uTime * 0.35 + position.x * 0.6) * 0.018;
         vec4 mv = modelViewMatrix * vec4(p, 1.0);
-        gl_PointSize = min((0.65 + h * 1.35) * uPixel * (14.0 / -mv.z), 2.4 * uPixel);
-        vAlpha = uFade * smoothstep(44.0, 8.0, -mv.z) * smoothstep(1.2, 5.0, -mv.z) * (0.3 + h * 0.46 + rim * 0.45 + line * 0.6)
+        // the plateau north of the summit runs higher than Mount Zion: it never grows past the summit's dots, and haze takes it
+        float hc = min(h, 1.0);
+        gl_PointSize = min((0.65 + hc * 1.35) * uPixel * (14.0 / -mv.z), 2.4 * uPixel);
+        vAlpha = uFade * smoothstep(36.0, 12.0, -mv.z) * smoothstep(1.2, 5.0, -mv.z) * (0.3 + hc * 0.46 + rim * 0.45 + line * 0.6)
           * smoothstep(15.0, 10.5, length(position.xz)) * smoothstep(11.2, 7.5, position.z);
         gl_Position = projectionMatrix * mv;
       }`,
@@ -226,6 +237,18 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
 
   /* camps: amber beacon, pulsing ring, chip label */
   const labels: HTMLElement[] = [];
+  const title = document.getElementById("hero-title");
+  // the headline's text runs, not its blocks: right-aligned and short lines leave room beside them
+  const titleRuns: Range[] = [];
+  if (title) {
+    const it = document.createTreeWalker(title, NodeFilter.SHOW_TEXT);
+    for (let n = it.nextNode(); n; n = it.nextNode()) {
+      if (!n.textContent?.trim()) continue;
+      const r = document.createRange();
+      r.selectNodeContents(n);
+      titleRuns.push(r);
+    }
+  }
   const words: Record<string, string> = JSON.parse(labelLayer.dataset.labels ?? "{}");
   const anchors: { el: HTMLElement; pos: THREE.Vector3; id: string; kind: "camp" | "summit" }[] = [];
   function chip(text: string, kind: string, id: string) {
@@ -302,8 +325,8 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     camera.position.set(pos.x + mouse.x * (reduceMotion ? 0 : 0.9), pos.y - mouse.y * (reduceMotion ? 0 : 0.45), pos.z);
     camera.lookAt(look);
 
-    massif.scale.setScalar(rig.scale);
-    massif.position.x = rig.shift;
+    massif.scale.set(rig.scale * flip, rig.scale, rig.scale);
+    massif.position.x = rig.shift * flip;
     dawnMat.uniforms.uGain.value = 0.32 * rig.glow;
     rimMat.uniforms.uGain.value = 0.2 * rig.glow;
     terrainMat.uniforms.uTime.value = t;
@@ -322,13 +345,18 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     });
 
     const w = innerWidth, h = innerHeight;
+    const head = titleRuns.flatMap((r) => [...r.getClientRects()]);
+    massif.updateMatrixWorld();
     for (const a of anchors) {
-      v.copy(a.pos).multiplyScalar(rig.scale);
-      v.x += rig.shift;
-      v.project(camera);
+      v.copy(a.pos).applyMatrix4(massif.matrixWorld).project(camera);
       const onScreen = v.z < 1 && Math.abs(v.x) < 0.98 && Math.abs(v.y) < 0.95;
       let show = onScreen && rig.arcs > 0.5;
       if (a.kind === "camp") show &&= mode === "hero" ? hero < 0.35 : true;
+      // a tag never sits on the headline (some languages start it higher): the beacon and its arc stay, the tag steps aside
+      if (show && a.kind === "camp" && head.length) {
+        const x = ((v.x + 1) / 2) * w, y = ((1 - v.y) / 2) * h, half = a.el.offsetWidth / 2, top = y - 8 - a.el.offsetHeight;
+        show = !head.some((r) => x + half > r.left && x - half < r.right && y - 8 > r.top && top < r.bottom);
+      }
       if (a.kind === "summit") show &&= mode === "summit" || hero > 0.45;
       a.el.classList.toggle("is-on", show);
       a.el.classList.toggle("is-focus", focus === a.id);

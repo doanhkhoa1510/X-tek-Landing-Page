@@ -8,9 +8,9 @@ const LAT = 31.7717, LON = 35.2286, SUMMIT_M = 765; // Wikipedia / PeakVisor pub
 const Z = 15, TILE = 256, CACHE = ".impeccable/zion-tiles";
 const M_PER_UNIT = 70; // horizontal scale: one world unit = 70 m on the ground
 const X_RANGE = [-16, 16], Z_RANGE = [-12, 12], STEP = 0.25; // world grid (x = east, z = south)
-const PEAK_UNITS = 6.4; // the hero's summit height; the vertical exaggeration follows from it
+const PEAK_UNITS = 6.4; // Mount Zion's height in the hero; the vertical exaggeration follows from it
 const BLUR_M = 22; // soften SRTM roof-and-street noise; keeps every landform wider than ~50 m
-const MASK = { near: 420, far: 950, north: 1.5 }; // the hill stands alone: neighbours beyond the valleys taper away
+// no mask: Mount Zion is the south spur of the Western Hill, so the plateau, the Kidron, and the Temple Mount ridge stay as surveyed
 
 /* tiles */
 const n = 2 ** Z, rad = (LAT * Math.PI) / 180;
@@ -90,29 +90,24 @@ function elev(mx, my) {
   const x0 = Math.floor(px), y0 = Math.floor(py), u = px - x0, v = py - y0, at = (x, y) => smooth[y * W + x];
   return at(x0, y0) * (1 - u) * (1 - v) + at(x0 + 1, y0) * u * (1 - v) + at(x0, y0 + 1) * (1 - u) * v + at(x0 + 1, y0 + 1) * u * v;
 }
-const ss = (a, b, t) => {
-  const k = Math.min(1, Math.max(0, (t - a) / (b - a)));
-  return k * k * (3 - 2 * k);
-};
 const cols = Math.round((X_RANGE[1] - X_RANGE[0]) / STEP) + 1, rows = Math.round((Z_RANGE[1] - Z_RANGE[0]) / STEP) + 1;
 let floor = Infinity;
 for (let my = -700; my <= 700; my += 10)
   for (let mx = -700; mx <= 700; mx += 10) if (Math.hypot(mx, my) <= 700) floor = Math.min(floor, elev(mx, my));
 const lift = new Float32Array(cols * rows);
-let top = 0, topAt = [0, 0];
+let top = 0;
 for (let j = 0; j < rows; j++)
   for (let i = 0; i < cols; i++) {
-    const x = X_RANGE[0] + i * STEP, z = Z_RANGE[0] + j * STEP, mx = x * M_PER_UNIT, my = z * M_PER_UNIT;
-    const d = Math.hypot(mx, my < 0 ? my * MASK.north : my);
-    const h = Math.max(0, elev(mx, my) - floor) * (1 - ss(MASK.near, MASK.far, d));
+    const h = Math.max(0, elev((X_RANGE[0] + i * STEP) * M_PER_UNIT, (Z_RANGE[0] + j * STEP) * M_PER_UNIT) - floor);
     lift[j * cols + i] = h;
-    if (h > top) [top, topAt] = [h, [x, z]];
+    top = Math.max(top, h);
   }
-const vex = PEAK_UNITS / (top / M_PER_UNIT);
+// the spur has no peak of its own: the summit is the published point (the origin), and the plateau behind it runs higher
+const zion = elev(0, 0) - floor;
+const vex = PEAK_UNITS / (zion / M_PER_UNIT);
 const q = new Uint16Array(cols * rows);
 for (let k = 0; k < q.length; k++) q[k] = Math.round((lift[k] / top) * 65535);
-const demSummit = elev(0, 0);
-const baseM = Math.round(SUMMIT_M - top); // the summit reads the published 765 m; everything below keeps its real drop
+const baseM = Math.round(SUMMIT_M - zion); // Mount Zion reads the published 765 m; everything else keeps its real offset from it
 
 fs.writeFileSync(
   "src/scripts/zion-data.ts",
@@ -120,11 +115,11 @@ fs.writeFileSync(
 // Mount Zion, Jerusalem: ${LAT} N, ${LON} E. One world unit = ${M_PER_UNIT} m; vertical exaggeration x${vex.toFixed(2)}.
 export const ZION = {
   cols: ${cols}, rows: ${rows}, x0: ${X_RANGE[0]}, z0: ${Z_RANGE[0]}, step: ${STEP},
-  peak: ${PEAK_UNITS}, peakAt: [${topAt[0]}, ${topAt[1]}] as const,
+  peak: ${PEAK_UNITS}, peakAt: [0, 0] as const, top: ${((top / M_PER_UNIT) * vex).toFixed(4)},
   metersPerUnit: ${M_PER_UNIT}, exaggeration: ${vex.toFixed(4)},
   baseM: ${baseM}, summitM: ${SUMMIT_M},
 } as const;
 export const LIFT = "${Buffer.from(q.buffer).toString("base64")}";
 `,
 );
-console.log({ mPerPx: mPerPx.toFixed(3), floor: floor.toFixed(1), demSummit: demSummit.toFixed(1), reliefM: top.toFixed(1), topAt, vex: vex.toFixed(2), baseM, cols, rows });
+console.log({ mPerPx: mPerPx.toFixed(3), floor: floor.toFixed(1), zionM: zion.toFixed(1), topM: top.toFixed(1), vex: vex.toFixed(2), baseM, cols, rows });

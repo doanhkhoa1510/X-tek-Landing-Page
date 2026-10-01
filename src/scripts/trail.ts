@@ -5,8 +5,7 @@
    rises to the line where base camp stood at that moment. */
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { BASE_M, heightAt, SUMMIT_M, unitsAt } from "./relief";
-import { ZION } from "./zion-data";
+import { BASE_M, domeAt, PEAK, SUMMIT_M, unitsAt } from "./relief";
 
 const X0 = -10, X1 = 11, N = 420; // closer than the routes sky: the dome fills the frame, the west shoulder at its edge
 const rand = (k: number) => {
@@ -16,15 +15,17 @@ const rand = (k: number) => {
 
 // the skyline, seen from the south: the highest ground behind every point on the west-east line
 const SIL = new Float32Array(N);
-let TOP = 0;
+let TOP = 0, PEAK_I = 0;
 for (let i = 0; i < N; i++) {
   const x = X0 + ((X1 - X0) * i) / (N - 1);
   let m = 0;
-  for (let z = -10; z <= 10; z += 0.2) m = Math.max(m, heightAt(x, z));
+  for (let z = -10; z <= 10; z += 0.2) m = Math.max(m, domeAt(x, z));
   SIL[i] = m;
-  TOP = Math.max(TOP, m);
+  if (m > TOP) [TOP, PEAK_I] = [m, i];
 }
-const PEAK_I = Math.round(((ZION.peakAt[0] - X0) / (X1 - X0)) * (N - 1));
+// the trek tops out on the published summit, so its skyline, camps, and scale all read the same metres
+for (let i = 0; i < N; i++) SIL[i] *= PEAK / TOP;
+TOP = PEAK;
 const metres = (units: number) => Math.round(BASE_M + (units / TOP) * (SUMMIT_M - BASE_M));
 
 export function mountTrail(panel: HTMLElement, list: HTMLElement) {
