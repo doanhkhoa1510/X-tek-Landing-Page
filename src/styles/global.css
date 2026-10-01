@@ -497,9 +497,12 @@ section { position: relative; color: var(--fg); }
   --pad: clamp(20px, 2.4vw, 36px);
   --axis: 128px; /* the tier names */
   --wire: rgba(16, 48, 96, 0.35); /* connectors: the leader tone of the trek */
-  --edge: rgba(16, 48, 96, 0.2); /* block outlines */
+  --edge: rgba(16, 48, 96, 0.2); /* block and frame outlines */
+  --tier-gap: 36px;
+  --link: 20px; /* the gap a link crosses between two frames */
   position: relative;
   display: grid;
+  row-gap: var(--tier-gap);
   padding: var(--pad);
   border: 1px solid var(--line);
   /* survey paper: the page's dot grammar at 16px pitch, quieter than any block */
@@ -511,12 +514,6 @@ section { position: relative; color: var(--fg); }
 .tier-label { position: relative; padding-right: 8px; font: 500 var(--fs-label) / 1.3 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate); }
 /* each tier ticks the axis at its name */
 .tier-label::after { content: ""; position: absolute; top: 4px; right: -15px; width: 6px; height: 6px; border-radius: 50%; background: var(--navy); }
-/* the bus: wires that drop from one tier to the next, a node at each end */
-.bus { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); column-gap: var(--g, 12px); height: 36px; margin-left: calc(var(--axis) + 24px); }
-.bus i { position: relative; justify-self: center; width: 1px; background: var(--wire); transform-origin: 50% 0; }
-.bus i::before, .bus i::after { content: ""; position: absolute; left: -2px; width: 5px; height: 5px; border-radius: 50%; background: var(--navy); }
-.bus i::before { top: -2px; }
-.bus i::after { bottom: -2px; }
 /* blocks: square, hairline, snow over the paper */
 .blocks { display: grid; gap: 8px; }
 .blocks li, .supervisor, .agent, .devices li {
@@ -526,24 +523,32 @@ section { position: relative; color: var(--fg); }
   transition: background-color var(--t-ui) var(--ui), border-color var(--t-ui) var(--ui);
 }
 .blocks li:hover, .agent:hover, .devices li:hover { background: var(--ice); border-color: var(--wire); }
-.group { display: flex; flex-direction: column; min-width: 0; }
+/* groups: a hairline frame around each family of blocks, its name inside */
+.group { position: relative; display: flex; flex-direction: column; min-width: 0; padding: 12px; border: 1px solid var(--edge); }
 .group-name { margin-bottom: 10px; font: 500 var(--fs-micro) / 1.2 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
 .group > .blocks { flex: 1; grid-auto-rows: 1fr; }
 .group > .blocks li { display: flex; align-items: center; }
-/* users: each role over its own apps; the apps sit on the bus */
+/* users: each role heads its own column of apps */
 .role-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
-.role-col { display: flex; flex-direction: column; gap: 14px; }
+.role-col { display: flex; flex-direction: column; gap: 14px; text-align: center; }
 .role-col h4 { font: 700 var(--fs-h3) / 1.04 var(--display); font-stretch: 125%; text-transform: uppercase; }
-.role-col .blocks { margin-top: auto; }
-/* services: AI and app services wire into the agents from either side */
-.services { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 5fr) minmax(0, 2fr); grid-template-areas: "ai agents app"; gap: 20px; }
+/* links: a wire across the gap between two frames, a node centred on each frame's border.
+   They are drawn over the frames, so no block or frame covers an end. Horizontal by default; --lw/--lh turn one vertical. */
+.group-ai::after, .group-app::after, .infra > .group:first-child::after, .infra::before {
+  content: ""; position: absolute; z-index: 1;
+  top: calc(50% - 2.5px); width: calc(var(--link) + 6px); height: 5px;
+  background:
+    radial-gradient(circle, var(--navy) 2px, transparent 2.5px) 0 0 / 5px 5px no-repeat,
+    radial-gradient(circle, var(--navy) 2px, transparent 2.5px) 100% 100% / 5px 5px no-repeat,
+    linear-gradient(var(--wire), var(--wire)) 50% 50% / var(--lw, 100%) var(--lh, 1px) no-repeat;
+}
+/* services: AI and app services link into the agents from either side */
+.services { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 5fr) minmax(0, 2fr); grid-template-areas: "ai agents app"; gap: var(--link); }
 .group-ai { grid-area: ai; }
 .group-agents { grid-area: agents; }
 .group-app { grid-area: app; }
-.group-ai, .group-app { position: relative; }
-.group-ai::after, .group-app::after { content: ""; position: absolute; top: calc(50% + 11px); width: 20px; height: 1px; background: var(--wire); }
-.group-ai::after { left: 100%; }
-.group-app::after { right: 100%; }
+.group-ai::after { left: calc(100% - 2px); }
+.group-app::after { right: calc(100% - 2px); }
 /* the hub: the supervisor at the centre, spokes out to every agent; hover lights a spoke amber (a 2px line inside a bounded figure) */
 .hub { position: relative; flex: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(60px, 1fr)); }
 .hub-agents { display: contents; }
@@ -559,21 +564,28 @@ section { position: relative; color: var(--fg); }
 .hub:has(.agent:nth-child(3):hover) .spoke:nth-child(3),
 .hub:has(.agent:nth-child(4):hover) .spoke:nth-child(4),
 .hub:has(.agent:nth-child(5):hover) .spoke:nth-child(5) { stroke: var(--amber); stroke-width: 2; }
-/* infrastructure and data; the data platform runs as a pipeline once it fits one row */
-.infra { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+/* infrastructure and data, linked to each other; the data platform runs as a pipeline once it fits one row */
+.infra { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--link); }
+.infra > .group:first-child::after { left: calc(100% - 2px); }
+/* the trunk: from the agents frame straight down to the middle of the infrastructure link (the centre of both tiers) */
+.infra::before { display: none; }
 .blocks-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 /* devices: the edge, each with its dot icon */
 .devices { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
 .devices li { display: flex; align-items: center; gap: 12px; }
 .device-icon { flex: none; display: block; width: 32px; height: 32px; color: var(--navy); }
 .device-icon svg { width: 100%; height: 100%; }
+@media (min-width: 1200px) {
+  .infra::before { display: block; top: calc(-1 * var(--tier-gap) - 3px); bottom: calc(50% - 2.5px); left: calc(50% - 2.5px); width: 5px; height: auto; --lw: 1px; --lh: 100%; }
+}
 @media (min-width: 1360px) {
   .blocks-row { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
   .pipeline { background: linear-gradient(var(--wire), var(--wire)) 0 50% / 100% 1px no-repeat; }
 }
 @media (max-width: 1199px) {
   .services { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "agents agents" "ai app"; }
-  .group-ai::after, .group-app::after { display: none; }
+  /* the agents sit on top: AI and app services link up into them */
+  .group-ai::after, .group-app::after { top: calc(-1 * var(--link) - 4px); right: auto; left: calc(50% - 2.5px); width: 5px; height: calc(var(--link) + 6px); --lw: 1px; --lh: 100%; }
   .devices li { flex-direction: column; align-items: flex-start; }
 }
 /* under 992px the tier names leave the axis and head their tiers */
@@ -583,7 +595,6 @@ section { position: relative; color: var(--fg); }
   /* the axis dot moves in front of the name, and the name takes ink so it outranks the group names under it */
   .tier-label { display: flex; flex-direction: row-reverse; justify-content: flex-end; align-items: center; gap: 8px; padding-right: 0; color: var(--ink); }
   .tier-label::after { position: static; flex: none; }
-  .bus { margin-left: 0; }
 }
 @media (max-width: 767px) {
   .role-grid, .devices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -591,8 +602,7 @@ section { position: relative; color: var(--fg); }
   .role-col:last-child, .devices li:last-child { grid-column: span 2; }
   .devices li { flex-direction: row; align-items: center; }
   .infra { grid-template-columns: minmax(0, 1fr); }
-  .bus { grid-template-columns: minmax(0, 1fr); }
-  .bus i:not(:first-child) { display: none; }
+  .infra > .group:first-child::after { top: calc(100% - 2px); left: calc(50% - 2.5px); width: 5px; height: calc(var(--link) + 6px); --lw: 1px; --lh: 100%; }
   /* the hub folds into a list: the supervisor and its note, then the agents two up */
   .hub { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; gap: 8px; }
   .spokes { display: none; }
