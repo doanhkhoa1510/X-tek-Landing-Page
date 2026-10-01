@@ -13,7 +13,7 @@ import { mountTrail } from "./trail";
 const scene = mountMountain($<HTMLCanvasElement>("#mountain"), $("#chips"));
 if (!scene) root.classList.add("no-webgl");
 const topo = mountTopo($<HTMLCanvasElement>(".topo canvas"));
-const topoBg = mountTopo($<HTMLCanvasElement>(".ascent-bg canvas"), { minor: "rgba(16, 48, 96, 0.07)", major: "rgba(16, 48, 96, 0.15)", amber: 1.5, amberColor: "rgba(16, 48, 96, 0.34)", cover: true } /* live line in navy: amber would strike through the copy */);
+const topoBg = mountTopo($<HTMLCanvasElement>(".ascent-bg canvas"), { minor: "rgba(16, 48, 96, 0.07)", major: "rgba(16, 48, 96, 0.15)", amber: 0, cover: true } /* no live line: it shifted on scroll behind the copy */);
 const ride = mountRidge($<HTMLCanvasElement>(".ridge canvas"), $(".rider"));
 mountTrail($(".trek-frame"), $(".stages"));
 
