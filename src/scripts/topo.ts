@@ -1,7 +1,7 @@
 /* The intro tile: a top-down contour map of Mount Zion, the same relief the hero renders in 3D.
    Real 10 m contours in navy (index contour every 50 m); one amber contour follows the altimeter. */
 
-import { BASE_M, heightAt, PEAK, SUMMIT_M, unitsAt } from "./relief";
+import { BASE_M, heightAt, PEAK, TOP_M, unitsAt } from "./relief";
 
 // a 5:3 excerpt of the real ground: Mount Zion, the Hinnom bend, and the Kidron edge (1.26 km x 0.76 km)
 const NX = 130, NY = 78, X0 = -9, X1 = 9, Z0 = -7.4, Z1 = 3.4;
@@ -66,7 +66,7 @@ export function mountTopo(canvas: HTMLCanvasElement, style: TopoStyle = TILE) {
     const g = base.getContext("2d")!;
     g.setTransform(dpr, 0, 0, dpr, 0, 0);
     g.lineWidth = 1;
-    for (let m = Math.ceil(BASE_M / 10 + 0.5) * 10; m < SUMMIT_M; m += 10) {
+    for (let m = Math.ceil(BASE_M / 10 + 0.5) * 10; m < TOP_M; m += 10) {
       g.strokeStyle = m % 50 === 0 ? style.major : style.minor;
       trace(g, unitsAt(m));
     }

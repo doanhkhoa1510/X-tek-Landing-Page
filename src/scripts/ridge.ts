@@ -2,21 +2,21 @@
    UC's truck stands on its road. The amber climber rides the ridge from the left base
    to the summit while the service track slides past, then carries on down the ascent rail. */
 
-import { heightAt } from "./relief";
-import { ZION } from "./zion-data";
+import { domeAt } from "./relief";
 
-const X0 = -14, X1 = 14, N = 280, TOP_U = (ZION.peakAt[0] - X0) / (X1 - X0);
+const X0 = -14, X1 = 14, N = 280;
 
 export function mountRidge(canvas: HTMLCanvasElement, rider: HTMLElement) {
   const sil = new Float32Array(N);
-  let top = 0;
+  let top = 0, topI = 0;
   for (let i = 0; i < N; i++) {
     const x = X0 + ((X1 - X0) * i) / (N - 1);
     let m = 0;
-    for (let z = -10; z <= 10; z += 0.25) m = Math.max(m, heightAt(x, z));
+    for (let z = -10; z <= 10; z += 0.25) m = Math.max(m, domeAt(x, z));
     sil[i] = m;
-    top = Math.max(top, m);
+    if (m > top) [top, topI] = [m, i];
   }
+  const TOP_U = topI / (N - 1);
   const at = (u: number) => {
     const f = Math.max(0, Math.min(1, u)) * (N - 1), i = Math.floor(f), t = f - i;
     return sil[i] * (1 - t) + sil[Math.min(N - 1, i + 1)] * t;
