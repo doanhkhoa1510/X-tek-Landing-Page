@@ -536,7 +536,7 @@ section { position: relative; color: var(--fg); }
    They are drawn over the frames, so no block or frame covers an end. Horizontal by default; --lw/--lh turn one vertical. */
 .group-ai::after, .group-app::after, .infra > .group:first-child::after, .infra::before {
   content: ""; position: absolute; z-index: 1;
-  top: calc(50% - 2.5px); width: calc(var(--link) + 6px); height: 5px;
+  top: round(calc(50% - 2.5px), 1px); width: calc(var(--link) + 6px); height: 5px;
   background:
     radial-gradient(circle, var(--navy) 2px, transparent 2.5px) 0 0 / 5px 5px no-repeat,
     radial-gradient(circle, var(--navy) 2px, transparent 2.5px) 100% 100% / 5px 5px no-repeat,
@@ -576,7 +576,7 @@ section { position: relative; color: var(--fg); }
 .device-icon { flex: none; display: block; width: 32px; height: 32px; color: var(--navy); }
 .device-icon svg { width: 100%; height: 100%; }
 @media (min-width: 1200px) {
-  .infra::before { display: block; top: calc(-1 * var(--tier-gap) - 3px); bottom: calc(50% - 2.5px); left: calc(50% - 2.5px); width: 5px; height: auto; --lw: 1px; --lh: 100%; }
+  .infra::before { display: block; top: calc(-1 * var(--tier-gap) - 3px); bottom: round(calc(50% - 2.5px), 1px); left: round(calc(50% - 2.5px), 1px); width: 5px; height: auto; --lw: 1px; --lh: 100%; }
 }
 @media (min-width: 1360px) {
   .blocks-row { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
@@ -585,7 +585,7 @@ section { position: relative; color: var(--fg); }
 @media (max-width: 1199px) {
   .services { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "agents agents" "ai app"; }
   /* the agents sit on top: AI and app services link up into them */
-  .group-ai::after, .group-app::after { top: calc(-1 * var(--link) - 4px); right: auto; left: calc(50% - 2.5px); width: 5px; height: calc(var(--link) + 6px); --lw: 1px; --lh: 100%; }
+  .group-ai::after, .group-app::after { top: calc(-1 * var(--link) - 4px); right: auto; left: round(calc(50% - 2.5px), 1px); width: 5px; height: calc(var(--link) + 6px); --lw: 1px; --lh: 100%; }
   .devices li { flex-direction: column; align-items: flex-start; }
 }
 /* under 992px the tier names leave the axis and head their tiers */
@@ -602,7 +602,7 @@ section { position: relative; color: var(--fg); }
   .role-col:last-child, .devices li:last-child { grid-column: span 2; }
   .devices li { flex-direction: row; align-items: center; }
   .infra { grid-template-columns: minmax(0, 1fr); }
-  .infra > .group:first-child::after { top: calc(100% - 2px); left: calc(50% - 2.5px); width: 5px; height: calc(var(--link) + 6px); --lw: 1px; --lh: 100%; }
+  .infra > .group:first-child::after { top: calc(100% - 2px); left: round(calc(50% - 2.5px), 1px); width: 5px; height: calc(var(--link) + 6px); --lw: 1px; --lh: 100%; }
   /* the hub folds into a list: the supervisor and its note, then the agents two up */
   .hub { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; gap: 8px; }
   .spokes { display: none; }
