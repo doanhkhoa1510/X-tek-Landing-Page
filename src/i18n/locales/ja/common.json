@@ -1,0 +1,20 @@
+{
+  "skip": "メインコンテンツへ移動",
+  "hud": {
+    "alt": "標高",
+    "speed": "V/S",
+    "summit": "山頂"
+  },
+  "units": {
+    "m": "m",
+    "ms": "m/s"
+  },
+  "call": "{{phone}}に電話する",
+  "whatsapp": "WhatsApp {{phone}}",
+  "talk": "専門家に相談する",
+  "locale": {
+    "label": "言語",
+    "list": "言語を選択"
+  },
+  "englishOnly": "このページは英語のみでご利用いただけます。"
+}

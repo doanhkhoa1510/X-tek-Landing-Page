@@ -1,0 +1,24 @@
+{
+  "title": "Tuyển dụng",
+  "description": "Gia nhập XionTechs tại TP. Hồ Chí Minh: một đội ngũ có tư duy tiến bộ, nơi đổi mới và hợp tác phát triển mạnh mẽ.",
+  "head": { "a": "Tuyển dụng.", "b": "Công việc tìm đến nhân tài." },
+  "lede": "Tại XionTechs, bạn là một phần của đội ngũ có tư duy tiến bộ, nơi đổi mới và hợp tác phát triển mạnh mẽ: một môi trường truyền cảm hứng, hòa nhập, được xây dựng cho sự trưởng thành, tinh thần làm chủ và những công việc tạo ra tác động.",
+  "roles": {
+    "title": { "a": "Vị trí đang mở.", "b": "Hiện chưa có." },
+    "note": "Xin hãy kiên nhẫn: đợt tuyển dụng mới sẽ sớm bắt đầu.",
+    "past": "Vị trí trước đây · {{category}}",
+    "read": "Xem vị trí",
+    "meta": "{{type}} · {{city}} · Đóng ngày {{date}}"
+  },
+  "perks": {
+    "title": { "a": "Vì sao gia nhập chúng tôi?", "b": "Một văn hóa hơn cả đồng nghiệp." },
+    "items": {
+      "innovative": { "name": "Môi trường đổi mới", "text": "Được truyền cảm hứng từ tinh thần tầm nhìn của Xion khi làm việc với công nghệ tiên tiến để tạo ra những hệ thống CNTT mang tính chuyển đổi." },
+      "culture": { "name": "Văn hóa trao quyền", "text": "Trở thành một phần của “Văn hóa hơn cả đồng nghiệp”, nơi đề cao tinh thần khởi nghiệp, đổi mới và tư duy “Get IT Done”, và mọi người đều thuộc về." },
+      "growth": { "name": "Phát triển liên tục", "text": "Chương trình đào tạo bài bản, kho tài nguyên kiến thức và quy trình hội nhập theo từng vai trò giúp bạn thành công ngay từ ngày đầu." },
+      "tech": { "name": "Công nghệ đáng mê", "text": "Chinh phục các dự án thử thách với AI/ML, AI tạo sinh, điện toán đám mây và phương pháp Agile trong môi trường kỹ thuật trưởng thành." },
+      "impact": { "name": "Tác động thực chất", "text": "Xây dựng các giải pháp an toàn, chất lượng cao, thúc đẩy chuyển đổi số cho doanh nghiệp và nhà đổi mới trên toàn thế giới." }
+    }
+  },
+  "cta": { "a": "Đợt tuyển tiếp theo.", "b": "Gửi CV cho chúng tôi." }
+}

@@ -1,0 +1,66 @@
+{
+  "title": "À propos",
+  "description": "XionTechs se distingue par son engagement envers ses équipes, ses processus et sa technologie : six valeurs fondamentales, une seule attitude « Get IT Done ».",
+  "head": {
+    "a": "À propos de nous.",
+    "b": "Nous renforçons la réussite des entreprises grâce aux solutions IT."
+  },
+  "lede": "XionTechs se distingue par son engagement envers ses équipes, ses processus et sa technologie, comme le montrent les valeurs fondamentales ci-dessous.",
+  "values": {
+    "title": {
+      "a": "Valeurs fondamentales.",
+      "b": "Équipes, processus, technologie."
+    },
+    "items": {
+      "startup": {
+        "name": "Esprit startup",
+        "text": "Entrepreneurial, agile et flexible."
+      },
+      "client": {
+        "name": "Priorité au client",
+        "text": "Des résultats au service des clients."
+      },
+      "integrity": {
+        "name": "Esprit d’intégrité",
+        "text": "Honnêteté et transparence."
+      },
+      "innovation": {
+        "name": "Passion de l’innovation",
+        "text": "Toujours une longueur d’avance."
+      },
+      "done": {
+        "name": "Attitude « Get IT Done »",
+        "text": "Responsabilité et engagement."
+      },
+      "home": {
+        "name": "Culture au-delà de l’emploi",
+        "text": "Une culture où l’on se sent chez soi."
+      }
+    }
+  },
+  "figures": {
+    "label": "XionTechs en chiffres",
+    "items": {
+      "years": "Années d’expérience",
+      "commitment": "Engagement client",
+      "coverage": "Couverture mondiale",
+      "verticals": "Secteurs d’activité",
+      "offerings": "Offres de services"
+    }
+  },
+  "why": {
+    "title": {
+      "a": "Pourquoi nous choisir.",
+      "b": "Des services IT professionnels, sous tous les angles."
+    },
+    "lede": "Choisissez XionTechs pour des solutions intégrées, une expérience sectorielle et une exécution pilotée par les indicateurs. Nous donnons vie aux idées de produits grâce à la co-création et à une attitude « Get IT Done ».",
+    "reasons": {
+      "client": "Priorité au client",
+      "integrity": "Intégrité et normes éthiques",
+      "quality": "Livraison de haute qualité",
+      "rapid": "Ingénierie produit rapide",
+      "reliable": "Solutions fiables",
+      "team": "Équipe d’experts 24 h/24, 7 j/7"
+    }
+  }
+}

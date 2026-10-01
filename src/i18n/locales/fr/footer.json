@@ -1,0 +1,18 @@
+{
+  "camps": "Camps de base",
+  "reach": "Nous joindre",
+  "whatsapp": "WhatsApp",
+  "explore": "Explorer",
+  "landing": "Page d’accueil",
+  "company": "Entreprise",
+  "legal": "Juridique",
+  "entry": {
+    "label": "Comment prononcer {{brand}}",
+    "noun": "nom",
+    "sayIt": "Dites-le :",
+    "def": "Inspiré par une montagne. L’équipe qui mène un produit du camp de base au sommet."
+  },
+  "rights": "© {{year}} {{brand}} · Services et produits IT propulsés par l’IA",
+  "tagline": "Get IT done. Laissez votre empreinte.",
+  "toTop": "Retour au camp de base"
+}

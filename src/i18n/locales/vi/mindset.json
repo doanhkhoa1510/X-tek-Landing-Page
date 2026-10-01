@@ -1,0 +1,14 @@
+{
+  "survey": "Khảo sát đỉnh núi · đường đồng mức 10 m",
+  "title": { "a": "Bắt đầu từ một câu chuyện.", "b": "Ngọn núi là biểu tượng của chúng tôi." },
+  "story": [
+    "Cái tên Xion lấy cảm hứng từ núi Zion. Với chúng tôi, ngọn núi là biểu tượng và cũng là mục tiêu: một nơi cao mà mọi người cùng nhau chạm tới.",
+    "Với mục tiêu ấy, một nhóm người tiên phong đã thành lập XionTechs tại Hoa Kỳ. Họ muốn xây dựng một cộng đồng nơi mọi người đoàn kết, làm chủ công nghệ tiên tiến và tạo ra những hệ thống CNTT xuất sắc vì sự tiến bộ của nhân loại.",
+    "Ngày nay, cộng đồng ấy làm việc từ Plano, TP. Hồ Chí Minh và Đà Nẵng."
+  ],
+  "mission": {
+    "title": "Sứ mệnh của chúng tôi",
+    "text": "Mang đến các dịch vụ và sản phẩm CNTT tiên tiến do AI thúc đẩy, giải quyết những thách thức phức tạp, trao quyền cho doanh nghiệp và cá nhân, thúc đẩy sự hợp tác giữa công nghệ và giá trị nhân văn, và tạo ra tác động tích cực, bền vững trên toàn thế giới."
+  },
+  "next": "Giá trị cốt lõi của chúng tôi"
+}

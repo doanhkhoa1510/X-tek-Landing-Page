@@ -1,0 +1,42 @@
+{
+  "giant": "Bảy giá trị cốt lõi",
+  "title": { "a": "Bảy giá trị.", "b": "Một tư duy." },
+  "intro": "Những giá trị cốt lõi vững vàng dẫn đường cho đội ngũ: cách chúng tôi làm việc, cách chúng tôi quyết định và cách chúng tôi triển khai.",
+  "items": {
+    "quality": {
+      "name": "Chất lượng là trên hết",
+      "motto": "Không bao giờ đánh đổi chất lượng.",
+      "text": "Chúng tôi cam kết sự xuất sắc trong mọi thứ mình bàn giao, bảo đảm độ tin cậy, tính chuyên nghiệp và giá trị lâu dài cho khách hàng và đối tác."
+    },
+    "startup": {
+      "name": "Tinh thần khởi nghiệp",
+      "motto": "Luôn nhanh nhẹn, nghĩ như người làm chủ.",
+      "text": "Chúng tôi đón nhận tư duy doanh nhân, thích ứng nhanh với thay đổi, thách thức lối mòn và không ngừng cải tiến cách làm việc."
+    },
+    "client": {
+      "name": "Khách hàng là trọng tâm",
+      "motto": "Thành công của khách hàng là thành công của chúng tôi.",
+      "text": "Chúng tôi đặt khách hàng vào trung tâm của mọi quyết định, nỗ lực vượt kỳ vọng bằng dịch vụ xuất sắc và quan hệ đối tác đáng tin cậy."
+    },
+    "integrity": {
+      "name": "Chính trực là trên hết",
+      "motto": "Luôn làm điều đúng đắn.",
+      "text": "Chúng tôi hành động trung thực, minh bạch và có trách nhiệm giải trình, xây dựng niềm tin bằng các quyết định đạo đức và hành động có trách nhiệm."
+    },
+    "innovation": {
+      "name": "Đổi mới làm động lực",
+      "motto": "Đổi mới có mục đích.",
+      "text": "Chúng tôi đón nhận sự sáng tạo, tận dụng công nghệ mới nổi và không ngừng tìm cách tốt hơn để giải quyết vấn đề và tạo ra giá trị."
+    },
+    "done": {
+      "name": "Tinh thần “Get IT done”",
+      "motto": "Làm chủ nó, hoàn thành nó, cải tiến nó.",
+      "text": "Chúng tôi chủ động, nhận trách nhiệm và thực thi quyết liệt, mang lại các giải pháp đáng tin cậy và kết quả đo lường được."
+    },
+    "people": {
+      "name": "Văn hóa lấy con người làm trung tâm",
+      "motto": "Con người là trái tim của thành công.",
+      "text": "Chúng tôi nuôi dưỡng một môi trường hòa nhập, hợp tác và hỗ trợ, nơi mỗi cá nhân cảm thấy được trân trọng, được trao quyền và được truyền cảm hứng để phát triển."
+    }
+  }
+}

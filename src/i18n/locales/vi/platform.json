@@ -1,0 +1,76 @@
+{
+  "title": {
+    "a": "Nền tảng ứng dụng AI",
+    "b": "cho trường học thông minh."
+  },
+  "lede": "Mỗi người trong trường mở một ứng dụng khác nhau. Bên dưới, tất cả đều chạy trên cùng các tác tử AI và cùng một nguồn dữ liệu.",
+  "text": "Chúng tôi xây dựng nền tảng này để một tác tử điều phối đọc từng yêu cầu rồi giao cho tác tử chuyên trách việc đó. Các thiết bị trong lớp học báo về một nền tảng dữ liệu duy nhất, nên các ứng dụng làm việc dựa trên những gì đang diễn ra trong phòng.",
+  "tiers": {
+    "users": "Người dùng và ứng dụng",
+    "services": "Dịch vụ",
+    "infra": "Hạ tầng và dữ liệu",
+    "devices": "Thiết bị"
+  },
+  "roles": {
+    "parents": "Phụ huynh",
+    "students": "Học sinh",
+    "teachers": "Giáo viên",
+    "staff": "Nhân viên",
+    "others": "Khác"
+  },
+  "appsOf": "{{role}}: ứng dụng",
+  "apps": {
+    "parentHub": "Parent Hub",
+    "buddy": "Robot Buddy360",
+    "wellbeing": "AI Wellbeing",
+    "curriculum": "AI Curriculum Hub",
+    "reports": "Báo cáo học tập",
+    "coach": "IoT Teacher Coach",
+    "other": "Ứng dụng khác"
+  },
+  "groups": {
+    "ai": "Dịch vụ AI",
+    "agents": "Tác tử",
+    "app": "Dịch vụ ứng dụng"
+  },
+  "aiServices": {
+    "speech": "Giọng nói thành văn bản, văn bản thành giọng nói",
+    "ml": "Học máy, SLMs, LLMs"
+  },
+  "appServices": {
+    "mcp": "MCP server",
+    "backend": "Back-end"
+  },
+  "supervisor": "Tác tử điều phối",
+  "routedTo": "Các tác tử mà tác tử điều phối giao việc tới",
+  "routes": "Điều phối từng yêu cầu",
+  "agents": {
+    "policy": "Tác tử chính sách",
+    "buddy": "Tác tử Buddy",
+    "reports": "Tác tử báo cáo học tập",
+    "wellbeing": "Tác tử Wellbeing",
+    "more": "Thêm tác tử"
+  },
+  "infra": {
+    "network": "Hạ tầng và kết nối",
+    "data": "Nền tảng dữ liệu hiện đại"
+  },
+  "parts": {
+    "auth": "Xác thực",
+    "gateway": "API gateway",
+    "iot": "IoT hub",
+    "edge": "Edge thông minh",
+    "ingestion": "Thu nạp dữ liệu",
+    "storage": "Lưu trữ",
+    "transformation": "Biến đổi dữ liệu",
+    "governance": "Quản trị dữ liệu"
+  },
+  "devices": {
+    "robot": "Robot",
+    "screens": "Điện thoại, máy tính bảng, PC",
+    "watch": "Thiết bị đeo",
+    "camera": "Camera, drone",
+    "sensor": "Cảm biến, bộ chấp hành"
+  },
+  "caption": "Kiến trúc nền tảng · bốn tầng, từ con người đến thiết bị"
+}

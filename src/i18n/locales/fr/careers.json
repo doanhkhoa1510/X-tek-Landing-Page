@@ -1,0 +1,51 @@
+{
+  "title": "Carrières",
+  "description": "Rejoignez XionTechs à Hô Chi Minh-Ville : une équipe tournée vers l’avenir où l’innovation et la collaboration prospèrent.",
+  "head": {
+    "a": "Carrières.",
+    "b": "Le poste trouve son talent."
+  },
+  "lede": "Chez XionTechs, vous faites partie d’une équipe tournée vers l’avenir où l’innovation et la collaboration prospèrent : un lieu inspirant et inclusif, pensé pour la croissance, l’autonomie et un travail à fort impact.",
+  "roles": {
+    "title": {
+      "a": "Postes ouverts.",
+      "b": "Aucun pour l’instant."
+    },
+    "note": "Un peu de patience : une nouvelle campagne de recrutement démarre bientôt.",
+    "past": "Anciens postes · {{category}}",
+    "read": "Lire l’offre",
+    "meta": "{{type}} · {{city}} · Clôturé le {{date}}"
+  },
+  "perks": {
+    "title": {
+      "a": "Pourquoi nous rejoindre ?",
+      "b": "Une culture au-delà de l’emploi."
+    },
+    "items": {
+      "innovative": {
+        "name": "Un environnement innovant",
+        "text": "Laissez-vous inspirer par l’esprit visionnaire de Xion en travaillant avec des technologies de pointe pour créer des systèmes IT transformateurs."
+      },
+      "culture": {
+        "name": "Une culture qui donne les moyens d’agir",
+        "text": "Faites partie d’une « culture au-delà de l’emploi » qui valorise l’esprit startup, l’innovation et l’état d’esprit « Get IT Done », où chacun a sa place."
+      },
+      "growth": {
+        "name": "Une croissance continue",
+        "text": "Formations structurées, ressources de connaissance et intégration propre à chaque poste vous aident à réussir dès le premier jour."
+      },
+      "tech": {
+        "name": "Une tech qui passionne",
+        "text": "Relevez des projets exigeants avec l’IA/ML, l’IA générative, le cloud computing et les méthodes Agile, dans un environnement d’ingénierie mature."
+      },
+      "impact": {
+        "name": "Un impact réel",
+        "text": "Concevez des solutions sûres et de haute qualité qui accélèrent la transformation numérique des entreprises et des innovateurs du monde entier."
+      }
+    }
+  },
+  "cta": {
+    "a": "Prochaine campagne.",
+    "b": "Envoyez-nous votre CV."
+  }
+}

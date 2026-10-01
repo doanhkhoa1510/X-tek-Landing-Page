@@ -1,0 +1,20 @@
+{
+  "skip": "Aller au contenu",
+  "hud": {
+    "alt": "Alt",
+    "speed": "V/S",
+    "summit": "Sommet"
+  },
+  "units": {
+    "m": "m",
+    "ms": "m/s"
+  },
+  "call": "Appeler le {{phone}}",
+  "whatsapp": "WhatsApp {{phone}}",
+  "talk": "Parler à nos experts",
+  "locale": {
+    "label": "Langue",
+    "list": "Choisir une langue"
+  },
+  "englishOnly": "Cette page n’est disponible qu’en anglais."
+}

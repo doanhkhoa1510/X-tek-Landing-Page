@@ -1,0 +1,45 @@
+{
+  "giant": "Sept valeurs fondamentales",
+  "title": {
+    "a": "Sept valeurs.",
+    "b": "Un état d’esprit."
+  },
+  "intro": "Des valeurs fondamentales inébranlables guident l’équipe : notre façon de travailler, de décider et de livrer.",
+  "items": {
+    "quality": {
+      "name": "La qualité d’abord",
+      "motto": "Ne jamais transiger sur la qualité.",
+      "text": "Nous nous engageons à l’excellence dans tout ce que nous livrons, en garantissant fiabilité, professionnalisme et valeur durable à nos clients et partenaires."
+    },
+    "startup": {
+      "name": "Esprit startup",
+      "motto": "Rester agile, penser en propriétaire.",
+      "text": "Nous adoptons un état d’esprit entrepreneurial : nous nous adaptons vite au changement, remettons en question le statu quo et améliorons sans cesse notre façon de travailler."
+    },
+    "client": {
+      "name": "Priorité au client",
+      "motto": "Le succès de nos clients est notre succès.",
+      "text": "Nous plaçons les clients au centre de chaque décision et nous nous efforçons de dépasser leurs attentes par un service exceptionnel et des partenariats de confiance."
+    },
+    "integrity": {
+      "name": "L’intégrité d’abord",
+      "motto": "Faire ce qui est juste, toujours.",
+      "text": "Nous agissons avec honnêteté, transparence et sens des responsabilités, et bâtissons la confiance par des décisions éthiques et des actions responsables."
+    },
+    "innovation": {
+      "name": "L’innovation comme moteur",
+      "motto": "Innover avec un but.",
+      "text": "Nous cultivons la créativité, tirons parti des technologies émergentes et cherchons sans cesse de meilleures façons de résoudre les problèmes et de créer de la valeur."
+    },
+    "done": {
+      "name": "Attitude « Get IT done »",
+      "motto": "Assumer, livrer, améliorer.",
+      "text": "Nous prenons des initiatives, assumons nos responsabilités et exécutons avec détermination, en livrant des solutions fiables et des résultats mesurables."
+    },
+    "people": {
+      "name": "Culture centrée sur les personnes",
+      "motto": "Les personnes sont au cœur de notre réussite.",
+      "text": "Nous favorisons un environnement inclusif, collaboratif et bienveillant où chacun se sent valorisé, autonome et inspiré pour grandir."
+    }
+  }
+}

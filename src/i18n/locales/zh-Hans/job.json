@@ -1,0 +1,9 @@
+{
+  "details": "{{title}}，职位详情",
+  "facts": "职位信息",
+  "type": "雇佣类型",
+  "location": "工作地点",
+  "posted": "发布日期",
+  "validThrough": "有效期至",
+  "all": "全部职位"
+}
