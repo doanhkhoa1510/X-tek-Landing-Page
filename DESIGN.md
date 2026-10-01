@@ -434,8 +434,43 @@ The landing page is for a new buyer and stays lean. Everything else from the old
 - **Bands (daylight):** hairline cell grids (`.cells`; the 1px gaps are the rules), a sticky side head against a body at 8/13 (`.split`), and figure rows (`.figures`). Long texts use a sticky "On this page" index at 1/4 (mono, a navy square marks the section being read, and it ends above the altimeter) against prose at 5/12, max 68ch.
 - **Closing ask:** an ice band (`components/Cta.astro`) before the footer on About, FAQs, Careers, and jobs. Legal texts end on their own content.
 - **Menu:** landing sections, a hairline, then About us, Careers, and Support, in a flat panel (Night Band or Snow) so ten links never sit on the headline. Subpages link to landing sections as `/#id`. An arrival with a hash skips the preloader and lands on the section.
-- **Footer:** map 1/4, then base camps, reach us, explore, and company columns. The legal row carries the three legal links.
+- **Footer:** map 1/4, then base camps, reach us, explore, and company columns. A row of languages sits above the legal row, which carries the three legal links.
 - **Scripts:** `chrome.ts` is shared (scroll, header, scramble, cursor, altimeter, clocks, accordion, forms). `app.ts` is the landing page and `page.ts` is the subpages. Terrain math lives in `relief.ts`, so subpages never load Three.js (about 183 KB of JS against 690 KB).
+
+## Languages
+
+Seven languages, one design: English (`en`, the source, at `/`), Vietnamese, Simplified Chinese, Japanese, Arabic, French, and Hindi, each under its path (`/vi/`, `/zh/`, `/ja/`, `/ar/`, `/fr/`, `/hi/`). The words live in `src/i18n/locales/<locale>/<namespace>.json`, one namespace per component, read through i18next; a missing key shows the English copy. `src/i18n/README.md` is the translators' guide.
+
+### Language switch
+- **Ticker:** the current code (`EN ▾`, Micro, Fg) ends the ticker on every breakpoint. It opens a flat panel like the menu (Night Band or Snow, hairline, clip-path wipe, Esc or an outside click closes, and it closes when the ticker scrolls away).
+- **List:** each language named in itself (English, Tiếng Việt, 中文, 日本語, العربية, Français, हिन्दी) with its code in Micro to the right; the current one is Fg with an amber code. Each link opens the same page in that language.
+- **Footer:** the same names in a row above the legal line.
+- **Face:** names are set in Noto Sans Mono, because Martian Mono lacks the Vietnamese marks. Chinese, Japanese, Arabic, and Hindi names take the system face, so no script face loads for four words.
+
+### Type per language
+Each script face follows the brand face in the stack, so Latin words, numbers, and the name keep their brand type. A language's faces load only on its own pages (`src/styles/locales/<locale>.css`, linked by `Base.astro`).
+
+| Language | Display | Body | Mono |
+| --- | --- | --- | --- |
+| en, fr | Saira | Host Grotesk | Martian Mono |
+| vi | Saira (has the marks) | Be Vietnam Pro 400–600 | Noto Sans Mono |
+| zh-Hans | Saira → Noto Sans SC | Host Grotesk → Noto Sans SC | Martian Mono → Noto Sans SC |
+| ja | Saira → Noto Sans JP | Host Grotesk → Noto Sans JP | Martian Mono → Noto Sans JP |
+| ar | Saira → Noto Kufi Arabic | Host Grotesk → Noto Sans Arabic | Martian Mono → Noto Sans Arabic, with the word space from Noto Sans Arabic |
+| hi | Saira → Noto Sans Devanagari | Host Grotesk → Noto Sans Devanagari | Martian Mono → Noto Sans Devanagari, with the word space from Noto Sans Devanagari |
+
+**The Whole-Role Rule.** Vietnamese swaps whole roles instead of falling back glyph by glyph: Host Grotesk and Martian Mono have the base letters but not the tone marks, and a per-glyph fallback would set "ế" in another face than "e".
+
+**The Open-Line Rule.** Saira's caps sit inside a 0.92 line. Vietnamese capitals stack marks above and below, and Han and kana fill the em, so Display and Headline open to 1.12 in vi, zh, and ja. Arabic and Devanagari marks rise and fall further: 1.32 for Display and Headline, 1.3 for titles, and 1.7 for body copy. The menu label's rolling window grows to 1.5em in vi, ar, and hi.
+
+**The No-Tracking-In-Arabic Rule.** Arabic letters join, and any letter-spacing pulls a word apart, so Arabic text never takes letter-spacing.
+
+### Right to left (Arabic)
+- **Mirror:** the layout mirrors through logical properties and grid and flex order. The headline and copy sit on the right, the menu and CTA on the left, and the altimeter at bottom right. The mountain's camera moves to the other side of the summit (`mountain.ts`), so the hill rises on the left without flipping the terrain.
+- **Motion:** the value track, the giant type, the ridge and its rider, and the stat wipes run right to left; the track's fade moves to its exit edge.
+- **Kept left to right:** the lockups of mark and name, the world map, the platform chart, the trek, and the 24-hour day bar keep their drawing. Text inside them still reads right to left (`unicode-bidi: plaintext`).
+- **Digits:** Latin digits everywhere. Phone numbers carry LTR isolates in `site.ts`, and postal lines render in `<bdi>`, so their digit groups never reverse.
+- **Fallback English:** copy that falls back to English on an Arabic page is isolated left to right, so its full stop stays at its own end. Long-form pages without an Arabic file render the English text with `dir="ltr"`, and the title stays anchored to the right edge.
 
 ## Elevation & Depth
 
@@ -478,7 +513,8 @@ Character: heavy pills with a machine voice. The fill answers the pointer.
 ### Scramble label (signature)
 UC's hover gesture, rebuilt.
 - **Trigger:** on `pointerenter` (fine pointers only, no reduced motion), the `.scr` span inside any `[data-scramble]` host shuffles its own letters as an anagram, never random glyphs.
-- **Timing:** every 28ms it reshuffles and locks one more letter from the left, after a 3-tick head start, so a 12-letter label resolves in about 420ms.
+- **Timing:** every 28ms it reshuffles and locks one more letter in reading order, after a 3-tick head start, so a 12-letter label resolves in about 420ms.
+- **Any script:** it shuffles whole graphemes (`Intl.Segmenter`), so a Devanagari conjunct or a Vietnamese mark never leaves its letter, and the bidi isolates around phone numbers stay in place.
 - **Stability:** the width is frozen during the shuffle so layout never moves.
 - **Accessibility:** links get an `aria-label` with the true text, so assistive tech never hears the shuffle.
 
@@ -503,7 +539,7 @@ UC's KM/H speedometer, turned into a climb reading.
 ### Header
 - **Ticker (32px, Micro):**
   - Left: live clocks, `PLANO, TX 08:15 CT · HO CHI MINH CITY 20:15 ICT`. They update on the minute, and mobile uses short names.
-  - Right: the phone and WhatsApp links, which scramble on hover.
+  - Right: the phone and WhatsApp links, which scramble on hover, then the language toggle (see Languages).
   - A hairline sits under it.
 - **Row (64px):**
   - The logo: the mark plus XIONTECHS, with the pronunciation subtitle under the word (see Pronunciation subtitle). After 80px of scroll, "ION" and "ECHS" collapse through `grid-template-columns: 1fr → 0fr` over 0.7s, leaving **XT**, like UC's UNITEDCARRIERS → UC.
@@ -542,7 +578,7 @@ UC's KM/H speedometer, turned into a climb reading.
   - The dawn limb rises (`yPercent 100 → 0` at full opacity, never a fade) from 42% to 100%, ending in pure snow that meets the intro. GSAP's `fromTo` zeroes `y` so it does not stack on the CSS resting `translateY(100%)`.
 
 ### Two-tone headline
-Two block spans in one H2, following the Two-Tone Rule. On night the fill runs Dim Night → Glacier → Snow. On daylight it runs Dim Ink → Glacier → Navy Ink.
+Two block spans in one H2, following the Two-Tone Rule. On night the fill runs Dim Night → Glacier → Snow. On daylight it runs Dim Ink → Glacier → Navy Ink. Words come from `Intl.Segmenter`, so Chinese and Japanese lines fill word by word, and punctuation rides with the word before it.
 
 ### Stat
 The figure (count-up from 0, 1s power1.out at `top 85%`, once) sits over a Label, with a top hairline. The row wipes in with clip-path from the left (1.2s expo, stagger 0.12). It sits three-up in the first log entry. The figures are real: 25+ years in software engineering, 5 pillars of delivery excellence, 3 offices.
