@@ -2,7 +2,7 @@
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { $$, goTo, hud, mountCounters, onAltitude, syncHeader, twoTone } from "./chrome";
+import { $$, goTo, hud, mountCounters, onAltitude, rtl, syncHeader, twoTone } from "./chrome";
 import { mountTopo } from "./topo";
 
 /* ---------- the head: Mount Zion's contours on night; the amber line follows the altimeter ---------- */
@@ -36,7 +36,7 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
     gsap.from($$(".cell", list), { clipPath: "inset(100% 0 0 0)", duration: 1.1, stagger: 0.08, ease: "expo.out", scrollTrigger: { trigger: list, start: "top 82%" } }),
   );
   $$(".figures").forEach((row) =>
-    gsap.from($$(".stat", row), { clipPath: "inset(0 100% 0 0)", duration: 1.2, ease: "expo.out", stagger: 0.1, scrollTrigger: { trigger: row, start: "top 85%" } }),
+    gsap.from($$(".stat", row), { clipPath: rtl ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)", duration: 1.2, ease: "expo.out", stagger: 0.1, scrollTrigger: { trigger: row, start: "top 85%" } }),
   );
   $$(".role-list, .faq-list").forEach((list) =>
     gsap.from(list.children, { autoAlpha: 0, y: 20, duration: 0.9, ease: "expo.out", stagger: 0.05, scrollTrigger: { trigger: list, start: "top 85%" } }),

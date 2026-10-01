@@ -18,6 +18,9 @@ const t = useT(locale.code, "common");
 // the same page in every language, for search engines; English doubles as the default (needs SITE_URL)
 const path = unlocalize(Astro.url.pathname);
 const abs = (p: string) => Astro.site && new URL(p, Astro.site).href;
+// a language's script faces load only on its own pages (src/styles/locales/<locale>.css)
+const sheets = import.meta.glob<string>("../styles/locales/*.css", { query: "?url", import: "default", eager: true });
+const sheet = sheets[`../styles/locales/${locale.code}.css`];
 ---
 <!doctype html>
 <html lang={locale.code} dir={locale.dir}>
@@ -35,6 +38,7 @@ const abs = (p: string) => Astro.site && new URL(p, Astro.site).href;
   )}
   <meta name="theme-color" content="#030813" />
   <link rel="icon" href="/xiontechs-logo.png" />
+  {sheet && <link rel="stylesheet" href={sheet} />}
   <script is:inline>document.documentElement.classList.add("js");</script>
 </head>
 <body>

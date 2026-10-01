@@ -23,7 +23,7 @@ export const MAP_W = 1000, MAP_H = 1000 / (180 / 68);
 export const arc = (a: City, b: City, lift: number) =>
   `M${(a.x * MAP_W).toFixed(1)} ${(a.y * MAP_H).toFixed(1)} Q${(((a.x + b.x) / 2) * MAP_W).toFixed(1)} ${(Math.min(a.y, b.y) * MAP_H - lift).toFixed(1)} ${(b.x * MAP_W).toFixed(1)} ${(b.y * MAP_H).toFixed(1)}`;
 
-// postal lines stay as written for the post, in every language
+// postal lines stay as written for the post, in every language (rendered in <bdi>, so they read left to right in Arabic too)
 export const offices = [
   { id: "plano", lines: ["7950 Legacy Drive, Suite 400", "Plano, Texas 75024, USA"] },
   // the Vietnam base camps carry no street address (owner's call, 2026-09-30)
@@ -31,9 +31,11 @@ export const offices = [
   { id: "danang", lines: [] as string[] },
 ] as const;
 
+// a phone number reads left to right even inside Arabic text: the isolates (LRI … PDI) stop the groups from reversing
+const ltr = (s: string) => `\u2066${s}\u2069`;
 export const phones = {
-  us: { href: "tel:+14693229899", label: "+1 469 322 9899" },
-  wa: { href: "https://wa.me/14694399345", label: "+1 469 439 9345" },
+  us: { href: "tel:+14693229899", label: ltr("+1 469 322 9899") },
+  wa: { href: "https://wa.me/14694399345", label: ltr("+1 469 439 9345") },
 };
 export const email = "vinni.tran@xiontechs.com";
 export const recruit = "recruit@xiontechs.com";

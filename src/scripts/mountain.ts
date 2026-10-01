@@ -54,6 +54,13 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     SUMMIT.pos = [2.6, 10, 16];
     SUMMIT.look = [1.1, 6.2, -4];
   }
+  // right to left, the headline sits on the right: the camera mirrors across the summit, so the hill rises on the left
+  if (document.documentElement.dir === "rtl") {
+    for (const s of [...HERO, SUMMIT]) {
+      s.pos[0] = 2 * ZION.peakAt[0] - s.pos[0];
+      s.look[0] = 2 * ZION.peakAt[0] - s.look[0];
+    }
+  }
   renderer.setPixelRatio(Math.min(devicePixelRatio, small ? 1.5 : 2));
   renderer.setSize(innerWidth, innerHeight, false);
   renderer.setClearColor(0x030813, 1);

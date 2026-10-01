@@ -11,6 +11,8 @@ import { ZION } from "./zion-data";
 gsap.registerPlugin(ScrollTrigger);
 
 export const root = document.documentElement;
+/** Arabic pages run right to left: horizontal scenes travel the other way. */
+export const rtl = root.dir === "rtl";
 export const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
 export const $ = <T extends HTMLElement = HTMLElement>(s: string, r: ParentNode = document) => r.querySelector<T>(s)!;

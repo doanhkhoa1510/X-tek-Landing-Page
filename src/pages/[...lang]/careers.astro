@@ -34,7 +34,7 @@ const jobs = (await entriesFor("jobs", lang)).sort((a, b) => a.entry.data.title.
           {jobs.map(({ entry, slug, translated }) => (
             <li>
               <a class="role" href={localize(`/job/${slug}/`, lang)} data-cursor-label={t("roles.read")}>
-                <h3 lang={translated ? undefined : "en"}>{entry.data.title}</h3>
+                <h3 lang={translated ? undefined : "en"} dir={translated ? undefined : "ltr"}>{entry.data.title}</h3>
                 <span class="role-meta">{t("roles.meta", { type: entry.data.type, city: ts("cities.hcmc.name"), date: entry.data.validThrough })}</span>
                 <span class="role-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" /></svg></span>
               </a>

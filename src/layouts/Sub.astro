@@ -24,12 +24,12 @@ const aside = !!lede || meta.length > 0 || !!note || Astro.slots.has("aside");
   <section id="top" class:list={["page-head", { "no-dawn": !dawn }]} data-on="dark" aria-labelledby="page-title">
     <div class="page-topo" aria-hidden="true"><canvas></canvas></div>
     <div class="wrap page-head-grid">
-      <h1 id="page-title" class="tt page-title" lang={lang}><span class="tt-a">{a}</span> <span class="tt-b">{b}</span></h1>
+      <h1 id="page-title" class="tt page-title" lang={lang} dir={lang && "ltr"}><span class="tt-a">{a}</span> <span class="tt-b">{b}</span></h1>
       {aside && (
         <div class="page-aside">
-          {lede && <p class="page-lede" lang={lang}>{lede}</p>}
+          {lede && <p class="page-lede" lang={lang} dir={lang && "ltr"}>{lede}</p>}
           <slot name="aside" />
-          {(meta.length > 0 || note) && <ul class="page-meta">{meta.map((m) => <li lang={lang}>{m}</li>)}{note && <li>{note}</li>}</ul>}
+          {(meta.length > 0 || note) && <ul class="page-meta">{meta.map((m) => <li lang={lang} dir={lang && "ltr"}>{m}</li>)}{note && <li>{note}</li>}</ul>}
         </div>
       )}
     </div>

@@ -25,11 +25,11 @@ const textLang = translated ? undefined : "en";
     <div class="wrap doc-grid">
       <nav class="doc-toc" aria-label={t("toc")}>
         <p class="label">{t("toc")}</p>
-        <ol lang={textLang}>
+        <ol lang={textLang} dir={textLang && "ltr"}>
           {toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
         </ol>
       </nav>
-      <div class="prose" lang={textLang}>
+      <div class="prose" lang={textLang} dir={textLang && "ltr"}>
         <Content />
       </div>
     </div>

@@ -19,7 +19,7 @@ const explore = ["mindset", "values", "work", "faq"] as const;
     </div>
     <div class="foot-col">
       <p class="label">{t("camps")}</p>
-      {offices.map((o) => <address>{o.lines.length > 0 ? o.lines.join(", ") : ts(`offices.${o.id}.name`)}</address>)}
+      {offices.map((o) => <address>{o.lines.length > 0 ? <bdi>{o.lines.join(", ")}</bdi> : ts(`offices.${o.id}.name`)}</address>)}
     </div>
     <div class="foot-col">
       <p class="label">{t("reach")}</p>

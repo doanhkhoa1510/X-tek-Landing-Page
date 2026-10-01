@@ -24,8 +24,22 @@ await i18next.init({
   interpolation: { escapeValue: false }, // Astro escapes on output; rich() escapes for set:html
 });
 
-/** The translate function of one namespace in one locale (pass Astro.currentLocale). */
-export const useT = <N extends Namespace>(locale: string | undefined, ns: N) => i18next.getFixedT(localeOf(locale).code, ns);
+const isolate = (v: unknown): unknown =>
+  typeof v === "string" ? `\u2066${v}\u2069` : Array.isArray(v) ? v.map(isolate) : v;
+
+/** The translate function of one namespace in one locale (pass Astro.currentLocale).
+    On a right-to-left page, copy that fell back to English is isolated left to right (LRI … PDI), so its full stop
+    stays at its own end instead of jumping to the start. */
+export function useT<N extends Namespace>(locale: string | undefined, ns: N) {
+  const l = localeOf(locale);
+  const t = i18next.getFixedT(l.code, ns);
+  if (l.dir !== "rtl") return t;
+  return ((key: string, options?: object) => {
+    const value = (t as (k: string, o?: object) => unknown)(key, options);
+    const own = i18next.getResource(l.code, ns as string, key);
+    return own === undefined || own === "" ? isolate(value) : value;
+  }) as unknown as typeof t;
+}
 
 const escape = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
