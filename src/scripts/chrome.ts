@@ -236,9 +236,10 @@ $$<HTMLButtonElement>(".qa button").forEach((btn) => {
   });
 });
 
-/* ---------- brief forms: client-side states until a backend exists ---------- */
+/* ---------- brief forms: client-side states until a backend exists; the words come from data-status (BriefForm.astro) ---------- */
 $$<HTMLFormElement>(".brief").forEach((form) => {
   const status = $(".form-status", form);
+  const say: Record<"badEmail" | "required" | "notLive" | "sending" | "sent" | "failed", string> = JSON.parse(form.dataset.status!);
   form.addEventListener("input", (e) => (e.target as HTMLElement).removeAttribute("aria-invalid"));
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -246,7 +247,7 @@ $$<HTMLFormElement>(".brief").forEach((form) => {
     if (!form.checkValidity()) {
       const bad = $<HTMLInputElement>(":invalid", form);
       status.dataset.state = "error";
-      status.textContent = bad.type === "email" && bad.value ? "That email looks incomplete. Check it and send again." : "Fill in all three required fields so we know where to start.";
+      status.textContent = bad.type === "email" && bad.value ? say.badEmail : say.required;
       bad.focus();
       return;
     }
@@ -255,22 +256,22 @@ $$<HTMLFormElement>(".brief").forEach((form) => {
     if (!endpoint) {
       // no inbox configured yet: say plainly that nothing was sent, and hand over the phone line
       status.dataset.state = "info";
-      status.innerHTML = 'Not sent yet: online sending is not live. Call <a href="tel:+14693229899">+1 469 322 9899</a> and we start from your brief.';
+      status.innerHTML = say.notLive;
       return;
     }
     btn.disabled = true;
     status.dataset.state = "";
-    status.textContent = "Sending your brief…";
+    status.textContent = say.sending;
     fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.fromEntries(new FormData(form))) })
       .then((r) => {
         if (!r.ok) throw new Error(String(r.status));
         status.dataset.state = "ok";
-        status.textContent = "Brief sent. We reply by email.";
+        status.textContent = say.sent;
         form.reset();
       })
       .catch(() => {
         status.dataset.state = "error";
-        status.innerHTML = 'The brief did not send. Try again, or call <a href="tel:+14693229899">+1 469 322 9899</a>.';
+        status.innerHTML = say.failed;
       })
       .finally(() => (btn.disabled = false));
   });

@@ -1,0 +1,14 @@
+{
+  "survey": "Summit survey · 10 m contours",
+  "title": { "a": "Starting with a story.", "b": "A mountain is our symbol." },
+  "story": [
+    "The name Xion is inspired by Mount Zion. For us the mountain is a symbol and a goal: a high place that people reach together.",
+    "With that goal, a group of pioneers established XionTechs in America. They set out to create a community where people unite, harness cutting-edge technologies, and build exceptional IT systems to advance humanity.",
+    "Today that community works from Plano, Ho Chi Minh City, and Da Nang."
+  ],
+  "mission": {
+    "title": "Our mission",
+    "text": "Deliver cutting-edge AI-driven IT services and products that solve complex challenges, empower businesses and individuals, foster collaboration between technology and human values, and create a positive, sustainable impact worldwide."
+  },
+  "next": "Our core values"
+}

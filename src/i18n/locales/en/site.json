@@ -1,0 +1,55 @@
+{
+  "cities": {
+    "plano": { "name": "Plano, TX", "short": "Plano", "long": "Plano, Texas" },
+    "hcmc": { "name": "Ho Chi Minh City", "short": "HCMC", "long": "Ho Chi Minh City" },
+    "danang": { "name": "Da Nang", "short": "Da Nang", "long": "Da Nang" }
+  },
+  "offices": {
+    "plano": { "name": "Plano base camp", "role": "Texas, USA" },
+    "hcmc": { "name": "HCMC base camp", "role": "Ho Chi Minh City, Vietnam" },
+    "danang": { "name": "Da Nang base camp", "role": "Da Nang, Vietnam" }
+  },
+  "services": {
+    "engineering": {
+      "name": "Digital product engineering",
+      "text": "UX/UI design, product engineering and re-engineering, low-code apps, testing, sustenance, and DevOps/DevSecOps."
+    },
+    "insights": {
+      "name": "Digital insights and analytics",
+      "text": "Agentic AI systems, business intelligence, process modeling, data engineering, and analytics platforms."
+    },
+    "robotics": {
+      "name": "Embedded and AI robotics",
+      "text": "AI for edge devices, health wearables, home sensors, smart cameras, and factory robots."
+    },
+    "cocreation": {
+      "name": "Co-creation development",
+      "text": "Ideation, experience design, rapid prototypes and MVPs, launch, and product digital marketing."
+    },
+    "managed": {
+      "name": "Application managed services",
+      "text": "Monitoring, troubleshooting, enhancement, optimization, database administration, and CI/CD release management."
+    }
+  },
+  "sections": {
+    "mindset": "Mindset",
+    "values": "Core values",
+    "platform": "Platform",
+    "work": "Work",
+    "faq": "FAQ",
+    "camps": "Base camps",
+    "summit": "Contact"
+  },
+  "pages": {
+    "about": "About us",
+    "careers": "Careers",
+    "faqs": "FAQs",
+    "support": "Support",
+    "contact": "Contact us"
+  },
+  "legal": {
+    "privacy": "Privacy policy",
+    "terms": "Terms of service",
+    "cookies": "Cookie policy"
+  }
+}

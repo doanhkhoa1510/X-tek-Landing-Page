@@ -33,10 +33,11 @@ export function mountTrail(panel: HTMLElement, list: HTMLElement) {
   const climber = panel.querySelector<HTMLElement>(".climber")!;
   const stages = [...list.querySelectorAll<HTMLElement>(".stage")];
   const last = stages.length - 1;
+  const unit = panel.dataset.unit ?? "m";
   const camps = stages.map((s, i) => {
     const el = document.createElement("div");
     el.className = i === last ? "camp camp-summit" : "camp";
-    el.innerHTML = `<i class="camp-dot"></i><span class="camp-tag"><b>0${i + 1}</b> ${s.querySelector(".stage-meta")?.textContent?.trim() ?? ""} · <em></em> m</span>`;
+    el.innerHTML = `<i class="camp-dot"></i><span class="camp-tag"><b>0${i + 1}</b> ${s.querySelector(".stage-meta")?.textContent?.trim() ?? ""} · <em></em> ${unit}</span>`;
     panel.insertBefore(el, climber);
     return el;
   });
@@ -110,7 +111,7 @@ export function mountTrail(panel: HTMLElement, list: HTMLElement) {
     for (let m = 610; m <= 760; m += 10) {
       const y = Y(unitsAt(m)).toFixed(1), major = m % 50 === 0;
       ticks += `M${w - (major ? 9 : 5)} ${y}H${w}`;
-      if (major) labels += `<text x="${w - 14}" y="${y}">${m} m</text>`;
+      if (major) labels += `<text x="${w - 14}" y="${y}">${m} ${unit}</text>`;
     }
     scale.innerHTML = `${ticks}"/>${labels}`;
 

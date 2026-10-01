@@ -1,0 +1,30 @@
+---
+/* 05 · FAQ: six answers before the brief; the full list lives on /faqs/. */
+import { phones } from "../../data/site";
+import { localize } from "../../i18n/config";
+import { rich, useT } from "../../i18n";
+
+const lang = Astro.currentLocale;
+const t = useT(lang, "faq");
+const faqs = ["what", "different", "where", "industries", "process", "start"] as const;
+const more = rich(t("more", { phone: phones.us.label }), {
+  faqs: (s) => `<a href="${localize("/faqs/", lang)}">${s}</a>`,
+  call: (s) => `<a href="${phones.us.href}">${s}</a>`,
+});
+---
+<section id="faq" class="faq" data-on="light" aria-labelledby="faq-title">
+  <div class="wrap faq-grid">
+    <div class="faq-head">
+      <h2 id="faq-title" class="tt"><span class="tt-a">{t("title.a")}</span> <span class="tt-b">{t("title.b")}</span></h2>
+      <p set:html={more} />
+    </div>
+    <div class="faq-list">
+      {faqs.map((id, i) => (
+        <div class="qa">
+          <h3><button id={`q${i}`} type="button" aria-expanded="false" aria-controls={`a${i}`}>{t(`items.${id}.q`)}<span class="plus" aria-hidden="true"></span></button></h3>
+          <div id={`a${i}`} class="qa-a" role="region" aria-labelledby={`q${i}`} hidden><p>{t(`items.${id}.a`, { us: phones.us.label, wa: phones.wa.label })}</p></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

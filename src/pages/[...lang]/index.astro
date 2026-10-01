@@ -1,70 +1,28 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { arc, cities, email, MAP_H as H, MAP_W as W, mark, offices, pct, phones, services } from "../../data/site";
+import Loader from "../../components/sections/Loader.astro";
+import Hero from "../../components/sections/Hero.astro";
+import Mindset from "../../components/sections/Mindset.astro";
+import Values from "../../components/sections/Values.astro";
+import Platform from "../../components/sections/Platform.astro";
+import Work from "../../components/sections/Work.astro";
+import Faq from "../../components/sections/Faq.astro";
+import Camps from "../../components/sections/Camps.astro";
+import Summit from "../../components/sections/Summit.astro";
+import { brand, cities } from "../../data/site";
 import { localePaths } from "../../i18n/config";
+import { useT } from "../../i18n";
+import { SUMMIT_M } from "../../scripts/relief";
 
 export const getStaticPaths = localePaths;
 
-// content follows newxion.com; the flow is Main → Mindset and core values → The log (achieved, done, products, customers) → FAQ → Contact
-const values = [
-  ["check", "Quality first", "Never compromise on quality.", "We are committed to excellence in everything we deliver, ensuring reliability, professionalism, and lasting value for our clients and partners."],
-  ["rocket", "Startup spirit", "Stay agile, think like an owner.", "We embrace an entrepreneurial mindset, adapting quickly to change, challenging the status quo, and continuously improving how we work."],
-  ["target", "Client centricity", "Our clients’ success is our success.", "We put clients at the center of every decision, striving to exceed expectations through exceptional service and trusted partnerships."],
-  ["shield", "Integrity first", "Do the right thing, always.", "We act with honesty, transparency, and accountability, building trust through ethical decisions and responsible actions."],
-  ["ai", "Innovation driven", "Innovate with purpose.", "We embrace creativity, leverage emerging technologies, and continuously explore better ways to solve problems and create value."],
-  ["deployment", "“Get IT done” attitude", "Own it, deliver it, improve it.", "We take initiative, assume accountability, and execute with determination, delivering reliable solutions and measurable results."],
-  ["staffing", "People-centered culture", "People are at the heart of our success.", "We foster an inclusive, collaborative, and supportive environment where every individual feels valued, empowered, and inspired to grow."],
-];
-
-const products = [
-  ["AI-powered platform for smart schools", "An integrated digital ecosystem for schools: personalized learning paths, real-time analytics, automated grading, and smart resource management."],
-  ["AI-powered timetabling", "An intelligent scheduling system that automates the creation and optimization of academic timetables, and compares timetables built from different inputs and constraints."],
-];
-
-// the smart-school platform, read as strata from the people down to the devices (newxion.com/solutions diagram)
-const roles = [
-  ["Parents", ["Parent Hub"]],
-  ["Students", ["Buddy360 robots", "AI Wellbeing"]],
-  ["Teachers", ["AI Curriculum Hub"]],
-  ["Staff", ["Academic reports", "IoT Teacher Coach"]],
-  ["Others", ["Other apps"]],
-] as const;
-// the agents ring the supervisor: [name, column, row] in a 3×3 hub with the supervisor at the centre
-const agents = [
-  ["Policy agent", 1, 1],
-  ["Buddy agent", 2, 1],
-  ["Academic reports agent", 3, 1],
-  ["Wellbeing agent", 1, 3],
-  ["More agents", 3, 3],
-] as const;
-const aiServices = ["Speech to text, text to speech", "Machine learning, SLMs, LLMs"];
-const appServices = ["MCP server", "Back-end"];
-const infra = [
-  ["Infrastructure and connectivity", ["Auth", "API gateway", "IoT hub", "Intelligent edge"]],
-  ["Modern data platform", ["Ingestion", "Storage", "Transformation", "Governance"]],
-] as const;
-const devices = [
-  ["robot", "Robots"],
-  ["screens", "Phones, tablets, PCs"],
-  ["watch", "Wearable devices"],
-  ["camera", "Cameras, drones"],
-  ["sensor", "Sensors, actuators"],
-];
-
-const domains = ["EdTech", "Healthcare", "Logistics"];
-
-const faqs = [
-  ["What does XionTechs do?", "We are an AI-powered IT services and products team. We run five software engineering lines: digital product engineering, digital insights and analytics, embedded and AI robotics, co-creation development, and application managed services."],
-  ["What makes you different?", "Five things: an entrepreneurial spirit, delivery excellence across every layer of software from embedded systems to enterprise applications, metric-driven outcomes that validate ROI, an AI-powered agile development platform, and a cost-efficient partnership with skilled engineers in Vietnam."],
-  ["Where is your team?", "You reach us in Plano, Texas. The engineers build in Ho Chi Minh City and Da Nang, Vietnam."],
-  ["Which industries do you know best?", "EdTech, healthcare, and logistics. We shape digital transformation strategies around the challenges and opportunities of each sector."],
-  ["How do you run a project?", "With a mature engineering framework: Agile practices combined with the BMAD-METHOD and the V-Model, supported by AI tools such as generative AI and prompt engineering. Project management is metric-driven, so you read quality and progress in numbers."],
-  ["How does a project start?", "Send a brief with the form below, call +1 469 322 9899, or message us on WhatsApp at +1 469 439 9345. We reply by email."],
-];
-
-const [plano, hcm, dan] = cities;
+// content follows newxion.com; the flow is Main → Mindset and core values → Platform → The log (achieved, done, products, customers) → FAQ → Contact
+const lang = Astro.currentLocale;
+const t = useT(lang, "home"), ts = useT(lang, "site");
+// mountain.ts labels its chips from data-labels
+const chips = { ...Object.fromEntries(cities.map((c) => [c.id, ts(`cities.${c.id}.name`)])), summit: t("summit", { m: SUMMIT_M }) };
 ---
-<Base title="XionTechs - Get IT Done" description="XionTechs is an AI-powered IT services and products team: software engineering, analytics, and AI robotics, from Plano, Texas, Ho Chi Minh City, and Da Nang." home>
+<Base title={t("title", { brand: brand.name })} description={t("description")} home>
 <!--
 THESIS: The mountain is XionTechs' symbol and goal (the name is inspired by Mount Zion, named once in the story, never in a label); the page is the climb. It refuses the stock hero and card grid: the company is a mountain, its values are what the team carries up, and its record is a trek read camp by camp on an altimeter.
 OWN-WORLD: Night at base camp (#030813), a white-dot particle mountain (real SRTM relief) with an amber dawn behind the ridge and a glacier-blue rim, then dawn hands over to snow-white daylight. Saira at 125% width, uppercase and two-tone; Martian Mono for controls and readings; pill buttons that scramble; hairlines; dot-matrix icons.
@@ -74,318 +32,19 @@ FORM: Brief-pinned (unitedcarriers.com mechanics, globe replaced by a mountain).
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 -->
   <Fragment slot="stage">
-    <div class="loader" aria-hidden="true">
-      <div class="loader-inner">
-        <div class="loader-logo"><svg viewBox="0 30 294 162" set:html={mark}></svg><span class="name">XionTechs<span class="say">/siː.ɒn.teks/</span></span></div>
-        <div class="loader-count"><span class="loader-num">0</span><span class="loader-spin"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
-        <ul class="loader-left">
-          <li>Plano, Texas</li><li>Ho Chi Minh City</li><li>Da Nang</li><li>Base camp check</li>
-        </ul>
-        <div class="loader-map">
-          <canvas class="dotmap" data-dotmap="#2a3b63"></canvas>
-          {cities.map((c) => <i class="map-dot" style={`--x:${pct(c.x)};--y:${pct(c.y)}`}></i>)}
-        </div>
-        <ul class="loader-right">
-          {services.map(([name]) => <li>{name}</li>)}
-        </ul>
-      </div>
-    </div>
-
+    <Loader />
     <canvas id="mountain" aria-hidden="true"></canvas>
-    <div id="chips" class="chips" aria-hidden="true"></div>
+    <div id="chips" class="chips" aria-hidden="true" data-labels={JSON.stringify(chips)}></div>
   </Fragment>
 
-    <!-- 01 · Main -->
-    <section id="top" class="hero" data-on="dark" aria-labelledby="hero-title">
-      <div class="hero-stage">
-        <div class="hero-copy">
-          <h1 id="hero-title" class="hero-title">
-            <span class="ln"><span>Where</span></span>
-            <span class="ln"><span>intelligence</span></span>
-            <span class="ln"><span>meets identity.</span></span>
-            <span class="ln"><span class="accent">Get IT done.</span></span>
-          </h1>
-          <p class="hero-lede">XionTechs is an AI-powered IT services and products team. We build secure, high-performance software from Texas and Vietnam. Make your mark.</p>
-          <div class="actions">
-            <a class="btn btn-fill" href="#summit" data-scramble><span class="scr">Talk to our experts</span></a>
-            <a class="btn btn-line" href="#mindset" data-scramble><span class="scr">Our mindset</span></a>
-          </div>
-        </div>
-        <div class="hero-dawn" aria-hidden="true"></div>
-      </div>
-    </section>
-
-    <!-- 02 · Mindset of Xion -->
-    <section id="mindset" class="intro" data-on="light" aria-labelledby="mindset-title">
-      <div class="wrap intro-grid">
-        <div class="intro-left">
-          <figure class="topo">
-            <canvas aria-hidden="true"></canvas>
-            <figcaption>Summit survey · 10 m contours</figcaption>
-          </figure>
-          <h2 id="mindset-title" class="tt"><span class="tt-a">Starting with a story.</span> <span class="tt-b">A mountain is our symbol.</span></h2>
-        </div>
-        <div class="intro-right">
-          <p class="lede">The name Xion is inspired by Mount Zion. For us the mountain is a symbol and a goal: a high place that people reach together.</p>
-          <p class="lede">With that goal, a group of pioneers established XionTechs in America. They set out to create a community where people unite, harness cutting-edge technologies, and build exceptional IT systems to advance humanity.</p>
-          <p class="lede">Today that community works from Plano, Ho Chi Minh City, and Da Nang.</p>
-          <div class="mission">
-            <h3>Our mission</h3>
-            <p>Deliver cutting-edge AI-driven IT services and products that solve complex challenges, empower businesses and individuals, foster collaboration between technology and human values, and create a positive, sustainable impact worldwide.</p>
-          </div>
-          <a class="btn btn-line" href="#values" data-scramble><span class="scr">Our core values</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 02 · Core values -->
-    <section id="values" class="routes" data-on="light" aria-labelledby="values-title">
-      <div class="routes-pin">
-        <div class="routes-sky" aria-hidden="true">
-          <p class="giant">Seven core values</p>
-          <div class="ridge">
-            <canvas></canvas>
-            <div class="rider"><i></i><span class="rider-alt">Alt 0 m</span></div>
-          </div>
-        </div>
-        <div class="routes-band" data-on="dark">
-          <div class="routes-intro">
-            <h2 id="values-title" class="tt"><span class="tt-a">Seven values.</span> <span class="tt-b">One mindset.</span></h2>
-            <p>Unwavering core values guide the team: how we work, how we decide, and how we deliver.</p>
-            <a class="btn btn-line" href="#summit" data-scramble><span class="scr">Talk to our experts</span></a>
-          </div>
-          <div class="track-wrap">
-          <ol class="track">
-            {values.map(([icon, name, motto, text]) => (
-              <li class="svc">
-                <span class="svc-icon" data-icon={icon}></span>
-                <h3>{name}</h3>
-                <p class="svc-motto">{motto}</p>
-                <p>{text}</p>
-              </li>
-            ))}
-          </ol>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 · Platform: the smart-school product as one architecture chart, from the people down to the devices -->
-    <section id="platform" class="strata" data-on="light" aria-labelledby="platform-title">
-      <div class="wrap">
-        <div class="strata-head">
-          <h2 id="platform-title" class="tt"><span class="tt-a">AI-powered platform</span> <span class="tt-b">for smart schools.</span></h2>
-          <div class="strata-copy">
-            <p class="lede">Everyone in the school opens a different app. Underneath, every one of them runs on the same AI agents and the same data.</p>
-            <p>We built it so a supervisor agent reads each request and hands it to the agent made for that job. The devices in the classroom report into one data platform, so the apps work from what is happening in the room.</p>
-          </div>
-        </div>
-
-        <figure class="strata-chart">
-          <div class="chart">
-            <div class="tier">
-              <h3 class="tier-label">Users and apps</h3>
-              <ul class="role-grid">
-                {roles.map(([role, apps]) => (
-                  <li class="role-col">
-                    <h4>{role}</h4>
-                    <ul class="blocks" aria-label={`${role}: apps`}>{apps.map((a) => <li>{a}</li>)}</ul>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div class="tier">
-              <h3 class="tier-label">Services</h3>
-              <div class="services">
-                <div class="group group-ai">
-                  <h4 class="group-name">AI services</h4>
-                  <ul class="blocks">{aiServices.map((s) => <li>{s}</li>)}</ul>
-                </div>
-                <div class="group group-agents">
-                  <h4 class="group-name">Agents</h4>
-                  <div class="hub">
-                    <svg class="spokes" aria-hidden="true">
-                      {agents.map(([, c, r]) => <line class="spoke" x1="50%" y1="50%" x2={pct((c - 0.5) / 3)} y2={pct((r - 0.5) / 3)} pathLength="1" />)}
-                    </svg>
-                    <p class="supervisor">Supervisor agent</p>
-                    <ul class="hub-agents" aria-label="Agents the supervisor routes to">
-                      {agents.map(([name, c, r]) => <li class="agent" style={`--c:${c};--r:${r}`}>{name}</li>)}
-                    </ul>
-                    <p class="hub-note">Routes each request</p>
-                  </div>
-                </div>
-                <div class="group group-app">
-                  <h4 class="group-name">App services</h4>
-                  <ul class="blocks">{appServices.map((s) => <li>{s}</li>)}</ul>
-                </div>
-              </div>
-            </div>
-            <div class="tier">
-              <h3 class="tier-label">Infrastructure and data</h3>
-              <div class="infra">
-                {infra.map(([name, parts], i) => (
-                  <div class="group">
-                    <h4 class="group-name">{name}</h4>
-                    <ul class:list={["blocks", "blocks-row", { pipeline: i === 1 }]}>{parts.map((p) => <li>{p}</li>)}</ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div class="tier">
-              <h3 class="tier-label">Devices</h3>
-              <ul class="devices">
-                {devices.map(([icon, name]) => <li><span class="device-icon" data-icon={icon}></span>{name}</li>)}
-              </ul>
-            </div>
-          </div>
-          <figcaption>Platform architecture · four tiers, people to devices</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- 04 · The log: achieved, done, products, customers -->
-    <section id="work" class="ascent" data-on="light" aria-labelledby="work-title">
-      <div class="ascent-bg" aria-hidden="true"><canvas></canvas></div>
-      <div class="wrap ascent-grid">
-        <div class="ascent-side">
-          <div class="ascent-head">
-            <h2 id="work-title" class="tt"><span class="tt-a">The log so far.</span> <span class="tt-b">Climbs we have led.</span></h2>
-            <p>Four camps on the way up: what we have achieved, what we have done, the products, and the customers.</p>
-          </div>
-          <div class="trek" aria-hidden="true">
-            <div class="trek-frame">
-              <canvas></canvas>
-              <svg><g class="trek-scale"></g><path class="trail-way" /><path class="trail-walked" /></svg>
-              <div class="climber"><i></i></div>
-            </div>
-          </div>
-        </div>
-        <ol class="stages">
-          <li class="stage">
-            <span class="stage-icon" data-icon="clock"></span>
-            <h3>What we have achieved</h3>
-            <p>The team brings more than 25 years of experience in software engineering. Our delivery center of excellence stands on five pillars: domain knowledge, technologies, skilled resources, engineering process, and project management.</p>
-            <dl class="stats stage-stats">
-              <div class="stat"><dt>Years in software engineering</dt><dd><span data-count="25">25</span>+</dd></div>
-              <div class="stat"><dt>Pillars of delivery excellence</dt><dd><span data-count="5">5</span></dd></div>
-              <div class="stat"><dt>Offices in the USA and Vietnam</dt><dd><span data-count="3">3</span></dd></div>
-            </dl>
-            <p class="stage-meta">Base camp</p>
-          </li>
-          <li class="stage">
-            <span class="stage-icon" data-icon="development"></span>
-            <h3>What we have done</h3>
-            <p>End-to-end software powered by AI and modern technologies: custom applications, system integration, and scalable cloud solutions, across five service lines.</p>
-            <ul class="log">
-              {services.map(([name, text]) => <li><h4>{name}</h4><p>{text}</p></li>)}
-            </ul>
-            <p class="stage-meta">Camp I</p>
-          </li>
-          <li class="stage">
-            <span class="stage-icon" data-icon="product"></span>
-            <h3>Products</h3>
-            <p>Two products of our own for schools, built on the same engineering we bring to client work.</p>
-            <ul class="log">
-              {products.map(([name, text]) => <li><h4>{name}</h4><p>{text}</p></li>)}
-            </ul>
-            <p class="stage-meta">Camp II</p>
-          </li>
-          <li class="stage">
-            <span class="stage-icon" data-icon="cocreate"></span>
-            <h3>Customers</h3>
-            <p>Our domain knowledge runs deepest in three sectors. In October 2025, a client visited our Ho Chi Minh City delivery center to explore AI and robotics in education.</p>
-            <ul class="tags" aria-label="Domains">
-              {domains.map((d) => <li>{d}</li>)}
-            </ul>
-            <p class="pending">Customer names and quotes pending · supply before launch</p>
-            <p class="stage-meta">Summit</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- 05 · FAQ -->
-    <section id="faq" class="faq" data-on="light" aria-labelledby="faq-title">
-      <div class="wrap faq-grid">
-        <div class="faq-head">
-          <h2 id="faq-title" class="tt"><span class="tt-a">Questions</span> <span class="tt-b">before the climb.</span></h2>
-          <p>Something else? Read <a href="/faqs/">all FAQs</a>, or call <a href={phones.us.href}>{phones.us.label}</a>.</p>
-        </div>
-        <div class="faq-list">
-          {faqs.map(([q, a], i) => (
-            <div class="qa">
-              <h3><button id={`q${i}`} type="button" aria-expanded="false" aria-controls={`a${i}`}>{q}<span class="plus" aria-hidden="true"></span></button></h3>
-              <div id={`a${i}`} class="qa-a" role="region" aria-labelledby={`q${i}`} hidden><p>{a}</p></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- 06 · Contact: where we are, then the brief. One night, from the dusk limb to the dawn above the footer. -->
-    <section id="camps" class="camps" data-on="dark" aria-labelledby="camps-title">
-      <div class="horizon dusk dusk-ice" aria-hidden="true"></div>
-      <div class="wrap camps-head">
-        <h2 id="camps-title" class="tt"><span class="tt-a">Two base camps.</span> <span class="tt-b">One rope team.</span></h2>
-        <div class="camps-copy">
-          <p>You talk to us in Plano, Texas, in your time zone. Our engineers build in Ho Chi Minh City and Da Nang, on the other side of the clock.</p>
-          <div class="daybar" aria-label="Working hours in Plano and Vietnam on one 24-hour UTC clock">
-            <div class="daybar-row"><span>Plano</span><div class="track-24"><i class="work" data-zone="America/Chicago"></i></div></div>
-            <div class="daybar-row"><span>Vietnam</span><div class="track-24"><i class="work" data-zone="Asia/Ho_Chi_Minh"></i></div></div>
-            <div class="daybar-axis"><span>00 UTC</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
-            <i class="now" aria-hidden="true"><span>Now</span></i>
-          </div>
-        </div>
-      </div>
-      <div class="wrap">
-        <div class="worldmap">
-          <canvas class="dotmap" data-dotmap="#1f3566" aria-hidden="true"></canvas>
-          <svg class="worldmap-arcs" viewBox={`0 0 ${W} ${H.toFixed(1)}`} preserveAspectRatio="none" aria-hidden="true">
-            <path class="arc-base" d={arc(plano, hcm, 110)} pathLength="1" />
-            <path class="arc-run" d={arc(plano, hcm, 110)} pathLength="1" />
-            <path class="arc-base" d={arc(hcm, dan, 30)} pathLength="1" />
-            <path class="arc-run arc-run-short" d={arc(hcm, dan, 30)} pathLength="1" />
-          </svg>
-          {cities.map((c) => (
-            <button class={`city city-${c.id}`} type="button" data-camp={c.id} data-cursor-label={c.name} style={`--x:${pct(c.x)};--y:${pct(c.y)}`}>
-              <span class="city-chip"><b>{c.name}</b> <span data-clock={c.zone}>--:--</span> {c.abbr}</span>
-              <i class="city-dot"></i>
-            </button>
-          ))}
-        </div>
-        <ul class="offices">
-          {offices.map((o) => (
-            <li>
-              <h3>{o.name}</h3>
-              <p>{o.role}</p>
-              {o.lines.length > 0 && <address>{o.lines[0]}<br />{o.lines[1]}</address>}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-
-    <section id="summit" class="summit" data-on="dark" aria-labelledby="summit-title">
-      <div class="wrap summit-grid">
-        <div class="summit-head">
-          <h2 id="summit-title" class="tt"><span class="tt-a">Ready to climb?</span> <span class="tt-b">Name your summit.</span></h2>
-          <p>Tell us what you are building and where you want it to be. We reply by email.</p>
-          <ul class="summit-lines">
-            <li><a href={phones.us.href} data-scramble><span class="scr">Call {phones.us.label}</span></a></li>
-            <li><a href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">WhatsApp {phones.wa.label}</span></a></li>
-            <li><a href={`mailto:${email}`} data-scramble><span class="scr">{email}</span></a></li>
-          </ul>
-        </div>
-        <form class="brief" novalidate data-endpoint="">
-          <label>Your name<input name="name" autocomplete="name" required /></label>
-          <label>Work email<input name="email" type="email" autocomplete="email" required /></label>
-          <label>What are you building?<textarea name="msg" rows="3" required></textarea></label>
-          <p class="form-status" role="status" aria-live="polite"></p>
-          <button class="btn btn-fill" type="submit" data-scramble><span class="scr">Send brief</span></button>
-        </form>
-      </div>
-      <div class="horizon dawn" aria-hidden="true"></div>
-    </section>
+  <Hero />
+  <Mindset />
+  <Values />
+  <Platform />
+  <Work />
+  <Faq />
+  <Camps />
+  <Summit />
 
   <Fragment slot="script">
     <script>

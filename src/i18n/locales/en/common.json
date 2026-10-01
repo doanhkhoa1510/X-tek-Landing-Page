@@ -8,5 +8,13 @@
   "units": {
     "m": "m",
     "ms": "m/s"
-  }
+  },
+  "call": "Call {{phone}}",
+  "whatsapp": "WhatsApp {{phone}}",
+  "talk": "Talk to our experts",
+  "locale": {
+    "label": "Language",
+    "list": "Choose a language"
+  },
+  "englishOnly": "This page is available in English only."
 }

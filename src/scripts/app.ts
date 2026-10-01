@@ -18,9 +18,9 @@ const ride = mountRidge($<HTMLCanvasElement>(".ridge canvas"), $(".rider"));
 mountTrail($(".trek-frame"), $(".stages"));
 
 /* ---------- altimeter: the rider and both contour maps follow the reading ---------- */
-const riderAlt = $(".rider-alt");
+const riderAlt = $(".rider-alt"), riderTpl = riderAlt.dataset.tpl ?? "{n}";
 onAltitude((alt, shown) => {
-  riderAlt.textContent = `Alt ${shown} m`;
+  riderAlt.textContent = riderTpl.replace("{n}", shown);
   topo(alt);
   topoBg(alt);
 });

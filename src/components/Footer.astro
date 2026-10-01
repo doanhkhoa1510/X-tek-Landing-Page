@@ -1,10 +1,14 @@
 ---
-import { cities, company, email, legal, mark, offices, pct, phones } from "../data/site";
+import { brand, cities, company, email, legal, mark, offices, pct, phones } from "../data/site";
+import { localize } from "../i18n/config";
+import { useT } from "../i18n";
 
 interface Props { home?: boolean }
 const { home = false } = Astro.props;
-const to = (id: string) => (home ? `#${id}` : `/#${id}`);
-const explore = [["mindset", "Mindset"], ["values", "Core values"], ["work", "Work"], ["faq", "FAQ"]];
+const lang = Astro.currentLocale;
+const t = useT(lang, "footer"), ts = useT(lang, "site");
+const to = (id: string) => (home ? `#${id}` : `${localize("/", lang)}#${id}`);
+const explore = ["mindset", "values", "work", "faq"] as const;
 ---
 <footer class="foot" data-on="light">
   <div class="wrap foot-grid">
@@ -13,37 +17,37 @@ const explore = [["mindset", "Mindset"], ["values", "Core values"], ["work", "Wo
       {cities.map((c) => <i class="map-dot" style={`--x:${pct(c.x)};--y:${pct(c.y)}`}></i>)}
     </div>
     <div class="foot-col">
-      <p class="label">Base camps</p>
-      {offices.map((o) => <address>{o.lines.length > 0 ? o.lines.join(", ") : o.name}</address>)}
+      <p class="label">{t("camps")}</p>
+      {offices.map((o) => <address>{o.lines.length > 0 ? o.lines.join(", ") : ts(`offices.${o.id}.name`)}</address>)}
     </div>
     <div class="foot-col">
-      <p class="label">Reach us</p>
+      <p class="label">{t("reach")}</p>
       <a href={phones.us.href} data-scramble><span class="scr">{phones.us.label}</span></a>
-      <a href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">WhatsApp</span></a>
+      <a href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">{t("whatsapp")}</span></a>
       <a class="foot-mail" href={`mailto:${email}`}>{email.split("@")[0]}@<wbr />{email.split("@")[1]}</a>
     </div>
-    <nav class="foot-col" aria-label="Landing page">
-      <p class="label">Explore</p>
-      {explore.map(([id, name]) => <a href={to(id)} data-scramble><span class="scr">{name}</span></a>)}
+    <nav class="foot-col" aria-label={t("landing")}>
+      <p class="label">{t("explore")}</p>
+      {explore.map((id) => <a href={to(id)} data-scramble><span class="scr">{ts(`sections.${id}`)}</span></a>)}
     </nav>
-    <nav class="foot-col" aria-label="Company">
-      <p class="label">Company</p>
-      {company.map(([href, name]) => <a href={href} data-scramble><span class="scr">{name}</span></a>)}
+    <nav class="foot-col" aria-label={t("company")}>
+      <p class="label">{t("company")}</p>
+      {company.map(([href, key]) => <a href={localize(href, lang)} data-scramble><span class="scr">{ts(`pages.${key}`)}</span></a>)}
     </nav>
   </div>
-  <p class="foot-word" aria-hidden="true"><svg viewBox="0 30 294 162" set:html={mark}></svg>XionTechs</p>
-  <dl class="wrap entry" aria-label="How to say XionTechs">
-    <dt class="entry-word">Xi·on·techs</dt>
-    <dd class="entry-ipa"><span class="say">/siː.ɒn.teks/</span><i>noun</i></dd>
-    <dd class="entry-sound">Say it: <b>see</b> · <b>on</b> · <b>techs</b></dd>
-    <dd class="entry-def">Inspired by a mountain. The team that takes a product from base camp to summit.</dd>
+  <p class="foot-word" aria-hidden="true"><svg viewBox="0 30 294 162" set:html={mark}></svg>{brand.name}</p>
+  <dl class="wrap entry" aria-label={t("entry.label", { brand: brand.name })}>
+    <dt class="entry-word">{brand.dict}</dt>
+    <dd class="entry-ipa"><span class="say">{brand.ipa}</span><i>{t("entry.noun")}</i></dd>
+    <dd class="entry-sound">{t("entry.sayIt")} {brand.syllables.map((s, i) => <>{i > 0 && " · "}<b>{s}</b></>)}</dd>
+    <dd class="entry-def">{t("entry.def")}</dd>
   </dl>
   <div class="wrap foot-legal">
-    <span>© 2026 XionTechs · AI-powered IT services and products</span>
-    <span>Get IT done. Make your mark.</span>
-    <nav class="foot-legal-links" aria-label="Legal">
-      {legal.map(([href, name]) => <a href={href}>{name}</a>)}
+    <span>{t("rights", { year: 2026, brand: brand.name })}</span>
+    <span>{t("tagline")}</span>
+    <nav class="foot-legal-links" aria-label={t("legal")}>
+      {legal.map(([href, key]) => <a href={localize(href, lang)}>{ts(`legal.${key}`)}</a>)}
     </nav>
-    <a href="#top" class="to-top" data-scramble><span class="scr">Back to base camp</span></a>
+    <a href="#top" class="to-top" data-scramble><span class="scr">{t("toTop")}</span></a>
   </div>
 </footer>

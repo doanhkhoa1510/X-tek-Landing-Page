@@ -1,0 +1,18 @@
+{
+  "camps": "Base camps",
+  "reach": "Reach us",
+  "whatsapp": "WhatsApp",
+  "explore": "Explore",
+  "landing": "Landing page",
+  "company": "Company",
+  "legal": "Legal",
+  "entry": {
+    "label": "How to say {{brand}}",
+    "noun": "noun",
+    "sayIt": "Say it:",
+    "def": "Inspired by a mountain. The team that takes a product from base camp to summit."
+  },
+  "rights": "© {{year}} {{brand}} · AI-powered IT services and products",
+  "tagline": "Get IT done. Make your mark.",
+  "toTop": "Back to base camp"
+}

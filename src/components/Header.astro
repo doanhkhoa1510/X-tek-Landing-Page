@@ -1,45 +1,49 @@
 ---
-import { mark, phones, sections } from "../data/site";
+import { brand, mark, phones, sections } from "../data/site";
+import { localize, unlocalize } from "../i18n/config";
+import { useT } from "../i18n";
 
 interface Props { home?: boolean }
 const { home = false } = Astro.props;
+const lang = Astro.currentLocale;
+const t = useT(lang, "header"), ts = useT(lang, "site"), tc = useT(lang, "common");
 // on the landing page the sections are in-page anchors; elsewhere they lead back to it
-const to = (id: string) => (home ? `#${id}` : `/#${id}`);
-const pages = [["/about-us/", "About us"], ["/careers/", "Careers"], ["/support/", "Support"]];
-const here = Astro.url.pathname;
+const to = (id: string) => (home ? `#${id}` : `${localize("/", lang)}#${id}`);
+const pages = [["/about-us/", "about"], ["/careers/", "careers"], ["/support/", "support"]] as const;
+const here = unlocalize(Astro.url.pathname);
 ---
 <header class="hdr" data-on="dark">
   <div class="ticker">
     <p class="ticker-clocks">
-      <span><span class="t-long">Plano, TX</span><span class="t-short">Plano</span> <b data-clock="America/Chicago">--:--</b> CT</span>
-      <span><span class="t-long">Ho Chi Minh City</span><span class="t-short">HCMC</span> <b data-clock="Asia/Ho_Chi_Minh">--:--</b> ICT</span>
+      <span><span class="t-long">{ts("cities.plano.name")}</span><span class="t-short">{ts("cities.plano.short")}</span> <b data-clock="America/Chicago">--:--</b> CT</span>
+      <span><span class="t-long">{ts("cities.hcmc.name")}</span><span class="t-short">{ts("cities.hcmc.short")}</span> <b data-clock="Asia/Ho_Chi_Minh">--:--</b> ICT</span>
     </p>
     <p class="ticker-links">
-      <a href={phones.us.href} data-scramble><span class="scr">Call {phones.us.label}</span></a>
-      <a href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">WhatsApp {phones.wa.label}</span></a>
+      <a href={phones.us.href} data-scramble><span class="scr">{tc("call", { phone: phones.us.label })}</span></a>
+      <a href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">{tc("whatsapp", { phone: phones.wa.label })}</span></a>
     </p>
   </div>
   <div class="hdr-row">
-    <a class="logo" href={home ? "#top" : "/"} aria-label={home ? "XionTechs, said see-on-techs, back to the top" : "XionTechs, said see-on-techs, home"}>
+    <a class="logo" href={home ? "#top" : localize("/", lang)} aria-label={t(home ? "logoTop" : "logoHome", { brand: brand.name, say: brand.say })}>
       <svg class="logo-mark" viewBox="0 30 294 162" aria-hidden="true" set:html={mark}></svg>
       <span class="name">
         <span class="logo-word" aria-hidden="true"><span>X</span><span class="fold"><span>ion</span></span><span>T</span><span class="fold"><span>echs</span></span></span>
-        <span class="say" aria-hidden="true">/siː.ɒn.teks/</span>
+        <span class="say" aria-hidden="true">{brand.ipa}</span>
       </span>
     </a>
     <div class="menu">
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-list" data-scramble>
         <span class="menu-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-        <span class="menu-text"><span class="scr">Menu</span><span class="menu-close" aria-hidden="true">Close</span></span>
+        <span class="menu-text"><span class="scr">{t("menu")}</span><span class="menu-close" aria-hidden="true">{t("close")}</span></span>
       </button>
-      <nav id="menu-list" class="menu-list" aria-label="Primary">
-        {sections.map(([id, name], i) => <a href={to(id)} style={`--i:${i}`} data-scramble><span class="scr">{name}</span></a>)}
+      <nav id="menu-list" class="menu-list" aria-label={t("primary")}>
+        {sections.map((id, i) => <a href={to(id)} style={`--i:${i}`} data-scramble><span class="scr">{ts(`sections.${id}`)}</span></a>)}
         <i class="menu-rule" aria-hidden="true" style={`--i:${sections.length}`}></i>
-        {pages.map(([href, name], i) => (
-          <a href={href} style={`--i:${sections.length + 1 + i}`} aria-current={here.startsWith(href) ? "page" : undefined} data-scramble><span class="scr">{name}</span></a>
+        {pages.map(([href, key], i) => (
+          <a href={localize(href, lang)} style={`--i:${sections.length + 1 + i}`} aria-current={here.startsWith(href) ? "page" : undefined} data-scramble><span class="scr">{ts(`pages.${key}`)}</span></a>
         ))}
       </nav>
     </div>
-    <a class="btn btn-fill hdr-cta" href={home ? "#summit" : "/contact-us/"} data-scramble><span class="scr">Start a project</span></a>
+    <a class="btn btn-fill hdr-cta" href={home ? "#summit" : localize("/contact-us/", lang)} data-scramble><span class="scr">{t("start")}</span></a>
   </div>
 </header>
