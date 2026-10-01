@@ -1,7 +1,10 @@
 ---
 import { getCollection } from "astro:content";
-import Sub from "../layouts/Sub.astro";
-import Cta from "../components/Cta.astro";
+import Sub from "../../layouts/Sub.astro";
+import Cta from "../../components/Cta.astro";
+import { localePaths } from "../../i18n/config";
+
+export const getStaticPaths = localePaths;
 
 const perks = [
   ["ai", "Innovative environment", "Be inspired by the visionary spirit of Xion as you work with cutting-edge technologies to create transformative IT systems."],

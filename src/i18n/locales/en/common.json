@@ -1,0 +1,12 @@
+{
+  "skip": "Skip to content",
+  "hud": {
+    "alt": "Alt",
+    "speed": "V/S",
+    "summit": "Summit"
+  },
+  "units": {
+    "m": "m",
+    "ms": "m/s"
+  }
+}

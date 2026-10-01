@@ -1,7 +1,10 @@
 ---
-import Sub from "../layouts/Sub.astro";
-import Cta from "../components/Cta.astro";
-import { phones } from "../data/site";
+import Sub from "../../layouts/Sub.astro";
+import Cta from "../../components/Cta.astro";
+import { phones } from "../../data/site";
+import { localePaths } from "../../i18n/config";
+
+export const getStaticPaths = localePaths;
 
 const faqs = [
   ["What services does XionTechs offer?", "XionTechs offers digital product engineering, digital insights and analytics, product co-creation, and staffing services. These services use emerging technologies like AI/ML and generative AI. XionTechs focuses on industries such as EdTech, healthcare, logistics, and private equity."],

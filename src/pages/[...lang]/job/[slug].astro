@@ -1,12 +1,13 @@
 ---
 /* Closed posts from the old careers board, kept at their old /job/<slug>/ URLs. */
 import { getCollection, render } from "astro:content";
-import Sub from "../../layouts/Sub.astro";
-import Cta from "../../components/Cta.astro";
+import Sub from "../../../layouts/Sub.astro";
+import Cta from "../../../components/Cta.astro";
+import { localePaths } from "../../../i18n/config";
 
 export async function getStaticPaths() {
   const jobs = await getCollection("jobs");
-  return jobs.map((job) => ({ params: { slug: job.id }, props: { job } }));
+  return localePaths().flatMap(({ params }) => jobs.map((job) => ({ params: { ...params, slug: job.id }, props: { job } })));
 }
 
 const { job } = Astro.props;

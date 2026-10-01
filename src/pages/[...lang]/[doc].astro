@@ -2,11 +2,12 @@
 /* Long-form pages kept from the old site at their old URLs: /support/, /privacy-policy/, /terms-of-service/, /cookie-policy/.
    App store listings link to the support and privacy URLs, so those paths must not move. */
 import { getCollection, render } from "astro:content";
-import Sub from "../layouts/Sub.astro";
+import Sub from "../../layouts/Sub.astro";
+import { localePaths } from "../../i18n/config";
 
 export async function getStaticPaths() {
   const docs = await getCollection("docs");
-  return docs.map((doc) => ({ params: { doc: doc.id }, props: { doc } }));
+  return localePaths().flatMap(({ params }) => docs.map((doc) => ({ params: { ...params, doc: doc.id }, props: { doc } })));
 }
 
 const { doc } = Astro.props;

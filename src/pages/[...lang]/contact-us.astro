@@ -1,7 +1,10 @@
 ---
 /* Contact stays on night from head to form, like the summit: the brief is the last thing asked before daylight. */
-import Sub from "../layouts/Sub.astro";
-import { arc, cities, email, MAP_H, MAP_W, offices, pct, phones, services } from "../data/site";
+import Sub from "../../layouts/Sub.astro";
+import { arc, cities, email, MAP_H, MAP_W, offices, pct, phones, services } from "../../data/site";
+import { localePaths } from "../../i18n/config";
+
+export const getStaticPaths = localePaths;
 
 const maps = (q: string) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 const subjects = services.map(([name]) => name);

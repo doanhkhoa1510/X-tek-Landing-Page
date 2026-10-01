@@ -1,6 +1,9 @@
 ---
-import Sub from "../layouts/Sub.astro";
-import Cta from "../components/Cta.astro";
+import Sub from "../../layouts/Sub.astro";
+import Cta from "../../components/Cta.astro";
+import { localePaths } from "../../i18n/config";
+
+export const getStaticPaths = localePaths;
 
 const values = [
   ["rocket", "Startup spirit", "Entrepreneurial, agile, and flexible."],

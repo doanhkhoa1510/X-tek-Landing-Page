@@ -1,6 +1,9 @@
 ---
-import Base from "../layouts/Base.astro";
-import { arc, cities, email, MAP_H as H, MAP_W as W, mark, offices, pct, phones, services } from "../data/site";
+import Base from "../../layouts/Base.astro";
+import { arc, cities, email, MAP_H as H, MAP_W as W, mark, offices, pct, phones, services } from "../../data/site";
+import { localePaths } from "../../i18n/config";
+
+export const getStaticPaths = localePaths;
 
 // content follows newxion.com; the flow is Main → Mindset and core values → The log (achieved, done, products, customers) → FAQ → Contact
 const values = [
@@ -386,7 +389,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
   <Fragment slot="script">
     <script>
-      import "../scripts/app";
+      import "../../scripts/app";
     </script>
   </Fragment>
 </Base>
