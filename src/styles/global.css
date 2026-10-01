@@ -91,9 +91,10 @@
 
 html {
   background: var(--night);
-  scrollbar-color: var(--dim-night) var(--night);
+  scrollbar-width: none; /* the altimeter shows progress; no browser scrollbar */
   -webkit-text-size-adjust: 100%;
 }
+html::-webkit-scrollbar { display: none; }
 body {
   font: 400 var(--fs-body) / 1.5 var(--body);
   color: var(--snow);
