@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "i18n:types": "node scripts/i18n-types.mjs"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.1.0",

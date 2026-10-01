@@ -1,0 +1,7 @@
+{
+  "title": "Page not found",
+  "description": "This page is not on the XionTechs map.",
+  "head": { "a": "404.", "b": "Off the trail." },
+  "lede": "This page is not on the map. It may have moved when the site was rebuilt.",
+  "home": "Back to base camp"
+}

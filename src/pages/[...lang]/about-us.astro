@@ -2,62 +2,59 @@
 import Sub from "../../layouts/Sub.astro";
 import Cta from "../../components/Cta.astro";
 import { localePaths } from "../../i18n/config";
+import { useT } from "../../i18n";
 
 export const getStaticPaths = localePaths;
 
+const t = useT(Astro.currentLocale, "about");
 const values = [
-  ["rocket", "Startup spirit", "Entrepreneurial, agile, and flexible."],
-  ["target", "Client centricity", "Outcomes focused for clients."],
-  ["shield", "Integrity mindset", "Honesty and transparency."],
-  ["ai", "Innovation passion", "Stay ahead of the curve."],
-  ["check", "“Get IT Done” attitude", "Ownership and commitment."],
-  ["home", "Beyond employees culture", "A culture of home feeling."],
-];
+  ["startup", "rocket"],
+  ["client", "target"],
+  ["integrity", "shield"],
+  ["innovation", "ai"],
+  ["done", "check"],
+  ["home", "home"],
+] as const;
 
-const figures: [string, string, string][] = [
-  ["25", "", "Years of experience"],
-  ["100", "%", "Client commitment"],
-  ["", "24/7", "Global coverage"],
-  ["5", "+", "Industry verticals"],
-  ["8", "+", "Service offerings"],
-];
+// [id, counted number, unit]
+const figures = [
+  ["years", "25", ""],
+  ["commitment", "100", "%"],
+  ["coverage", "", "24/7"],
+  ["verticals", "5", "+"],
+  ["offerings", "8", "+"],
+] as const;
 
-const reasons = ["Client centricity focus", "Integrity and ethical standards", "High quality delivery", "Rapid product engineering", "Reliable solutions", "24/7 expert team"];
+const reasons = ["client", "integrity", "quality", "rapid", "reliable", "team"] as const;
 ---
-<Sub
-  title="About us"
-  description="XionTechs distinguishes itself through its dedication to its people, processes, and technology: six core values, one “Get IT Done” attitude."
-  a="About us."
-  b="We are increasing business success with IT solutions."
-  lede="XionTechs distinguishes itself through its dedication to its people, processes, and technology, as the core values below show."
->
+<Sub title={t("title")} description={t("description")} a={t("head.a")} b={t("head.b")} lede={t("lede")}>
   <section class="values" data-on="light" aria-labelledby="values-title">
     <div class="wrap split-head">
-      <h2 id="values-title" class="tt"><span class="tt-a">Core values.</span> <span class="tt-b">People, processes, technology.</span></h2>
+      <h2 id="values-title" class="tt"><span class="tt-a">{t("values.title.a")}</span> <span class="tt-b">{t("values.title.b")}</span></h2>
     </div>
     <ul class="wrap cells cells-3">
-      {values.map(([icon, name, text]) => (
+      {values.map(([id, icon]) => (
         <li class="cell">
           <span class="cell-icon" data-icon={icon}></span>
-          <h3>{name}</h3>
-          <p>{text}</p>
+          <h3>{t(`values.items.${id}.name`)}</h3>
+          <p>{t(`values.items.${id}.text`)}</p>
         </li>
       ))}
     </ul>
-    <dl class="wrap figures" aria-label="XionTechs in figures">
-      {figures.map(([n, unit, label]) => (
-        <div class="stat"><dt>{label}</dt><dd>{n && <span data-count={n}>{n}</span>}{unit}</dd></div>
+    <dl class="wrap figures" aria-label={t("figures.label")}>
+      {figures.map(([id, n, unit]) => (
+        <div class="stat"><dt>{t(`figures.items.${id}`)}</dt><dd>{n && <span data-count={n}>{n}</span>}{unit}</dd></div>
       ))}
     </dl>
   </section>
 
   <section class="why" data-on="light" aria-labelledby="why-title">
     <div class="wrap split">
-      <h2 id="why-title" class="tt"><span class="tt-a">Why choose us.</span> <span class="tt-b">Professional IT services, every aspect.</span></h2>
+      <h2 id="why-title" class="tt"><span class="tt-a">{t("why.title.a")}</span> <span class="tt-b">{t("why.title.b")}</span></h2>
       <div class="split-body">
-        <p class="lede">Choose XionTechs for integrated solutions, industry experience, and metric-driven delivery. We bring product ideas to life through collaborative creation and a “Get IT Done” attitude.</p>
+        <p class="lede">{t("why.lede")}</p>
         <ul class="ticks">
-          {reasons.map((r) => <li>{r}</li>)}
+          {reasons.map((id) => <li>{t(`why.reasons.${id}`)}</li>)}
         </ul>
       </div>
     </div>

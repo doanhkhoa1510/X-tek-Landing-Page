@@ -1,39 +1,45 @@
 ---
-/* Closed posts from the old careers board, kept at their old /job/<slug>/ URLs. */
-import { getCollection, render } from "astro:content";
+/* Closed posts from the old careers board, kept at their old /job/<slug>/ URLs; each language adds its prefix. */
+import { render } from "astro:content";
 import Sub from "../../../layouts/Sub.astro";
 import Cta from "../../../components/Cta.astro";
-import { localePaths } from "../../../i18n/config";
+import { recruit } from "../../../data/site";
+import { localePaths, localize } from "../../../i18n/config";
+import { entryFor, slugs } from "../../../i18n/content";
+import { useT } from "../../../i18n";
 
 export async function getStaticPaths() {
-  const jobs = await getCollection("jobs");
-  return localePaths().flatMap(({ params }) => jobs.map((job) => ({ params: { ...params, slug: job.id }, props: { job } })));
+  const jobs = await slugs("jobs");
+  return localePaths().flatMap(({ params }) => jobs.map((slug) => ({ params: { ...params, slug } })));
 }
 
-const { job } = Astro.props;
-const { Content } = await render(job);
-const { title, type, location, posted, validThrough, category, status, summary } = job.data;
+const lang = Astro.currentLocale;
+const t = useT(lang, "job"), tj = useT(lang, "careers"), tc = useT(lang, "common");
+const { entry, translated } = await entryFor("jobs", Astro.params.slug!, lang);
+const { Content } = await render(entry);
+const { title, type, location, posted, validThrough, category, status, summary } = entry.data;
 const facts = [
-  ["Employment type", type],
-  ["Job location", location],
-  ["Date posted", posted],
-  ["Valid through", validThrough],
+  [t("type"), type],
+  [t("location"), location],
+  [t("posted"), posted],
+  [t("validThrough"), validThrough],
 ];
+const textLang = translated ? undefined : "en";
 ---
-<Sub title={title} description={summary} a="Careers." b={title} lede={summary} meta={[status, category]}>
-  <section class="doc job" data-on="light" aria-label={`${title}, role details`}>
+<Sub title={title} description={summary} a={tj("head.a")} b={title} lede={summary} meta={[status, category]} lang={textLang} note={translated ? undefined : tc("englishOnly")}>
+  <section class="doc job" data-on="light" aria-label={t("details", { title })}>
     <div class="wrap doc-grid">
-      <aside class="doc-toc job-facts" aria-label="Role facts">
+      <aside class="doc-toc job-facts" aria-label={t("facts")}>
         <dl>
-          {facts.map(([k, v]) => <div><dt class="label">{k}</dt><dd>{v}</dd></div>)}
+          {facts.map(([k, v]) => <div><dt class="label">{k}</dt><dd lang={textLang}>{v}</dd></div>)}
         </dl>
-        <a class="btn btn-line" href="/careers/" data-scramble><span class="scr">All careers</span></a>
+        <a class="btn btn-line" href={localize("/careers/", lang)} data-scramble><span class="scr">{t("all")}</span></a>
       </aside>
-      <div class="prose">
+      <div class="prose" lang={textLang}>
         <Content />
       </div>
     </div>
   </section>
 
-  <Cta a="Next campaign." b="Send us your resume." href="mailto:recruit@xiontechs.com" label="recruit@xiontechs.com" call={false} />
+  <Cta a={tj("cta.a")} b={tj("cta.b")} href={`mailto:${recruit}`} label={recruit} call={false} />
 </Sub>

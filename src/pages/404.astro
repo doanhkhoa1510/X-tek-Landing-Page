@@ -1,9 +1,4 @@
 ---
-import Sub from "../layouts/Sub.astro";
+import NotFound from "../components/pages/NotFound.astro";
 ---
-<Sub title="Page not found" description="This page is not on the XionTechs map." a="404." b="Off the trail." lede="This page is not on the map. It may have moved when the site was rebuilt.">
-  <div slot="aside" class="actions page-actions">
-    <a class="btn btn-fill" href="/" data-scramble><span class="scr">Back to base camp</span></a>
-    <a class="btn btn-line" href="/contact-us/" data-scramble><span class="scr">Contact us</span></a>
-  </div>
-</Sub>
+<NotFound />

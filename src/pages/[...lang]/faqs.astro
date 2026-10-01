@@ -3,37 +3,24 @@ import Sub from "../../layouts/Sub.astro";
 import Cta from "../../components/Cta.astro";
 import { phones } from "../../data/site";
 import { localePaths } from "../../i18n/config";
+import { rich, useT } from "../../i18n";
 
 export const getStaticPaths = localePaths;
 
-const faqs = [
-  ["What services does XionTechs offer?", "XionTechs offers digital product engineering, digital insights and analytics, product co-creation, and staffing services. These services use emerging technologies like AI/ML and generative AI. XionTechs focuses on industries such as EdTech, healthcare, logistics, and private equity."],
-  ["How does XionTechs ensure seamless collaboration?", "Through extensive time zone coverage that gives overlap between regions, including the USA, Europe, and Australia. Collaborative tools make communication easy and give real-time project updates, wherever you are."],
-  ["When do you address specific needs?", "From the project’s outset. We adapt our services to give a tailored solution, so the solution meets your goals and specific requirements exactly."],
-  ["What are the tangible benefits for clients?", "Cost-efficient solutions from skilled resources in Vietnam, on-time delivery, and measurable results that contribute directly to business growth and a higher ROI."],
-  ["How do you ensure data security?", "With an integrity mindset: honesty and transparency in all dealings, ethical standards, and responsible practices protect client data. Security automation and continuous scanning add further protection."],
-  ["Why is client centricity key?", "Client centricity is a core value. Client satisfaction drives long-term success, builds sustainable partnerships, and fosters mutual growth and innovation."],
-  ["How do clients share vision and feedback?", "Through dedicated channels, frequent check-ins, and a partnership approach. We integrate your input throughout the project lifecycle, so the work stays aligned with your expectations and goals."],
-  ["When do you integrate client input?", "Continuously, throughout development. Agile methods let us adjust quickly, keep the work collaborative, and make sure the final product matches your vision."],
-  ["How do you measure and demonstrate value?", "We track metrics for speed, quality, product impact, and team autonomy. This metric-driven approach keeps us transparent and accountable, shows tangible results, and validates ROI."],
-  ["How does XionTechs build client trust?", "Through openness, reliability, and a steady commitment to client success: consistent performance, ethical practices, and a “Get IT Done” attitude."],
-];
+const t = useT(Astro.currentLocale, "faqs");
+const faqs = ["services", "collaboration", "needs", "benefits", "security", "centricity", "feedback", "input", "value", "trust"] as const;
+const aside = rich(t("aside", { phone: phones.us.label }), { call: (s) => `<a href="${phones.us.href}">${s}</a>` });
 ---
-<Sub
-  title="FAQs"
-  description="Answers about XionTechs services, collaboration across time zones, data security, and how we measure value."
-  a="Frequently asked questions."
-  b="Talk to us about any question."
->
-  <p slot="aside" class="page-lede">Ten answers about how we work. Something else? Call <a href={phones.us.href}>{phones.us.label}</a>.</p>
+<Sub title={t("title")} description={t("description")} a={t("head.a")} b={t("head.b")}>
+  <p slot="aside" class="page-lede" set:html={aside} />
 
-  <section class="faq faq-page" data-on="light" aria-label="Frequently asked questions">
+  <section class="faq faq-page" data-on="light" aria-label={t("region")}>
     <div class="wrap faq-grid">
       <div class="faq-list">
-        {faqs.map(([q, a], i) => (
+        {faqs.map((id, i) => (
           <div class="qa">
-            <h2><button id={`q${i}`} type="button" aria-expanded="false" aria-controls={`a${i}`}>{q}<span class="plus" aria-hidden="true"></span></button></h2>
-            <div id={`a${i}`} class="qa-a" role="region" aria-labelledby={`q${i}`} hidden><p>{a}</p></div>
+            <h2><button id={`q${i}`} type="button" aria-expanded="false" aria-controls={`a${i}`}>{t(`items.${id}.q`)}<span class="plus" aria-hidden="true"></span></button></h2>
+            <div id={`a${i}`} class="qa-a" role="region" aria-labelledby={`q${i}`} hidden><p>{t(`items.${id}.a`)}</p></div>
           </div>
         ))}
       </div>
