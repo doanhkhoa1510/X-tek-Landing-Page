@@ -29,6 +29,13 @@ export const ICONS: Record<string, string> = {
   shield: "M12 2.5 20 5.5v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10v-6Z M8.5 12l2.5 2.5 4.5-5",
   check: "M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0-18 0 M7.5 12.5l3 3 6-7",
   home: "M2.5 11 12 3.5l9.5 7.5 M5.5 9v12h13V9 M10 21v-6h4v6",
+  // smart-school platform: the devices at the edge
+  // drawn on the dot-cell centres (24 / 13 apart) so the eyes land on single dots
+  robot: "M4.62 6.46h14.76v12.92H4.62Z M12 6.46V2.77 M8.31 10.15h.01 M15.69 10.15h.01 M10.15 15.69h3.7 M1 10.15v5.54 M23 10.15v5.54",
+  screens: "M2.5 4.5h13v9.5h-13Z M1 18h16 M17.5 8.5h5v12h-5Z",
+  watch: "M7 7h10v10H7Z M9 7l1-4.5h4L15 7 M9 17l1 4.5h4l1-4.5 M12 9.5V12l2 1.5",
+  camera: "M2.5 7h4l1.5-2.5h8L17.5 7h4v12.5h-19Z M12 13m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0",
+  sensor: "M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0-4 0 M7.8 9.8a6 6 0 0 0 0 8.4 M16.2 9.8a6 6 0 0 1 0 8.4 M4.6 6.6a10.5 10.5 0 0 0 0 14.8 M19.4 6.6a10.5 10.5 0 0 1 0 14.8",
 };
 
 const GRID = 13;
