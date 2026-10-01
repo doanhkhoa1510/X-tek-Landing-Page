@@ -45,6 +45,7 @@ export const services = [
 export const sections = [
   ["mindset", "Mindset"],
   ["values", "Core values"],
+  ["platform", "Platform"],
   ["work", "Work"],
   ["faq", "FAQ"],
   ["camps", "Base camps"],

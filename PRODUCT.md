@@ -28,7 +28,7 @@ The mountain is a symbol and a goal. The name "Xion" is inspired by Mount Zion, 
 
 ## Landing Flow
 
-Main → Mindset of Xion and core values → The log (what we have achieved, what we have done, products, customers) → FAQ → Contact (base camps, then the brief) → Footer.
+Main → Mindset of Xion and core values → Platform (the AI-powered platform for smart schools, layer by layer) → The log (what we have achieved, what we have done, products, customers) → FAQ → Contact (base camps, then the brief) → Footer.
 
 ## Operating Context
 

@@ -18,6 +18,36 @@ const products = [
   ["AI-powered timetabling", "An intelligent scheduling system that automates the creation and optimization of academic timetables, and compares timetables built from different inputs and constraints."],
 ];
 
+// the smart-school platform, read as strata from the people down to the devices (newxion.com/solutions diagram)
+const roles = [
+  ["Parents", ["Parent Hub"]],
+  ["Students", ["Buddy360 robots", "AI Wellbeing"]],
+  ["Teachers", ["AI Curriculum Hub"]],
+  ["Staff", ["Academic reports", "IoT Teacher Coach"]],
+  ["Others", ["Other apps"]],
+] as const;
+// the agents ring the supervisor: [name, column, row] in a 3×3 hub with the supervisor at the centre
+const agents = [
+  ["Policy agent", 1, 1],
+  ["Buddy agent", 2, 1],
+  ["Academic reports agent", 3, 1],
+  ["Wellbeing agent", 1, 3],
+  ["More agents", 3, 3],
+] as const;
+const aiServices = ["Speech to text, text to speech", "Machine learning, SLMs, LLMs"];
+const appServices = ["MCP server", "Back-end"];
+const infra = [
+  ["Infrastructure and connectivity", ["Auth", "API gateway", "IoT hub", "Intelligent edge"]],
+  ["Modern data platform", ["Ingestion", "Storage", "Transformation", "Governance"]],
+] as const;
+const devices = [
+  ["robot", "Robots"],
+  ["screens", "Phones, tablets, PCs"],
+  ["watch", "Wearable devices"],
+  ["camera", "Cameras, drones"],
+  ["sensor", "Sensors, actuators"],
+];
+
 const domains = ["EdTech", "Healthcare", "Logistics"];
 
 const faqs = [
@@ -137,7 +167,83 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       </div>
     </section>
 
-    <!-- 03 · The log: achieved, done, products, customers -->
+    <!-- 03 · Platform: the smart-school product as one architecture chart, from the people down to the devices -->
+    <section id="platform" class="strata" data-on="light" aria-labelledby="platform-title">
+      <div class="wrap">
+        <div class="strata-head">
+          <h2 id="platform-title" class="tt"><span class="tt-a">AI-powered platform</span> <span class="tt-b">for smart schools.</span></h2>
+          <div class="strata-copy">
+            <p class="lede">An integrated digital ecosystem that uses artificial intelligence to enhance learning, streamline administration, and improve student engagement.</p>
+            <p>We built it to deliver personalized learning paths, real-time analytics, automated grading, and smart resource management, so schools run a more efficient, adaptive, and future-ready education.</p>
+          </div>
+        </div>
+
+        <figure class="strata-chart">
+          <div class="chart">
+            <div class="tier">
+              <h3 class="tier-label">Users and apps</h3>
+              <ul class="role-grid">
+                {roles.map(([role, apps]) => (
+                  <li class="role-col">
+                    <h4>{role}</h4>
+                    <ul class="blocks" aria-label={`${role}: apps`}>{apps.map((a) => <li>{a}</li>)}</ul>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="bus" style="--n:5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="tier">
+              <h3 class="tier-label">Services</h3>
+              <div class="services">
+                <div class="group group-ai">
+                  <h4 class="group-name">AI services</h4>
+                  <ul class="blocks">{aiServices.map((s) => <li>{s}</li>)}</ul>
+                </div>
+                <div class="group group-agents">
+                  <h4 class="group-name">Agents</h4>
+                  <div class="hub">
+                    <svg class="spokes" aria-hidden="true">
+                      {agents.map(([, c, r]) => <line class="spoke" x1="50%" y1="50%" x2={pct((c - 0.5) / 3)} y2={pct((r - 0.5) / 3)} pathLength="1" />)}
+                    </svg>
+                    <p class="supervisor">Supervisor agent</p>
+                    <ul class="hub-agents" aria-label="Agents the supervisor routes to">
+                      {agents.map(([name, c, r]) => <li class="agent" style={`--c:${c};--r:${r}`}>{name}</li>)}
+                    </ul>
+                    <p class="hub-note">Routes each request</p>
+                  </div>
+                </div>
+                <div class="group group-app">
+                  <h4 class="group-name">App services</h4>
+                  <ul class="blocks">{appServices.map((s) => <li>{s}</li>)}</ul>
+                </div>
+              </div>
+            </div>
+            <div class="bus" style="--n:2;--g:20px" aria-hidden="true"><i></i><i></i></div>
+            <div class="tier">
+              <h3 class="tier-label">Infrastructure and data</h3>
+              <div class="infra">
+                {infra.map(([name, parts], i) => (
+                  <div class="group">
+                    <h4 class="group-name">{name}</h4>
+                    <ul class:list={["blocks", "blocks-row", { pipeline: i === 1 }]}>{parts.map((p) => <li>{p}</li>)}</ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="bus" style="--n:5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="tier">
+              <h3 class="tier-label">Devices</h3>
+              <ul class="devices">
+                {devices.map(([icon, name]) => <li><span class="device-icon" data-icon={icon}></span>{name}</li>)}
+              </ul>
+            </div>
+          </div>
+          <figcaption>Platform architecture · four tiers, people to devices</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 04 · The log: achieved, done, products, customers -->
     <section id="work" class="ascent" data-on="light" aria-labelledby="work-title">
       <div class="ascent-bg" aria-hidden="true"><canvas></canvas></div>
       <div class="wrap ascent-grid">
@@ -198,7 +304,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       </div>
     </section>
 
-    <!-- 04 · FAQ -->
+    <!-- 05 · FAQ -->
     <section id="faq" class="faq" data-on="light" aria-labelledby="faq-title">
       <div class="wrap faq-grid">
         <div class="faq-head">
@@ -216,7 +322,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       </div>
     </section>
 
-    <!-- 05 · Contact: where we are, then the brief. One night, from the dusk limb to the dawn above the footer. -->
+    <!-- 06 · Contact: where we are, then the brief. One night, from the dusk limb to the dawn above the footer. -->
     <section id="camps" class="camps" data-on="dark" aria-labelledby="camps-title">
       <div class="horizon dusk dusk-ice" aria-hidden="true"></div>
       <div class="wrap camps-head">

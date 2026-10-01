@@ -482,6 +482,128 @@ section { position: relative; color: var(--fg); }
 .svc .svc-motto { color: var(--fg); }
 .svc-motto + p { margin-top: -8px; }
 
+/* ---------- strata (platform) ---------- */
+/* the smart-school platform as one architecture chart on survey paper: four tiers on a y-axis, the people on top, the devices at the ground */
+.strata { padding-block: var(--section) 0; }
+/* daylight runs on into the log: the two sections share one gap instead of stacking two section paddings */
+.strata + .ascent { padding-top: clamp(64px, 6vw, 96px); }
+.strata-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); align-items: end; }
+.strata-head .tt { grid-column: 1 / 8; }
+.strata-copy { grid-column: 8 / 13; }
+.strata-copy p:not(.lede) { margin-top: 16px; max-width: 46ch; color: var(--fg-soft); }
+.strata-chart { margin-top: clamp(56px, 6vw, 96px); }
+.strata-chart figcaption { margin-top: 14px; font: 400 var(--fs-micro) / 1.2 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
+.chart {
+  --pad: clamp(20px, 2.4vw, 36px);
+  --axis: 128px; /* the tier names */
+  --wire: rgba(16, 48, 96, 0.35); /* connectors: the leader tone of the trek */
+  --edge: rgba(16, 48, 96, 0.2); /* block outlines */
+  position: relative;
+  display: grid;
+  padding: var(--pad);
+  border: 1px solid var(--line);
+  /* survey paper: the page's dot grammar at 16px pitch, quieter than any block */
+  background: var(--snow) radial-gradient(circle, rgba(16, 48, 96, 0.12) 1px, transparent 1.5px) 0 0 / 16px 16px;
+}
+/* the y-axis: one hairline down the whole chart, centred in the gap after the tier names */
+.chart::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(var(--pad) + var(--axis) + 12px); width: 1px; background: var(--line); }
+.tier { position: relative; display: grid; grid-template-columns: var(--axis) minmax(0, 1fr); column-gap: 24px; align-items: start; }
+.tier-label { position: relative; padding-right: 8px; font: 500 var(--fs-label) / 1.3 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate); }
+/* each tier ticks the axis at its name */
+.tier-label::after { content: ""; position: absolute; top: 4px; right: -15px; width: 6px; height: 6px; border-radius: 50%; background: var(--navy); }
+/* the bus: wires that drop from one tier to the next, a node at each end */
+.bus { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); column-gap: var(--g, 12px); height: 36px; margin-left: calc(var(--axis) + 24px); }
+.bus i { position: relative; justify-self: center; width: 1px; background: var(--wire); transform-origin: 50% 0; }
+.bus i::before, .bus i::after { content: ""; position: absolute; left: -2px; width: 5px; height: 5px; border-radius: 50%; background: var(--navy); }
+.bus i::before { top: -2px; }
+.bus i::after { bottom: -2px; }
+/* blocks: square, hairline, snow over the paper */
+.blocks { display: grid; gap: 8px; }
+.blocks li, .supervisor, .agent, .devices li {
+  padding: 10px 12px;
+  background: var(--snow); border: 1px solid var(--edge);
+  font: 500 14px / 1.3 var(--body); color: var(--ink);
+  transition: background-color var(--t-ui) var(--ui), border-color var(--t-ui) var(--ui);
+}
+.blocks li:hover, .agent:hover, .devices li:hover { background: var(--ice); border-color: var(--wire); }
+.group { display: flex; flex-direction: column; min-width: 0; }
+.group-name { margin-bottom: 10px; font: 500 var(--fs-micro) / 1.2 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
+.group > .blocks { flex: 1; grid-auto-rows: 1fr; }
+.group > .blocks li { display: flex; align-items: center; }
+/* users: each role over its own apps; the apps sit on the bus */
+.role-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.role-col { display: flex; flex-direction: column; gap: 14px; }
+.role-col h4 { font: 700 var(--fs-h3) / 1.04 var(--display); font-stretch: 125%; text-transform: uppercase; }
+.role-col .blocks { margin-top: auto; }
+/* services: AI and app services wire into the agents from either side */
+.services { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 5fr) minmax(0, 2fr); grid-template-areas: "ai agents app"; gap: 20px; }
+.group-ai { grid-area: ai; }
+.group-agents { grid-area: agents; }
+.group-app { grid-area: app; }
+.group-ai, .group-app { position: relative; }
+.group-ai::after, .group-app::after { content: ""; position: absolute; top: calc(50% + 11px); width: 20px; height: 1px; background: var(--wire); }
+.group-ai::after { left: 100%; }
+.group-app::after { right: 100%; }
+/* the hub: the supervisor at the centre, spokes out to every agent; hover lights a spoke amber (a 2px line inside a bounded figure) */
+.hub { position: relative; flex: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(60px, 1fr)); }
+.hub-agents { display: contents; }
+.supervisor, .agent { position: relative; align-self: center; margin: 6px 10px; text-align: center; }
+.supervisor { grid-area: 2 / 2; background: var(--band); border-color: var(--band); color: var(--snow); }
+.agent { grid-area: var(--r) / var(--c); }
+.hub-note { grid-area: 3 / 2; align-self: start; justify-self: center; font: 400 var(--fs-micro) / 1.2 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
+.spokes { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.spoke { stroke: var(--wire); stroke-width: 1; stroke-dasharray: 1; transition: stroke var(--t-ui) var(--ui), stroke-width var(--t-ui) var(--ui); }
+.hub:has(.supervisor:hover) .spoke,
+.hub:has(.agent:nth-child(1):hover) .spoke:nth-child(1),
+.hub:has(.agent:nth-child(2):hover) .spoke:nth-child(2),
+.hub:has(.agent:nth-child(3):hover) .spoke:nth-child(3),
+.hub:has(.agent:nth-child(4):hover) .spoke:nth-child(4),
+.hub:has(.agent:nth-child(5):hover) .spoke:nth-child(5) { stroke: var(--amber); stroke-width: 2; }
+/* infrastructure and data; the data platform runs as a pipeline once it fits one row */
+.infra { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.blocks-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* devices: the edge, each with its dot icon */
+.devices { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.devices li { display: flex; align-items: center; gap: 12px; }
+.device-icon { flex: none; display: block; width: 32px; height: 32px; color: var(--navy); }
+.device-icon svg { width: 100%; height: 100%; }
+@media (min-width: 1360px) {
+  .blocks-row { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .pipeline { background: linear-gradient(var(--wire), var(--wire)) 0 50% / 100% 1px no-repeat; }
+}
+@media (max-width: 1199px) {
+  .services { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "agents agents" "ai app"; }
+  .group-ai::after, .group-app::after { display: none; }
+  .devices li { flex-direction: column; align-items: flex-start; }
+}
+/* under 992px the tier names leave the axis and head their tiers */
+@media (max-width: 991px) {
+  .chart::before { display: none; }
+  .tier { grid-template-columns: minmax(0, 1fr); row-gap: 14px; }
+  /* the axis dot moves in front of the name, and the name takes ink so it outranks the group names under it */
+  .tier-label { display: flex; flex-direction: row-reverse; justify-content: flex-end; align-items: center; gap: 8px; padding-right: 0; color: var(--ink); }
+  .tier-label::after { position: static; flex: none; }
+  .bus { margin-left: 0; }
+}
+@media (max-width: 767px) {
+  .role-grid, .devices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .role-grid { row-gap: 24px; }
+  .role-col:last-child, .devices li:last-child { grid-column: span 2; }
+  .devices li { flex-direction: row; align-items: center; }
+  .infra { grid-template-columns: minmax(0, 1fr); }
+  .bus { grid-template-columns: minmax(0, 1fr); }
+  .bus i:not(:first-child) { display: none; }
+  /* the hub folds into a list: the supervisor and its note, then the agents two up */
+  .hub { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; gap: 8px; }
+  .spokes { display: none; }
+  .supervisor, .agent { margin: 0; text-align: left; }
+  .agent { display: flex; align-items: center; align-self: stretch; }
+  .supervisor { grid-area: auto; grid-column: 1 / -1; order: -2; }
+  .hub-note { grid-area: auto; grid-column: 1 / -1; order: -1; justify-self: start; margin-bottom: 4px; }
+  .agent { grid-area: auto; }
+  .agent:last-child { grid-column: 1 / -1; }
+}
+
 /* ---------- ascent ---------- */
 .ascent { padding-block: var(--section); }
 .ascent-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); }
@@ -918,9 +1040,10 @@ section { position: relative; color: var(--fg); }
 @media (max-width: 991px) {
   .hdr-cta { grid-column: 9 / 13; }
   .menu { grid-column: 5 / 9; }
-  .intro-left, .intro-right, .camps-head .tt, .camps-copy, .faq-head, .faq-list, .summit-head, .brief { grid-column: 1 / -1; }
+  .intro-left, .intro-right, .camps-head .tt, .camps-copy, .strata-head .tt, .strata-copy, .faq-head, .faq-list, .summit-head, .brief { grid-column: 1 / -1; }
   .intro-right { margin-top: 48px; }
-  .camps-copy { margin-top: 28px; }
+  .camps-copy, .strata-copy { margin-top: 28px; }
+  .strata + .ascent { padding-top: var(--section); } /* the log head is static here, so it takes a full section gap */
   .faq-head, .ascent-head { position: static; }
   .faq-list { margin-top: 48px; }
   .brief { margin-top: 48px; }

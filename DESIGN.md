@@ -414,11 +414,12 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
   1. Main: hero `#top` (night, 210vh with a sticky 100svh stage)
   2. Mindset `#mindset` (snow): the story of Xion and the mission
   3. Core values `#values` (snow sky over a night-band track of seven columns, pinned for about 1.15× the track overflow)
-  4. The log `#work` (snow, sticky head and trek): achieved, done, products, customers
-  5. FAQ `#faq` (ice)
-  6. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
-  7. Footer (snow)
-- **Class names keep the mountain vocabulary** (`.intro`, `.routes`, `.ascent`, `.camps`, `.summit`); ids carry the content names.
+  4. Platform `#platform` (snow): the smart-school product as one architecture chart, four tiers on a y-axis
+  5. The log `#work` (snow, sticky head and trek): achieved, done, products, customers
+  6. FAQ `#faq` (ice)
+  7. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
+  8. Footer (snow)
+- **Class names keep the mountain vocabulary** (`.intro`, `.routes`, `.strata`, `.ascent`, `.camps`, `.summit`); ids carry the content names.
 - **Breakpoints:** desktop ≥ 992px. Tablet 768–991px: headings and copy stack to full width, sticky heads go static, and the route strip moves to columns 1/3. Mobile ≤ 767px:
   - The header becomes a flex row (logo left, menu right), and the CTA, the ticker phones, the HUD, and the 3D camp chips hide.
   - The hero shortens to 170vh, the values stack vertically with no pin, the route strip narrows to 36px, and the map bleeds to the viewport edge.
@@ -511,7 +512,7 @@ UC's KM/H speedometer, turned into a climb reading.
 - **Theme:** on every scroll frame, the header probes the section under its row with `elementsFromPoint` and takes that section's `data-on` (dark/light). Text colors cross-fade in 0.4s. Once scrolled, a gradient backdrop of that theme's ground (92–94% alpha) keeps the header legible.
 
 ### Navigation (menu)
-- **Layout:** a dropdown under the toggle, a mono uppercase list of six anchors (Mindset, Core values, Work, FAQ, Base camps, Contact).
+- **Layout:** a dropdown under the toggle, a mono uppercase list of seven anchors (Mindset, Core values, Platform, Work, FAQ, Base camps, Contact).
 - **Open:** a clip-path wipe (0.6s expo). Links drop in 8px with a 0.04s stagger and scramble on hover.
 - **Close:** Esc (focus returns to the toggle), an outside click, or following a link.
 - **Anchors:** Lenis `scrollTo` over 1.6s with quartic ease-out. The target gets focus with `preventScroll`. Night sections with a top limb scroll past the limb, so the heading lands under the header.
@@ -557,6 +558,18 @@ The figure (count-up from 0, 1s power1.out at `top 85%`, once) sits over a Label
   - The clip's left 48px fades through a mask, so no card is guillotined mid-word.
   - On mobile the track is `width: 100%`, so hairlines run edge to edge.
 - **Entrance:** the children rise 24px with a 0.035 stagger.
+
+### Strata (platform)
+The AI-powered platform for smart schools (from the newxion.com/solutions diagram), drawn as one architecture chart you read at a glance, not as steps. It speaks the page's survey language, never the source's yellow and black boxes.
+- **Head:** the two-tone H2 ("AI-powered platform / for smart schools.") at 1/8; a Lede and a Body paragraph in Slate at 8/13, bottom-aligned. XionTechs stays the only company named ("We built it").
+- **Frame:** one bounded figure with a 1px hairline and padding clamp(20px, 2.4vw, 36px), on survey paper: Brand Navy dots at 12%, 1px, on a 16px pitch, quieter than any block. A Micro caption sits under it.
+- **Y-axis:** a hairline runs down the whole chart. The four tier names (Users and apps, Services, Infrastructure and data, Devices) sit left of it in a 128px column in mono Label, Slate, each with a 6px navy dot on the axis. Under 992px the names head their tiers in Navy Ink with the dot in front, so they outrank the group names.
+- **Blocks:** square, snow over the paper, a 1px Brand Navy outline at 20%, Host Grotesk 500 at 14px in Navy Ink; hover tints Ice. Group names (AI services, Agents, App services, Infrastructure and connectivity, Modern data platform) are Micro mono in Slate. Roles are Title h4 over their app blocks, which sit bottom-aligned on the bus.
+- **Wires:** Brand Navy at 35%, the trek's leader tone. The bus drops between tiers as 36px wires with a 5px navy node at each end (five under roles and devices, two at the infrastructure groups, one centred on mobile). AI and app services wire into the agents from either side. From 1360px the data platform runs as one row with a wire through its gaps: a pipeline.
+- **Hub:** the supervisor (Night Band, the one dark field) at the centre of a 3×3 grid with "Routes each request" under it; Policy, Buddy, and Academic reports above, Wellbeing and More agents below. Spokes are SVG lines in percent coordinates from the centre to each cell centre (`pathLength="1"`; no viewBox, so no non-scaling-stroke, which breaks the dash maths). Hover on an agent lights its spoke amber at 2px, and hover on the supervisor lights them all: a 2px amber line inside a bounded figure, so the No-Amber-On-Snow Rule holds. On mobile the hub folds into the supervisor, its note, and the agents two up, without spokes.
+- **Breakpoints:** services run AI | Agents | App at 2:5:2 from 1200px, then Agents over AI and App. Roles and devices run five-up, then two-up with the fifth spanning on mobile; device icons stack over their names from 768 to 1199px.
+- **Spacing:** the strata and the log are both daylight, so they share one gap: the strata section has no bottom padding, and the log that follows pads clamp(64px, 6vw, 96px) on top (its sticky head already sits 140px down), or one full section under 992px, where that head is static.
+- **Entrance:** once per tier, no scroll-scrubbed states: each tier rises 24px (1.1s expo), the bus wires drop in (scaleY, 0.6s power3.inOut, stagger 0.04), and the spokes draw out from the supervisor (dashoffset 1→0, 0.9s, stagger 0.06).
 
 ### Mountain trek (the log)
 The record of the climb so far: four camps, four entries. Drawn in the page's survey language (dot matrix, hairlines, mono chips, amber as the one live accent), never as an illustration: no tents, flags, casings or filled shapes.
