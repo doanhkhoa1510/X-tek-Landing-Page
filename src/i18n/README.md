@@ -35,6 +35,8 @@ You can leave a key out, or leave it as `""`. Either way the English text shows.
 
 Copy the English file to the same slug in your language's folder, for example `src/content/docs/en/privacy-policy.md` to `src/content/docs/fr/privacy-policy.md`. Translate the front matter values and the body. Keep the front matter field names, and keep the file name: the URL stays `/fr/privacy-policy/`.
 
+Write links to site pages exactly as English does (`/privacy-policy/`). The site adds the language prefix when it builds (`src/i18n/rehype-localize-links.mjs`), so readers stay in their language.
+
 A page without a translation shows the English text with an "English only" notice.
 
 ### Arabic
