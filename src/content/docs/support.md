@@ -1,10 +1,10 @@
 ---
 title: "Support center."
 kicker: "XionTech"
-description: "Professional technical support and customer assistance for all XionTech digital products and applications, and for our IT services."
-lede: "Support for all XionTech digital products and services. Welcome to XionTech Joint Stock Company’s comprehensive support center. We provide professional technical support and customer assistance for our digital products and applications, and for our IT services."
+description: "Professional technical support and customer assistance for all XionTech digital products, applications, and IT services."
+lede: "Professional support for all XionTech digital products and services. Welcome to XionTech Joint Stock Company’s comprehensive support center. We provide professional technical support and customer assistance for all our digital products, applications, and IT services."
 meta:
-  - "Mon - Fri · 9:00 - 18:00 ICT"
+  - "Mon – Fri · 9:00 – 18:00 ICT"
   - "Last updated · July 10, 2025"
   - "Version 1.0"
 ---
@@ -23,16 +23,16 @@ meta:
 **General Support:** [contact@xiontechs.com](mailto:contact@xiontechs.com)
 
 **Subject Line Guidelines:**
-- **Mobile App Issues:** “Mobile App Support - [App Name] - [Issue]”
-- **Web Service Issues:** “Web Service Support - [Service Name] - [Issue]”
-- **IT Services:** “IT Services Support - [Service Type] - [Issue]”
-- **Enterprise Clients:** “Enterprise Support - [Company Name] - [Issue]”
-- **Privacy Inquiries:** “Privacy Support - [Inquiry Type]”
-- **Billing Questions:** “Billing Support - [Account/Invoice Number]”
+- **Mobile App Issues:** “Mobile App Support – [App Name] – [Issue]”
+- **Web Service Issues:** “Web Service Support – [Service Name] – [Issue]”
+- **IT Services:** “IT Services Support – [Service Type] – [Issue]”
+- **Enterprise Clients:** “Enterprise Support – [Company Name] – [Issue]”
+- **Privacy Inquiries:** “Privacy Support – [Inquiry Type]”
+- **Billing Questions:** “Billing Support – [Account/Invoice Number]”
 
 ### Phone Support
 
-**Business Hours:** Monday - Friday, 9:00 AM - 6:00 PM (ICT/GMT+7)  
+**Business Hours:** Monday – Friday, 9:00 AM – 6:00 PM (ICT/GMT+7)  
 **Phone:** +084-908-107552
 
 **Phone Support Available For:**
@@ -130,7 +130,7 @@ Many of our digital products include built-in support features:
 
 For critical system failures, security incidents, or business-critical issues:
 - **Contact:** +084-908-107552
-- **Email:** [contact@xiontechs.com](mailto:contact@xiontechs.com) (Subject: “URGENT - [Issue Description]”)
+- **Email:** [contact@xiontechs.com](mailto:contact@xiontechs.com) (Subject: “URGENT – [Issue Description]”)
 - **Response Time:** Within 2 hours (24/7 for enterprise clients)
 
 ## Frequently Asked Questions (FAQ)
@@ -246,7 +246,7 @@ If you’re not satisfied with the initial support response:
 - **Additional Support:** We can arrange translation services for complex technical issues when needed
 
 ### Time Zone Considerations
-- **Business Hours:** Monday - Friday, 9:00 AM - 6:00 PM (ICT/GMT+7)
+- **Business Hours:** Monday – Friday, 9:00 AM – 6:00 PM (ICT/GMT+7)
 - **International Clients:** We accommodate different time zones for scheduled calls and consultations
 - **Urgent Issues:** Emergency support may extend beyond standard business hours
 
@@ -297,7 +297,7 @@ We assist with compliance-related questions and requirements:
 
 **For all support needs, start here:**
 - **Email:** [contact@xiontechs.com](mailto:contact@xiontechs.com)
-- **Phone:** +084-908-107552 (Business Hours: Monday-Friday, 9:00 AM - 6:00 PM ICT)
+- **Phone:** +084-908-107552 (Business Hours: Monday-Friday, 9:00 AM – 6:00 PM ICT)
 - **Address:** Floor No. 12, A2 Tower, Viettel Building, 285 Cach Mang Thang Tam St., Hoa Hung Ward, Ho Chi Minh City, Vietnam
 **Remember to:**
 - Use clear, descriptive subject lines
@@ -307,7 +307,7 @@ We assist with compliance-related questions and requirements:
 
 ---
 
-_This support center is maintained by XionTech Joint Stock Company and covers all current products and services. For transferred or sold products, please contact the current owner for support. We are committed to providing professional, timely support for all our customers and clients._
+_This support center is maintained by XionTech Joint Stock Company and covers all current products and services. For transferred or sold products, please contact the current owner for support. We are committed to providing professional, timely, and effective support for all our customers and clients._
 
 **Last Updated:** July 10, 2025  
 **Support Center Version:** 1.0
