@@ -6,7 +6,7 @@
   "values": {
     "title": { "a": "Core values.", "b": "People, processes, technology." },
     "items": {
-      "startup": { "name": "Startup spirit", "text": "Entrepreneurial, agile, and flexible." },
+      "startup": { "name": "Startup spirit", "text": "Entrepreneurial and agile." },
       "client": { "name": "Client centricity", "text": "Outcomes focused for clients." },
       "integrity": { "name": "Integrity mindset", "text": "Honesty and transparency." },
       "innovation": { "name": "Innovation passion", "text": "Stay ahead of the curve." },
@@ -26,7 +26,7 @@
   },
   "why": {
     "title": { "a": "Why choose us.", "b": "Professional IT services, every aspect." },
-    "lede": "Choose XionTechs for integrated solutions, industry experience, and metric-driven delivery. We bring product ideas to life through collaborative creation and a “Get IT Done” attitude.",
+    "lede": "Choose XionTechs for integrated solutions and industry experience, with metric-driven delivery. We bring product ideas to life through collaborative creation and a “Get IT Done” attitude.",
     "reasons": {
       "client": "Client centricity focus",
       "integrity": "Integrity and ethical standards",

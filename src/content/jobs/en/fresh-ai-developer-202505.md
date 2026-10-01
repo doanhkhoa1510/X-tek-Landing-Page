@@ -6,12 +6,12 @@ posted: "May 10, 2025"
 validThrough: "June 30, 2025"
 category: "Software development"
 status: "Offer ended on 30.06.2025"
-summary: "We are seeking talented, Fresh AI Engineers to join our team, contribute to our initiatives, and stay abreast of the latest technological advancements. New engineers will undergo training and contribute to our projects, setting the foundation for a successful career in the software engineering industry"
+summary: "We are seeking talented, Fresh AI Engineers to join our team and contribute to our initiatives while staying abreast of the latest technological advancements. New engineers will undergo training and contribute to our projects, setting the foundation for a successful career in the software engineering industry"
 ---
 ## Role Responsibilities
 
 - Study project requirements, solution architecture and current source code (if available).
-- Design, develop, and implement Cognitive Agents’ related features and functionalities for existing and new applications.
+- Design and develop Cognitive Agents’ related features and functionalities for existing and new applications.
 - Investigate and diagnose software defects, identifying root causes and implementing effective fixes.
 
 ## Requirements/Qualifications
