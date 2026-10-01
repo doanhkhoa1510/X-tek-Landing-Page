@@ -104,11 +104,29 @@ $$<HTMLAnchorElement>('a[href^="#"]').forEach((a) =>
   }),
 );
 
-/* ---------- scramble: the label shuffles its own letters, then locks left to right ---------- */
+/* ---------- text in any script: graphemes (a letter with its marks) and words (CJK has no spaces) ---------- */
+const segmenter = (granularity: "grapheme" | "word") => ("Segmenter" in Intl ? new Intl.Segmenter(root.lang, { granularity }) : null);
+const graphemeSeg = segmenter("grapheme"), wordSeg = segmenter("word");
+const graphemes = (s: string) => (graphemeSeg ? [...graphemeSeg.segment(s)].map((g) => g.segment) : [...s]);
+/** Words with their punctuation, and the spaces between them as their own parts. */
+function words(s: string) {
+  if (!wordSeg) return s.split(/(\s+)/).filter(Boolean);
+  const parts: string[] = [];
+  const space = (p?: string) => !!p && /^\s+$/.test(p);
+  for (const { segment, isWordLike } of wordSeg.segment(s)) {
+    if (!space(segment) && !isWordLike && parts.length && !space(parts[parts.length - 1])) parts[parts.length - 1] += segment;
+    else parts.push(segment);
+  }
+  return parts;
+}
+
+/* ---------- scramble: the label shuffles its own letters, then locks in reading order ---------- */
 function scramble(el: HTMLElement) {
   if (el.dataset.busy) return;
   const text = (el.dataset.text ??= el.textContent ?? "");
-  const letters = [...text];
+  // whole graphemes, so no mark leaves its letter; bidi isolates around phone numbers stay where they are
+  const letters = graphemes(text);
+  const free = letters.flatMap((g, i) => (/\p{Cf}/u.test(g) ? [] : [i]));
   el.dataset.busy = "1";
   el.style.width = `${el.getBoundingClientRect().width}px`;
   let locked = -3;
@@ -119,11 +137,12 @@ function scramble(el: HTMLElement) {
       delete el.dataset.busy;
       return;
     }
-    const mix = letters.slice();
-    for (let i = mix.length - 1; i > 0; i--) {
+    const mix = letters.slice(), pool = free.map((i) => letters[i]);
+    for (let i = pool.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [mix[i], mix[j]] = [mix[j], mix[i]];
+      [pool[i], pool[j]] = [pool[j], pool[i]];
     }
+    free.forEach((i, k) => (mix[i] = pool[k]));
     for (let i = 0; i < locked; i++) mix[i] = letters[i];
     el.textContent = mix.join("");
     locked++;
@@ -286,8 +305,7 @@ $$<HTMLFormElement>(".brief").forEach((form) => {
 /* ---------- two-tone headlines: the ink line fills word by word, dim → glacier → ink ---------- */
 export function twoTone(tt: HTMLElement) {
   const b = tt.querySelector(".tt-b")!;
-  const words = b.textContent!.trim().split(/\s+/);
-  b.innerHTML = words.map((w) => `<span class="w">${w}</span>`).join(" ");
+  b.replaceChildren(...words(b.textContent!.trim()).map((w) => (/^\s+$/.test(w) ? document.createTextNode(w) : Object.assign(document.createElement("span"), { className: "w", textContent: w }))));
   const spans = $$(".w", b);
   const dark = tt.closest("[data-on]")?.getAttribute("data-on") === "dark";
   if (dark && !tt.closest(".routes")) {
