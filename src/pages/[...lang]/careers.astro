@@ -1,0 +1,64 @@
+---
+import Sub from "../../layouts/Sub.astro";
+import Cta from "../../components/Cta.astro";
+import { recruit } from "../../data/site";
+import { localePaths, localize } from "../../i18n/config";
+import { entriesFor } from "../../i18n/content";
+import { useT } from "../../i18n";
+
+export const getStaticPaths = localePaths;
+
+const lang = Astro.currentLocale;
+const t = useT(lang, "careers"), ts = useT(lang, "site");
+const perks = [
+  ["innovative", "ai"],
+  ["culture", "staffing"],
+  ["growth", "analytics"],
+  ["tech", "development"],
+  ["impact", "target"],
+] as const;
+
+// the old board keeps its closed posts; all five closed on the same day
+const jobs = (await entriesFor("jobs", lang)).sort((a, b) => a.entry.data.title.localeCompare(b.entry.data.title, lang));
+---
+<Sub title={t("title")} description={t("description")} a={t("head.a")} b={t("head.b")} lede={t("lede")}>
+  <section class="roles" data-on="light" aria-labelledby="roles-title">
+    <div class="wrap split">
+      <div>
+        <h2 id="roles-title" class="tt"><span class="tt-a">{t("roles.title.a")}</span> <span class="tt-b">{t("roles.title.b")}</span></h2>
+        <p class="split-note">{t("roles.note")}</p>
+      </div>
+      <div class="split-body">
+        <p class="label roles-label">{t("roles.past", { category: jobs[0]?.entry.data.category })}</p>
+        <ul class="role-list">
+          {jobs.map(({ entry, slug, translated }) => (
+            <li>
+              <a class="role" href={localize(`/job/${slug}/`, lang)} data-cursor-label={t("roles.read")}>
+                <h3 lang={translated ? undefined : "en"} dir={translated ? undefined : "ltr"}>{entry.data.title}</h3>
+                <span class="role-meta">{t("roles.meta", { type: entry.data.type, city: ts("cities.hcmc.name"), date: entry.data.validThrough })}</span>
+                <span class="role-go" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" /></svg></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="perks" data-on="light" aria-labelledby="perks-title">
+    <div class="wrap split-head">
+      <h2 id="perks-title" class="tt"><span class="tt-a">{t("perks.title.a")}</span> <span class="tt-b">{t("perks.title.b")}</span></h2>
+    </div>
+    <ul class="wrap cells cells-5">
+      {perks.map(([id, icon]) => (
+        <li class="cell">
+          <span class="cell-icon" data-icon={icon}></span>
+          <h3>{t(`perks.items.${id}.name`)}</h3>
+          <p>{t(`perks.items.${id}.text`)}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <Cta a={t("cta.a")} b={t("cta.b")} href={`mailto:${recruit}`} label={recruit} call={false} />
+</Sub>

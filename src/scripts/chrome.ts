@@ -11,6 +11,8 @@ import { ZION } from "./zion-data";
 gsap.registerPlugin(ScrollTrigger);
 
 export const root = document.documentElement;
+/** Arabic pages run right to left: horizontal scenes travel the other way. */
+export const rtl = root.dir === "rtl";
 export const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
 export const $ = <T extends HTMLElement = HTMLElement>(s: string, r: ParentNode = document) => r.querySelector<T>(s)!;
@@ -30,30 +32,34 @@ const scrollMax = () => Math.max(1, root.scrollHeight - innerHeight);
 mountIcons();
 $$<HTMLCanvasElement>("canvas[data-dotmap]").forEach((c) => paintDotMap(c, c.dataset.dotmap!));
 
-/* ---------- header ---------- */
+/* ---------- header: the menu and the language list open from a toggle; Escape or a press outside closes them ---------- */
 export const hdr = $(".hdr");
-const menu = $(".menu");
-const toggle = $<HTMLButtonElement>(".menu-toggle");
-function setMenu(open: boolean) {
-  menu.classList.toggle("is-open", open);
-  toggle.setAttribute("aria-expanded", String(open));
+function popover(host: HTMLElement, button: HTMLButtonElement) {
+  const set = (open: boolean) => {
+    host.classList.toggle("is-open", open);
+    button.setAttribute("aria-expanded", String(open));
+  };
+  button.addEventListener("click", () => set(!host.classList.contains("is-open")));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && host.classList.contains("is-open")) {
+      set(false);
+      button.focus();
+    }
+  });
+  document.addEventListener("pointerdown", (e) => {
+    if (!host.contains(e.target as Node)) set(false);
+  });
+  return set;
 }
-toggle.addEventListener("click", () => setMenu(!menu.classList.contains("is-open")));
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && menu.classList.contains("is-open")) {
-    setMenu(false);
-    toggle.focus();
-  }
-});
-document.addEventListener("pointerdown", (e) => {
-  if (!menu.contains(e.target as Node)) setMenu(false);
-});
+const setMenu = popover($(".menu"), $<HTMLButtonElement>(".menu-toggle"));
+const setLang = popover($(".lang"), $<HTMLButtonElement>(".lang-toggle"));
 
 let themeQueued = false;
 export function syncHeader() {
   themeQueued = false;
   const y = scrollPos();
   hdr.classList.toggle("is-scrolled", y > 40);
+  if (y > 40) setLang(false); // the list leaves with the ticker
   hdr.classList.toggle("is-compact", y > 80);
   const py = hdr.classList.contains("is-scrolled") ? 32 : 64;
   const probe = document.elementsFromPoint(innerWidth / 2, py);
@@ -98,11 +104,29 @@ $$<HTMLAnchorElement>('a[href^="#"]').forEach((a) =>
   }),
 );
 
-/* ---------- scramble: the label shuffles its own letters, then locks left to right ---------- */
+/* ---------- text in any script: graphemes (a letter with its marks) and words (CJK has no spaces) ---------- */
+const segmenter = (granularity: "grapheme" | "word") => ("Segmenter" in Intl ? new Intl.Segmenter(root.lang, { granularity }) : null);
+const graphemeSeg = segmenter("grapheme"), wordSeg = segmenter("word");
+const graphemes = (s: string) => (graphemeSeg ? [...graphemeSeg.segment(s)].map((g) => g.segment) : [...s]);
+/** Words with their punctuation, and the spaces between them as their own parts. */
+function words(s: string) {
+  if (!wordSeg) return s.split(/(\s+)/).filter(Boolean);
+  const parts: string[] = [];
+  const space = (p?: string) => !!p && /^\s+$/.test(p);
+  for (const { segment, isWordLike } of wordSeg.segment(s)) {
+    if (!space(segment) && !isWordLike && parts.length && !space(parts[parts.length - 1])) parts[parts.length - 1] += segment;
+    else parts.push(segment);
+  }
+  return parts;
+}
+
+/* ---------- scramble: the label shuffles its own letters, then locks in reading order ---------- */
 function scramble(el: HTMLElement) {
   if (el.dataset.busy) return;
   const text = (el.dataset.text ??= el.textContent ?? "");
-  const letters = [...text];
+  // whole graphemes, so no mark leaves its letter; bidi isolates around phone numbers stay where they are
+  const letters = graphemes(text);
+  const free = letters.flatMap((g, i) => (/\p{Cf}/u.test(g) ? [] : [i]));
   el.dataset.busy = "1";
   el.style.width = `${el.getBoundingClientRect().width}px`;
   let locked = -3;
@@ -113,11 +137,12 @@ function scramble(el: HTMLElement) {
       delete el.dataset.busy;
       return;
     }
-    const mix = letters.slice();
-    for (let i = mix.length - 1; i > 0; i--) {
+    const mix = letters.slice(), pool = free.map((i) => letters[i]);
+    for (let i = pool.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [mix[i], mix[j]] = [mix[j], mix[i]];
+      [pool[i], pool[j]] = [pool[j], pool[i]];
     }
+    free.forEach((i, k) => (mix[i] = pool[k]));
     for (let i = 0; i < locked; i++) mix[i] = letters[i];
     el.textContent = mix.join("");
     locked++;
@@ -236,9 +261,10 @@ $$<HTMLButtonElement>(".qa button").forEach((btn) => {
   });
 });
 
-/* ---------- brief forms: client-side states until a backend exists ---------- */
+/* ---------- brief forms: client-side states until a backend exists; the words come from data-status (BriefForm.astro) ---------- */
 $$<HTMLFormElement>(".brief").forEach((form) => {
   const status = $(".form-status", form);
+  const say: Record<"badEmail" | "required" | "notLive" | "sending" | "sent" | "failed", string> = JSON.parse(form.dataset.status!);
   form.addEventListener("input", (e) => (e.target as HTMLElement).removeAttribute("aria-invalid"));
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -246,7 +272,7 @@ $$<HTMLFormElement>(".brief").forEach((form) => {
     if (!form.checkValidity()) {
       const bad = $<HTMLInputElement>(":invalid", form);
       status.dataset.state = "error";
-      status.textContent = bad.type === "email" && bad.value ? "That email looks incomplete. Check it and send again." : "Fill in all three required fields so we know where to start.";
+      status.textContent = bad.type === "email" && bad.value ? say.badEmail : say.required;
       bad.focus();
       return;
     }
@@ -255,22 +281,22 @@ $$<HTMLFormElement>(".brief").forEach((form) => {
     if (!endpoint) {
       // no inbox configured yet: say plainly that nothing was sent, and hand over the phone line
       status.dataset.state = "info";
-      status.innerHTML = 'Not sent yet: online sending is not live. Call <a href="tel:+14693229899">+1 469 322 9899</a> and we start from your brief.';
+      status.innerHTML = say.notLive;
       return;
     }
     btn.disabled = true;
     status.dataset.state = "";
-    status.textContent = "Sending your brief…";
+    status.textContent = say.sending;
     fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.fromEntries(new FormData(form))) })
       .then((r) => {
         if (!r.ok) throw new Error(String(r.status));
         status.dataset.state = "ok";
-        status.textContent = "Brief sent. We reply by email.";
+        status.textContent = say.sent;
         form.reset();
       })
       .catch(() => {
         status.dataset.state = "error";
-        status.innerHTML = 'The brief did not send. Try again, or call <a href="tel:+14693229899">+1 469 322 9899</a>.';
+        status.innerHTML = say.failed;
       })
       .finally(() => (btn.disabled = false));
   });
@@ -279,8 +305,7 @@ $$<HTMLFormElement>(".brief").forEach((form) => {
 /* ---------- two-tone headlines: the ink line fills word by word, dim → glacier → ink ---------- */
 export function twoTone(tt: HTMLElement) {
   const b = tt.querySelector(".tt-b")!;
-  const words = b.textContent!.trim().split(/\s+/);
-  b.innerHTML = words.map((w) => `<span class="w">${w}</span>`).join(" ");
+  b.replaceChildren(...words(b.textContent!.trim()).map((w) => (/^\s+$/.test(w) ? document.createTextNode(w) : Object.assign(document.createElement("span"), { className: "w", textContent: w }))));
   const spans = $$(".w", b);
   const dark = tt.closest("[data-on]")?.getAttribute("data-on") === "dark";
   if (dark && !tt.closest(".routes")) {

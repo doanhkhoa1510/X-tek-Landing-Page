@@ -1,0 +1,9 @@
+{
+  "details": "{{title}}, role details",
+  "facts": "Role facts",
+  "type": "Employment type",
+  "location": "Job location",
+  "posted": "Date posted",
+  "validThrough": "Valid through",
+  "all": "All careers"
+}

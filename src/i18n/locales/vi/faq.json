@@ -1,0 +1,30 @@
+{
+  "title": { "a": "Câu hỏi", "b": "trước khi leo núi." },
+  "more": "Còn thắc mắc khác? Đọc <faqs>tất cả câu hỏi thường gặp</faqs>, hoặc gọi <call>{{phone}}</call>.",
+  "items": {
+    "what": {
+      "q": "XionTechs làm gì?",
+      "a": "Chúng tôi là đội ngũ cung cấp dịch vụ và sản phẩm CNTT ứng dụng AI. Chúng tôi vận hành năm mảng kỹ thuật phần mềm: kỹ thuật sản phẩm số, thông tin chuyên sâu và phân tích số, hệ thống nhúng và robot AI, phát triển đồng sáng tạo, và dịch vụ quản lý ứng dụng."
+    },
+    "different": {
+      "q": "Điều gì làm các bạn khác biệt?",
+      "a": "Năm điều: tinh thần khởi nghiệp, năng lực triển khai xuất sắc ở mọi tầng của phần mềm, từ hệ thống nhúng đến ứng dụng doanh nghiệp, kết quả đo lường được để xác nhận ROI, nền tảng phát triển Agile ứng dụng AI, và quan hệ hợp tác tiết kiệm chi phí với đội ngũ kỹ sư lành nghề tại Việt Nam."
+    },
+    "where": {
+      "q": "Đội ngũ của các bạn ở đâu?",
+      "a": "Bạn liên hệ với chúng tôi tại Plano, Texas. Các kỹ sư xây dựng sản phẩm tại TP. Hồ Chí Minh và Đà Nẵng, Việt Nam."
+    },
+    "industries": {
+      "q": "Các bạn hiểu rõ nhất những ngành nào?",
+      "a": "EdTech (công nghệ giáo dục), y tế và logistics. Chúng tôi xây dựng chiến lược chuyển đổi số xoay quanh thách thức và cơ hội của từng ngành."
+    },
+    "process": {
+      "q": "Các bạn vận hành một dự án như thế nào?",
+      "a": "Bằng một khung kỹ thuật trưởng thành: thực hành Agile kết hợp BMAD-METHOD và V-Model, được hỗ trợ bởi các công cụ AI như AI tạo sinh và prompt engineering. Quản lý dự án dựa trên số liệu, nên bạn đọc được chất lượng và tiến độ qua những con số."
+    },
+    "start": {
+      "q": "Một dự án bắt đầu như thế nào?",
+      "a": "Gửi brief qua biểu mẫu bên dưới, gọi {{us}}, hoặc nhắn WhatsApp tới {{wa}}. Chúng tôi phản hồi qua email."
+    }
+  }
+}

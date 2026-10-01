@@ -1,0 +1,76 @@
+{
+  "title": {
+    "a": "AI 驱动的平台",
+    "b": "服务智慧校园。"
+  },
+  "lede": "学校里的每个人打开的是不同的应用。在底层，它们全都运行在同一批 AI 智能体和同一份数据之上。",
+  "text": "我们这样构建：由一个主管智能体读取每个请求，并交给专门负责该工作的智能体。教室里的设备向同一个数据平台上报，因此各个应用都基于教室里正在发生的事情运行。",
+  "tiers": {
+    "users": "用户与应用",
+    "services": "服务",
+    "infra": "基础设施与数据",
+    "devices": "设备"
+  },
+  "roles": {
+    "parents": "家长",
+    "students": "学生",
+    "teachers": "教师",
+    "staff": "职员",
+    "others": "其他"
+  },
+  "appsOf": "{{role}}：应用",
+  "apps": {
+    "parentHub": "Parent Hub",
+    "buddy": "Buddy360 机器人",
+    "wellbeing": "AI Wellbeing",
+    "curriculum": "AI Curriculum Hub",
+    "reports": "学业报告",
+    "coach": "IoT Teacher Coach",
+    "other": "其他应用"
+  },
+  "groups": {
+    "ai": "AI 服务",
+    "agents": "智能体",
+    "app": "应用服务"
+  },
+  "aiServices": {
+    "speech": "语音转文字、文字转语音",
+    "ml": "机器学习、SLMs、LLMs"
+  },
+  "appServices": {
+    "mcp": "MCP server",
+    "backend": "后端"
+  },
+  "supervisor": "主管智能体",
+  "routedTo": "主管智能体分派的对象",
+  "routes": "分派每个请求",
+  "agents": {
+    "policy": "政策智能体",
+    "buddy": "Buddy 智能体",
+    "reports": "学业报告智能体",
+    "wellbeing": "身心健康智能体",
+    "more": "更多智能体"
+  },
+  "infra": {
+    "network": "基础设施与连接",
+    "data": "现代数据平台"
+  },
+  "parts": {
+    "auth": "认证",
+    "gateway": "API gateway",
+    "iot": "IoT hub",
+    "edge": "智能边缘",
+    "ingestion": "数据摄取",
+    "storage": "存储",
+    "transformation": "数据转换",
+    "governance": "数据治理"
+  },
+  "devices": {
+    "robot": "机器人",
+    "screens": "手机、平板、电脑",
+    "watch": "可穿戴设备",
+    "camera": "摄像头、无人机",
+    "sensor": "传感器、执行器"
+  },
+  "caption": "平台架构 · 四层，从人到设备"
+}

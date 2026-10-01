@@ -1,0 +1,19 @@
+{
+  "name": "Tên của bạn",
+  "email": "Email công việc",
+  "msg": "Bạn đang xây dựng điều gì?",
+  "subject": "Chủ đề",
+  "chooseService": "Chọn dịch vụ",
+  "phone": "Điện thoại",
+  "optional": "tùy chọn",
+  "sendBrief": "Gửi brief",
+  "sendRequest": "Gửi yêu cầu",
+  "status": {
+    "badEmail": "Email này có vẻ chưa đầy đủ. Hãy kiểm tra và gửi lại.",
+    "required": "Hãy điền cả ba trường bắt buộc để chúng tôi biết bắt đầu từ đâu.",
+    "notLive": "Chưa gửi được: tính năng gửi trực tuyến chưa hoạt động. Hãy gọi <call>{{phone}}</call> và chúng tôi sẽ bắt đầu từ brief của bạn.",
+    "sending": "Đang gửi brief của bạn…",
+    "sent": "Đã gửi brief. Chúng tôi phản hồi qua email.",
+    "failed": "Chưa gửi được brief. Hãy thử lại, hoặc gọi <call>{{phone}}</call>."
+  }
+}

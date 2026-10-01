@@ -1,0 +1,9 @@
+{
+  "details": "{{title}}, détails du poste",
+  "facts": "Informations sur le poste",
+  "type": "Type de contrat",
+  "location": "Lieu du poste",
+  "posted": "Date de publication",
+  "validThrough": "Valable jusqu’au",
+  "all": "Toutes les carrières"
+}

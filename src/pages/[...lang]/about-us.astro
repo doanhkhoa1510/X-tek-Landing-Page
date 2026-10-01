@@ -1,0 +1,64 @@
+---
+import Sub from "../../layouts/Sub.astro";
+import Cta from "../../components/Cta.astro";
+import { localePaths } from "../../i18n/config";
+import { useT } from "../../i18n";
+
+export const getStaticPaths = localePaths;
+
+const t = useT(Astro.currentLocale, "about");
+const values = [
+  ["startup", "rocket"],
+  ["client", "target"],
+  ["integrity", "shield"],
+  ["innovation", "ai"],
+  ["done", "check"],
+  ["home", "home"],
+] as const;
+
+// [id, counted number, unit]
+const figures = [
+  ["years", "25", ""],
+  ["commitment", "100", "%"],
+  ["coverage", "", "24/7"],
+  ["verticals", "5", "+"],
+  ["offerings", "8", "+"],
+] as const;
+
+const reasons = ["client", "integrity", "quality", "rapid", "reliable", "team"] as const;
+---
+<Sub title={t("title")} description={t("description")} a={t("head.a")} b={t("head.b")} lede={t("lede")}>
+  <section class="values" data-on="light" aria-labelledby="values-title">
+    <div class="wrap split-head">
+      <h2 id="values-title" class="tt"><span class="tt-a">{t("values.title.a")}</span> <span class="tt-b">{t("values.title.b")}</span></h2>
+    </div>
+    <ul class="wrap cells cells-3">
+      {values.map(([id, icon]) => (
+        <li class="cell">
+          <span class="cell-icon" data-icon={icon}></span>
+          <h3>{t(`values.items.${id}.name`)}</h3>
+          <p>{t(`values.items.${id}.text`)}</p>
+        </li>
+      ))}
+    </ul>
+    <dl class="wrap figures" aria-label={t("figures.label")}>
+      {figures.map(([id, n, unit]) => (
+        <div class="stat"><dt>{t(`figures.items.${id}`)}</dt><dd>{n && <span data-count={n}>{n}</span>}{unit}</dd></div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="why" data-on="light" aria-labelledby="why-title">
+    <div class="wrap split">
+      <h2 id="why-title" class="tt"><span class="tt-a">{t("why.title.a")}</span> <span class="tt-b">{t("why.title.b")}</span></h2>
+      <div class="split-body">
+        <p class="lede">{t("why.lede")}</p>
+        <ul class="ticks">
+          {reasons.map((id) => <li>{t(`why.reasons.${id}`)}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Sub>

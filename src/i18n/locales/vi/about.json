@@ -1,0 +1,39 @@
+{
+  "title": "Giới thiệu",
+  "description": "XionTechs tạo nên sự khác biệt nhờ sự tận tâm với con người, quy trình và công nghệ: sáu giá trị cốt lõi, một tinh thần “Get IT Done”.",
+  "head": { "a": "Giới thiệu.", "b": "Chúng tôi thúc đẩy thành công kinh doanh bằng giải pháp CNTT." },
+  "lede": "XionTechs tạo nên sự khác biệt nhờ sự tận tâm với con người, quy trình và công nghệ, như các giá trị cốt lõi dưới đây thể hiện.",
+  "values": {
+    "title": { "a": "Giá trị cốt lõi.", "b": "Con người, quy trình, công nghệ." },
+    "items": {
+      "startup": { "name": "Tinh thần khởi nghiệp", "text": "Chủ động, nhanh nhẹn và linh hoạt." },
+      "client": { "name": "Khách hàng là trọng tâm", "text": "Tập trung vào kết quả cho khách hàng." },
+      "integrity": { "name": "Tư duy chính trực", "text": "Trung thực và minh bạch." },
+      "innovation": { "name": "Đam mê đổi mới", "text": "Luôn đi trước xu thế." },
+      "done": { "name": "Tinh thần “Get IT Done”", "text": "Làm chủ và cam kết." },
+      "home": { "name": "Văn hóa hơn cả đồng nghiệp", "text": "Một văn hóa mang lại cảm giác như ở nhà." }
+    }
+  },
+  "figures": {
+    "label": "XionTechs qua các con số",
+    "items": {
+      "years": "Năm kinh nghiệm",
+      "commitment": "Cam kết với khách hàng",
+      "coverage": "Phạm vi toàn cầu",
+      "verticals": "Lĩnh vực ngành",
+      "offerings": "Dịch vụ cung cấp"
+    }
+  },
+  "why": {
+    "title": { "a": "Vì sao chọn chúng tôi.", "b": "Dịch vụ CNTT chuyên nghiệp, mọi khía cạnh." },
+    "lede": "Hãy chọn XionTechs vì giải pháp tích hợp, kinh nghiệm ngành và năng lực triển khai dựa trên số liệu. Chúng tôi biến ý tưởng sản phẩm thành hiện thực nhờ đồng sáng tạo và tinh thần “Get IT Done”.",
+    "reasons": {
+      "client": "Tập trung vào khách hàng",
+      "integrity": "Chính trực và chuẩn mực đạo đức",
+      "quality": "Chất lượng triển khai cao",
+      "rapid": "Kỹ thuật sản phẩm nhanh chóng",
+      "reliable": "Giải pháp đáng tin cậy",
+      "team": "Đội ngũ chuyên gia 24/7"
+    }
+  }
+}

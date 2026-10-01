@@ -1,0 +1,26 @@
+---
+/* 02 · Mindset of Xion: the story of the name, then the mission. */
+import { useT } from "../../i18n";
+
+const t = useT(Astro.currentLocale, "mindset");
+const story = t("story", { returnObjects: true });
+---
+<section id="mindset" class="intro" data-on="light" aria-labelledby="mindset-title">
+  <div class="wrap intro-grid">
+    <div class="intro-left">
+      <figure class="topo">
+        <canvas aria-hidden="true"></canvas>
+        <figcaption>{t("survey")}</figcaption>
+      </figure>
+      <h2 id="mindset-title" class="tt"><span class="tt-a">{t("title.a")}</span> <span class="tt-b">{t("title.b")}</span></h2>
+    </div>
+    <div class="intro-right">
+      {story.map((p) => <p class="lede">{p}</p>)}
+      <div class="mission">
+        <h3>{t("mission.title")}</h3>
+        <p>{t("mission.text")}</p>
+      </div>
+      <a class="btn btn-line" href="#values" data-scramble><span class="scr">{t("next")}</span></a>
+    </div>
+  </div>
+</section>

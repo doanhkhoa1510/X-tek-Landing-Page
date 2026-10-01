@@ -1,0 +1,20 @@
+{
+  "skip": "跳到正文",
+  "hud": {
+    "alt": "海拔",
+    "speed": "垂速",
+    "summit": "顶峰"
+  },
+  "units": {
+    "m": "米",
+    "ms": "米/秒"
+  },
+  "call": "致电 {{phone}}",
+  "whatsapp": "WhatsApp {{phone}}",
+  "talk": "联系我们的专家",
+  "locale": {
+    "label": "语言",
+    "list": "选择语言"
+  },
+  "englishOnly": "本页面仅提供英文版本。"
+}

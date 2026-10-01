@@ -1,0 +1,76 @@
+{
+  "title": {
+    "a": "AI-powered platform",
+    "b": "for smart schools."
+  },
+  "lede": "Everyone in the school opens a different app. Underneath, every one of them runs on the same AI agents and the same data.",
+  "text": "We built it so a supervisor agent reads each request and hands it to the agent made for that job. The devices in the classroom report into one data platform, so the apps work from what is happening in the room.",
+  "tiers": {
+    "users": "Users and apps",
+    "services": "Services",
+    "infra": "Infrastructure and data",
+    "devices": "Devices"
+  },
+  "roles": {
+    "parents": "Parents",
+    "students": "Students",
+    "teachers": "Teachers",
+    "staff": "Staff",
+    "others": "Others"
+  },
+  "appsOf": "{{role}}: apps",
+  "apps": {
+    "parentHub": "Parent Hub",
+    "buddy": "Buddy360 robots",
+    "wellbeing": "AI Wellbeing",
+    "curriculum": "AI Curriculum Hub",
+    "reports": "Academic reports",
+    "coach": "IoT Teacher Coach",
+    "other": "Other apps"
+  },
+  "groups": {
+    "ai": "AI services",
+    "agents": "Agents",
+    "app": "App services"
+  },
+  "aiServices": {
+    "speech": "Speech to text, text to speech",
+    "ml": "Machine learning, SLMs, LLMs"
+  },
+  "appServices": {
+    "mcp": "MCP server",
+    "backend": "Back-end"
+  },
+  "supervisor": "Supervisor agent",
+  "routedTo": "Agents the supervisor routes to",
+  "routes": "Routes each request",
+  "agents": {
+    "policy": "Policy agent",
+    "buddy": "Buddy agent",
+    "reports": "Academic reports agent",
+    "wellbeing": "Wellbeing agent",
+    "more": "More agents"
+  },
+  "infra": {
+    "network": "Infrastructure and connectivity",
+    "data": "Modern data platform"
+  },
+  "parts": {
+    "auth": "Auth",
+    "gateway": "API gateway",
+    "iot": "IoT hub",
+    "edge": "Intelligent edge",
+    "ingestion": "Ingestion",
+    "storage": "Storage",
+    "transformation": "Transformation",
+    "governance": "Governance"
+  },
+  "devices": {
+    "robot": "Robots",
+    "screens": "Phones, tablets, PCs",
+    "watch": "Wearable devices",
+    "camera": "Cameras, drones",
+    "sensor": "Sensors, actuators"
+  },
+  "caption": "Platform architecture · four tiers, people to devices"
+}

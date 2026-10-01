@@ -1,0 +1,24 @@
+---
+/* 01 · Main: the four-line headline bottom-left, over the mountain. */
+import { useT } from "../../i18n";
+
+const lang = Astro.currentLocale;
+const t = useT(lang, "hero"), tc = useT(lang, "common");
+const lines = t("lines", { returnObjects: true });
+---
+<section id="top" class="hero" data-on="dark" aria-labelledby="hero-title">
+  <div class="hero-stage">
+    <div class="hero-copy">
+      <h1 id="hero-title" class="hero-title">
+        {lines.map((line) => <><span class="ln"><span>{line}</span></span>{" "}</>)}
+        <span class="ln"><span class="accent">{t("accent")}</span></span>
+      </h1>
+      <p class="hero-lede">{t("lede")}</p>
+      <div class="actions">
+        <a class="btn btn-fill" href="#summit" data-scramble><span class="scr">{tc("talk")}</span></a>
+        <a class="btn btn-line" href="#mindset" data-scramble><span class="scr">{t("mindset")}</span></a>
+      </div>
+    </div>
+    <div class="hero-dawn" aria-hidden="true"></div>
+  </div>
+</section>

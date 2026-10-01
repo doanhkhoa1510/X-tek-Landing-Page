@@ -1,0 +1,20 @@
+{
+  "skip": "Chuyển đến nội dung",
+  "hud": {
+    "alt": "Độ cao",
+    "speed": "Tốc độ",
+    "summit": "Đỉnh"
+  },
+  "units": {
+    "m": "m",
+    "ms": "m/s"
+  },
+  "call": "Gọi {{phone}}",
+  "whatsapp": "WhatsApp {{phone}}",
+  "talk": "Trao đổi với chuyên gia",
+  "locale": {
+    "label": "Ngôn ngữ",
+    "list": "Chọn ngôn ngữ"
+  },
+  "englishOnly": "Trang này chỉ có bản tiếng Anh."
+}

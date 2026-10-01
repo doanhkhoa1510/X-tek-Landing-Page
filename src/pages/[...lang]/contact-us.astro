@@ -1,0 +1,56 @@
+---
+/* Contact stays on night from head to form, like the summit: the brief is the last thing asked before daylight. */
+import Sub from "../../layouts/Sub.astro";
+import BriefForm from "../../components/BriefForm.astro";
+import WorldMap from "../../components/WorldMap.astro";
+import { email, offices, phones } from "../../data/site";
+import { localePaths } from "../../i18n/config";
+import { useT } from "../../i18n";
+
+export const getStaticPaths = localePaths;
+
+const lang = Astro.currentLocale;
+const t = useT(lang, "contact"), ts = useT(lang, "site"), tc = useT(lang, "common");
+const maps = (q: string) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+---
+<Sub
+  title={t("title")}
+  description={t("description", { phone: phones.us.label, email })}
+  a={t("head.a")}
+  b={t("head.b")}
+  lede={t("lede")}
+  dawn={false}
+>
+  <section class="contact" data-on="dark" aria-label={t("region")}>
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <div class="contact-block">
+          <p class="label">{t("addresses")}</p>
+          {offices.map((o) => (
+            <div class="office">
+              <h2>{ts(`offices.${o.id}.name`)}</h2>
+              <address>{ts(`offices.${o.id}.role`)}{o.lines.map((l) => <><br /><bdi>{l}</bdi></>)}</address>
+              {o.lines.length > 0 && <a href={maps(o.lines.join(", "))} target="_blank" rel="noopener" data-scramble><span class="scr">{t("maps")}</span></a>}
+            </div>
+          ))}
+        </div>
+        <div class="contact-block">
+          <p class="label">{t("call")}</p>
+          <a class="contact-line" href={phones.us.href} data-scramble><span class="scr">{phones.us.label}</span></a>
+          <a class="contact-line" href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">{tc("whatsapp", { phone: phones.wa.label })}</span></a>
+        </div>
+        <div class="contact-block">
+          <p class="label">{t("email")}</p>
+          <a class="contact-line" href={`mailto:${email}`} data-scramble><span class="scr">{email}</span></a>
+        </div>
+      </div>
+
+      <BriefForm full />
+    </div>
+
+    <div class="wrap">
+      <WorldMap class="contact-map" />
+    </div>
+    <div class="horizon dawn" aria-hidden="true"></div>
+  </section>
+</Sub>

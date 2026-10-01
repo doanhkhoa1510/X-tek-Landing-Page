@@ -1,0 +1,52 @@
+{
+  "title": "FAQ",
+  "description": "Réponses sur les services de XionTechs, la collaboration entre fuseaux horaires, la sécurité des données et notre façon de mesurer la valeur.",
+  "head": {
+    "a": "Questions fréquentes.",
+    "b": "Posez-nous toutes vos questions."
+  },
+  "aside": "Dix réponses sur notre façon de travailler. Autre chose ? Appelez le <call>{{phone}}</call>.",
+  "region": "Questions fréquentes",
+  "items": {
+    "services": {
+      "q": "Quels services XionTechs propose-t-elle ?",
+      "a": "XionTechs propose l’ingénierie de produits numériques, les insights et l’analytique numériques, la co-création de produits et des services de mise à disposition de personnel. Ces services s’appuient sur des technologies émergentes comme l’IA/ML et l’IA générative. XionTechs se concentre sur des secteurs tels que l’EdTech, la santé, la logistique et le capital-investissement."
+    },
+    "collaboration": {
+      "q": "Comment XionTechs garantit-elle une collaboration fluide ?",
+      "a": "Grâce à une large couverture des fuseaux horaires qui crée des plages de recouvrement entre régions, notamment les États-Unis, l’Europe et l’Australie. Des outils collaboratifs facilitent la communication et donnent des mises à jour du projet en temps réel, où que vous soyez."
+    },
+    "needs": {
+      "q": "Quand répondez-vous aux besoins spécifiques ?",
+      "a": "Dès le lancement du projet. Nous adaptons nos services pour proposer une solution sur mesure, qui répond exactement à vos objectifs et à vos exigences particulières."
+    },
+    "benefits": {
+      "q": "Quels sont les bénéfices concrets pour les clients ?",
+      "a": "Des solutions rentables conçues par des ressources qualifiées au Vietnam, des livraisons dans les délais et des résultats mesurables qui contribuent directement à la croissance de l’entreprise et à un meilleur ROI."
+    },
+    "security": {
+      "q": "Comment garantissez-vous la sécurité des données ?",
+      "a": "Avec un état d’esprit d’intégrité : honnêteté et transparence dans toutes nos relations, normes éthiques et pratiques responsables protègent les données des clients. L’automatisation de la sécurité et l’analyse continue ajoutent une protection supplémentaire."
+    },
+    "centricity": {
+      "q": "Pourquoi la priorité au client est-elle essentielle ?",
+      "a": "La priorité au client est une valeur fondamentale. La satisfaction du client fait la réussite à long terme, construit des partenariats durables et nourrit une croissance et une innovation communes."
+    },
+    "feedback": {
+      "q": "Comment les clients partagent-ils leur vision et leurs retours ?",
+      "a": "Par des canaux dédiés, des points réguliers et une approche de partenariat. Nous intégrons vos contributions tout au long du cycle de vie du projet, afin que le travail reste aligné sur vos attentes et vos objectifs."
+    },
+    "input": {
+      "q": "Quand intégrez-vous les contributions des clients ?",
+      "a": "En continu, tout au long du développement. Les méthodes Agile nous permettent d’ajuster rapidement, de garder un travail collaboratif et de nous assurer que le produit final correspond à votre vision."
+    },
+    "value": {
+      "q": "Comment mesurez-vous et démontrez-vous la valeur ?",
+      "a": "Nous suivons des indicateurs de vitesse, de qualité, d’impact produit et d’autonomie des équipes. Cette approche pilotée par les indicateurs nous garde transparents et responsables, montre des résultats tangibles et valide le ROI."
+    },
+    "trust": {
+      "q": "Comment XionTechs bâtit-elle la confiance de ses clients ?",
+      "a": "Par l’ouverture, la fiabilité et un engagement constant envers la réussite des clients : une performance régulière, des pratiques éthiques et une attitude « Get IT Done »."
+    }
+  }
+}

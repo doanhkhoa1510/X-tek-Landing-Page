@@ -1,0 +1,76 @@
+{
+  "title": {
+    "a": "AI搭載プラットフォーム",
+    "b": "スマートスクールのために。"
+  },
+  "lede": "学校では、使う人ごとに開くアプリが違います。しかしその土台では、すべてのアプリが同じAIエージェントと同じデータで動いています。",
+  "text": "私たちは、スーパーバイザーエージェントが各リクエストを読み取り、その仕事に特化したエージェントへ引き渡す仕組みを構築しました。教室のデバイスは1つのデータプラットフォームに情報を送るため、アプリは教室で今起きていることをもとに動作します。",
+  "tiers": {
+    "users": "ユーザーとアプリ",
+    "services": "サービス",
+    "infra": "インフラとデータ",
+    "devices": "デバイス"
+  },
+  "roles": {
+    "parents": "保護者",
+    "students": "生徒",
+    "teachers": "教師",
+    "staff": "職員",
+    "others": "その他"
+  },
+  "appsOf": "{{role}}のアプリ",
+  "apps": {
+    "parentHub": "Parent Hub",
+    "buddy": "Buddy360ロボット",
+    "wellbeing": "AI Wellbeing",
+    "curriculum": "AI Curriculum Hub",
+    "reports": "学業レポート",
+    "coach": "IoT Teacher Coach",
+    "other": "その他のアプリ"
+  },
+  "groups": {
+    "ai": "AIサービス",
+    "agents": "エージェント",
+    "app": "アプリサービス"
+  },
+  "aiServices": {
+    "speech": "音声認識、音声合成",
+    "ml": "機械学習、SLMs、LLMs"
+  },
+  "appServices": {
+    "mcp": "MCP server",
+    "backend": "バックエンド"
+  },
+  "supervisor": "スーパーバイザーエージェント",
+  "routedTo": "スーパーバイザーが振り分けるエージェント",
+  "routes": "各リクエストを振り分け",
+  "agents": {
+    "policy": "ポリシーエージェント",
+    "buddy": "Buddyエージェント",
+    "reports": "学業レポートエージェント",
+    "wellbeing": "ウェルビーイングエージェント",
+    "more": "その他のエージェント"
+  },
+  "infra": {
+    "network": "インフラとコネクティビティ",
+    "data": "モダンデータプラットフォーム"
+  },
+  "parts": {
+    "auth": "認証",
+    "gateway": "API gateway",
+    "iot": "IoT hub",
+    "edge": "インテリジェントエッジ",
+    "ingestion": "データ取り込み",
+    "storage": "ストレージ",
+    "transformation": "データ変換",
+    "governance": "ガバナンス"
+  },
+  "devices": {
+    "robot": "ロボット",
+    "screens": "スマートフォン、タブレット、PC",
+    "watch": "ウェアラブルデバイス",
+    "camera": "カメラ、ドローン",
+    "sensor": "センサー、アクチュエーター"
+  },
+  "caption": "プラットフォームアーキテクチャ · 4層、人からデバイスまで"
+}

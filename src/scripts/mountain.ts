@@ -14,10 +14,11 @@ function hash(x: number, y: number) {
 }
 /* ---------- places on the mountain ---------- */
 
+// chip words come from the label layer's data-labels, in the page's language
 export const CAMPS = [
-  { id: "plano", name: "Plano, TX", x: -1.5, z: 4.5 },
-  { id: "hcmc", name: "Ho Chi Minh City", x: 2.4, z: 3.6 },
-  { id: "danang", name: "Da Nang", x: 3.4, z: 2.4 },
+  { id: "plano", x: -1.5, z: 4.5 },
+  { id: "hcmc", x: 2.4, z: 3.6 },
+  { id: "danang", x: 3.4, z: 2.4 },
 ] as const;
 
 type Station = { pos: [number, number, number]; look: [number, number, number] };
@@ -52,6 +53,13 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     HERO[1] = { pos: [1.1, 9.8, 9], look: [0.7, 5.4, -4] };
     SUMMIT.pos = [2.6, 10, 16];
     SUMMIT.look = [1.1, 6.2, -4];
+  }
+  // right to left, the headline sits on the right: the camera mirrors across the summit, so the hill rises on the left
+  if (document.documentElement.dir === "rtl") {
+    for (const s of [...HERO, SUMMIT]) {
+      s.pos[0] = 2 * ZION.peakAt[0] - s.pos[0];
+      s.look[0] = 2 * ZION.peakAt[0] - s.look[0];
+    }
   }
   renderer.setPixelRatio(Math.min(devicePixelRatio, small ? 1.5 : 2));
   renderer.setSize(innerWidth, innerHeight, false);
@@ -218,12 +226,14 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
 
   /* camps: amber beacon, pulsing ring, chip label */
   const labels: HTMLElement[] = [];
+  const words: Record<string, string> = JSON.parse(labelLayer.dataset.labels ?? "{}");
   const anchors: { el: HTMLElement; pos: THREE.Vector3; id: string; kind: "camp" | "summit" }[] = [];
   function chip(text: string, kind: string, id: string) {
     const el = document.createElement("div");
     el.className = `chip chip-${kind}`;
     el.dataset.id = id;
-    el.innerHTML = `<span>${text}</span><i></i>`;
+    el.innerHTML = "<span></span><i></i>";
+    el.firstElementChild!.textContent = text;
     labelLayer.appendChild(el);
     labels.push(el);
     return el;
@@ -245,10 +255,10 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     const pos = new THREE.Vector3(c.x, heightAt(c.x, c.z) + 0.05, c.z);
     beacon(pos, c.id);
     addArc(pos, 1.6 + i * 0.5, i / 3 + 0.1, campArcs);
-    anchors.push({ el: chip(c.name, "camp", c.id), pos, id: c.id, kind: "camp" });
+    anchors.push({ el: chip(words[c.id] ?? c.id, "camp", c.id), pos, id: c.id, kind: "camp" });
   });
   beacon(summit, "summit");
-  anchors.push({ el: chip(`Summit · ${SUMMIT_M} m`, "summit", "summit"), pos: summit, id: "summit", kind: "summit" });
+  anchors.push({ el: chip(words.summit ?? `${SUMMIT_M} m`, "summit", "summit"), pos: summit, id: "summit", kind: "summit" });
 
   /* post */
   const composer = new EffectComposer(renderer);

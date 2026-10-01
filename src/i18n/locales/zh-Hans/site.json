@@ -1,0 +1,76 @@
+{
+  "cities": {
+    "plano": {
+      "name": "德州普莱诺",
+      "short": "普莱诺",
+      "long": "德克萨斯州普莱诺"
+    },
+    "hcmc": {
+      "name": "胡志明市",
+      "short": "胡志明市",
+      "long": "胡志明市"
+    },
+    "danang": {
+      "name": "岘港",
+      "short": "岘港",
+      "long": "岘港"
+    }
+  },
+  "offices": {
+    "plano": {
+      "name": "普莱诺大本营",
+      "role": "美国德克萨斯州"
+    },
+    "hcmc": {
+      "name": "胡志明市大本营",
+      "role": "越南胡志明市"
+    },
+    "danang": {
+      "name": "岘港大本营",
+      "role": "越南岘港"
+    }
+  },
+  "services": {
+    "engineering": {
+      "name": "数字产品工程",
+      "text": "UX/UI 设计、产品工程与再工程、低代码应用、测试、持续维护，以及 DevOps/DevSecOps。"
+    },
+    "insights": {
+      "name": "数字洞察与分析",
+      "text": "智能体 AI 系统、商业智能、流程建模、数据工程和分析平台。"
+    },
+    "robotics": {
+      "name": "嵌入式与 AI 机器人",
+      "text": "面向边缘设备的 AI、健康可穿戴设备、家用传感器、智能摄像头和工厂机器人。"
+    },
+    "cocreation": {
+      "name": "共创开发",
+      "text": "创意构思、体验设计、快速原型与 MVP、发布，以及产品数字营销。"
+    },
+    "managed": {
+      "name": "应用托管服务",
+      "text": "监控、故障排查、功能增强、优化、数据库管理和 CI/CD 发布管理。"
+    }
+  },
+  "sections": {
+    "mindset": "理念",
+    "values": "核心价值观",
+    "platform": "平台",
+    "work": "成果",
+    "faq": "常见问题",
+    "camps": "大本营",
+    "summit": "联系我们"
+  },
+  "pages": {
+    "about": "关于我们",
+    "careers": "加入我们",
+    "faqs": "常见问题",
+    "support": "支持",
+    "contact": "联系我们"
+  },
+  "legal": {
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "cookies": "Cookie 政策"
+  }
+}

@@ -1,0 +1,4 @@
+/* Vietnamese: Be Vietnam Pro takes the body role, because Host Grotesk lacks the tone marks (global.css › type per language) */
+@import "@fontsource/be-vietnam-pro/400.css";
+@import "@fontsource/be-vietnam-pro/500.css";
+@import "@fontsource/be-vietnam-pro/600.css";

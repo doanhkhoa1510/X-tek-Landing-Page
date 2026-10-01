@@ -1,0 +1,18 @@
+{
+  "camps": "大本营",
+  "reach": "联系方式",
+  "whatsapp": "WhatsApp",
+  "explore": "浏览",
+  "landing": "首页",
+  "company": "公司",
+  "legal": "法律信息",
+  "entry": {
+    "label": "如何读 {{brand}}",
+    "noun": "名词",
+    "sayIt": "读作：",
+    "def": "灵感源自一座山。这支团队带着产品从大本营走向顶峰。"
+  },
+  "rights": "© {{year}} {{brand}} · AI 驱动的 IT 服务与产品",
+  "tagline": "Get IT done. 留下您的印记。",
+  "toTop": "回到大本营"
+}

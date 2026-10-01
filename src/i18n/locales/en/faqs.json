@@ -1,0 +1,49 @@
+{
+  "title": "FAQs",
+  "description": "Answers about XionTechs services, collaboration across time zones, data security, and how we measure value.",
+  "head": { "a": "Frequently asked questions.", "b": "Talk to us about any question." },
+  "aside": "Ten answers about how we work. Something else? Call <call>{{phone}}</call>.",
+  "region": "Frequently asked questions",
+  "items": {
+    "services": {
+      "q": "What services does XionTechs offer?",
+      "a": "XionTechs offers digital product engineering, digital insights and analytics, product co-creation, and staffing services. These services use emerging technologies like AI/ML and generative AI. XionTechs focuses on industries such as EdTech, healthcare, logistics, and private equity."
+    },
+    "collaboration": {
+      "q": "How does XionTechs ensure seamless collaboration?",
+      "a": "Through extensive time zone coverage that gives overlap between regions, including the USA, Europe, and Australia. Collaborative tools make communication easy and give real-time project updates, wherever you are."
+    },
+    "needs": {
+      "q": "When do you address specific needs?",
+      "a": "From the project’s outset. We adapt our services to give a tailored solution, so the solution meets your goals and specific requirements exactly."
+    },
+    "benefits": {
+      "q": "What are the tangible benefits for clients?",
+      "a": "Cost-efficient solutions from skilled resources in Vietnam, on-time delivery, and measurable results that contribute directly to business growth and a higher ROI."
+    },
+    "security": {
+      "q": "How do you ensure data security?",
+      "a": "With an integrity mindset: honesty and transparency in all dealings, ethical standards, and responsible practices protect client data. Security automation and continuous scanning add further protection."
+    },
+    "centricity": {
+      "q": "Why is client centricity key?",
+      "a": "Client centricity is a core value. Client satisfaction drives long-term success, builds sustainable partnerships, and fosters mutual growth and innovation."
+    },
+    "feedback": {
+      "q": "How do clients share vision and feedback?",
+      "a": "Through dedicated channels, frequent check-ins, and a partnership approach. We integrate your input throughout the project lifecycle, so the work stays aligned with your expectations and goals."
+    },
+    "input": {
+      "q": "When do you integrate client input?",
+      "a": "Continuously, throughout development. Agile methods let us adjust quickly, keep the work collaborative, and make sure the final product matches your vision."
+    },
+    "value": {
+      "q": "How do you measure and demonstrate value?",
+      "a": "We track metrics for speed, quality, product impact, and team autonomy. This metric-driven approach keeps us transparent and accountable, shows tangible results, and validates ROI."
+    },
+    "trust": {
+      "q": "How does XionTechs build client trust?",
+      "a": "Through openness, reliability, and a steady commitment to client success: consistent performance, ethical practices, and a “Get IT Done” attitude."
+    }
+  }
+}

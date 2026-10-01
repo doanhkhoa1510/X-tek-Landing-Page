@@ -1,0 +1,30 @@
+{
+  "title": { "a": "Questions", "b": "before the climb." },
+  "more": "Something else? Read <faqs>all FAQs</faqs>, or call <call>{{phone}}</call>.",
+  "items": {
+    "what": {
+      "q": "What does XionTechs do?",
+      "a": "We are an AI-powered IT services and products team. We run five software engineering lines: digital product engineering, digital insights and analytics, embedded and AI robotics, co-creation development, and application managed services."
+    },
+    "different": {
+      "q": "What makes you different?",
+      "a": "Five things: an entrepreneurial spirit, delivery excellence across every layer of software from embedded systems to enterprise applications, metric-driven outcomes that validate ROI, an AI-powered agile development platform, and a cost-efficient partnership with skilled engineers in Vietnam."
+    },
+    "where": {
+      "q": "Where is your team?",
+      "a": "You reach us in Plano, Texas. The engineers build in Ho Chi Minh City and Da Nang, Vietnam."
+    },
+    "industries": {
+      "q": "Which industries do you know best?",
+      "a": "EdTech, healthcare, and logistics. We shape digital transformation strategies around the challenges and opportunities of each sector."
+    },
+    "process": {
+      "q": "How do you run a project?",
+      "a": "With a mature engineering framework: Agile practices combined with the BMAD-METHOD and the V-Model, supported by AI tools such as generative AI and prompt engineering. Project management is metric-driven, so you read quality and progress in numbers."
+    },
+    "start": {
+      "q": "How does a project start?",
+      "a": "Send a brief with the form below, call {{us}}, or message us on WhatsApp at {{wa}}. We reply by email."
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "logoTop": "{{brand}}，读作 {{say}}，回到顶部",
+  "logoHome": "{{brand}}，读作 {{say}}，返回首页",
+  "menu": "菜单",
+  "close": "关闭",
+  "primary": "主导航",
+  "start": "启动项目"
+}

@@ -1,0 +1,76 @@
+{
+  "title": {
+    "a": "Plateforme propulsée par l’IA",
+    "b": "pour écoles intelligentes."
+  },
+  "lede": "Chacun, à l’école, ouvre une application différente. Dessous, toutes reposent sur les mêmes agents d’IA et les mêmes données.",
+  "text": "Nous l’avons conçue pour qu’un agent superviseur lise chaque demande et la confie à l’agent fait pour cette tâche. Les appareils de la classe remontent leurs données vers une seule plateforme de données : les applications travaillent ainsi à partir de ce qui se passe dans la salle.",
+  "tiers": {
+    "users": "Utilisateurs et applications",
+    "services": "Services",
+    "infra": "Infrastructure et données",
+    "devices": "Appareils"
+  },
+  "roles": {
+    "parents": "Parents",
+    "students": "Élèves",
+    "teachers": "Enseignants",
+    "staff": "Personnel",
+    "others": "Autres"
+  },
+  "appsOf": "{{role}} : applications",
+  "apps": {
+    "parentHub": "Parent Hub",
+    "buddy": "Robots Buddy360",
+    "wellbeing": "AI Wellbeing",
+    "curriculum": "AI Curriculum Hub",
+    "reports": "Rapports scolaires",
+    "coach": "IoT Teacher Coach",
+    "other": "Autres applications"
+  },
+  "groups": {
+    "ai": "Services d’IA",
+    "agents": "Agents",
+    "app": "Services applicatifs"
+  },
+  "aiServices": {
+    "speech": "Reconnaissance et synthèse vocales",
+    "ml": "Machine learning, SLMs, LLMs"
+  },
+  "appServices": {
+    "mcp": "MCP server",
+    "backend": "Back-end"
+  },
+  "supervisor": "Agent superviseur",
+  "routedTo": "Agents vers lesquels le superviseur oriente",
+  "routes": "Oriente chaque demande",
+  "agents": {
+    "policy": "Agent des politiques",
+    "buddy": "Agent Buddy",
+    "reports": "Agent des rapports scolaires",
+    "wellbeing": "Agent du bien-être",
+    "more": "Autres agents"
+  },
+  "infra": {
+    "network": "Infrastructure et connectivité",
+    "data": "Plateforme de données moderne"
+  },
+  "parts": {
+    "auth": "Auth",
+    "gateway": "API gateway",
+    "iot": "IoT hub",
+    "edge": "Edge intelligent",
+    "ingestion": "Ingestion",
+    "storage": "Stockage",
+    "transformation": "Transformation",
+    "governance": "Gouvernance"
+  },
+  "devices": {
+    "robot": "Robots",
+    "screens": "Téléphones, tablettes, PC",
+    "watch": "Appareils portables",
+    "camera": "Caméras, drones",
+    "sensor": "Capteurs, actionneurs"
+  },
+  "caption": "Architecture de la plateforme · quatre niveaux, des personnes aux appareils"
+}

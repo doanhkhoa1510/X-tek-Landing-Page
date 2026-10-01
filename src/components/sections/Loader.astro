@@ -1,0 +1,24 @@
+---
+/* The preloader: the mark, a count to 100, the camps on the dot map, and the five service lines. */
+import { brand, cities, mark, pct, services } from "../../data/site";
+import { useT } from "../../i18n";
+
+const lang = Astro.currentLocale;
+const t = useT(lang, "loader"), ts = useT(lang, "site");
+---
+<div class="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <div class="loader-logo"><svg viewBox="0 30 294 162" set:html={mark}></svg><span class="name">{brand.name}<span class="say">{brand.ipa}</span></span></div>
+    <div class="loader-count"><span class="loader-num">0</span><span class="loader-spin"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+    <ul class="loader-left">
+      {cities.map((c) => <li>{ts(`cities.${c.id}.long`)}</li>)}<li>{t("check")}</li>
+    </ul>
+    <div class="loader-map">
+      <canvas class="dotmap" data-dotmap="#2a3b63"></canvas>
+      {cities.map((c) => <i class="map-dot" style={`--x:${pct(c.x)};--y:${pct(c.y)}`}></i>)}
+    </div>
+    <ul class="loader-right">
+      {services.map((id) => <li>{ts(`services.${id}.name`)}</li>)}
+    </ul>
+  </div>
+</div>

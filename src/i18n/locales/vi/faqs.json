@@ -1,0 +1,49 @@
+{
+  "title": "Câu hỏi thường gặp",
+  "description": "Giải đáp về dịch vụ của XionTechs, cách hợp tác xuyên múi giờ, bảo mật dữ liệu và cách chúng tôi đo lường giá trị.",
+  "head": { "a": "Câu hỏi thường gặp.", "b": "Hãy trao đổi với chúng tôi về mọi thắc mắc." },
+  "aside": "Mười câu trả lời về cách chúng tôi làm việc. Còn thắc mắc khác? Hãy gọi <call>{{phone}}</call>.",
+  "region": "Câu hỏi thường gặp",
+  "items": {
+    "services": {
+      "q": "XionTechs cung cấp những dịch vụ nào?",
+      "a": "XionTechs cung cấp dịch vụ kỹ thuật sản phẩm số, thông tin chuyên sâu và phân tích số, đồng sáng tạo sản phẩm, và dịch vụ cung ứng nhân sự. Các dịch vụ này ứng dụng công nghệ mới nổi như AI/ML và AI tạo sinh. XionTechs tập trung vào các ngành như EdTech, y tế, logistics và quỹ đầu tư tư nhân (private equity)."
+    },
+    "collaboration": {
+      "q": "XionTechs đảm bảo hợp tác liền mạch bằng cách nào?",
+      "a": "Nhờ phủ rộng nhiều múi giờ, tạo ra khung giờ làm việc trùng nhau giữa các khu vực, gồm Hoa Kỳ, châu Âu và Úc. Các công cụ cộng tác giúp giao tiếp dễ dàng và cập nhật dự án theo thời gian thực, dù bạn ở đâu."
+    },
+    "needs": {
+      "q": "Khi nào các bạn giải quyết nhu cầu cụ thể?",
+      "a": "Ngay từ khi dự án bắt đầu. Chúng tôi điều chỉnh dịch vụ để đưa ra giải pháp phù hợp, để giải pháp đáp ứng chính xác mục tiêu và yêu cầu riêng của bạn."
+    },
+    "benefits": {
+      "q": "Khách hàng nhận được những lợi ích thiết thực nào?",
+      "a": "Giải pháp tiết kiệm chi phí từ nguồn lực lành nghề tại Việt Nam, giao hàng đúng hạn và kết quả đo lường được, đóng góp trực tiếp vào tăng trưởng kinh doanh và ROI cao hơn."
+    },
+    "security": {
+      "q": "Các bạn bảo đảm an toàn dữ liệu như thế nào?",
+      "a": "Bằng tư duy chính trực: sự trung thực và minh bạch trong mọi giao dịch, chuẩn mực đạo đức và thực hành có trách nhiệm bảo vệ dữ liệu của khách hàng. Tự động hóa bảo mật và quét liên tục bổ sung thêm lớp bảo vệ."
+    },
+    "centricity": {
+      "q": "Vì sao lấy khách hàng làm trọng tâm là điều then chốt?",
+      "a": "Lấy khách hàng làm trọng tâm là một giá trị cốt lõi. Sự hài lòng của khách hàng thúc đẩy thành công dài hạn, xây dựng quan hệ đối tác bền vững và nuôi dưỡng sự phát triển và đổi mới chung."
+    },
+    "feedback": {
+      "q": "Khách hàng chia sẻ tầm nhìn và phản hồi bằng cách nào?",
+      "a": "Qua các kênh chuyên biệt, các buổi trao đổi thường xuyên và cách tiếp cận đồng hành. Chúng tôi tích hợp ý kiến của bạn xuyên suốt vòng đời dự án, để công việc luôn bám sát kỳ vọng và mục tiêu của bạn."
+    },
+    "input": {
+      "q": "Khi nào các bạn tích hợp ý kiến của khách hàng?",
+      "a": "Liên tục, trong suốt quá trình phát triển. Phương pháp Agile cho phép chúng tôi điều chỉnh nhanh, giữ công việc mang tính hợp tác và bảo đảm sản phẩm cuối cùng đúng với tầm nhìn của bạn."
+    },
+    "value": {
+      "q": "Các bạn đo lường và chứng minh giá trị như thế nào?",
+      "a": "Chúng tôi theo dõi các chỉ số về tốc độ, chất lượng, tác động của sản phẩm và tính tự chủ của đội ngũ. Cách tiếp cận dựa trên số liệu này giúp chúng tôi minh bạch và có trách nhiệm giải trình, cho thấy kết quả hữu hình và xác nhận ROI."
+    },
+    "trust": {
+      "q": "XionTechs xây dựng niềm tin của khách hàng như thế nào?",
+      "a": "Bằng sự cởi mở, đáng tin cậy và cam kết bền bỉ với thành công của khách hàng: hiệu suất nhất quán, thực hành đạo đức và tinh thần “Get IT Done”."
+    }
+  }
+}
