@@ -744,9 +744,9 @@ section { position: relative; color: var(--fg); }
 .camp.is-current .camp-tag b { color: var(--ink); }
 .climber { position: absolute; left: 0; top: 0; z-index: 1; will-change: transform; }
 .climber i { position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; background: var(--amber); rotate: 45deg; box-shadow: 0 0 0 2px var(--snow); }
-.stages { grid-column: 8 / 13; padding-bottom: 32vh; } /* room for the last stage to reach the centre, so the climber summits in view */
+.stages { grid-column: 8 / 13; padding-bottom: calc(32vh - 160px); } /* room for the last stage to reach base camp's line, so the climber summits in view */
 .stage { padding: 14vh 0; opacity: 0.32; transition: opacity 0.6s var(--ui); }
-.stage:first-child { padding-top: 6vh; }
+.stage:first-child { padding-top: calc(50vh + 80px); } /* base camp opens level with the middle of the mountain as the side pins; the climb starts there */
 .stage.is-on { opacity: 1; }
 .stage-meta { margin-top: 18px; font: 500 var(--fs-label) var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
 .stage-icon { margin-bottom: 18px; }
@@ -1157,6 +1157,8 @@ section { position: relative; color: var(--fg); }
   .trek { position: sticky; top: 0; z-index: 2; height: calc(34vh + 72px); height: calc(34svh + 72px); min-height: 250px; margin: 0 calc(-1 * var(--gutter)); background: var(--snow); }
   .trek::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 40px; background: linear-gradient(var(--snow), rgb(255 255 255 / 0)); pointer-events: none; }
   .trek-frame { inset: 84px var(--gutter) 14px; }
+  .stages { padding-bottom: 32vh; }
+  .stage:first-child { padding-top: 6vh; } /* the text runs beneath the strip, so base camp opens just under it */
   .foot-map { grid-column: 1 / -1; margin-bottom: 32px; }
   .foot-col, .foot-col:nth-child(2) { grid-column: span 3; }
 }
