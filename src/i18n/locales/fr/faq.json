@@ -1,0 +1,33 @@
+{
+  "title": {
+    "a": "Des questions",
+    "b": "avant l’ascension."
+  },
+  "more": "Autre chose ? Lisez <faqs>toute la FAQ</faqs>, ou appelez le <call>{{phone}}</call>.",
+  "items": {
+    "what": {
+      "q": "Que fait XionTechs ?",
+      "a": "Nous sommes une équipe de services et de produits IT propulsée par l’IA. Nous menons cinq lignes d’ingénierie logicielle : ingénierie de produits numériques, insights et analytique numériques, robotique embarquée et IA, développement en co-création, et services applicatifs managés."
+    },
+    "different": {
+      "q": "Qu’est-ce qui vous distingue ?",
+      "a": "Cinq atouts : un esprit entrepreneurial, l’excellence de livraison sur toutes les couches du logiciel, des systèmes embarqués aux applications d’entreprise, des résultats pilotés par les indicateurs qui valident le ROI, une plateforme de développement agile propulsée par l’IA, et un partenariat rentable avec des ingénieurs qualifiés au Vietnam."
+    },
+    "where": {
+      "q": "Où se trouve votre équipe ?",
+      "a": "Vous nous joignez à Plano, Texas. Nos ingénieurs construisent à Hô Chi Minh-Ville et à Da Nang, au Vietnam."
+    },
+    "industries": {
+      "q": "Quels secteurs connaissez-vous le mieux ?",
+      "a": "L’EdTech, la santé et la logistique. Nous façonnons les stratégies de transformation numérique selon les défis et les opportunités de chaque secteur."
+    },
+    "process": {
+      "q": "Comment menez-vous un projet ?",
+      "a": "Avec un cadre d’ingénierie mature : des pratiques Agile combinées à la BMAD-METHOD et au V-Model, appuyées par des outils d’IA tels que l’IA générative et le prompt engineering. Le pilotage de projet repose sur des indicateurs : vous lisez la qualité et l’avancement en chiffres."
+    },
+    "start": {
+      "q": "Comment démarre un projet ?",
+      "a": "Envoyez un brief avec le formulaire ci-dessous, appelez le {{us}}, ou écrivez-nous sur WhatsApp au {{wa}}. Nous répondons par e-mail."
+    }
+  }
+}

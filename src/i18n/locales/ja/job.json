@@ -1,0 +1,9 @@
+{
+  "details": "{{title}}、ポジションの詳細",
+  "facts": "ポジションの概要",
+  "type": "雇用形態",
+  "location": "勤務地",
+  "posted": "掲載日",
+  "validThrough": "有効期限",
+  "all": "採用情報一覧"
+}

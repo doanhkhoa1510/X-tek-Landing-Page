@@ -1,0 +1,11 @@
+{
+  "title": { "a": "Two base camps.", "b": "One rope team." },
+  "text": "You talk to us in Plano, Texas, in your time zone. Our engineers build in Ho Chi Minh City and Da Nang, on the other side of the clock.",
+  "daybar": {
+    "label": "Working hours in Plano and Vietnam on one 24-hour UTC clock",
+    "plano": "Plano",
+    "vietnam": "Vietnam",
+    "utc": "UTC",
+    "now": "Now"
+  }
+}

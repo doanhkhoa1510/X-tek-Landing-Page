@@ -1,0 +1,26 @@
+---
+/* The dot map of the world: route arcs between the base camps, and a live-clock chip on each camp. */
+import { arc, cities, MAP_H, MAP_W, pct } from "../data/site";
+import { useT } from "../i18n";
+
+interface Props { class?: string; buttons?: boolean }
+const { class: extra, buttons = false } = Astro.props;
+const ts = useT(Astro.currentLocale, "site");
+const [plano, hcm, dan] = cities;
+const Camp = buttons ? "button" : "div";
+---
+<div class:list={["worldmap", extra]}>
+  <canvas class="dotmap" data-dotmap="#1f3566" aria-hidden="true"></canvas>
+  <svg class="worldmap-arcs" viewBox={`0 0 ${MAP_W} ${MAP_H.toFixed(1)}`} preserveAspectRatio="none" aria-hidden="true">
+    <path class="arc-base" d={arc(plano, hcm, 110)} pathLength="1" />
+    <path class="arc-run" d={arc(plano, hcm, 110)} pathLength="1" />
+    <path class="arc-base" d={arc(hcm, dan, 30)} pathLength="1" />
+    <path class="arc-run arc-run-short" d={arc(hcm, dan, 30)} pathLength="1" />
+  </svg>
+  {cities.map((c) => (
+    <Camp class={`city city-${c.id}`} type={buttons ? "button" : undefined} data-camp={buttons ? c.id : undefined} data-cursor-label={ts(`cities.${c.id}.name`)} style={`--x:${pct(c.x)};--y:${pct(c.y)}`}>
+      <span class="city-chip"><b>{ts(`cities.${c.id}.name`)}</b> <span data-clock={c.zone}>--:--</span> {c.abbr}</span>
+      <i class="city-dot"></i>
+    </Camp>
+  ))}
+</div>

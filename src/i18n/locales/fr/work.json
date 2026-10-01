@@ -1,0 +1,49 @@
+{
+  "title": {
+    "a": "Le journal à ce jour.",
+    "b": "Les ascensions que nous avons menées."
+  },
+  "intro": "Quatre camps sur la voie du sommet : ce que nous avons atteint, ce que nous avons réalisé, les produits et les clients.",
+  "achieved": {
+    "title": "Ce que nous avons atteint",
+    "text": "L’équipe apporte plus de 25 ans d’expérience en ingénierie logicielle. Notre centre d’excellence de livraison repose sur cinq piliers : connaissance du domaine, technologies, ressources qualifiées, processus d’ingénierie et gestion de projet.",
+    "stats": {
+      "years": "Années en ingénierie logicielle",
+      "pillars": "Piliers de l’excellence de livraison",
+      "offices": "Bureaux aux États-Unis et au Vietnam"
+    },
+    "camp": "Camp de base"
+  },
+  "done": {
+    "title": "Ce que nous avons réalisé",
+    "text": "Des logiciels de bout en bout propulsés par l’IA et les technologies modernes : applications sur mesure, intégration de systèmes et solutions cloud évolutives, sur cinq lignes de services.",
+    "camp": "Camp I"
+  },
+  "products": {
+    "title": "Produits",
+    "text": "Deux produits maison pour les écoles, bâtis sur la même ingénierie que nous mettons au service de nos clients.",
+    "items": {
+      "school": {
+        "name": "Plateforme propulsée par l’IA pour écoles intelligentes",
+        "text": "Un écosystème numérique intégré pour les écoles : parcours d’apprentissage personnalisés, analytique en temps réel, notation automatisée et gestion intelligente des ressources."
+      },
+      "timetabling": {
+        "name": "Emplois du temps propulsés par l’IA",
+        "text": "Un système de planification intelligent qui automatise la création et l’optimisation des emplois du temps scolaires, et compare des emplois du temps construits à partir d’entrées et de contraintes différentes."
+      }
+    },
+    "camp": "Camp II"
+  },
+  "customers": {
+    "title": "Clients",
+    "text": "Notre connaissance du domaine est la plus profonde dans trois secteurs. En octobre 2025, un client a visité notre centre de livraison de Hô Chi Minh-Ville pour explorer l’IA et la robotique dans l’éducation.",
+    "domainsLabel": "Secteurs",
+    "domains": {
+      "edtech": "EdTech",
+      "healthcare": "Santé",
+      "logistics": "Logistique"
+    },
+    "pending": "Noms de clients et témoignages en attente · à fournir avant le lancement",
+    "camp": "Sommet"
+  }
+}

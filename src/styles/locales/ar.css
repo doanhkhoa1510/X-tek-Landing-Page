@@ -1,0 +1,12 @@
+/* Arabic: Noto Kufi Arabic for the display role (geometric and wide, the nearest match to Saira), Noto Sans Arabic for the rest */
+@import "@fontsource-variable/noto-kufi-arabic/index.css";
+@import "@fontsource-variable/noto-sans-arabic/index.css";
+
+/* the word space of the mono role: Martian Mono's fills a whole cell, which spreads Arabic labels apart */
+@font-face {
+  font-family: "XT Arabic Space";
+  src: url("../../../node_modules/@fontsource-variable/noto-sans-arabic/files/noto-sans-arabic-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0020, U+00A0;
+}

@@ -1,0 +1,18 @@
+{
+  "camps": "ベースキャンプ",
+  "reach": "連絡先",
+  "whatsapp": "WhatsApp",
+  "explore": "コンテンツ",
+  "landing": "トップページ",
+  "company": "会社情報",
+  "legal": "法的情報",
+  "entry": {
+    "label": "{{brand}}の読み方",
+    "noun": "名詞",
+    "sayIt": "発音：",
+    "def": "山に着想を得た名前。プロダクトをベースキャンプから山頂まで導くチーム。"
+  },
+  "rights": "© {{year}} {{brand}} · AIを活用したITサービスとプロダクト",
+  "tagline": "Get IT done. あなたの足跡を残しましょう。",
+  "toTop": "ベースキャンプへ戻る"
+}

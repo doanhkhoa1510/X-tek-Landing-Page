@@ -3,7 +3,7 @@
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { $, $$, goTo, hdr, hud, lenis, mountCounters, onAltitude, reduce, root, syncHeader, twoTone } from "./chrome";
+import { $, $$, goTo, hdr, hud, lenis, mountCounters, onAltitude, reduce, root, rtl, syncHeader, twoTone } from "./chrome";
 import { mountMountain } from "./mountain";
 import { mountTopo } from "./topo";
 import { mountRidge } from "./ridge";
@@ -18,9 +18,9 @@ const ride = mountRidge($<HTMLCanvasElement>(".ridge canvas"), $(".rider"));
 mountTrail($(".trek-frame"), $(".stages"));
 
 /* ---------- altimeter: the rider and both contour maps follow the reading ---------- */
-const riderAlt = $(".rider-alt");
+const riderAlt = $(".rider-alt"), riderTpl = riderAlt.dataset.tpl ?? "{n}";
 onAltitude((alt, shown) => {
-  riderAlt.textContent = `Alt ${shown} m`;
+  riderAlt.textContent = riderTpl.replace("{n}", shown);
   topo(alt);
   topoBg(alt);
 });
@@ -73,10 +73,10 @@ mm.add({ wide: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-prefer
     gsap.timeline({
       scrollTrigger: { trigger: ".routes", start: "top top", end: () => `+=${Math.max(innerHeight * 0.8, dist() * 1.15)}`, pin: true, scrub: true, invalidateOnRefresh: true, onUpdate: (s) => ride(s.progress) },
     })
-      .to(track, { x: () => -dist(), ease: "none" }, 0)
-      .to(giant, { x: () => -Math.max(0, giant.scrollWidth - innerWidth * 0.9), ease: "none" }, 0);
+      .to(track, { x: () => (rtl ? dist() : -dist()), ease: "none" }, 0)
+      .to(giant, { x: () => (rtl ? 1 : -1) * Math.max(0, giant.scrollWidth - innerWidth * 0.9), ease: "none" }, 0);
   } else {
-    gsap.to(giant, { xPercent: -45, ease: "none", scrollTrigger: { trigger: ".routes", start: "top bottom", end: "bottom top", scrub: true, onUpdate: (s) => ride(s.progress) } });
+    gsap.to(giant, { xPercent: rtl ? 45 : -45, ease: "none", scrollTrigger: { trigger: ".routes", start: "top bottom", end: "bottom top", scrub: true, onUpdate: (s) => ride(s.progress) } });
   }
   gsap.from(".svc > *", {
     autoAlpha: 0, y: 24, duration: 1, ease: "expo.out", stagger: 0.035,
@@ -96,7 +96,7 @@ mm.add({ wide: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-prefer
   );
   // stats wipe in and count; log rows rise out of their rules
   gsap.from(".stat", {
-    clipPath: "inset(0 100% 0 0)", duration: 1.2, ease: "expo.out", stagger: 0.12,
+    clipPath: rtl ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)", duration: 1.2, ease: "expo.out", stagger: 0.12,
     scrollTrigger: { trigger: ".stats", start: "top 85%" },
   });
   $$(".log").forEach((log) =>
@@ -156,7 +156,7 @@ async function boot() {
   }
   hdr.classList.add("is-waiting");
   lenis?.stop();
-  gsap.set(heroLines, { yPercent: 110 });
+  gsap.set(heroLines, { yPercent: (_: number, el: Element) => parseFloat(getComputedStyle(el).getPropertyValue("--ln-from")) || 110 });
   gsap.set(heroRest, { autoAlpha: 0, y: 24 });
   if (scene) Object.assign(scene.rig, { scale: 0.6, shift: 7, glow: 0, arcs: 0 });
 

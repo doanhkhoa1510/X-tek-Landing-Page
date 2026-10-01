@@ -1,0 +1,19 @@
+{
+  "name": "Votre nom",
+  "email": "E-mail professionnel",
+  "msg": "Que construisez-vous ?",
+  "subject": "Objet",
+  "chooseService": "Choisir un service",
+  "phone": "Téléphone",
+  "optional": "facultatif",
+  "sendBrief": "Envoyer le brief",
+  "sendRequest": "Envoyer la demande",
+  "status": {
+    "badEmail": "Cet e-mail semble incomplet. Vérifiez-le et renvoyez.",
+    "required": "Remplissez les trois champs obligatoires pour que nous sachions par où commencer.",
+    "notLive": "Pas encore envoyé : l’envoi en ligne n’est pas actif. Appelez le <call>{{phone}}</call> et nous partirons de votre brief.",
+    "sending": "Envoi de votre brief…",
+    "sent": "Brief envoyé. Nous répondons par e-mail.",
+    "failed": "Le brief n’a pas été envoyé. Réessayez ou appelez le <call>{{phone}}</call>."
+  }
+}

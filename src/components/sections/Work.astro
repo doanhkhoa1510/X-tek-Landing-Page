@@ -1,0 +1,68 @@
+---
+/* 04 · The log: achieved, done, products, customers; the climber walks the trail as each camp is read (trail.ts). */
+import { services } from "../../data/site";
+import { useT } from "../../i18n";
+
+const lang = Astro.currentLocale;
+const t = useT(lang, "work"), ts = useT(lang, "site"), tc = useT(lang, "common");
+const stats = [["years", 25, "+"], ["pillars", 5, ""], ["offices", 3, ""]] as const;
+const products = ["school", "timetabling"] as const;
+const domains = ["edtech", "healthcare", "logistics"] as const;
+---
+<section id="work" class="ascent" data-on="light" aria-labelledby="work-title">
+  <div class="ascent-bg" aria-hidden="true"><canvas></canvas></div>
+  <div class="wrap ascent-grid">
+    <div class="ascent-side">
+      <div class="ascent-head">
+        <h2 id="work-title" class="tt"><span class="tt-a">{t("title.a")}</span> <span class="tt-b">{t("title.b")}</span></h2>
+        <p>{t("intro")}</p>
+      </div>
+      <div class="trek" aria-hidden="true">
+        <div class="trek-frame" data-unit={tc("units.m")}>
+          <canvas></canvas>
+          <svg><g class="trek-scale"></g><path class="trail-way" /><path class="trail-walked" /></svg>
+          <div class="climber"><i></i></div>
+        </div>
+      </div>
+    </div>
+    <ol class="stages">
+      <li class="stage">
+        <span class="stage-icon" data-icon="clock"></span>
+        <h3>{t("achieved.title")}</h3>
+        <p>{t("achieved.text")}</p>
+        <dl class="stats stage-stats">
+          {stats.map(([id, n, unit]) => <div class="stat"><dt>{t(`achieved.stats.${id}`)}</dt><dd><span data-count={n}>{n}</span>{unit}</dd></div>)}
+        </dl>
+        <p class="stage-meta">{t("achieved.camp")}</p>
+      </li>
+      <li class="stage">
+        <span class="stage-icon" data-icon="development"></span>
+        <h3>{t("done.title")}</h3>
+        <p>{t("done.text")}</p>
+        <ul class="log">
+          {services.map((id) => <li><h4>{ts(`services.${id}.name`)}</h4><p>{ts(`services.${id}.text`)}</p></li>)}
+        </ul>
+        <p class="stage-meta">{t("done.camp")}</p>
+      </li>
+      <li class="stage">
+        <span class="stage-icon" data-icon="product"></span>
+        <h3>{t("products.title")}</h3>
+        <p>{t("products.text")}</p>
+        <ul class="log">
+          {products.map((id) => <li><h4>{t(`products.items.${id}.name`)}</h4><p>{t(`products.items.${id}.text`)}</p></li>)}
+        </ul>
+        <p class="stage-meta">{t("products.camp")}</p>
+      </li>
+      <li class="stage">
+        <span class="stage-icon" data-icon="cocreate"></span>
+        <h3>{t("customers.title")}</h3>
+        <p>{t("customers.text")}</p>
+        <ul class="tags" aria-label={t("customers.domainsLabel")}>
+          {domains.map((id) => <li>{t(`customers.domains.${id}`)}</li>)}
+        </ul>
+        <p class="pending">{t("customers.pending")}</p>
+        <p class="stage-meta">{t("customers.camp")}</p>
+      </li>
+    </ol>
+  </div>
+</section>

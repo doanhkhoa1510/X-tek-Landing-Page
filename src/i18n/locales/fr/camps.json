@@ -1,0 +1,14 @@
+{
+  "title": {
+    "a": "Deux camps de base.",
+    "b": "Une seule cordée."
+  },
+  "text": "Vous nous parlez à Plano, Texas, dans votre fuseau horaire. Nos ingénieurs construisent à Hô Chi Minh-Ville et à Da Nang, de l’autre côté de l’horloge.",
+  "daybar": {
+    "label": "Heures de travail à Plano et au Vietnam sur une horloge UTC de 24 heures",
+    "plano": "Plano",
+    "vietnam": "Vietnam",
+    "utc": "UTC",
+    "now": "Maintenant"
+  }
+}

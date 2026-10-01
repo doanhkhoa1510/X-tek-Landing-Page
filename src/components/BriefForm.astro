@@ -1,0 +1,47 @@
+---
+/* The brief: name, work email, and what they are building; the contact page adds a subject and a phone.
+   chrome.ts runs the form's states and reads their words, in the page's language, from data-status. */
+import { phones, services } from "../data/site";
+import { rich, useT } from "../i18n";
+
+interface Props { full?: boolean }
+const { full = false } = Astro.props;
+const lang = Astro.currentLocale;
+const t = useT(lang, "form"), ts = useT(lang, "site");
+const call = (s: string) => `<a href="${phones.us.href}">${s}</a>`;
+const status = {
+  badEmail: t("status.badEmail"),
+  required: t("status.required"),
+  notLive: rich(t("status.notLive", { phone: phones.us.label }), { call }),
+  sending: t("status.sending"),
+  sent: t("status.sent"),
+  failed: rich(t("status.failed", { phone: phones.us.label }), { call }),
+};
+---
+<form class:list={["brief", { "contact-form": full }]} novalidate data-endpoint="" data-status={JSON.stringify(status)}>
+  {full ? (
+    <>
+      <div class="brief-row">
+        <label>{t("name")}<input name="name" autocomplete="name" required /></label>
+        <label>{t("email")}<input name="email" type="email" autocomplete="email" required /></label>
+      </div>
+      <div class="brief-row">
+        <label>{t("subject")}
+          <select name="subject">
+            <option value="">{t("chooseService")}</option>
+            {services.map((id) => <option value={id}>{ts(`services.${id}.name`)}</option>)}
+          </select>
+        </label>
+        <label>{t("phone")} <span class="opt">{t("optional")}</span><input name="phone" type="tel" autocomplete="tel" /></label>
+      </div>
+    </>
+  ) : (
+    <>
+      <label>{t("name")}<input name="name" autocomplete="name" required /></label>
+      <label>{t("email")}<input name="email" type="email" autocomplete="email" required /></label>
+    </>
+  )}
+  <label>{t("msg")}<textarea name="msg" rows={full ? 4 : 3} required></textarea></label>
+  <p class="form-status" role="status" aria-live="polite"></p>
+  <button class="btn btn-fill" type="submit" data-scramble><span class="scr">{t(full ? "sendRequest" : "sendBrief")}</span></button>
+</form>

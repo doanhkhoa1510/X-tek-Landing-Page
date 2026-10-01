@@ -1,0 +1,30 @@
+---
+/* The languages, each named in itself, each linking to this same page in that language.
+   "menu": the current code in the header ticker opens the list (chrome.ts); "row": the footer's plain list. */
+import { localeOf, locales, localize, unlocalize } from "../i18n/config";
+import { useT } from "../i18n";
+
+interface Props { variant: "menu" | "row" }
+const { variant } = Astro.props;
+const current = localeOf(Astro.currentLocale);
+const tc = useT(current.code, "common");
+const path = unlocalize(Astro.url.pathname);
+const links = locales.map((l) => ({ ...l, href: localize(path, l.code), here: l.code === current.code }));
+---
+{variant === "menu" ? (
+  <div class="lang">
+    <button class="lang-toggle" type="button" aria-expanded="false" aria-controls="lang-list" aria-label={`${tc("locale.label")}: ${current.name} (${current.short})`}>
+      {current.short}<svg viewBox="0 0 8 5" aria-hidden="true"><path d="M.7.7 4 4 7.3.7" /></svg>
+    </button>
+    <ul id="lang-list" class="lang-list" aria-label={tc("locale.list")}>
+      {links.map((l) => (
+        <li><a href={l.href} hreflang={l.code} aria-current={l.here ? "true" : undefined}><span lang={l.code}>{l.name}</span><span class="lang-code" aria-hidden="true">{l.short}</span></a></li>
+      ))}
+    </ul>
+  </div>
+) : (
+  <nav class="wrap foot-langs" aria-label={tc("locale.list")}>
+    <span class="label" aria-hidden="true">{tc("locale.label")}</span>
+    {links.map((l) => <a href={l.href} hreflang={l.code} lang={l.code} aria-current={l.here ? "true" : undefined}>{l.name}</a>)}
+  </nav>
+)}

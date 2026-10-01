@@ -1,0 +1,8 @@
+---
+import NotFound from "../../components/pages/NotFound.astro";
+import { localePaths } from "../../i18n/config";
+
+// English keeps /404.html; every other language gets /<locale>/404/
+export const getStaticPaths = () => localePaths().filter(({ params }) => params.lang);
+---
+<NotFound />

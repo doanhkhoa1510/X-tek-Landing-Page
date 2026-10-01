@@ -1,0 +1,76 @@
+{
+  "cities": {
+    "plano": {
+      "name": "Plano, TX",
+      "short": "Plano",
+      "long": "Plano, Texas"
+    },
+    "hcmc": {
+      "name": "Hô Chi Minh-Ville",
+      "short": "HCMV",
+      "long": "Hô Chi Minh-Ville"
+    },
+    "danang": {
+      "name": "Da Nang",
+      "short": "Da Nang",
+      "long": "Da Nang"
+    }
+  },
+  "offices": {
+    "plano": {
+      "name": "Camp de base de Plano",
+      "role": "Texas, États-Unis"
+    },
+    "hcmc": {
+      "name": "Camp de base de HCMV",
+      "role": "Hô Chi Minh-Ville, Vietnam"
+    },
+    "danang": {
+      "name": "Camp de base de Da Nang",
+      "role": "Da Nang, Vietnam"
+    }
+  },
+  "services": {
+    "engineering": {
+      "name": "Ingénierie de produits numériques",
+      "text": "Conception UX/UI, ingénierie et réingénierie de produits, applications low-code, tests, maintenance, et DevOps/DevSecOps."
+    },
+    "insights": {
+      "name": "Insights et analytique numériques",
+      "text": "Systèmes d’IA agentique, business intelligence, modélisation de processus, ingénierie des données et plateformes d’analytique."
+    },
+    "robotics": {
+      "name": "Robotique embarquée et IA",
+      "text": "IA pour appareils edge, objets connectés de santé, capteurs domestiques, caméras intelligentes et robots d’usine."
+    },
+    "cocreation": {
+      "name": "Développement en co-création",
+      "text": "Idéation, design d’expérience, prototypes rapides et MVP, lancement et marketing digital des produits."
+    },
+    "managed": {
+      "name": "Services applicatifs managés",
+      "text": "Supervision, dépannage, évolution, optimisation, administration de bases de données et gestion des livraisons CI/CD."
+    }
+  },
+  "sections": {
+    "mindset": "État d’esprit",
+    "values": "Valeurs clés",
+    "platform": "Plateforme",
+    "work": "Réalisations",
+    "faq": "FAQ",
+    "camps": "Camps de base",
+    "summit": "Contact"
+  },
+  "pages": {
+    "about": "À propos",
+    "careers": "Carrières",
+    "faqs": "FAQ",
+    "support": "Assistance",
+    "contact": "Nous contacter"
+  },
+  "legal": {
+    "privacy": "Confidentialité",
+    "terms": "Conditions d’utilisation",
+    "cookies": "Politique de cookies"
+  }
+}

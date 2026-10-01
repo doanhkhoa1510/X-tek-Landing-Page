@@ -1,0 +1,36 @@
+---
+/* 06 · Contact: where we are, then the brief. One night, from the dusk limb to the dawn above the footer. */
+import WorldMap from "../WorldMap.astro";
+import { offices } from "../../data/site";
+import { useT } from "../../i18n";
+
+const lang = Astro.currentLocale;
+const t = useT(lang, "camps"), ts = useT(lang, "site");
+---
+<section id="camps" class="camps" data-on="dark" aria-labelledby="camps-title">
+  <div class="horizon dusk dusk-ice" aria-hidden="true"></div>
+  <div class="wrap camps-head">
+    <h2 id="camps-title" class="tt"><span class="tt-a">{t("title.a")}</span> <span class="tt-b">{t("title.b")}</span></h2>
+    <div class="camps-copy">
+      <p>{t("text")}</p>
+      <div class="daybar" aria-label={t("daybar.label")}>
+        <div class="daybar-row"><span>{t("daybar.plano")}</span><div class="track-24"><i class="work" data-zone="America/Chicago"></i></div></div>
+        <div class="daybar-row"><span>{t("daybar.vietnam")}</span><div class="track-24"><i class="work" data-zone="Asia/Ho_Chi_Minh"></i></div></div>
+        <div class="daybar-axis"><span>00 {t("daybar.utc")}</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+        <i class="now" aria-hidden="true"><span>{t("daybar.now")}</span></i>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <WorldMap buttons />
+    <ul class="offices">
+      {offices.map((o) => (
+        <li>
+          <h3>{ts(`offices.${o.id}.name`)}</h3>
+          <p>{ts(`offices.${o.id}.role`)}</p>
+          {o.lines.length > 0 && <address><bdi>{o.lines[0]}</bdi><br /><bdi>{o.lines[1]}</bdi></address>}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

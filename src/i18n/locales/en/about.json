@@ -1,0 +1,39 @@
+{
+  "title": "About us",
+  "description": "XionTechs distinguishes itself through its dedication to its people, processes, and technology: six core values, one “Get IT Done” attitude.",
+  "head": { "a": "About us.", "b": "We are increasing business success with IT solutions." },
+  "lede": "XionTechs distinguishes itself through its dedication to its people, processes, and technology, as the core values below show.",
+  "values": {
+    "title": { "a": "Core values.", "b": "People, processes, technology." },
+    "items": {
+      "startup": { "name": "Startup spirit", "text": "Entrepreneurial, agile, and flexible." },
+      "client": { "name": "Client centricity", "text": "Outcomes focused for clients." },
+      "integrity": { "name": "Integrity mindset", "text": "Honesty and transparency." },
+      "innovation": { "name": "Innovation passion", "text": "Stay ahead of the curve." },
+      "done": { "name": "“Get IT Done” attitude", "text": "Ownership and commitment." },
+      "home": { "name": "Beyond employees culture", "text": "A culture of home feeling." }
+    }
+  },
+  "figures": {
+    "label": "XionTechs in figures",
+    "items": {
+      "years": "Years of experience",
+      "commitment": "Client commitment",
+      "coverage": "Global coverage",
+      "verticals": "Industry verticals",
+      "offerings": "Service offerings"
+    }
+  },
+  "why": {
+    "title": { "a": "Why choose us.", "b": "Professional IT services, every aspect." },
+    "lede": "Choose XionTechs for integrated solutions, industry experience, and metric-driven delivery. We bring product ideas to life through collaborative creation and a “Get IT Done” attitude.",
+    "reasons": {
+      "client": "Client centricity focus",
+      "integrity": "Integrity and ethical standards",
+      "quality": "High quality delivery",
+      "rapid": "Rapid product engineering",
+      "reliable": "Reliable solutions",
+      "team": "24/7 expert team"
+    }
+  }
+}

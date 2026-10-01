@@ -1,0 +1,17 @@
+{
+  "survey": "Relevé du sommet · courbes de niveau de 10 m",
+  "title": {
+    "a": "Tout commence par une histoire.",
+    "b": "Une montagne est notre symbole."
+  },
+  "story": [
+    "Le nom Xion s’inspire du mont Sion. Pour nous, la montagne est à la fois un symbole et un objectif : un lieu élevé que l’on atteint ensemble.",
+    "Avec cet objectif, un groupe de pionniers a fondé XionTechs en Amérique. Leur ambition : créer une communauté où l’on s’unit, où l’on exploite les technologies de pointe et où l’on bâtit des systèmes IT exceptionnels pour faire progresser l’humanité.",
+    "Aujourd’hui, cette communauté travaille depuis Plano, Hô Chi Minh-Ville et Da Nang."
+  ],
+  "mission": {
+    "title": "Notre mission",
+    "text": "Fournir des services et des produits IT de pointe pilotés par l’IA, qui résolvent des défis complexes, donnent aux entreprises et aux individus les moyens d’agir, favorisent la collaboration entre technologie et valeurs humaines, et créent un impact positif et durable dans le monde entier."
+  },
+  "next": "Nos valeurs fondamentales"
+}

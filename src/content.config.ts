@@ -1,9 +1,12 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
+// one file per language: <collection>/<locale>/<slug>.md, with ids kept as "<locale>/<slug>" (src/i18n/content.ts reads them)
+const perLocale = (base: string) => glob({ pattern: "*/*.md", base, generateId: ({ entry }) => entry.replace(/\.md$/, "") });
+
 // long-form pages carried over from the old xiontechs.com: legal texts and the support center
 const docs = defineCollection({
-  loader: glob({ pattern: "*.md", base: "./src/content/docs" }),
+  loader: perLocale("./src/content/docs"),
   schema: z.object({
     title: z.string(),
     kicker: z.string(),
@@ -15,7 +18,7 @@ const docs = defineCollection({
 
 // job posts from the old careers board; the slugs keep their /job/<slug>/ URLs
 const jobs = defineCollection({
-  loader: glob({ pattern: "*.md", base: "./src/content/jobs" }),
+  loader: perLocale("./src/content/jobs"),
   schema: z.object({
     title: z.string(),
     type: z.string(),

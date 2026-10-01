@@ -1,0 +1,24 @@
+---
+/* 06 · Summit: the brief, the last thing asked before daylight. */
+import BriefForm from "../BriefForm.astro";
+import { email, phones } from "../../data/site";
+import { useT } from "../../i18n";
+
+const lang = Astro.currentLocale;
+const t = useT(lang, "summit"), tc = useT(lang, "common");
+---
+<section id="summit" class="summit" data-on="dark" aria-labelledby="summit-title">
+  <div class="wrap summit-grid">
+    <div class="summit-head">
+      <h2 id="summit-title" class="tt"><span class="tt-a">{t("title.a")}</span> <span class="tt-b">{t("title.b")}</span></h2>
+      <p>{t("text")}</p>
+      <ul class="summit-lines">
+        <li><a href={phones.us.href} data-scramble><span class="scr">{tc("call", { phone: phones.us.label })}</span></a></li>
+        <li><a href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">{tc("whatsapp", { phone: phones.wa.label })}</span></a></li>
+        <li><a href={`mailto:${email}`} data-scramble><span class="scr">{email}</span></a></li>
+      </ul>
+    </div>
+    <BriefForm />
+  </div>
+  <div class="horizon dawn" aria-hidden="true"></div>
+</section>

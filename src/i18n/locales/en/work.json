@@ -1,0 +1,42 @@
+{
+  "title": { "a": "The log so far.", "b": "Climbs we have led." },
+  "intro": "Four camps on the way up: what we have achieved, what we have done, the products, and the customers.",
+  "achieved": {
+    "title": "What we have achieved",
+    "text": "The team brings more than 25 years of experience in software engineering. Our delivery center of excellence stands on five pillars: domain knowledge, technologies, skilled resources, engineering process, and project management.",
+    "stats": {
+      "years": "Years in software engineering",
+      "pillars": "Pillars of delivery excellence",
+      "offices": "Offices in the USA and Vietnam"
+    },
+    "camp": "Base camp"
+  },
+  "done": {
+    "title": "What we have done",
+    "text": "End-to-end software powered by AI and modern technologies: custom applications, system integration, and scalable cloud solutions, across five service lines.",
+    "camp": "Camp I"
+  },
+  "products": {
+    "title": "Products",
+    "text": "Two products of our own for schools, built on the same engineering we bring to client work.",
+    "items": {
+      "school": {
+        "name": "AI-powered platform for smart schools",
+        "text": "An integrated digital ecosystem for schools: personalized learning paths, real-time analytics, automated grading, and smart resource management."
+      },
+      "timetabling": {
+        "name": "AI-powered timetabling",
+        "text": "An intelligent scheduling system that automates the creation and optimization of academic timetables, and compares timetables built from different inputs and constraints."
+      }
+    },
+    "camp": "Camp II"
+  },
+  "customers": {
+    "title": "Customers",
+    "text": "Our domain knowledge runs deepest in three sectors. In October 2025, a client visited our Ho Chi Minh City delivery center to explore AI and robotics in education.",
+    "domainsLabel": "Domains",
+    "domains": { "edtech": "EdTech", "healthcare": "Healthcare", "logistics": "Logistics" },
+    "pending": "Customer names and quotes pending · supply before launch",
+    "camp": "Summit"
+  }
+}

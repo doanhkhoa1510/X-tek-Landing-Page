@@ -1,0 +1,45 @@
+---
+/* Closed posts from the old careers board, kept at their old /job/<slug>/ URLs; each language adds its prefix. */
+import { render } from "astro:content";
+import Sub from "../../../layouts/Sub.astro";
+import Cta from "../../../components/Cta.astro";
+import { recruit } from "../../../data/site";
+import { localePaths, localize } from "../../../i18n/config";
+import { entryFor, slugs } from "../../../i18n/content";
+import { useT } from "../../../i18n";
+
+export async function getStaticPaths() {
+  const jobs = await slugs("jobs");
+  return localePaths().flatMap(({ params }) => jobs.map((slug) => ({ params: { ...params, slug } })));
+}
+
+const lang = Astro.currentLocale;
+const t = useT(lang, "job"), tj = useT(lang, "careers"), tc = useT(lang, "common");
+const { entry, translated } = await entryFor("jobs", Astro.params.slug!, lang);
+const { Content } = await render(entry);
+const { title, type, location, posted, validThrough, category, status, summary } = entry.data;
+const facts = [
+  [t("type"), type],
+  [t("location"), location],
+  [t("posted"), posted],
+  [t("validThrough"), validThrough],
+];
+const textLang = translated ? undefined : "en";
+---
+<Sub title={title} description={summary} a={tj("head.a")} b={title} lede={summary} meta={[status, category]} lang={textLang} note={translated ? undefined : tc("englishOnly")}>
+  <section class="doc job" data-on="light" aria-label={t("details", { title })}>
+    <div class="wrap doc-grid">
+      <aside class="doc-toc job-facts" aria-label={t("facts")}>
+        <dl>
+          {facts.map(([k, v]) => <div><dt class="label">{k}</dt><dd lang={textLang} dir={textLang && "ltr"}>{v}</dd></div>)}
+        </dl>
+        <a class="btn btn-line" href={localize("/careers/", lang)} data-scramble><span class="scr">{t("all")}</span></a>
+      </aside>
+      <div class="prose" lang={textLang} dir={textLang && "ltr"}>
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <Cta a={tj("cta.a")} b={tj("cta.b")} href={`mailto:${recruit}`} label={recruit} call={false} />
+</Sub>

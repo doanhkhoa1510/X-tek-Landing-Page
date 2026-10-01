@@ -1,0 +1,31 @@
+---
+import Sub from "../../layouts/Sub.astro";
+import Cta from "../../components/Cta.astro";
+import { phones } from "../../data/site";
+import { localePaths } from "../../i18n/config";
+import { rich, useT } from "../../i18n";
+
+export const getStaticPaths = localePaths;
+
+const t = useT(Astro.currentLocale, "faqs");
+const faqs = ["services", "collaboration", "needs", "benefits", "security", "centricity", "feedback", "input", "value", "trust"] as const;
+const aside = rich(t("aside", { phone: phones.us.label }), { call: (s) => `<a href="${phones.us.href}">${s}</a>` });
+---
+<Sub title={t("title")} description={t("description")} a={t("head.a")} b={t("head.b")}>
+  <p slot="aside" class="page-lede" set:html={aside} />
+
+  <section class="faq faq-page" data-on="light" aria-label={t("region")}>
+    <div class="wrap faq-grid">
+      <div class="faq-list">
+        {faqs.map((id, i) => (
+          <div class="qa">
+            <h2><button id={`q${i}`} type="button" aria-expanded="false" aria-controls={`a${i}`}>{t(`items.${id}.q`)}<span class="plus" aria-hidden="true"></span></button></h2>
+            <div id={`a${i}`} class="qa-a" role="region" aria-labelledby={`q${i}`} hidden><p>{t(`items.${id}.a`)}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Sub>

@@ -1,0 +1,42 @@
+{
+  "title": { "a": "Nhật ký đến nay.", "b": "Những chặng leo chúng tôi đã dẫn dắt." },
+  "intro": "Bốn trại trên đường lên: những gì chúng tôi đã đạt được, đã làm, các sản phẩm và khách hàng.",
+  "achieved": {
+    "title": "Những gì chúng tôi đã đạt được",
+    "text": "Đội ngũ mang đến hơn 25 năm kinh nghiệm trong kỹ thuật phần mềm. Trung tâm xuất sắc về triển khai của chúng tôi đứng trên năm trụ cột: kiến thức chuyên ngành, công nghệ, nguồn lực lành nghề, quy trình kỹ thuật và quản lý dự án.",
+    "stats": {
+      "years": "Năm trong kỹ thuật phần mềm",
+      "pillars": "Trụ cột của năng lực triển khai xuất sắc",
+      "offices": "Văn phòng tại Hoa Kỳ và Việt Nam"
+    },
+    "camp": "Trại căn cứ"
+  },
+  "done": {
+    "title": "Những gì chúng tôi đã làm",
+    "text": "Phần mềm trọn gói được hỗ trợ bởi AI và công nghệ hiện đại: ứng dụng tùy chỉnh, tích hợp hệ thống và giải pháp đám mây có khả năng mở rộng, trên năm mảng dịch vụ.",
+    "camp": "Trại I"
+  },
+  "products": {
+    "title": "Sản phẩm",
+    "text": "Hai sản phẩm của riêng chúng tôi dành cho trường học, xây dựng trên chính nền tảng kỹ thuật mà chúng tôi dùng cho dự án của khách hàng.",
+    "items": {
+      "school": {
+        "name": "Nền tảng ứng dụng AI cho trường học thông minh",
+        "text": "Một hệ sinh thái số tích hợp cho trường học: lộ trình học tập cá nhân hóa, phân tích theo thời gian thực, chấm điểm tự động và quản lý tài nguyên thông minh."
+      },
+      "timetabling": {
+        "name": "Xếp thời khóa biểu ứng dụng AI",
+        "text": "Một hệ thống lập lịch thông minh tự động hóa việc tạo và tối ưu thời khóa biểu, đồng thời so sánh các thời khóa biểu được xây dựng từ những đầu vào và ràng buộc khác nhau."
+      }
+    },
+    "camp": "Trại II"
+  },
+  "customers": {
+    "title": "Khách hàng",
+    "text": "Kiến thức chuyên ngành của chúng tôi sâu nhất ở ba lĩnh vực. Tháng 10 năm 2025, một khách hàng đã đến thăm trung tâm triển khai của chúng tôi tại TP. Hồ Chí Minh để tìm hiểu về AI và robot trong giáo dục.",
+    "domainsLabel": "Lĩnh vực",
+    "domains": { "edtech": "EdTech", "healthcare": "Y tế", "logistics": "Logistics" },
+    "pending": "Tên khách hàng và lời chứng thực đang chờ · bổ sung trước khi ra mắt",
+    "camp": "Đỉnh"
+  }
+}

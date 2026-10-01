@@ -1,0 +1,37 @@
+---
+/* Long-form pages kept from the old site at their old URLs: /support/, /privacy-policy/, /terms-of-service/, /cookie-policy/.
+   App store listings link to the support and privacy URLs, so those paths must not move; each language adds its prefix. */
+import { render } from "astro:content";
+import Sub from "../../layouts/Sub.astro";
+import { localePaths } from "../../i18n/config";
+import { entryFor, slugs } from "../../i18n/content";
+import { useT } from "../../i18n";
+
+export async function getStaticPaths() {
+  const docs = await slugs("docs");
+  return localePaths().flatMap(({ params }) => docs.map((doc) => ({ params: { ...params, doc } })));
+}
+
+const lang = Astro.currentLocale;
+const t = useT(lang, "doc"), tc = useT(lang, "common");
+const { entry, translated } = await entryFor("docs", Astro.params.doc!, lang);
+const { Content, headings } = await render(entry);
+const { title, kicker, description, lede, meta } = entry.data;
+const toc = headings.filter((h) => h.depth === 2);
+const textLang = translated ? undefined : "en";
+---
+<Sub title={title.replace(/[.。।]$/u, "")} description={description} a={kicker} b={title} lede={lede} meta={meta} lang={textLang} note={translated ? undefined : tc("englishOnly")}>
+  <section class="doc" data-on="light" aria-label={title}>
+    <div class="wrap doc-grid">
+      <nav class="doc-toc" aria-label={t("toc")}>
+        <p class="label">{t("toc")}</p>
+        <ol lang={textLang} dir={textLang && "ltr"}>
+          {toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
+        </ol>
+      </nav>
+      <div class="prose" lang={textLang} dir={textLang && "ltr"}>
+        <Content />
+      </div>
+    </div>
+  </section>
+</Sub>

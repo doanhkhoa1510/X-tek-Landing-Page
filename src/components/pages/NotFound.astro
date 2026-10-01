@@ -1,0 +1,15 @@
+---
+/* The 404 body, shared by /404.html and each language's /<locale>/404/ (nginx serves the one matching the path). */
+import Sub from "../../layouts/Sub.astro";
+import { localize } from "../../i18n/config";
+import { useT } from "../../i18n";
+
+const lang = Astro.currentLocale;
+const t = useT(lang, "notFound"), ts = useT(lang, "site");
+---
+<Sub title={t("title")} description={t("description")} a={t("head.a")} b={t("head.b")} lede={t("lede")}>
+  <div slot="aside" class="actions page-actions">
+    <a class="btn btn-fill" href={localize("/", lang)} data-scramble><span class="scr">{t("home")}</span></a>
+    <a class="btn btn-line" href={localize("/contact-us/", lang)} data-scramble><span class="scr">{ts("pages.contact")}</span></a>
+  </div>
+</Sub>

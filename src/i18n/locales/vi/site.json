@@ -1,0 +1,55 @@
+{
+  "cities": {
+    "plano": { "name": "Plano, TX", "short": "Plano", "long": "Plano, Texas" },
+    "hcmc": { "name": "TP. Hồ Chí Minh", "short": "TP.HCM", "long": "Thành phố Hồ Chí Minh" },
+    "danang": { "name": "Đà Nẵng", "short": "Đà Nẵng", "long": "Đà Nẵng" }
+  },
+  "offices": {
+    "plano": { "name": "Trại căn cứ Plano", "role": "Texas, Hoa Kỳ" },
+    "hcmc": { "name": "Trại căn cứ TP.HCM", "role": "TP. Hồ Chí Minh, Việt Nam" },
+    "danang": { "name": "Trại căn cứ Đà Nẵng", "role": "Đà Nẵng, Việt Nam" }
+  },
+  "services": {
+    "engineering": {
+      "name": "Kỹ thuật sản phẩm số",
+      "text": "Thiết kế UX/UI, kỹ thuật và tái kỹ thuật sản phẩm, ứng dụng low-code, kiểm thử, bảo trì và DevOps/DevSecOps."
+    },
+    "insights": {
+      "name": "Thông tin chuyên sâu và phân tích số",
+      "text": "Hệ thống AI tác tử, business intelligence, mô hình hóa quy trình, kỹ thuật dữ liệu và nền tảng phân tích."
+    },
+    "robotics": {
+      "name": "Hệ thống nhúng và robot AI",
+      "text": "AI cho thiết bị biên, thiết bị đeo theo dõi sức khỏe, cảm biến gia đình, camera thông minh và robot nhà máy."
+    },
+    "cocreation": {
+      "name": "Phát triển đồng sáng tạo",
+      "text": "Hình thành ý tưởng, thiết kế trải nghiệm, nguyên mẫu nhanh và MVP, ra mắt và tiếp thị số cho sản phẩm."
+    },
+    "managed": {
+      "name": "Dịch vụ quản lý ứng dụng",
+      "text": "Giám sát, xử lý sự cố, cải tiến, tối ưu hóa, quản trị cơ sở dữ liệu và quản lý phát hành CI/CD."
+    }
+  },
+  "sections": {
+    "mindset": "Tư duy",
+    "values": "Giá trị cốt lõi",
+    "platform": "Nền tảng",
+    "work": "Dự án",
+    "faq": "Hỏi đáp",
+    "camps": "Các trại căn cứ",
+    "summit": "Liên hệ"
+  },
+  "pages": {
+    "about": "Giới thiệu",
+    "careers": "Tuyển dụng",
+    "faqs": "Câu hỏi thường gặp",
+    "support": "Hỗ trợ",
+    "contact": "Liên hệ"
+  },
+  "legal": {
+    "privacy": "Chính sách quyền riêng tư",
+    "terms": "Điều khoản dịch vụ",
+    "cookies": "Chính sách cookie"
+  }
+}

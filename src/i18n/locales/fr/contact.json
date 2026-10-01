@@ -1,0 +1,14 @@
+{
+  "title": "Nous contacter",
+  "description": "Demandez les services de XionTechs : bureaux à Plano, Texas, Hô Chi Minh-Ville et Da Nang. Appelez le {{phone}} ou écrivez à {{email}}.",
+  "head": {
+    "a": "Nous contacter.",
+    "b": "Demande de services."
+  },
+  "lede": "Dites-nous ce que vous construisez et où vous voulez aller. Nous répondons par e-mail.",
+  "region": "Bureaux et formulaire de demande",
+  "addresses": "Nos adresses",
+  "maps": "Ouvrir la carte",
+  "call": "Appelez-nous à tout moment",
+  "email": "Envoyer un e-mail"
+}
