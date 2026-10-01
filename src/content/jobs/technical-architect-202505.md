@@ -6,7 +6,7 @@ posted: "May 10, 2025"
 validThrough: "June 30, 2025"
 category: "Software development"
 status: "Offer ended on 30.06.2025"
-summary: "We are seeking a highly skilled and forward-thinking Technical Architect to join our team. You will play a key role in shaping the technical direction of our projects, contributing to architecture design, and ensuring solutions are scalable, secure, and future-ready."
+summary: "We are seeking a highly skilled and forward-thinking Technical Architect to join our team. You will play a key role in shaping the technical direction of our projects and contributing to architecture design. The solutions you shape should be secure, and scalable enough to stay future-ready."
 ---
 ## Role Responsibilities
 

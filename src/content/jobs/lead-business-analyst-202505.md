@@ -6,7 +6,7 @@ posted: "May 10, 2025"
 validThrough: "June 30, 2025"
 category: "Software development"
 status: "Offer ended on 30.06.2025"
-summary: "We are seeking talented, Lead Business Analyst to join our team, contribute to our initiatives, and stay abreast of the latest technological advancements."
+summary: "We are seeking a talented Lead Business Analyst to join our team and contribute to our initiatives."
 ---
 ## Role Responsibilities
 

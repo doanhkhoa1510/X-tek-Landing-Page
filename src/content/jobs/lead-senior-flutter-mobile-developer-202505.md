@@ -6,14 +6,14 @@ posted: "May 10, 2025"
 validThrough: "June 30, 2025"
 category: "Software development"
 status: "Offer ended on 30.06.2025"
-summary: "We are seeking talented, Senior Flutter Mobile Developer and Flutter Technical Lead to join our team, contribute to our initiatives, and stay abreast of the latest technological advancements."
+summary: "We are seeking a talented Senior Flutter Mobile Developer and Flutter Technical Lead to join our team and contribute to our initiatives."
 ---
 ## Role Responsibilities
 
 - Study project requirements, solution architecture and current source code (if available).
-- Design, Develop Flutter applications for both iOS and Android, ensuring they are high-performing, stable, and scalable.
-- Maintain and enhance the existing codebase, improving its performance, stability, and scalability.
-- Work with backend developers to ensure seamless integration with RESTful APIs.
+- Design, Develop Flutter applications for both iOS and Android, ensuring they are high-performing and stable.
+- Maintain and enhance the existing codebase, improving its performance and scalability.
+- Work with backend developers to integrate with RESTful APIs.
 - Collaborate with cross-functional teams to define, design, and implement new features.
 - Investigate and diagnose software defects, identifying root causes and implementing effective fixes.
 
