@@ -1,11 +1,37 @@
 ---
 name: desloppify
-description: Rewrite user-facing copy so it does not read as AI-generated slop. Use when the user invokes /desloppify, or asks to de-AI, humanize, or clean up the visible text of the site (headings, paragraphs, buttons, labels, meta descriptions, markdown content). Only text a visitor sees is in scope; code comments and identifiers are not.
+description: Rework the sentence structure of user-facing copy so it does not read as AI-generated slop. Use when the user invokes /desloppify, or asks to de-AI, humanize, or clean up the visible text of the site (headings, paragraphs, buttons, labels, meta descriptions, markdown content). Only text a visitor sees is in scope; code comments and identifiers are not.
 user-invocable: true
 argument-hint: "[file, page, or section; default is all user-facing text]"
 ---
 
-Edit the words a visitor reads so they sound like a person at XionTechs wrote them. Keep the meaning and the facts. Change the phrasing.
+Edit the copy a visitor reads so it does not carry the sentence shapes of AI writing. The target is structure, not vocabulary. Keep the meaning, the facts, the words, and the voice. Change how the sentence is built.
+
+## Structure, not vocabulary
+
+AI copy gives itself away through its shapes: three-item lists, "not just X" setups, mirrored pairs, punchy one-line closers, dashes. A rich word on its own is not slop.
+
+- Fix a flagged sentence by restructuring it: merge two clauses, split one sentence into two, subordinate one item to another, reorder, or drop a padded item. Reuse the original words.
+- Do not swap words for plainer synonyms. "Leverage", "foster", "cutting-edge", "transformative" stay when they are used once and the sentence carries them. A lavish word is fine.
+- Change a word only when it is one of these:
+  - Repeated: the same showy word or phrase appears more than once on a page. Keep the strongest use and rework the others.
+  - Abused: a stock collocation that now reads as filler, such as "seamless integration", "unlock your potential", "elevate your experience", "in today's fast-paced world".
+  - A strong AI marker: delve, tapestry, testament to, realm, multifaceted, ever-evolving, navigate the complexities, a symphony of.
+- Even then, prefer a structural fix over a synonym.
+
+Bad: `We embrace creativity, leverage emerging technologies, and continuously explore better ways to solve problems.` to `We embrace creativity, use emerging technologies, and ...` (word swapped, triad left in place)
+Good: `We embrace creativity and leverage emerging technologies, always looking for better ways to solve problems.` (same words, the third verb becomes a trailing clause)
+
+## Keep the meaning and the voice
+
+- Only edit a sentence that matches a hard rule or a listed tell. If a sentence trips nothing, leave it alone, even if you would have written it differently.
+- Keep the meaning. Do not narrow, widen, or reinterpret a claim.
+- Keep idioms, metaphors, and figures of speech ("stay ahead of the curve", "rope team", "name your summit") as written. Do not turn a figurative line into a literal one, or the other way round.
+- Short mottos, slogans, and headlines change only when they contain a hard-rule violation.
+- If the only fix you can find changes the meaning or the voice, leave the sentence and list it in the report.
+
+Bad: `Stay ahead of the curve.` to `We try new technology early.` (no rule broken; idiom flattened)
+Good: leave it.
 
 ## Scope
 
@@ -39,7 +65,7 @@ Good: `We build the platform - and we run it.` or `We build the platform. We run
 
 ### 2. No "not just X, it's Y"
 
-This family sets up a claim nobody made, then knocks it down. Say Y directly.
+This family sets up a claim nobody made, then knocks it down. Say Y directly, in its own words.
 
 Variants to catch:
 
@@ -50,35 +76,36 @@ Variants to catch:
 - "Not X. Not Y. Just Z."
 
 Bad: `It's not just software, it's a partnership.`
-Good: `We stay on after launch and run what we built.`
+Good: `We build the software as a partnership.`
 
-The good version names the concrete thing behind the abstract one. If no concrete thing exists in the source material, cut the sentence. Never invent one.
+If X carries real information, fold it into the sentence as a plain clause. Never invent a concrete detail to replace it.
 
 ### 3. No lists of three for rhythm
 
 AI copy reaches for three items because three sounds complete: "fast, secure, and scalable", "We listen. We build. We deliver.", "A provides X, Y, and Z".
 
-- Rhetorical triad (adjectives, verbs, slogans, parallel short sentences): keep the one or two items that carry weight, or replace the set with the concrete thing it stands for.
+- Rhetorical triad (adjectives, verbs, nouns, parallel short sentences): break the even cadence. Pair two items and hang the third off them as a clause, move one item into its own sentence, or drop an item that only pads the rhythm. Keep the words of the items you keep.
 - Factual set that happens to have three members (three offices, three domains): keep every fact. Do not drop a real item to dodge the rule. Break the cadence instead: put the items in a list or UI element, or split the sentence.
 - Do not pad to four to escape the rule either.
+- A list already set as bullets or chips is a list, not a triad. Leave it.
 
 Bad: `Our platform is fast, secure, and scalable.`
-Good: `The platform runs every school on one shared data layer.`
+Good: `Our platform is fast and secure, and it scales as you grow.`
 
 Bad: `Offices in Plano, Ho Chi Minh City, and Da Nang.`
-Good: `Plano is the US base. The Vietnam team works from Ho Chi Minh City and Da Nang.`
+Good: `Offices in Plano, Texas, and in Vietnam at Ho Chi Minh City and Da Nang.`
 
 ## Other tells to fix
 
 Fix these when you see them. They matter less than the hard rules, so judge each one in context.
 
-- Inflated words: delve, seamless, leverage, robust, elevate, unlock, empower, cutting-edge, state-of-the-art, game-changer, transformative, harness, tapestry, landscape, realm, testament, synergy, world-class, best-in-class. Use the plain word or the specific claim.
 - Stock openers and closers: "In today's fast-paced world", "Whether you're X or Y", "Ready to take X to the next level?", "Let's dive in", "At the end of the day".
 - Reveal tricks: "The result? X.", "Here's the thing:", "The best part?". State X.
-- Empty intensifiers: truly, incredibly, deeply, genuinely, truly unique.
+- Empty intensifiers stacked on a claim: truly, incredibly, deeply, genuinely.
 - Every paragraph ending on a punchy one-line sentence. Vary it.
 - Mirrored sentence pairs ("We don't X. We Y.") used more than once on a page.
-- Adjectives standing in for proof. PRODUCT.md's rule is proof over adjectives: a stat or a real event beats praise.
+- Several sentences in a row with the same shape (same opener, same length, same clause pattern). Vary the build.
+- Repeated, abused, or strong-marker words, as defined in "Structure, not vocabulary".
 
 ## Do not touch
 
@@ -97,12 +124,12 @@ Read `PRODUCT.md` (Brand Commitments, Evidence on Hand) and `DESIGN.md` before e
    - Dashes: `[\x{2014}\x{2013}]|&mdash;|&ndash;|&#8212;|&#8211;|\\u2014|\\u2013`
    - Negation reveal: `(?i)not (just|only|merely)|isn't (just|only|about)|more than just`
    - Triad candidates: `\b[\w-]+, [\w-]+,? (and|or) [\w-]+\b`
-   - Inflated words: `(?i)\b(delve|seamless|leverag|robust|elevat|unlock|empower|cutting-edge|state-of-the-art|game-chang|transformativ|harness|tapestry|landscape|realm|testament|synerg|world-class|best-in-class)`
+   - Strong AI markers: `(?i)\b(delve|tapestry|testament to|realm|multifaceted|ever-evolving|navigat\w* the complexit|symphony of|seamless(ly)? integrat|unlock your|elevate your)`
    Drop matches that fall in comments or code.
-3. **Read the copy in full.** Triads and stock openers often slip past a regex. Read all of the target, labels included.
-4. **Rewrite** with the smallest edit that fixes the tell. Keep the tone and the facts, and stay near the original length, since layout depends on it.
+3. **Read the copy in full.** Triads, repeated words, and same-shape runs slip past a regex. Read all of the target, labels included, page by page.
+4. **Edit** each flagged sentence by restructuring it, following "Structure, not vocabulary" and "Keep the meaning and the voice". Stay near the original length, since layout depends on it.
 5. **Re-scan** with the same patterns. The dash pattern must return nothing inside the scope.
 6. **Verify in the browser.** Copy edits in `.astro` files are UI changes, so follow `CLAUDE.md`: run `npx astro dev --port 4400`, open each changed page with the dev-browser skill, and check that headlines still fit and nothing wraps badly.
 7. **Report** to the user:
    - Each change as `file:line`, before, after.
-   - Findings you left alone (brand lines, items that need a fact you do not have) with the reason.
+   - Findings you left alone (brand lines, items that need a fact you do not have, fixes that would change meaning) with the reason.
