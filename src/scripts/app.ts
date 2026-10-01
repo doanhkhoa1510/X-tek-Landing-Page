@@ -90,10 +90,10 @@ mm.add({ wide: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-prefer
   // two-tone headlines: the ink line fills word by word, dim → glacier → ink
   $$(".tt").forEach(twoTone);
 
-  // the log: the climber walks the trail up Mount Zion (trail.ts); each camp's entry wakes as it nears the centre
-  $$(".stage").forEach((s) =>
-    ScrollTrigger.create({ trigger: s, start: "top 62%", onEnter: () => s.classList.add("is-on"), onLeaveBack: () => s.classList.remove("is-on") }),
-  );
+  // the log: the climber walks the trail up Mount Zion (trail.ts), which wakes each later entry as its camp turns
+  // current; the first entry wakes as it rises into view
+  const base = $(".stage");
+  ScrollTrigger.create({ trigger: base, start: "top 62%", onEnter: () => base.classList.add("is-on"), onLeaveBack: () => base.classList.remove("is-on") });
   // stats wipe in and count; log rows rise out of their rules
   gsap.from(".stat", {
     clipPath: "inset(0 100% 0 0)", duration: 1.2, ease: "expo.out", stagger: 0.12,

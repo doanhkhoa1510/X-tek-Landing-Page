@@ -1,7 +1,8 @@
 /* The 4-D ascent as a trek, drawn in the page's own survey language: Mount Zion's real south profile
    in the dot matrix of the routes sky, a surveyed switchback trail up the dome, camps tagged like the
    hero's chips, and an elevation scale in metres. The panel holds still while the stages scroll past;
-   the climber reaches camp s as stage s crosses the centre of the viewport. */
+   the climb waits until the chart has settled in full view, then the climber reaches camp s as stage s
+   rises to the line where base camp stood at that moment. */
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BASE_M, heightAt, SUMMIT_M, unitsAt } from "./relief";
@@ -181,15 +182,26 @@ export function mountTrail(panel: HTMLElement, list: HTMLElement) {
     walk(progress);
   }
 
-  // progress through the stage list, remapped so the climber stands on camp s while stage s is centred
+  // each stage title's centre, measured from the top of the list
+  const marks = () => {
+    const top = list.getBoundingClientRect().top;
+    return stages.map((s) => {
+      const r = s.querySelector("h3")!.getBoundingClientRect();
+      return r.top + r.height / 2 - top;
+    });
+  };
+  // the climb runs from base camp's title to the summit's, so scroll distance maps one to one onto the stages
+  const span = (m = marks()) => Math.max(1, m[last] - m[0]);
+  // the chart has settled in full view once its sticky box pins: wide, the side column pins level with the
+  // list's top; stacked, the trek strip pins above the list, so the list's top sits at its foot
+  const trek = panel.parentElement!;
+  const settle = () => (getComputedStyle(trek).position === "sticky" ? trek.offsetHeight : 0);
+
+  // progress through the climb, remapped so the climber stands on camp s while stage s's title holds base camp's line
   function walk(p: number) {
     progress = p;
     if (!xs.length) return;
-    const lt = list.getBoundingClientRect(), len = lt.height || 1;
-    const knots = stages.map((s) => {
-      const r = s.querySelector("h3")!.getBoundingClientRect();
-      return (r.top + r.height / 2 - lt.top) / len;
-    });
+    const m = marks(), len = span(m), knots = m.map((y) => (y - m[0]) / len);
     let k = campAt[0], near = 0;
     if (p >= knots[last]) [k, near] = [campAt[last], last];
     else
@@ -204,9 +216,15 @@ export function mountTrail(panel: HTMLElement, list: HTMLElement) {
       c.classList.toggle("is-reached", k >= campAt[s]);
       c.classList.toggle("is-current", s === near);
     });
+    // each later entry wakes as its camp turns current (app.ts wakes the first as it rises into view)
+    stages.slice(1).forEach((st, i) => st.classList.toggle("is-on", i < near));
   }
 
   new ResizeObserver(build).observe(panel);
-  ScrollTrigger.create({ trigger: list, refreshPriority: -1 /* after the pinned routes above add their spacer */, start: "top center", end: "bottom center", onUpdate: (s) => walk(s.progress), onRefresh: (s) => walk(s.progress) });
+  ScrollTrigger.create({
+    trigger: list, refreshPriority: -1 /* after the pinned routes above add their spacer */,
+    start: () => `top ${settle()}px`, end: () => `+=${span()}`,
+    onUpdate: (s) => walk(s.progress), onRefresh: (s) => walk(s.progress),
+  });
   build();
 }
