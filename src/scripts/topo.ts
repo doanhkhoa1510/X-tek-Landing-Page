@@ -81,6 +81,7 @@ export function mountTopo(canvas: HTMLCanvasElement, style: TopoStyle = TILE) {
     g.setTransform(1, 0, 0, 1, 0, 0);
     g.clearRect(0, 0, canvas.width, canvas.height);
     g.drawImage(base, 0, 0);
+    if (!style.amber) return;
     g.setTransform(dpr, 0, 0, dpr, 0, 0);
     g.strokeStyle = style.amberColor ?? "#f8c000";
     g.lineWidth = style.amber;
