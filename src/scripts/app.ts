@@ -156,7 +156,7 @@ async function boot() {
   }
   hdr.classList.add("is-waiting");
   lenis?.stop();
-  gsap.set(heroLines, { yPercent: 110 });
+  gsap.set(heroLines, { yPercent: (_: number, el: Element) => parseFloat(getComputedStyle(el).getPropertyValue("--ln-from")) || 110 });
   gsap.set(heroRest, { autoAlpha: 0, y: 24 });
   if (scene) Object.assign(scene.rig, { scale: 0.6, shift: 7, glow: 0, arcs: 0 });
 

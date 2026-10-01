@@ -463,6 +463,11 @@ Each script face follows the brand face in the stack, so Latin words, numbers, a
 
 **The Open-Line Rule.** Saira's caps sit inside a 0.92 line. Vietnamese capitals stack marks above and below, and Han and kana fill the em, so Display and Headline open to 1.12 in vi, zh, and ja. Arabic and Devanagari marks rise and fall further: 1.32 for Display and Headline, 1.3 for titles, and 1.7 for body copy. The menu label's rolling window grows to 1.5em in vi, ar, and hi.
 
+**The Whole-Mark Rule.** No clip ever cuts a mark.
+- **Hero lines:** each line's reveal clip reaches 0.6em above and beside the line, so the marks stacked over Vietnamese capitals stay whole. Arabic and Devanagari lines get a 0.2em floor for what hangs below.
+- **Hero rise:** lines in every language but English rise from 130% instead of 110%, so no mark shows before its line.
+- **Giant type:** it stands higher by what its script hangs below the baseline. It also sets smaller where its ink is taller than Latin capitals (`--ink`, the height from the highest mark to the lowest), so the whole word fits inside the sky band.
+
 **The No-Tracking-In-Arabic Rule.** Arabic letters join, and any letter-spacing pulls a word apart, so Arabic text never takes letter-spacing.
 
 ### Right to left (Arabic)

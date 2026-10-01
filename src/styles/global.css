@@ -182,7 +182,19 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
 :is(.hero-title, .tt):is(:lang(ar), :lang(hi)) { line-height: 1.32; }
 :is(h3, h4, .log h4, .role-col h4, .office h2, .prose h2, .faq-page .qa h2, .stage h3):lang(vi) { line-height: 1.2; }
 :is(h3, h4, .log h4, .role-col h4, .office h2, .prose h2, .faq-page .qa h2, .stage h3):is(:lang(zh), :lang(ja), :lang(ar), :lang(hi)) { line-height: 1.3; }
-:is(body, .lede, .page-lede, p):is(:lang(ar), :lang(hi)) { line-height: 1.7; }
+:is(body, .lede, .page-lede, p:not(.giant)):is(:lang(ar), :lang(hi)) { line-height: 1.7; }
+/* the giant type stands on the value band, its ink inside the sky above it. Latin capitals end at the baseline; other
+   scripts reach below it (so they stand higher) and above the capitals (so they set smaller: --ink is the height from
+   the highest mark to the lowest, in em, and the sky is 40% of the screen) */
+.giant:lang(vi) { --ink: 1.32; padding-bottom: 0.24em; }
+.giant:is(:lang(zh), :lang(ja)) { --ink: 0.96; padding-bottom: 0.1em; }
+.giant:lang(ar) { --ink: 1.34; padding-bottom: 0.38em; }
+.giant:lang(hi) { --ink: 0.9; padding-bottom: 0.28em; }
+.giant:is(:lang(vi), :lang(zh), :lang(ja), :lang(ar), :lang(hi)) { font-size: min(var(--fs-giant), 36svh / var(--ink)); }
+/* hero lines: Arabic and Devanagari hang further below the line than the 0.06em floor; a line whose marks rise above the
+   capitals starts lower (--ln-from, the yPercent app.ts rises from), so no mark shows before its line rises */
+.ln:is(:lang(ar), :lang(hi)) { padding-bottom: 0.2em; margin-bottom: -0.2em; }
+.hero-title:not(:lang(en)) { --ln-from: 130; }
 /* the menu label rolls inside a one-line window: marks above Vietnamese capitals and below Devanagari need a taller one */
 .menu-text:is(:lang(vi), :lang(ar), :lang(hi)) { height: 1.5em; }
 .menu-text:is(:lang(vi), :lang(ar), :lang(hi)) > * { line-height: 1.5; }
@@ -469,7 +481,8 @@ section { position: relative; color: var(--fg); }
 }
 .hero-copy { position: relative; z-index: 2; max-width: max(820px, 62vw); /* room for MEETS IDENTITY. on one line */ }
 .hero-title { font-size: var(--fs-display); font-weight: 760; line-height: 0.92; letter-spacing: -0.012em; }
-.ln { display: block; overflow: hidden; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+/* each line rises out of its own floor; the clip reaches up and out, so marks stacked over the caps (Vietnamese Ắ, Ả) stay whole */
+.ln { display: block; clip-path: inset(-0.6em -0.6em 0); padding-bottom: 0.06em; margin-bottom: -0.06em; }
 .ln > span { display: inline-block; }
 .accent { color: var(--amber); }
 .hero-lede { margin-top: 26px; max-width: 46ch; font-size: var(--fs-lede); color: var(--mist); }
