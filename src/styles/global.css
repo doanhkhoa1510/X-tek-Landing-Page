@@ -497,6 +497,7 @@ section { position: relative; color: var(--fg); }
   --pad: clamp(20px, 2.4vw, 36px);
   --axis: 128px; /* the tier names */
   --wire: rgba(16, 48, 96, 0.35); /* connectors: the leader tone of the trek */
+  --link-wire: color-mix(in srgb, var(--wire) 80%, transparent); /* the 2px links between frames, a touch lighter than the 1px wires */
   --edge: rgba(16, 48, 96, 0.2); /* block and frame outlines */
   --tier-gap: 36px;
   --link: 20px; /* the gap a link crosses between two frames */
@@ -540,7 +541,7 @@ section { position: relative; color: var(--fg); }
   background:
     radial-gradient(circle, var(--navy) 2px, transparent 2.5px) 0 0 / 5px 5px no-repeat,
     radial-gradient(circle, var(--navy) 2px, transparent 2.5px) 100% 100% / 5px 5px no-repeat,
-    linear-gradient(var(--wire), var(--wire)) 50% 50% / var(--lw, 100%) var(--lh, 1px) no-repeat;
+    linear-gradient(var(--link-wire), var(--link-wire)) var(--lp, 50% 2px) / var(--lw, 100%) var(--lh, 2px) no-repeat;
 }
 /* services: AI and app services link into the agents from either side */
 .services { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 5fr) minmax(0, 2fr); grid-template-areas: "ai agents app"; gap: var(--link); }
@@ -576,7 +577,7 @@ section { position: relative; color: var(--fg); }
 .device-icon { flex: none; display: block; width: 32px; height: 32px; color: var(--navy); }
 .device-icon svg { width: 100%; height: 100%; }
 @media (min-width: 1200px) {
-  .infra::before { display: block; top: calc(-1 * var(--tier-gap) - 3px); bottom: round(calc(50% - 2.5px), 1px); left: round(calc(50% - 2.5px), 1px); width: 5px; height: auto; --lw: 1px; --lh: 100%; }
+  .infra::before { display: block; top: calc(-1 * var(--tier-gap) - 3px); bottom: round(calc(50% - 2.5px), 1px); left: round(calc(50% - 2.5px), 1px); width: 5px; height: auto; --lw: 2px; --lh: 100%; --lp: 2px 50%; }
 }
 @media (min-width: 1360px) {
   .blocks-row { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
@@ -585,7 +586,7 @@ section { position: relative; color: var(--fg); }
 @media (max-width: 1199px) {
   .services { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "agents agents" "ai app"; }
   /* the agents sit on top: AI and app services link up into them */
-  .group-ai::after, .group-app::after { top: calc(-1 * var(--link) - 4px); right: auto; left: round(calc(50% - 2.5px), 1px); width: 5px; height: calc(var(--link) + 6px); --lw: 1px; --lh: 100%; }
+  .group-ai::after, .group-app::after { top: calc(-1 * var(--link) - 4px); right: auto; left: round(calc(50% - 2.5px), 1px); width: 5px; height: calc(var(--link) + 6px); --lw: 2px; --lh: 100%; --lp: 2px 50%; }
   .devices li { flex-direction: column; align-items: flex-start; }
 }
 /* under 992px the tier names leave the axis and head their tiers */
@@ -602,7 +603,7 @@ section { position: relative; color: var(--fg); }
   .role-col:last-child, .devices li:last-child { grid-column: span 2; }
   .devices li { flex-direction: row; align-items: center; }
   .infra { grid-template-columns: minmax(0, 1fr); }
-  .infra > .group:first-child::after { top: calc(100% - 2px); left: round(calc(50% - 2.5px), 1px); width: 5px; height: calc(var(--link) + 6px); --lw: 1px; --lh: 100%; }
+  .infra > .group:first-child::after { top: calc(100% - 2px); left: round(calc(50% - 2.5px), 1px); width: 5px; height: calc(var(--link) + 6px); --lw: 2px; --lh: 100%; --lp: 2px 50%; }
   /* the hub folds into a list: the supervisor and its note, then the agents two up */
   .hub { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; gap: 8px; }
   .spokes { display: none; }
