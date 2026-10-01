@@ -6,11 +6,11 @@ posted: "May 10, 2025"
 validThrough: "June 30, 2025"
 category: "Software development"
 status: "Offer ended on 30.06.2025"
-summary: "We are seeking talented, Lead Business Analyst to join our team, contribute to our initiatives, and stay abreast of the latest technological advancements."
+summary: "We are seeking talented, Lead Business Analyst to join our team and contribute to our initiatives while staying abreast of the latest technological advancements."
 ---
 ## Role Responsibilities
 
-- Assessing current state, identifying customer requirements, and defining the future state and/or business solution.
+- Assessing current state and identifying customer requirements, then defining the future state and/or business solution.
 - Understanding as-is process, analyzing users' requirements and documents requirements.
 - Develops and documents workflow, systems requirements, system impact analysis, systems design, process analysis and testing using Agile development methodology.
 - Perform interviews with Business Users / SMEs.

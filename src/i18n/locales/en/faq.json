@@ -24,7 +24,7 @@
     },
     "start": {
       "q": "How does a project start?",
-      "a": "Send a brief with the form below, call {{us}}, or message us on WhatsApp at {{wa}}. We reply by email."
+      "a": "Send a brief with the form below, or call {{us}}. You can also message us on WhatsApp at {{wa}}. We reply by email."
     }
   }
 }

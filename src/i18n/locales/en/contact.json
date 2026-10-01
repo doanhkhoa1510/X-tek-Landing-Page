@@ -1,6 +1,6 @@
 {
   "title": "Contact us",
-  "description": "Request services from XionTechs: offices in Plano, Texas, Ho Chi Minh City, and Da Nang. Call {{phone}} or email {{email}}.",
+  "description": "Request services from XionTechs, with offices in Plano, Texas, and in Ho Chi Minh City and Da Nang, Vietnam. Call {{phone}} or email {{email}}.",
   "head": { "a": "Contact us.", "b": "Request for services." },
   "lede": "Tell us what you are building and where you want it to be. We reply by email.",
   "region": "Offices and request form",

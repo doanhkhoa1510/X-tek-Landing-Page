@@ -1,17 +1,17 @@
 {
   "giant": "Seven core values",
   "title": { "a": "Seven values.", "b": "One mindset." },
-  "intro": "Unwavering core values guide the team: how we work, how we decide, and how we deliver.",
+  "intro": "Unwavering core values guide the team in how we work, down to how we decide and deliver.",
   "items": {
     "quality": {
       "name": "Quality first",
       "motto": "Never compromise on quality.",
-      "text": "We are committed to excellence in everything we deliver, ensuring reliability, professionalism, and lasting value for our clients and partners."
+      "text": "We are committed to excellence in everything we deliver, ensuring reliability and professionalism that bring lasting value to our clients and partners."
     },
     "startup": {
       "name": "Startup spirit",
       "motto": "Stay agile, think like an owner.",
-      "text": "We embrace an entrepreneurial mindset, adapting quickly to change, challenging the status quo, and continuously improving how we work."
+      "text": "With an entrepreneurial mindset, we adapt quickly to change, challenging the status quo while continuously improving how we work."
     },
     "client": {
       "name": "Client centricity",
@@ -21,22 +21,22 @@
     "integrity": {
       "name": "Integrity first",
       "motto": "Do the right thing, always.",
-      "text": "We act with honesty, transparency, and accountability, building trust through ethical decisions and responsible actions."
+      "text": "We act with honesty and transparency, holding ourselves accountable and building trust through ethical decisions and responsible actions."
     },
     "innovation": {
       "name": "Innovation driven",
       "motto": "Innovate with purpose.",
-      "text": "We embrace creativity, leverage emerging technologies, and continuously explore better ways to solve problems and create value."
+      "text": "We embrace creativity and leverage emerging technologies, always exploring better ways to solve problems and create value."
     },
     "done": {
       "name": "“Get IT done” attitude",
       "motto": "Own it, deliver it, improve it.",
-      "text": "We take initiative, assume accountability, and execute with determination, delivering reliable solutions and measurable results."
+      "text": "We take initiative and assume accountability, then execute with determination to deliver reliable solutions and measurable results."
     },
     "people": {
       "name": "People-centered culture",
       "motto": "People are at the heart of our success.",
-      "text": "We foster an inclusive, collaborative, and supportive environment where every individual feels valued, empowered, and inspired to grow."
+      "text": "We foster an inclusive and collaborative environment that supports every individual, so each one feels valued and empowered to grow."
     }
   }
 }
