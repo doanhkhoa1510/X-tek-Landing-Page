@@ -10,6 +10,17 @@ export const brand = { name: "XionTechs", ipa: "/siː.ɒn.teks/", say: "see-on-t
 // the XT mark traced as SVG (viewBox 0 30 294 162); navy parts follow currentColor, the amber swoosh never changes
 export const mark = `<path fill="currentColor" d="M8 188C37 177 78 150 120 110L168 152Q171 157 165 157L148 157L120 132C92 156 47 179 8 188Z"/><path fill="#F8C000" d="M91 74L117 74L140 99C168 75 205 54 249 44C214 59 178 85 140 123Z"/><path fill="currentColor" d="M216 62L239 58L239 155Q239 158 236 158L219 158Q216 158 216 155Z"/><path fill="currentColor" d="M193 79C216 58 253 41 294 37C265 44 244 54 236 61L216 66C207 70 200 74 193 79Z"/>`;
 
+// the seven core values, as the landing page shows them; the words live in values.json under the same ids
+export const values = [
+  ["quality", "check"],
+  ["startup", "rocket"],
+  ["client", "target"],
+  ["integrity", "shield"],
+  ["innovation", "ai"],
+  ["done", "deployment"],
+  ["people", "staffing"],
+] as const;
+
 export const cities = [
   { id: "plano", zone: "America/Chicago", abbr: "CT", ...project(33.08, -96.82) },
   { id: "hcmc", zone: "Asia/Ho_Chi_Minh", abbr: "ICT", ...project(10.78, 106.67) },

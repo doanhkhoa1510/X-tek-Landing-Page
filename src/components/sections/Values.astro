@@ -1,18 +1,10 @@
 ---
 /* 02 · Core values: pinned; the value track slides past while the giant type drifts behind. */
 import { useT } from "../../i18n";
+import { values } from "../../data/site";
 
 const lang = Astro.currentLocale;
 const t = useT(lang, "values"), tc = useT(lang, "common");
-const values = [
-  ["quality", "check"],
-  ["startup", "rocket"],
-  ["client", "target"],
-  ["integrity", "shield"],
-  ["innovation", "ai"],
-  ["done", "deployment"],
-  ["people", "staffing"],
-] as const;
 // app.ts fills {n} with the altimeter reading
 const alt = `${tc("hud.alt")} {n} ${tc("units.m")}`;
 ---

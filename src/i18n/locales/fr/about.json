@@ -1,6 +1,6 @@
 {
   "title": "À propos",
-  "description": "XionTechs se distingue par son engagement envers ses équipes, ses processus et sa technologie : six valeurs fondamentales, une seule attitude « Get IT Done ».",
+  "description": "XionTechs se distingue par son engagement envers ses équipes, ses processus et sa technologie : sept valeurs fondamentales, une seule attitude « Get IT Done ».",
   "head": {
     "a": "À propos de nous.",
     "b": "Nous renforçons la réussite des entreprises grâce aux solutions IT."
@@ -10,32 +10,6 @@
     "title": {
       "a": "Valeurs fondamentales.",
       "b": "Équipes, processus, technologie."
-    },
-    "items": {
-      "startup": {
-        "name": "Esprit startup",
-        "text": "Entrepreneurial, agile et flexible."
-      },
-      "client": {
-        "name": "Priorité au client",
-        "text": "Des résultats au service des clients."
-      },
-      "integrity": {
-        "name": "Esprit d’intégrité",
-        "text": "Honnêteté et transparence."
-      },
-      "innovation": {
-        "name": "Passion de l’innovation",
-        "text": "Toujours une longueur d’avance."
-      },
-      "done": {
-        "name": "Attitude « Get IT Done »",
-        "text": "Responsabilité et engagement."
-      },
-      "home": {
-        "name": "Culture au-delà de l’emploi",
-        "text": "Une culture où l’on se sent chez soi."
-      }
     }
   },
   "figures": {

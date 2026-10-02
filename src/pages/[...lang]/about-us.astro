@@ -3,18 +3,11 @@ import Sub from "../../layouts/Sub.astro";
 import Cta from "../../components/Cta.astro";
 import { localePaths } from "../../i18n/config";
 import { useT } from "../../i18n";
+import { values } from "../../data/site";
 
 export const getStaticPaths = localePaths;
 
-const t = useT(Astro.currentLocale, "about");
-const values = [
-  ["startup", "rocket"],
-  ["client", "target"],
-  ["integrity", "shield"],
-  ["innovation", "ai"],
-  ["done", "check"],
-  ["home", "home"],
-] as const;
+const t = useT(Astro.currentLocale, "about"), tv = useT(Astro.currentLocale, "values");
 
 // [id, counted number, unit]
 const figures = [
@@ -32,12 +25,12 @@ const reasons = ["client", "integrity", "quality", "rapid", "reliable", "team"] 
     <div class="wrap split-head">
       <h2 id="values-title" class="tt"><span class="tt-a">{t("values.title.a")}</span> <span class="tt-b">{t("values.title.b")}</span></h2>
     </div>
-    <ul class="wrap cells cells-3">
+    <ul class="wrap cells cells-3 cells-lead">
       {values.map(([id, icon]) => (
         <li class="cell">
           <span class="cell-icon" data-icon={icon}></span>
-          <h3>{t(`values.items.${id}.name`)}</h3>
-          <p>{t(`values.items.${id}.text`)}</p>
+          <h3>{tv(`items.${id}.name`)}</h3>
+          <p>{tv(`items.${id}.motto`)}</p>
         </li>
       ))}
     </ul>
