@@ -1,0 +1,12 @@
+{
+  "name": "xiontechs-mailer",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "nodemailer": "^10.0.13"
+  }
+}

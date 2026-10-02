@@ -868,8 +868,8 @@ section { position: relative; color: var(--fg); }
 .form-status { min-height: 1.4em; font: 400 12px / 1.4 var(--mono); }
 .form-status[data-state="error"] { color: var(--error); }
 .form-status[data-state="ok"] { color: var(--amber); }
-.form-status[data-state="info"] { color: var(--mist); }
 .form-status a { color: var(--snow); text-decoration-color: var(--amber); }
+.brief-trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* ---------- footer ---------- */
 .foot { position: relative; z-index: 2; padding-top: clamp(80px, 9vw, 140px); overflow: hidden; color: var(--fg); }

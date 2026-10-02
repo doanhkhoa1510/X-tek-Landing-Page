@@ -654,7 +654,7 @@ UC's truck on its road, rebuilt as a climber on a ridge.
 Two 12px rows on a shared 24h UTC track with hourly ticks. The work window is 08:00–17:00 local: Plano in amber, Vietnam in glacier. A 1px snow "NOW" rule marks the current UTC time.
 
 ### Contact lines (summit)
-Under the summit copy: phone, WhatsApp, and email as Button-type links in Xion Amber on night, stacked 10px apart, each scrambling on hover. They are the fallback for the brief while the form has no endpoint.
+Under the summit copy: phone, WhatsApp, and email as Button-type links in Xion Amber on night, stacked 10px apart, each scrambling on hover. They are the fallback when the brief does not send.
 
 ### Inputs / Fields
 - **Label:** mono 10.5px in Mist, stacked above the field.
@@ -662,8 +662,8 @@ Under the summit copy: phone, WhatsApp, and email as Button-type links in Xion A
 - **Focus:** the rule turns Xion Amber, plus a 1px amber underline.
 - **Error:** `aria-invalid` turns the rule Error, and a mono status names the problem and the fix.
 - **Submit:**
-  - When `data-endpoint` is set, the form POSTs JSON, shows "Sending your brief…" with the button disabled, then either "Brief sent. We reply by email." or an error with a phone fallback.
-  - With no endpoint (the current state: no inbox exists yet), the status says plainly "Not sent yet: online sending is not live" in Mist (`data-state="info"`) and hands over the phone line. It never claims receipt, and it keeps the fields filled.
+  - The form POSTs JSON to `data-endpoint` (`/api/contact`, the mailer behind nginx), shows "Sending your brief…" with the button disabled, then either "Brief sent. We reply by email." or an error with a phone fallback. It claims receipt only on a 2xx, and a failure keeps the fields filled.
+  - A hidden trap field (`.brief-trap`, `name="website"`) catches bots: no person or screen reader meets it, and the mailer drops any brief that fills it.
   - Status text is amber on success. An inline link in a status is Snow with an amber underline.
 
 ### FAQ accordion

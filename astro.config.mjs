@@ -15,4 +15,6 @@ export default defineConfig({
     routing: { prefixDefaultLocale: false },
   },
   markdown: { rehypePlugins: [[rehypeLocalizeLinks, { locales, defaultLocale }]] },
+  // in astro dev the brief form posts to a mailer started from mailer/ (npm start); in Docker, nginx does this
+  vite: { server: { proxy: { "/api": "http://localhost:3000" } } },
 });

@@ -1,0 +1,47 @@
+# The site, the mailer behind its brief form, and the Postfix server that delivers the briefs.
+# Copy .env.example to .env, fill it in, then: docker compose up -d --build
+services:
+  web:
+    build:
+      context: .
+      args:
+        SITE_URL: ${SITE_URL:-}
+    image: ${WEB_IMAGE:-xiontechs-landing}
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    restart: unless-stopped
+
+  # nginx in web proxies POST /api/contact here; no port is published
+  mailer:
+    build: ./mailer
+    image: ${MAILER_IMAGE:-xiontechs-mailer}
+    environment:
+      CONTACT_TO: ${CONTACT_TO:?set CONTACT_TO in .env}
+      MAIL_FROM: "XionTechs website <no-reply@${MAIL_DOMAIN:?set MAIL_DOMAIN in .env}>"
+      SMTP_HOST: postfix
+      SMTP_PORT: 587
+    depends_on:
+      postfix:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # send-only: takes mail from the mailer, queues it, and delivers it straight to the recipient's server,
+  # or through RELAYHOST when outbound port 25 is blocked
+  postfix:
+    image: boky/postfix:5.1.0-alpine
+    environment:
+      ALLOWED_SENDER_DOMAINS: ${MAIL_DOMAIN}
+      POSTFIX_myhostname: ${MAIL_HOSTNAME:-${MAIL_DOMAIN}}
+      RELAYHOST: ${RELAYHOST:-}
+      RELAYHOST_USERNAME: ${RELAYHOST_USERNAME:-}
+      RELAYHOST_PASSWORD: ${RELAYHOST_PASSWORD:-}
+      # signs with a key kept in the dkim volume; its DNS record: docker compose exec postfix cat /etc/opendkim/keys/<MAIL_DOMAIN>.txt
+      DKIM_AUTOGENERATE: "true"
+    volumes:
+      - postfix-spool:/var/spool/postfix
+      - dkim-keys:/etc/opendkim/keys
+    restart: unless-stopped
+
+volumes:
+  postfix-spool:
+  dkim-keys:

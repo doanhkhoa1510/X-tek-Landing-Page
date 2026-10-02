@@ -38,3 +38,22 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      # the contact form's mailer (compose.yaml), published next to the site as <image>-mailer
+      - id: meta-mailer
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE }}-mailer
+          tags: |
+            type=raw,value=latest
+            type=sha,format=short
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: mailer
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta-mailer.outputs.tags }}
+          labels: ${{ steps.meta-mailer.outputs.labels }}
+          cache-from: type=gha,scope=mailer
+          cache-to: type=gha,mode=max,scope=mailer
