@@ -1,6 +1,6 @@
 {
   "title": "关于我们",
-  "description": "XionTechs 以对人才、流程与技术的执着而与众不同：六大核心价值观，一种“Get IT Done”的态度。",
+  "description": "XionTechs 以对人才、流程与技术的执着而与众不同：七大核心价值观，一种“Get IT Done”的态度。",
   "head": {
     "a": "关于我们。",
     "b": "我们以 IT 解决方案助力企业成功。"
@@ -10,32 +10,6 @@
     "title": {
       "a": "核心价值观。",
       "b": "人才、流程、技术。"
-    },
-    "items": {
-      "startup": {
-        "name": "创业精神",
-        "text": "进取、敏捷、灵活。"
-      },
-      "client": {
-        "name": "以客户为中心",
-        "text": "聚焦客户成果。"
-      },
-      "integrity": {
-        "name": "诚信理念",
-        "text": "诚实与透明。"
-      },
-      "innovation": {
-        "name": "创新激情",
-        "text": "始终领先一步。"
-      },
-      "done": {
-        "name": "“Get IT Done”态度",
-        "text": "主人翁意识与责任担当。"
-      },
-      "home": {
-        "name": "超越雇佣关系的文化",
-        "text": "让人如在家中的文化。"
-      }
     }
   },
   "figures": {

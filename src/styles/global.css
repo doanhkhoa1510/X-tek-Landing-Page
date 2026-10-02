@@ -973,6 +973,8 @@ section { position: relative; color: var(--fg); }
 }
 .cells-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .cells-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+/* the first cell takes the whole row, so the rest fill whole rows at three and two columns */
+.cells-lead .cell:first-child { grid-column: 1 / -1; }
 .cell {
   display: flex; flex-direction: column; gap: 14px;
   min-height: clamp(220px, 18vw, 280px); padding: 28px;
