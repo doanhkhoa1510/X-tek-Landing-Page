@@ -9,3 +9,5 @@ dist
 *.md
 Dockerfile
 .dockerignore
+mailer
+compose.yaml

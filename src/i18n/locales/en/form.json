@@ -11,7 +11,6 @@
   "status": {
     "badEmail": "That email looks incomplete. Check it and send again.",
     "required": "Fill in all three required fields so we know where to start.",
-    "notLive": "Not sent yet: online sending is not live. Call <call>{{phone}}</call> and we start from your brief.",
     "sending": "Sending your brief…",
     "sent": "Brief sent. We reply by email.",
     "failed": "The brief did not send. Try again, or call <call>{{phone}}</call>."

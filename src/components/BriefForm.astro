@@ -1,6 +1,6 @@
 ---
 /* The brief: name, work email, and what they are building; the contact page adds a subject and a phone.
-   chrome.ts runs the form's states and reads their words, in the page's language, from data-status. */
+   chrome.ts posts it to the mailer (mailer/, behind nginx at /api/contact) and reads the states' words, in the page's language, from data-status. */
 import { phones, services } from "../data/site";
 import { rich, useT } from "../i18n";
 
@@ -12,13 +12,12 @@ const call = (s: string) => `<a href="${phones.us.href}">${s}</a>`;
 const status = {
   badEmail: t("status.badEmail"),
   required: t("status.required"),
-  notLive: rich(t("status.notLive", { phone: phones.us.label }), { call }),
   sending: t("status.sending"),
   sent: t("status.sent"),
   failed: rich(t("status.failed", { phone: phones.us.label }), { call }),
 };
 ---
-<form class:list={["brief", { "contact-form": full }]} novalidate data-endpoint="" data-status={JSON.stringify(status)}>
+<form class:list={["brief", { "contact-form": full }]} novalidate data-endpoint="/api/contact" data-status={JSON.stringify(status)}>
   {full ? (
     <>
       <div class="brief-row">
@@ -42,6 +41,8 @@ const status = {
     </>
   )}
   <label>{t("msg")}<textarea name="msg" rows={full ? 4 : 3} required></textarea></label>
+  {/* a trap for bots: hidden from people and screen readers; the mailer drops any brief that fills it */}
+  <div class="brief-trap" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off" /></label></div>
   <p class="form-status" role="status" aria-live="polite"></p>
   <button class="btn btn-fill" type="submit" data-scramble><span class="scr">{t(full ? "sendRequest" : "sendBrief")}</span></button>
 </form>

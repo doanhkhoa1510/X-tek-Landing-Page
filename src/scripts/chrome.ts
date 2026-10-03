@@ -261,10 +261,10 @@ $$<HTMLButtonElement>(".qa button").forEach((btn) => {
   });
 });
 
-/* ---------- brief forms: client-side states until a backend exists; the words come from data-status (BriefForm.astro) ---------- */
+/* ---------- brief forms: posted as JSON to the mailer (data-endpoint); the words come from data-status (BriefForm.astro) ---------- */
 $$<HTMLFormElement>(".brief").forEach((form) => {
   const status = $(".form-status", form);
-  const say: Record<"badEmail" | "required" | "notLive" | "sending" | "sent" | "failed", string> = JSON.parse(form.dataset.status!);
+  const say: Record<"badEmail" | "required" | "sending" | "sent" | "failed", string> = JSON.parse(form.dataset.status!);
   form.addEventListener("input", (e) => (e.target as HTMLElement).removeAttribute("aria-invalid"));
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -276,18 +276,13 @@ $$<HTMLFormElement>(".brief").forEach((form) => {
       bad.focus();
       return;
     }
-    const endpoint = form.dataset.endpoint;
     const btn = $<HTMLButtonElement>("button[type=submit]", form);
-    if (!endpoint) {
-      // no inbox configured yet: say plainly that nothing was sent, and hand over the phone line
-      status.dataset.state = "info";
-      status.innerHTML = say.notLive;
-      return;
-    }
     btn.disabled = true;
     status.dataset.state = "";
     status.textContent = say.sending;
-    fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.fromEntries(new FormData(form))) })
+    // the page's language rides along, so the reply can come in it
+    const brief = { ...Object.fromEntries(new FormData(form)), lang: root.lang };
+    fetch(form.dataset.endpoint!, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(brief) })
       .then((r) => {
         if (!r.ok) throw new Error(String(r.status));
         status.dataset.state = "ok";
