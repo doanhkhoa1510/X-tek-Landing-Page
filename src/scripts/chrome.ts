@@ -194,7 +194,7 @@ if (finePointer && innerWidth > 991 && !reduce) {
   root.addEventListener("pointerenter", () => seen && cur.classList.remove("is-hidden"));
 }
 
-/* ---------- altimeter: altitude from climb progress, vertical speed from scroll velocity ---------- */
+/* ---------- altimeter: altitude from descent progress, vertical speed from scroll velocity ---------- */
 export const hud = $(".hud");
 const hudAlt = $(".hud-alt"), hudVs = $(".hud-vs");
 const altWatchers: ((alt: number, shown: string) => void)[] = [];
@@ -203,7 +203,7 @@ export const onAltitude = (fn: (alt: number, shown: string) => void) => altWatch
 let vs = 0, lastY = scrollPos(), lastT = performance.now(), shownAlt = "", shownVs = "";
 gsap.ticker.add(() => {
   const now = performance.now(), y = scrollPos();
-  const alt = Math.round(ZION.baseM + (y / scrollMax()) * (ZION.summitM - ZION.baseM)); // the Hinnom valley floor to the top of Mount Zion
+  const alt = Math.round(ZION.summitM * (1 - Math.min(1, y / scrollMax()))); // the top of Mount Zion down to sea level
   let target = Math.abs(y - lastY) / (Math.max(1, now - lastT) / 1000) / 40;
   if (target > 12) target += Math.random() * 2 - 1;
   target = Math.min(99, target);
