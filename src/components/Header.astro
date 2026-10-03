@@ -7,10 +7,12 @@ import { useT } from "../i18n";
 interface Props { home?: boolean }
 const { home = false } = Astro.props;
 const lang = Astro.currentLocale;
-const t = useT(lang, "header"), ts = useT(lang, "site"), tc = useT(lang, "common");
+const t = useT(lang, "header"), ts = useT(lang, "site"), tc = useT(lang, "common"), tf = useT(lang, "footer");
 // on the landing page the sections are in-page anchors; elsewhere they lead back to it
 const to = (id: string) => (home ? `#${id}` : `${localize("/", lang)}#${id}`);
 const pages = [["/about-us/", "about"], ["/careers/", "careers"], ["/support/", "support"]] as const;
+// wide screens show the sections in the row; Contact stays with the CTA, which goes there
+const inline = sections.filter((id) => id !== "summit");
 const here = unlocalize(Astro.url.pathname);
 ---
 <header class="hdr" data-on="dark">
@@ -35,19 +37,26 @@ const here = unlocalize(Astro.url.pathname);
         <span class="say" aria-hidden="true">{brand.ipa}</span>
       </span>
     </a>
-    <div class="menu">
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-list" data-scramble>
-        <span class="menu-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-        <span class="menu-text"><span class="scr">{t("menu")}</span><span class="menu-close" aria-hidden="true">{t("close")}</span></span>
-      </button>
-      <nav id="menu-list" class="menu-list" aria-label={t("primary")}>
-        {sections.map((id, i) => <a href={to(id)} style={`--i:${i}`} data-scramble><span class="scr">{ts(`sections.${id}`)}</span></a>)}
-        <i class="menu-rule" aria-hidden="true" style={`--i:${sections.length}`}></i>
-        {pages.map(([href, key], i) => (
-          <a href={localize(href, lang)} style={`--i:${sections.length + 1 + i}`} aria-current={here.startsWith(href) ? "page" : undefined} data-scramble><span class="scr">{ts(`pages.${key}`)}</span></a>
-        ))}
+    <div class="hdr-mid">
+      <nav class="hdr-nav" aria-label={t("primary")}>
+        {inline.map((id) => <a href={to(id)} data-section={id} data-scramble><span class="scr">{ts(`sections.${id}`)}</span></a>)}
       </nav>
+      <div class="menu">
+        <button class:list={["menu-toggle", { "is-here": pages.some(([href]) => here.startsWith(href)) }]} type="button" aria-expanded="false" aria-controls="menu-list" data-scramble>
+          <span class="menu-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span class="menu-text"><span class="scr">{t("menu")}</span><span class="menu-close" aria-hidden="true">{t("close")}</span></span>
+          <span class="menu-company">{tf("company")}<svg viewBox="0 0 8 5" aria-hidden="true"><path d="M.7.7 4 4 7.3.7" /></svg></span>
+        </button>
+        <nav id="menu-list" class="menu-list" aria-label={t("primary")}>
+          {sections.map((id, i) => <a class="menu-sec" href={to(id)} style={`--i:${i}`} data-scramble><span class="scr">{ts(`sections.${id}`)}</span></a>)}
+          <i class="menu-rule" aria-hidden="true" style={`--i:${sections.length}`}></i>
+          {pages.map(([href, key], i) => (
+            <a href={localize(href, lang)} style={`--i:${sections.length + 1 + i}`} aria-current={here.startsWith(href) ? "page" : undefined} data-scramble><span class="scr">{ts(`pages.${key}`)}</span></a>
+          ))}
+        </nav>
+      </div>
     </div>
     <a class="btn btn-fill hdr-cta" href={home ? "#summit" : localize("/contact-us/", lang)} data-scramble><span class="scr">{t("start")}</span></a>
   </div>
 </header>
+<div class="hdr-ground" aria-hidden="true"></div>

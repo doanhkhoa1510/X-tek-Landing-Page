@@ -405,7 +405,7 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
   - Headings take 1/7 or 1/8.
   - Copy takes 8/13 or 9/13.
   - Sticky side heads (ascent, FAQ) take 1/6 against content at 7/13 or 8/13.
-  - The header puts the logo in 1/4, the menu in 4/8, and the CTA in 10/13.
+  - The header row is logo, middle, CTA (`1fr auto 1fr` from 1280px, so the section links sit at the true centre; below that the menu toggle sits next to the CTA).
 - **Vertical rhythm:**
   - Section padding is clamp(120px, 12vw, 190px).
   - Sections that open or close on a horizon pad with min(60vh, 560px) so the limb has room.
@@ -549,11 +549,13 @@ UC's KM/H speedometer, turned into a climb reading.
 - **Row (64px):**
   - The logo: the mark plus XIONTECHS, with the pronunciation subtitle under the word (see Pronunciation subtitle). After 80px of scroll, "ION" and "ECHS" collapse through `grid-template-columns: 1fr → 0fr` over 0.7s, leaving **XT**, like UC's UNITEDCARRIERS → UC.
   - The `•••• MENU` toggle: four 3px squares at opacity .24/.5/.7/1. On hover they go to 1 and the odd dots hop 2px. On open, MENU rolls up and CLOSE rolls in.
+  - From 1280px, the six section links (Mindset to Branches, Micro-sized Button type, Fg Soft) sit in the row, centred, with `COMPANY ▾` last; that toggle opens the same panel holding only About us, Careers, and Support. Contact stays with the CTA. Below 1280px the `•••• MENU` toggle sits next to the CTA and opens the full list.
+  - **Active marker:** the link of the section under the header takes Fg and a 2px amber rule that grows from the start (0.5s expo). On a company page, `COMPANY` carries the rule.
   - The `START A PROJECT` filled pill.
-- **Theme:** on every scroll frame, the header probes the section under its row with `elementsFromPoint` and takes that section's `data-on` (dark/light). Text colors cross-fade in 0.4s. Once scrolled, a gradient backdrop of that theme's ground (92–94% alpha) keeps the header legible.
+- **Theme:** on every scroll frame, the header probes the section under its row with `elementsFromPoint` and takes that section's `data-on` (dark/light). Text colors cross-fade in 0.4s. Each limb's flip (`--flip`, between glacier and limb-mid) is where its ground turns, and around it the soft link ink goes full (`.is-mid`) so the links hold contrast over the mid blue. Once scrolled, the header's ground (`.hdr-ground`) repaints the page's own backgrounds (sections, bands, limbs, clipped as on the page, on whole device pixels) behind the row, without their content, in the scroll frame itself; it fades out over 36px below the row. So a night/snow edge slides through the header exactly with the scroll, nothing ghosts behind the links, and no line, shadow, or tint parts the header from the page.
 
 ### Navigation (menu)
-- **Layout:** a dropdown under the toggle, a mono uppercase list of seven anchors (Mindset, Core values, Platform, Work, FAQ, Base camps, Contact).
+- **Layout:** a dropdown under the toggle, a mono uppercase list of seven anchors (Mindset, Core values, Platform, Work, FAQ, Branches, Contact). From 1280px the anchors live in the header row and the dropdown holds only the company pages.
 - **Open:** a clip-path wipe (0.6s expo). Links drop in 8px with a 0.04s stagger and scramble on hover.
 - **Close:** Esc (focus returns to the toggle), an outside click, or following a link.
 - **Anchors:** Lenis `scrollTo` over 1.6s with quartic ease-out. The target gets focus with `preventScroll`. Night sections with a top limb scroll past the limb, so the heading lands under the header.

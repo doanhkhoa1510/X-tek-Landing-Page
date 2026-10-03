@@ -308,17 +308,22 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
   color: var(--fg);
   transition: color var(--t-ui) var(--ui), opacity 0.6s var(--ui);
 }
-.hdr::before {
-  content: ""; position: absolute; inset: 0 0 -24px; z-index: -1; pointer-events: none;
-  background: linear-gradient(to bottom, var(--hdr-bg, transparent) 55%, transparent);
+.hdr[data-on="dark"] { --menu-bg: var(--band); }
+.hdr[data-on="light"] { --menu-bg: var(--snow); }
+/* once scrolled, the page's own ground (sections, bands, limbs; chrome.ts repaints it every scroll frame) sits behind
+   the row without the content, then fades out below it: grounds slide through the header with the scroll,
+   nothing ghosts behind the links, and no edge parts the header from the page */
+.hdr-ground {
+  position: fixed; inset: 0 0 auto; z-index: 59; height: calc(64px + 36px); overflow: hidden; pointer-events: none;
+  background: var(--night);
+  -webkit-mask-image: linear-gradient(#000 calc(100% - 36px), transparent); mask-image: linear-gradient(#000 calc(100% - 36px), transparent);
   opacity: 0; transition: opacity var(--t-ui) var(--ui);
 }
-.hdr[data-on="dark"] { --hdr-bg: rgba(3, 8, 19, 0.92); --menu-bg: var(--band); }
-.hdr[data-on="light"] { --hdr-bg: rgba(255, 255, 255, 0.94); --menu-bg: var(--snow); }
-.hdr.is-scrolled::before { opacity: 1; }
+.hdr-ground > i { position: absolute; background-repeat: no-repeat; }
+.hdr.is-scrolled + .hdr-ground { opacity: 1; }
 .js .hdr.is-waiting .logo { visibility: hidden; }
-.js .hdr.is-waiting :is(.ticker, .menu, .hdr-cta) { opacity: 0; }
-.menu { transition: opacity 0.6s var(--ui); }
+.js .hdr.is-waiting :is(.ticker, .hdr-mid, .hdr-cta) { opacity: 0; }
+.hdr-mid { transition: opacity 0.6s var(--ui); }
 .ticker {
   height: 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px;
   padding-inline: var(--gutter);
@@ -336,11 +341,12 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
 .hdr.is-scrolled { translate: 0 -32px; }
 .hdr.is-scrolled .ticker { opacity: 0; border-bottom-color: transparent; }
 .t-short { display: none; }
+/* logo at the start, the way around in the middle, the ask at the end */
 .hdr-row {
-  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: var(--gap);
   align-items: center; height: 64px; padding-inline: var(--gutter);
 }
-.logo { grid-column: 1 / 4; display: inline-flex; align-items: center; gap: 10px; justify-self: start; text-decoration: none; }
+.logo { display: inline-flex; align-items: center; gap: 10px; justify-self: start; text-decoration: none; }
 .logo-mark { width: 38px; height: auto; }
 .logo-word { display: flex; font: 760 17px / 1 var(--display); font-stretch: 125%; text-transform: uppercase; letter-spacing: 0.02em; }
 .fold { display: grid; grid-template-columns: 1fr; transition: grid-template-columns 0.7s var(--inout); }
@@ -349,7 +355,25 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
 .logo .say { transition: opacity 0.4s var(--ui), translate 0.5s var(--expo); }
 .hdr.is-compact .logo .say { opacity: 0; translate: 0 -4px; }
 
-.menu { grid-column: 4 / 8; position: relative; justify-self: start; }
+.hdr-mid { display: flex; align-items: center; gap: clamp(14px, 1.6vw, 28px); }
+.hdr-nav { display: none; align-items: center; gap: clamp(14px, 1.6vw, 28px); }
+.hdr-nav a {
+  position: relative; display: inline-flex; align-items: center; height: 36px;
+  font: 500 12px / 1 var(--mono); text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap; text-decoration: none;
+  color: var(--fg-soft); transition: color var(--t-ui) var(--ui);
+}
+.hdr-nav a:hover, .hdr-nav a:focus-visible, .hdr-nav a.is-here, .hdr.is-mid .hdr-nav a { color: var(--fg); }
+/* the section being read (or, on a company page, Company): an amber rule under its name */
+.hdr-nav a::after, .menu-company::after {
+  content: ""; position: absolute; inset-inline: 0; bottom: 4px; height: 2px; background: var(--amber);
+  scale: 0 1; transform-origin: left; transition: scale 0.5s var(--expo);
+}
+.hdr-nav a.is-here::after, .menu-toggle.is-here .menu-company::after { scale: 1 1; }
+.menu { position: relative; }
+.menu-company { position: relative; display: none; align-items: center; gap: 6px; }
+.menu-company::after { bottom: -8px; }
+.menu-company svg { width: 8px; height: 5px; fill: none; stroke: currentColor; stroke-width: 1.3; transition: rotate 0.5s var(--expo); }
+.menu-toggle[aria-expanded="true"] .menu-company svg { rotate: 180deg; }
 .menu-toggle { display: inline-flex; align-items: center; gap: 10px; height: 36px; font: 500 12px / 1 var(--mono); text-transform: uppercase; letter-spacing: 0.03em; }
 .menu-dots { display: flex; gap: 2px; }
 .menu-dots i { width: 3px; height: 3px; background: currentColor; transition: opacity 0.3s var(--ui), translate 0.4s var(--expo); }
@@ -415,7 +439,19 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
 .lang-list a:hover, .lang-list a:focus-visible, .lang-list a[aria-current] { color: var(--fg); }
 .lang-code { font: 400 var(--fs-micro) / 1 var(--mono); color: var(--dim); }
 .lang-list a[aria-current] .lang-code { color: var(--amber); }
-.hdr-cta { grid-column: 10 / 13; justify-self: end; transition: opacity 0.6s var(--ui), background-color var(--t-ui) var(--ui), color var(--t-ui) var(--ui), border-color var(--t-ui) var(--ui); }
+.hdr-cta { justify-self: end; transition: opacity 0.6s var(--ui), background-color var(--t-ui) var(--ui), color var(--t-ui) var(--ui), border-color var(--t-ui) var(--ui); }
+
+/* wide screens: the sections sit in the row, centred between logo and ask; the menu keeps only the company pages */
+@media (min-width: 1280px) {
+  .hdr-row { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+  .hdr-nav { display: flex; }
+  .menu-toggle { color: var(--fg-soft); transition: color var(--t-ui) var(--ui); }
+  .menu-toggle:hover, .menu-toggle[aria-expanded="true"], .menu-toggle.is-here, .hdr.is-mid .menu-toggle { color: var(--fg); }
+  .menu-toggle :is(.menu-dots, .menu-text) { display: none; }
+  .menu-company { display: inline-flex; }
+  .menu-list { inset-inline-start: -16px; min-width: 196px; }
+  .menu-list :is(.menu-sec, .menu-rule) { display: none; }
+}
 
 /* ---------- HUD altimeter ---------- */
 .hud {
@@ -455,14 +491,15 @@ section { position: relative; color: var(--fg); }
 [data-on="light"]:is(section, footer) { background: var(--snow); }
 .horizon { position: absolute; left: 0; right: 0; height: min(60vh, 560px); pointer-events: none; }
 /* horizons: the curved limb of an atmosphere, like UC's globe edge.
-   dusk = daylight above, night below (the limb bows down); dawn = night above, daylight below (the limb bows up). */
+   dusk = daylight above, night below (the limb bows down); dawn = night above, daylight below (the limb bows up).
+   --flip is the depth (0 top, 1 bottom) where the ground turns, between glacier and limb-mid; the header changes its ink there (chrome.ts). */
 .dusk {
-  top: 0;
+  top: 0; --flip: 0.45;
   background: radial-gradient(150% 120% at 50% 125%, var(--night) 0 50%, var(--limb-deep) 60%, var(--glacier) 65%, var(--limb-mid) 68.5%, var(--limb-pale) 74%, var(--sky, var(--snow)) 84%);
 }
 .dusk-ice { --sky: var(--ice); }
 .dawn {
-  bottom: 0;
+  bottom: 0; --flip: 0.42;
   background:
     radial-gradient(150% 120% at 50% 120%, var(--snow) 0 52%, var(--limb-pale) 58%, var(--limb-mid) 63%, var(--glacier) 66%, var(--limb-deep) 72%, rgba(3, 8, 19, 0) 86%),
     radial-gradient(34% 10% at 50% 36%, rgba(248, 192, 0, 0.42), rgba(248, 192, 0, 0) 72%);
@@ -489,6 +526,7 @@ section { position: relative; color: var(--fg); }
 .hero-lede { margin-top: 26px; max-width: 46ch; font-size: var(--fs-lede); color: var(--mist); }
 .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; }
 .hero-dawn {
+  --flip: 0.49;
   position: absolute; left: 0; right: 0; bottom: 0; height: 90vh; z-index: 3; pointer-events: none;
   transform: translateY(100%); /* rises as a limb; never fades (a fading white reads as grey mud) */
   background:
@@ -1143,8 +1181,6 @@ section { position: relative; color: var(--fg); }
 
 /* ---------- tablet ---------- */
 @media (max-width: 991px) {
-  .hdr-cta { grid-column: 9 / 13; }
-  .menu { grid-column: 5 / 9; }
   .intro-left, .intro-right, .camps-head .tt, .camps-copy, .strata-head .tt, .strata-copy, .faq-head, .faq-list, .summit-head, .brief { grid-column: 1 / -1; }
   .intro-right { margin-top: 48px; }
   .camps-copy, .strata-copy { margin-top: 28px; }
@@ -1174,6 +1210,7 @@ section { position: relative; color: var(--fg); }
   .t-long { display: none; }
   .t-short { display: inline; }
   .hdr-row { height: 56px; display: flex; justify-content: space-between; gap: 12px; }
+  .hdr-ground { height: calc(56px + 36px); }
   .logo-mark { width: 32px; }
   .menu-list { inset-inline: auto -16px; text-align: end; }
   .hdr-cta { display: none; }
