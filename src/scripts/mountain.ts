@@ -15,10 +15,12 @@ function hash(x: number, y: number) {
 /* ---------- places on the mountain ---------- */
 
 // chip words come from the label layer's data-labels, in the page's language
-// three teams, three ways up, one summit: Plano from the far south-west ridge, Da Nang from the north-west
-// (the plateau by Jaffa Gate), Ho Chi Minh City from the north-east (the slope over the Kidron)
+// three teams, three ways up, one summit: Plano straight up the south face from the Hinnom valley, Da Nang from the
+// north-west (the plateau by Jaffa Gate), Ho Chi Minh City from the north-east (the slope over the Kidron)
+// Plano stands right of the headline, not on the south-west ridge: the headline grows upward with its language
+// (Vietnamese, Japanese, Hindi run taller than English) and would cover a camp on its side; right to left, the mirror keeps it clear too
 export const CAMPS = [
-  { id: "plano", x: -9.5, z: 6.5 },
+  { id: "plano", x: 3, z: 3.5 },
   { id: "hcmc", x: 8.8, z: -7.45 },
   { id: "danang", x: -5.4, z: -4.1 },
 ] as const;
