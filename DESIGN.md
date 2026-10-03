@@ -293,7 +293,7 @@ The mood is heavy, exact, and confident. It is not soft; a pale-haze, rounded, s
 
 **Key Characteristics:**
 - One continuous story: night, dawn, daylight, dusk, summit, daylight.
-- One mountain, a symbol: the same relief in 3D, as contours, and as the ridge silhouette, never labeled with a place name. The altimeter reads its metres, 602 to 765.
+- One mountain, a symbol: the same relief in 3D, as contours, and as the ridge silhouette, never labeled with a place name. The altimeter reads its metres, from the 765 m summit down to 0.
 - The name teaches itself: /siː.ɒn.teks/ hangs under the wordmark, and the footer closes with a dictionary entry.
 - Saira at 125% width, uppercase, carries every heading. Host Grotesk carries prose. Martian Mono carries every control, label, and reading.
 - Flat surfaces and 1px hairlines. No shadows, no cards with depth, no glass.
@@ -535,7 +535,7 @@ UC's hover gesture, rebuilt.
 ### Altimeter HUD (signature)
 UC's KM/H speedometer, turned into a climb reading.
 - **Placement:** fixed bottom-left in Micro type, `mix-blend-mode: difference`, reading `ALT 684 M · V/S 10 M/S · SUMMIT 765 M`.
-- **Altitude:** real metres above sea level, linear in page progress from the valley floor (602 m, `ZION.baseM`) to the published summit (765 m, `ZION.summitM`), rounded to 1 m.
+- **Altitude:** metres above sea level, linear in page progress from the published summit (765 m, `ZION.summitM`) at the top of the page down to 0 at the bottom, rounded to 1 m. Scrolling down is the descent.
 - **Summit:** the third reading is fixed, the summit height (`SUMMIT_M`). It gives the climb a goal. It carries no place name and no coordinates (the Symbol Rule).
 - **Vertical speed:** scroll velocity ÷ 40, capped at 99, with ±1 jitter above 12. It eases up at 0.1, down at 0.06, and to zero at 0.15.
 - **Linked readouts:** the same altitude drives the rider chip over the routes sky and the amber contour on the topo tile. The page never shows two different altitudes.
