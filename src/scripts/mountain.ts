@@ -239,14 +239,29 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   const labels: HTMLElement[] = [];
   const title = document.getElementById("hero-title");
   // the headline's text runs, not its blocks: right-aligned and short lines leave room beside them
-  const titleRuns: Range[] = [];
+  // a run's client rect is the font's whole ascent-to-descent box, far above the capitals it paints: trim each run
+  // to its inked glyphs, or a tag sitting just over the first line (short windows) is taken for a collision
+  const titleRuns: { range: Range; node: Text; top: number; bottom: number }[] = [];
   if (title) {
     const it = document.createTreeWalker(title, NodeFilter.SHOW_TEXT);
     for (let n = it.nextNode(); n; n = it.nextNode()) {
       if (!n.textContent?.trim()) continue;
-      const r = document.createRange();
-      r.selectNodeContents(n);
-      titleRuns.push(r);
+      const range = document.createRange();
+      range.selectNodeContents(n);
+      titleRuns.push({ range, node: n as Text, top: 0, bottom: 0 });
+    }
+    const ctx = document.createElement("canvas").getContext("2d");
+    if (ctx) {
+      document.fonts.ready.then(() => {
+        for (const run of titleRuns) {
+          const s = getComputedStyle(run.node.parentElement!);
+          ctx.font = `${s.fontStyle} ${s.fontWeight} ${s.fontSize} ${s.fontFamily}`;
+          const text = run.node.textContent!.trim();
+          const m = ctx.measureText(s.textTransform === "uppercase" ? text.toLocaleUpperCase(document.documentElement.lang) : text);
+          run.top = Math.max(0, m.fontBoundingBoxAscent - m.actualBoundingBoxAscent);
+          run.bottom = Math.max(0, m.fontBoundingBoxDescent - m.actualBoundingBoxDescent);
+        }
+      });
     }
   }
   const words: Record<string, string> = JSON.parse(labelLayer.dataset.labels ?? "{}");
@@ -345,7 +360,9 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     });
 
     const w = innerWidth, h = innerHeight;
-    const head = titleRuns.flatMap((r) => [...r.getClientRects()]);
+    const head = titleRuns.flatMap((run) =>
+      [...run.range.getClientRects()].map((r) => ({ left: r.left, right: r.right, top: r.top + run.top, bottom: r.bottom - run.bottom })),
+    );
     massif.updateMatrixWorld();
     for (const a of anchors) {
       v.copy(a.pos).applyMatrix4(massif.matrixWorld).project(camera);
