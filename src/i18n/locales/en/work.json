@@ -9,7 +9,7 @@
       "pillars": "Pillars of delivery excellence",
       "offices": "Offices in the USA and Vietnam"
     },
-    "camp": "Base camp"
+    "camp": "Branch"
   },
   "done": {
     "title": "What we have done",
@@ -37,6 +37,6 @@
     "domainsLabel": "Domains",
     "domains": { "edtech": "EdTech", "healthcare": "Healthcare", "logistics": "Logistics" },
     "pending": "Customer names and quotes pending · supply before launch",
-    "camp": "Summit"
+    "camp": "Beacon"
   }
 }

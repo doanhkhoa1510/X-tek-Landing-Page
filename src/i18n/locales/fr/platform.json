@@ -49,7 +49,7 @@
     "buddy": "Agent Buddy",
     "reports": "Agent des rapports scolaires",
     "wellbeing": "Agent du bien-être",
-    "more": "Autres agents"
+    "attendance": "Agent de présence"
   },
   "infra": {
     "network": "Infrastructure et connectivité",

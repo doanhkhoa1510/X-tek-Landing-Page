@@ -49,7 +49,7 @@
     "buddy": "Buddyエージェント",
     "reports": "学業レポートエージェント",
     "wellbeing": "ウェルビーイングエージェント",
-    "more": "その他のエージェント"
+    "attendance": "出欠エージェント"
   },
   "infra": {
     "network": "インフラとコネクティビティ",

@@ -9,7 +9,7 @@
       "pillars": "デリバリー・エクセレンスの柱",
       "offices": "米国とベトナムの拠点"
     },
-    "camp": "ベースキャンプ"
+    "camp": "拠点"
   },
   "done": {
     "title": "手がけてきたこと",
@@ -37,6 +37,6 @@
     "domainsLabel": "分野",
     "domains": { "edtech": "EdTech", "healthcare": "ヘルスケア", "logistics": "ロジスティクス" },
     "pending": "お客様の社名とコメントは未定 · ローンチ前にご用意ください",
-    "camp": "山頂"
+    "camp": "灯火"
   }
 }

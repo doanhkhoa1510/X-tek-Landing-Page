@@ -49,7 +49,7 @@
     "buddy": "Buddy 智能体",
     "reports": "学业报告智能体",
     "wellbeing": "身心健康智能体",
-    "more": "更多智能体"
+    "attendance": "考勤智能体"
   },
   "infra": {
     "network": "基础设施与连接",

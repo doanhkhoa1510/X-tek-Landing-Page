@@ -18,15 +18,15 @@
   },
   "offices": {
     "plano": {
-      "name": "Camp de base de Plano",
+      "name": "Succursale de Plano",
       "role": "Texas, États-Unis"
     },
     "hcmc": {
-      "name": "Camp de base de HCMV",
+      "name": "Succursale de HCMV",
       "role": "Hô Chi Minh-Ville, Vietnam"
     },
     "danang": {
-      "name": "Camp de base de Da Nang",
+      "name": "Succursale de Da Nang",
       "role": "Da Nang, Vietnam"
     }
   },
@@ -58,7 +58,7 @@
     "platform": "Plateforme",
     "work": "Réalisations",
     "faq": "FAQ",
-    "camps": "Camps de base",
+    "camps": "Succursales",
     "summit": "Contact"
   },
   "pages": {
