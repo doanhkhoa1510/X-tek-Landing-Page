@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "i18n:types": "node scripts/i18n-types.mjs",
-    "i18n:check": "node scripts/i18n-check.mjs"
+    "i18n:check": "node scripts/i18n-check.mjs",
+    "ui:check": "bash scripts/ui-check.sh"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.1.0",
