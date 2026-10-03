@@ -5,9 +5,9 @@
     "danang": { "name": "Đà Nẵng", "short": "Đà Nẵng", "long": "Đà Nẵng" }
   },
   "offices": {
-    "plano": { "name": "Trại căn cứ Plano", "role": "Texas, Hoa Kỳ" },
-    "hcmc": { "name": "Trại căn cứ TP.HCM", "role": "TP. Hồ Chí Minh, Việt Nam" },
-    "danang": { "name": "Trại căn cứ Đà Nẵng", "role": "Đà Nẵng, Việt Nam" }
+    "plano": { "name": "Chi nhánh Plano", "role": "Texas, Hoa Kỳ" },
+    "hcmc": { "name": "Chi nhánh TP.HCM", "role": "TP. Hồ Chí Minh, Việt Nam" },
+    "danang": { "name": "Chi nhánh Đà Nẵng", "role": "Đà Nẵng, Việt Nam" }
   },
   "services": {
     "engineering": {
@@ -16,7 +16,7 @@
     },
     "insights": {
       "name": "Thông tin chuyên sâu và phân tích số",
-      "text": "Hệ thống AI tác tử, business intelligence, mô hình hóa quy trình, kỹ thuật dữ liệu và nền tảng phân tích."
+      "text": "Hệ thống AI agent, business intelligence, mô hình hóa quy trình, kỹ thuật dữ liệu và nền tảng phân tích."
     },
     "robotics": {
       "name": "Hệ thống nhúng và robot AI",
@@ -37,7 +37,7 @@
     "platform": "Nền tảng",
     "work": "Dự án",
     "faq": "Hỏi đáp",
-    "camps": "Các trại căn cứ",
+    "camps": "Các chi nhánh",
     "summit": "Liên hệ"
   },
   "pages": {

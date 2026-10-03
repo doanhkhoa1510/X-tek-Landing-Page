@@ -5,9 +5,9 @@
     "danang": { "name": "Da Nang", "short": "Da Nang", "long": "Da Nang" }
   },
   "offices": {
-    "plano": { "name": "Plano base camp", "role": "Texas, USA" },
-    "hcmc": { "name": "HCMC base camp", "role": "Ho Chi Minh City, Vietnam" },
-    "danang": { "name": "Da Nang base camp", "role": "Da Nang, Vietnam" }
+    "plano": { "name": "Plano branch", "role": "Texas, USA" },
+    "hcmc": { "name": "HCMC branch", "role": "Ho Chi Minh City, Vietnam" },
+    "danang": { "name": "Da Nang branch", "role": "Da Nang, Vietnam" }
   },
   "services": {
     "engineering": {
@@ -37,7 +37,7 @@
     "platform": "Platform",
     "work": "Work",
     "faq": "FAQ",
-    "camps": "Base camps",
+    "camps": "Branches",
     "summit": "Contact"
   },
   "pages": {

@@ -1,5 +1,5 @@
 {
-  "camps": "Các trại căn cứ",
+  "camps": "Các chi nhánh",
   "reach": "Liên hệ",
   "whatsapp": "WhatsApp",
   "explore": "Khám phá",
@@ -10,9 +10,9 @@
     "label": "Cách đọc {{brand}}",
     "noun": "danh từ",
     "sayIt": "Đọc là:",
-    "def": "Lấy cảm hứng từ một ngọn núi. Đội ngũ đưa sản phẩm từ trại căn cứ lên tới đỉnh."
+    "def": "Lấy cảm hứng từ một ngọn núi. Đội ngũ đưa sản phẩm từ chi nhánh lên đỉnh núi và thắp đài lửa: sản phẩm khách hàng mong muốn, soi sáng cho thế giới."
   },
   "rights": "© {{year}} {{brand}} · Dịch vụ và sản phẩm CNTT ứng dụng AI",
   "tagline": "Get IT done. Để lại dấu ấn của bạn.",
-  "toTop": "Về trại căn cứ"
+  "toTop": "Về chi nhánh"
 }

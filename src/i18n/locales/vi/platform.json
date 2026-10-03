@@ -3,8 +3,8 @@
     "a": "Nền tảng ứng dụng AI",
     "b": "cho trường học thông minh."
   },
-  "lede": "Mỗi người trong trường mở một ứng dụng khác nhau. Bên dưới, tất cả đều chạy trên cùng các tác tử AI và cùng một nguồn dữ liệu.",
-  "text": "Chúng tôi xây dựng nền tảng này để một tác tử điều phối đọc từng yêu cầu rồi giao cho tác tử chuyên trách việc đó. Các thiết bị trong lớp học báo về một nền tảng dữ liệu duy nhất, nên các ứng dụng làm việc dựa trên những gì đang diễn ra trong phòng.",
+  "lede": "Mỗi người trong trường mở một ứng dụng khác nhau. Bên dưới, tất cả đều chạy trên cùng các agent AI và cùng một nguồn dữ liệu.",
+  "text": "Chúng tôi xây dựng nền tảng này để một agent điều phối đọc từng yêu cầu rồi giao cho agent chuyên trách việc đó. Các thiết bị trong lớp học báo về một nền tảng dữ liệu duy nhất, nên các ứng dụng làm việc dựa trên những gì đang diễn ra trong phòng.",
   "tiers": {
     "users": "Người dùng và ứng dụng",
     "services": "Dịch vụ",
@@ -30,7 +30,7 @@
   },
   "groups": {
     "ai": "Dịch vụ AI",
-    "agents": "Tác tử",
+    "agents": "Agent",
     "app": "Dịch vụ ứng dụng"
   },
   "aiServices": {
@@ -41,15 +41,15 @@
     "mcp": "MCP server",
     "backend": "Back-end"
   },
-  "supervisor": "Tác tử điều phối",
-  "routedTo": "Các tác tử mà tác tử điều phối giao việc tới",
+  "supervisor": "Agent điều phối",
+  "routedTo": "Các agent mà agent điều phối giao việc tới",
   "routes": "Điều phối từng yêu cầu",
   "agents": {
-    "policy": "Tác tử chính sách",
-    "buddy": "Tác tử Buddy",
-    "reports": "Tác tử báo cáo học tập",
-    "wellbeing": "Tác tử Wellbeing",
-    "more": "Thêm tác tử"
+    "policy": "Agent chính sách",
+    "buddy": "Agent Buddy",
+    "reports": "Agent báo cáo học tập",
+    "wellbeing": "Agent Wellbeing",
+    "attendance": "Agent điểm danh"
   },
   "infra": {
     "network": "Hạ tầng và kết nối",

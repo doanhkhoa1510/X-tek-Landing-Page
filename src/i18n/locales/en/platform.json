@@ -49,7 +49,7 @@
     "buddy": "Buddy agent",
     "reports": "Academic reports agent",
     "wellbeing": "Wellbeing agent",
-    "more": "More agents"
+    "attendance": "Attendance agent"
   },
   "infra": {
     "network": "Infrastructure and connectivity",

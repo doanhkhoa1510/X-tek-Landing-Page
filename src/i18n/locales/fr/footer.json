@@ -1,5 +1,5 @@
 {
-  "camps": "Camps de base",
+  "camps": "Succursales",
   "reach": "Nous joindre",
   "whatsapp": "WhatsApp",
   "explore": "Explorer",
@@ -10,9 +10,9 @@
     "label": "Comment prononcer {{brand}}",
     "noun": "nom",
     "sayIt": "Dites-le :",
-    "def": "Inspiré par une montagne. L’équipe qui mène un produit du camp de base au sommet."
+    "def": "Inspiré par une montagne. L’équipe qui hisse un produit de la succursale jusqu’au flambeau du sommet : le produit que les clients attendent, allumé pour le monde."
   },
   "rights": "© {{year}} {{brand}} · Services et produits IT propulsés par l’IA",
   "tagline": "Get IT done. Laissez votre empreinte.",
-  "toTop": "Retour au camp de base"
+  "toTop": "Retour à la succursale"
 }

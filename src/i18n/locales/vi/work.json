@@ -9,7 +9,7 @@
       "pillars": "Trụ cột của năng lực triển khai xuất sắc",
       "offices": "Văn phòng tại Hoa Kỳ và Việt Nam"
     },
-    "camp": "Trại căn cứ"
+    "camp": "Chi nhánh"
   },
   "done": {
     "title": "Những gì chúng tôi đã làm",
@@ -37,6 +37,6 @@
     "domainsLabel": "Lĩnh vực",
     "domains": { "edtech": "EdTech", "healthcare": "Y tế", "logistics": "Logistics" },
     "pending": "Tên khách hàng và lời chứng thực đang chờ · bổ sung trước khi ra mắt",
-    "camp": "Đỉnh"
+    "camp": "Đài lửa"
   }
 }
