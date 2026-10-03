@@ -54,6 +54,72 @@ function popover(host: HTMLElement, button: HTMLButtonElement) {
 const setMenu = popover($(".menu"), $<HTMLButtonElement>(".menu-toggle"));
 const setLang = popover($(".lang"), $<HTMLButtonElement>(".lang-toggle"));
 
+/* the header's ground: the page's own backgrounds (sections, bands, limbs) repainted behind the row, clipped as on the
+   page but without its content, so a ground's edge slides through the header in step with the scroll */
+const groundHost = $(".hdr-ground");
+type Clip = { el: HTMLElement; x: boolean; y: boolean };
+type Ground = { el: HTMLElement; image: string[]; color: string; clips: Clip[] };
+let grounds: Ground[] | null = null;
+const groundTiles: HTMLElement[] = [];
+/** "a(b, c), d" → ["a(b, c)", "d"]: background layers split at their top-level commas */
+function layers(image: string) {
+  const out: string[] = [];
+  let depth = 0, from = 0;
+  for (let i = 0; i < image.length; i++) {
+    const c = image[i];
+    if (c === "(") depth++;
+    else if (c === ")") depth--;
+    else if (c === "," && depth === 0) {
+      out.push(image.slice(from, i).trim());
+      from = i + 1;
+    }
+  }
+  out.push(image.slice(from).trim());
+  return out;
+}
+function readGrounds() {
+  return $$("[data-on]:not(.hdr), .horizon, .hero-dawn").flatMap<Ground>((el) => {
+    const cs = getComputedStyle(el);
+    const image = cs.backgroundImage === "none" ? [] : layers(cs.backgroundImage);
+    if (!image.length && cs.backgroundColor === "rgba(0, 0, 0, 0)") return [];
+    const clips: Clip[] = [];
+    for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) {
+      const ac = getComputedStyle(a), x = ac.overflowX !== "visible", y = ac.overflowY !== "visible";
+      if (x || y) clips.push({ el: a, x, y });
+    }
+    return [{ el, image, color: cs.backgroundColor, clips }];
+  });
+}
+function paintGround() {
+  grounds ??= readGrounds();
+  const h = groundHost.offsetHeight, w = innerWidth;
+  // edges on whole device pixels, as the page paints its boxes, so two grounds meet without a seam
+  const px = devicePixelRatio, snap = (v: number) => Math.round(v * px) / px;
+  const tiles: { g: Ground; x: number; y: number; gw: number; gh: number; t: number; b: number; l: number; rt: number }[] = [];
+  for (const g of grounds) {
+    const r = g.el.getBoundingClientRect();
+    const x = snap(r.left), y = snap(r.top), gw = snap(r.right) - x, gh = snap(r.bottom) - y;
+    let t = Math.max(y, 0), b = Math.min(y + gh, h), l = Math.max(x, 0), rt = Math.min(x + gw, w);
+    if (b <= t || rt <= l) continue;
+    for (const c of g.clips) {
+      const cr = c.el.getBoundingClientRect();
+      if (c.y) (t = Math.max(t, snap(cr.top))), (b = Math.min(b, snap(cr.bottom)));
+      if (c.x) (l = Math.max(l, snap(cr.left))), (rt = Math.min(rt, snap(cr.right)));
+    }
+    if (b > t && rt > l) tiles.push({ g, x, y, gw, gh, t, b, l, rt });
+  }
+  // later grounds paint over earlier ones, as on the page
+  tiles.forEach(({ g, x, y, gw, gh, t, b, l, rt }, i) => {
+    const tile = (groundTiles[i] ??= groundHost.appendChild(document.createElement("i")));
+    const size = `${gw}px ${gh}px`, pos = `${x - l}px ${y - t}px`;
+    tile.style.cssText =
+      `left:${l}px;top:${t}px;width:${rt - l}px;height:${b - t}px;background-color:${g.color};` +
+      (g.image.length ? `background-image:${g.image.join(",")};background-size:${g.image.map(() => size).join(",")};background-position:${g.image.map(() => pos).join(",")};` : "");
+  });
+  for (let i = tiles.length; i < groundTiles.length; i++) groundTiles[i].style.cssText = "display:none";
+}
+
+const navLinks = $$<HTMLAnchorElement>('.hdr-nav a[href^="#"]');
 let themeQueued = false;
 export function syncHeader() {
   themeQueued = false;
@@ -61,19 +127,26 @@ export function syncHeader() {
   hdr.classList.toggle("is-scrolled", y > 40);
   if (y > 40) setLang(false); // the list leaves with the ticker
   hdr.classList.toggle("is-compact", y > 80);
+  paintGround();
   const py = hdr.classList.contains("is-scrolled") ? 32 : 64;
   const probe = document.elementsFromPoint(innerWidth / 2, py);
-  const under = probe.find((el) => !el.closest(".hdr, .skip") && el.closest("[data-on]"));
+  const under = probe.find((el) => !el.closest(".hdr, .hdr-ground, .skip") && el.closest("[data-on]"));
   const host = under?.closest<HTMLElement>("[data-on]");
-  let on = host?.dataset.on ?? "dark";
-  // a limb is the other field at one end: a dawn's snow lies in its lower part, a dusk's sky in its upper part
-  host?.querySelectorAll<HTMLElement>(":scope > .horizon").forEach((limb) => {
+  let on = host?.dataset.on ?? "dark", mid = false;
+  // a limb is the other field at one end: a dawn's snow lies in its lower part, a dusk's sky in its upper part;
+  // its --flip is the depth where its ground turns, and around it (mid-blue) the soft ink is too faint, so all ink goes full
+  host?.querySelectorAll<HTMLElement>(":scope > .horizon, .hero-dawn").forEach((limb) => {
     const r = limb.getBoundingClientRect();
     if (py < r.top || py > r.bottom) return;
-    const t = (py - r.top) / r.height;
-    if (limb.classList.contains("dawn") ? t > 0.6 : t < 0.35) on = on === "dark" ? "light" : "dark";
+    const t = (py - r.top) / r.height, flip = parseFloat(getComputedStyle(limb).getPropertyValue("--flip"));
+    if (limb.matches(".dawn, .hero-dawn") ? t > flip : t < flip) on = on === "dark" ? "light" : "dark";
+    if (Math.abs(t - flip) < 0.06) mid = true;
   });
   hdr.dataset.on = on;
+  hdr.classList.toggle("is-mid", mid);
+  // on the landing page the row marks the section under the header
+  const here = under?.closest<HTMLElement>("section[id]")?.id;
+  for (const a of navLinks) a.classList.toggle("is-here", a.dataset.section === here);
 }
 const queueHeader = () => {
   if (!themeQueued) {
@@ -81,8 +154,12 @@ const queueHeader = () => {
     requestAnimationFrame(syncHeader);
   }
 };
-lenis ? lenis.on("scroll", queueHeader) : addEventListener("scroll", queueHeader, { passive: true });
-addEventListener("resize", queueHeader);
+// in the scroll frame itself, after ScrollTrigger has moved the pins and limbs, so the ground never trails the page
+lenis ? lenis.on("scroll", syncHeader) : addEventListener("scroll", syncHeader, { passive: true });
+addEventListener("resize", () => {
+  grounds = null;
+  queueHeader();
+});
 
 /* anchors: smooth, offset past the horizon bands and the header, focus moved for keyboard users */
 export function goTo(target: HTMLElement | null, immediate = false) {
