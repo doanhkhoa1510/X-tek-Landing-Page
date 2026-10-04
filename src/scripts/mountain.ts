@@ -348,6 +348,16 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     canvas.replaceWith(fresh);
     canvas = fresh;
   }
+  // every landing tab that comes into view tells the others; a hidden tab frees its GPU as soon as two have been shown
+  // since it hid, so clicking through twenty tabs holds two scenes at most, and flipping between two never rebuilds
+  const peers = "BroadcastChannel" in window ? new BroadcastChannel("xt-hero") : null;
+  let shownSince = 0;
+  peers?.addEventListener("message", () => {
+    if (!document.hidden || !gpu || ++shownSince < 2) return;
+    clearTimeout(releaseTimer);
+    releaseTimer = 0;
+    release();
+  });
   function sync() {
     if (!document.hidden) {
       clearTimeout(releaseTimer);
@@ -442,8 +452,15 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   const kick = () => {
     if (!raf && active && !document.hidden && gpu?.ready) raf = requestAnimationFrame(frame);
   };
-  document.addEventListener("visibilitychange", sync);
-  sync();
+  const onVisibility = () => {
+    if (!document.hidden) {
+      shownSince = 0;
+      peers?.postMessage("shown");
+    }
+    sync();
+  };
+  document.addEventListener("visibilitychange", onVisibility);
+  onVisibility();
 
   addEventListener("resize", () => {
     camera.aspect = innerWidth / innerHeight;
