@@ -3,6 +3,7 @@
    the same pixel-dot grammar as the map and the particle mountain. */
 
 import { LAND, MAP } from "./dotmap-data";
+import { paintWhenNear } from "./defer";
 
 export const ICONS: Record<string, string> = {
   // services
@@ -132,6 +133,5 @@ export function paintDotMap(canvas: HTMLCanvasElement, color: string, radius = 0
     }
     g.fill();
   };
-  draw();
-  new ResizeObserver(draw).observe(canvas);
+  paintWhenNear(canvas, draw);
 }
