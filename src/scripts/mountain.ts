@@ -43,13 +43,9 @@ export type Scene = {
   labels: HTMLElement[];
 };
 
-export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement): Scene | null {
-  let renderer: THREE.WebGLRenderer;
-  try {
-    renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
-  } catch {
-    return null;
-  }
+/** onFail runs if the browser refuses a WebGL context when the scene first needs one. */
+export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement, onFail: () => void): Scene | null {
+  if (!("WebGLRenderingContext" in window)) return null;
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const small = innerWidth < 768;
   if (small) {
@@ -71,9 +67,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
       s.look[0] = 2 * ZION.peakAt[0] - s.look[0];
     }
   }
-  renderer.setPixelRatio(Math.min(devicePixelRatio, small ? 1.5 : 2));
-  renderer.setSize(innerWidth, innerHeight, false);
-  renderer.setClearColor(0x030813, 1);
+  const pixelRatio = Math.min(devicePixelRatio, small ? 1.5 : 2);
 
   const scene = new THREE.Scene();
   // background (not only the clear color): the bloom pass restores the clear color outside a render target,
@@ -116,7 +110,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     blending: THREE.AdditiveBlending,
     uniforms: {
       uTime: { value: 0 },
-      uPixel: { value: renderer.getPixelRatio() },
+      uPixel: { value: pixelRatio },
       uClimb: { value: -1 },
       uFade: { value: 1 },
     },
@@ -300,13 +294,70 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   beacon(summit, "summit");
   anchors.push({ el: chip(words.summit ?? `${SUMMIT_M} m`, "summit", "summit"), pos: summit, id: "summit", kind: "summit" });
 
-  /* post */
-  const composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, camera));
-  // tight radius and a high threshold: glow on the rim, the beacons, and the arcs only, never a sky-wide haze
-  const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), small ? 0.5 : 0.55, 0.18, 0.72);
-  composer.addPass(bloom);
-  composer.addPass(new OutputPass());
+  /* gpu: the renderer and its post chain hold hundreds of MB of GPU memory, so they exist only while the scene can be
+     seen. A tab opened in the background builds nothing; a hidden tab frees them after RELEASE_MS. Scrolling away from
+     the night keeps them: a rebuild costs ~0.1 s of main thread, a stall mid-scroll. The scene graph above stays in
+     memory and uploads again on the next build. */
+  type Gpu = { renderer: THREE.WebGLRenderer; composer: EffectComposer; ready: boolean };
+  const RELEASE_MS = 10_000;
+  let gpu: Gpu | null = null, failed = false, releaseTimer = 0;
+  function build() {
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
+    } catch {
+      failed = true;
+      onFail();
+      return;
+    }
+    renderer.setPixelRatio(pixelRatio);
+    renderer.setSize(innerWidth, innerHeight, false);
+    renderer.setClearColor(0x030813, 1);
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    // tight radius and a high threshold: glow on the rim, the beacons, and the arcs only, never a sky-wide haze
+    composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), small ? 0.5 : 0.55, 0.18, 0.72));
+    composer.addPass(new OutputPass());
+    const g: Gpu = (gpu = { renderer, composer, ready: false });
+    // the browser may take the context back (too many tabs): free ours, and build again when the scene is wanted
+    canvas.addEventListener("webglcontextlost", () => {
+      if (gpu !== g) return;
+      release();
+      sync();
+    }, { once: true });
+    // shaders compile off the main thread where the browser can, so a rebuild mid-scroll does not stall a frame
+    renderer.compileAsync(scene, camera).then(() => {
+      if (gpu !== g) return;
+      g.ready = true;
+      kick();
+    });
+  }
+  function release() {
+    if (!gpu) return;
+    const { renderer, composer } = gpu;
+    gpu = null;
+    composer.passes.forEach((p) => p.dispose());
+    composer.dispose();
+    renderer.dispose();
+    renderer.forceContextLoss();
+    // a lost context never comes back on its canvas: the next build draws on a fresh one
+    const fresh = canvas.cloneNode() as HTMLCanvasElement;
+    canvas.replaceWith(fresh);
+    canvas = fresh;
+  }
+  function sync() {
+    if (!document.hidden) {
+      clearTimeout(releaseTimer);
+      releaseTimer = 0;
+      if (!gpu && !failed) build();
+      kick();
+    } else if (gpu && !releaseTimer) {
+      releaseTimer = window.setTimeout(() => {
+        releaseTimer = 0;
+        release();
+      }, RELEASE_MS);
+    }
+  }
 
   /* state */
   const rig: Rig = { scale: 1, shift: 0, glow: 1, arcs: 1 };
@@ -333,7 +384,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   let raf = 0;
   function frame() {
     raf = 0;
-    if (!active || document.hidden) return;
+    if (!active || document.hidden || !gpu?.ready) return;
     const t = reduceMotion ? 0 : clock.getElapsedTime();
     target();
     const k = reduceMotion ? 1 : 0.07;
@@ -382,20 +433,20 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
       a.el.style.transform = `translate3d(${(((v.x + 1) / 2) * w).toFixed(1)}px, ${(((1 - v.y) / 2) * h).toFixed(1)}px, 0)`;
     }
 
-    composer.render();
+    gpu.composer.render();
     raf = requestAnimationFrame(frame);
   }
   const kick = () => {
-    if (!raf && active && !document.hidden) raf = requestAnimationFrame(frame);
+    if (!raf && active && !document.hidden && gpu?.ready) raf = requestAnimationFrame(frame);
   };
-  document.addEventListener("visibilitychange", kick);
-  kick();
+  document.addEventListener("visibilitychange", sync);
+  sync();
 
   addEventListener("resize", () => {
     camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(innerWidth, innerHeight, false);
-    composer.setSize(innerWidth, innerHeight);
+    gpu?.renderer.setSize(innerWidth, innerHeight, false);
+    gpu?.composer.setSize(innerWidth, innerHeight);
   });
 
   return {
@@ -413,7 +464,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     setActive: (on) => {
       active = on;
       labelLayer.classList.toggle("is-hidden", !on);
-      kick();
+      sync();
     },
     setFocus: (id) => (focus = id),
   };

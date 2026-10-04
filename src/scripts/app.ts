@@ -10,7 +10,7 @@ import { mountRidge } from "./ridge";
 import { mountTrail } from "./trail";
 
 /* ---------- scene and maps ---------- */
-const scene = mountMountain($<HTMLCanvasElement>("#mountain"), $("#chips"));
+const scene = mountMountain($<HTMLCanvasElement>("#mountain"), $("#chips"), () => root.classList.add("no-webgl"));
 if (!scene) root.classList.add("no-webgl");
 const topo = mountTopo($<HTMLCanvasElement>(".topo canvas"));
 const topoBg = mountTopo($<HTMLCanvasElement>(".ascent-bg canvas"), { minor: "rgba(16, 48, 96, 0.07)", major: "rgba(16, 48, 96, 0.15)", amber: 0, cover: true } /* no live line: it shifted on scroll behind the copy */);
