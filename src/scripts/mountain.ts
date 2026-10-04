@@ -67,8 +67,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
       s.look[0] = 2 * ZION.peakAt[0] - s.look[0];
     }
   }
-  // every buffer below scales with the pixel count: past 1.5 the dots and the glow look the same and cost ~1.8x more
-  const pixelRatio = Math.min(devicePixelRatio, 1.5);
+  const pixelRatio = Math.min(devicePixelRatio, small ? 1.5 : 2);
 
   const scene = new THREE.Scene();
   // background (not only the clear color): the bloom pass restores the clear color outside a render target,

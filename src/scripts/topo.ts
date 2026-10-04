@@ -50,8 +50,7 @@ export function mountTopo(canvas: HTMLCanvasElement, style: TopoStyle = TILE) {
   }
 
   function paintBase() {
-    // a full-bleed backdrop's faint contours read the same at 1x, at a quarter of the memory on a 2x screen
-    dpr = style.cover ? 1 : Math.min(devicePixelRatio, 2);
+    dpr = Math.min(devicePixelRatio, 2);
     w = canvas.clientWidth;
     h = canvas.clientHeight;
     if (!w || !h) return false;
