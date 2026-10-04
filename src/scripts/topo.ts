@@ -19,7 +19,9 @@ export function mountTopo(canvas: HTMLCanvasElement, style: TopoStyle = TILE) {
   for (let j = 0; j < NY; j++)
     for (let i = 0; i < NX; i++) grid[j * NX + i] = heightAt(X0 + ((X1 - X0) * i) / (NX - 1), Z0 + ((Z1 - Z0) * j) / (NY - 1));
 
-  const base = document.createElement("canvas");
+  // the contours are painted once into base, and each altitude change copies them back under the amber line;
+  // with no amber line the canvas is painted once and keeps no copy
+  const base = style.amber ? document.createElement("canvas") : canvas;
   let w = 0, h = 0, dpr = 1, last = -1, sx = 1, sy = 1, ox = 0, oy = 0;
 
   function trace(g: CanvasRenderingContext2D, level: number) {
@@ -47,7 +49,8 @@ export function mountTopo(canvas: HTMLCanvasElement, style: TopoStyle = TILE) {
   }
 
   function paintBase() {
-    dpr = Math.min(devicePixelRatio, 2);
+    // a full-bleed backdrop's faint contours read the same at 1x, at a quarter of the memory on a 2x screen
+    dpr = style.cover ? 1 : Math.min(devicePixelRatio, 2);
     w = canvas.clientWidth;
     h = canvas.clientHeight;
     if (!w || !h) return false;
@@ -59,7 +62,7 @@ export function mountTopo(canvas: HTMLCanvasElement, style: TopoStyle = TILE) {
       ox = (w - sx * (NX - 1)) / 2;
       oy = (h - sy * (NY - 1)) / 2;
     }
-    for (const c of [canvas, base]) {
+    for (const c of new Set([canvas, base])) {
       c.width = Math.round(w * dpr);
       c.height = Math.round(h * dpr);
     }
@@ -74,6 +77,7 @@ export function mountTopo(canvas: HTMLCanvasElement, style: TopoStyle = TILE) {
   }
 
   function draw(altitude: number) {
+    if (!style.amber) return;
     const level = Math.max(0.05, Math.min(PEAK - 0.08, unitsAt(altitude)));
     if (Math.abs(level - last) < 0.01) return;
     last = level;
@@ -81,7 +85,6 @@ export function mountTopo(canvas: HTMLCanvasElement, style: TopoStyle = TILE) {
     g.setTransform(1, 0, 0, 1, 0, 0);
     g.clearRect(0, 0, canvas.width, canvas.height);
     g.drawImage(base, 0, 0);
-    if (!style.amber) return;
     g.setTransform(dpr, 0, 0, dpr, 0, 0);
     g.strokeStyle = style.amberColor ?? "#f8c000";
     g.lineWidth = style.amber;
