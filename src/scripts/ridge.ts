@@ -3,6 +3,7 @@
    to the summit while the service track slides past, then carries on down the ascent rail. */
 
 import { domeAt } from "./relief";
+import { paintWhenNear } from "./defer";
 
 const X0 = -14, X1 = 14, N = 280;
 
@@ -60,7 +61,6 @@ export function mountRidge(canvas: HTMLCanvasElement, rider: HTMLElement) {
     rider.style.transform = `translate3d(${(u * w).toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
   }
 
-  draw();
-  new ResizeObserver(draw).observe(canvas);
+  paintWhenNear(canvas, draw);
   return place;
 }

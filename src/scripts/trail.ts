@@ -6,6 +6,7 @@
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BASE_M, domeAt, PEAK, SUMMIT_M, unitsAt } from "./relief";
+import { paintWhenNear } from "./defer";
 
 const X0 = -10, X1 = 11, N = 420; // closer than the routes sky: the dome fills the frame, the west shoulder at its edge
 const rand = (k: number) => {
@@ -222,11 +223,10 @@ export function mountTrail(panel: HTMLElement, list: HTMLElement) {
     stages.slice(1).forEach((st, i) => st.classList.toggle("is-on", i < near));
   }
 
-  new ResizeObserver(build).observe(panel);
+  paintWhenNear(panel, build);
   ScrollTrigger.create({
     trigger: list, refreshPriority: -1 /* after the pinned routes above add their spacer */,
     start: () => `top ${settle()}px`, end: () => `+=${span()}`,
     onUpdate: (s) => walk(s.progress), onRefresh: (s) => walk(s.progress),
   });
-  build();
 }
