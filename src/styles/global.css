@@ -631,11 +631,11 @@ section { position: relative; color: var(--fg); }
   background: var(--snow) radial-gradient(circle, rgba(16, 48, 96, 0.12) 1px, transparent 1.5px) 0 0 / 16px 16px;
 }
 /* the y-axis: one hairline down the whole chart, centred in the gap after the tier names */
-.chart::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(var(--pad) + var(--axis) + 12px); width: 1px; background: var(--line); }
+.chart::before { content: ""; position: absolute; top: 0; bottom: 0; inset-inline-start: calc(var(--pad) + var(--axis) + 12px); width: 1px; background: var(--line); }
 .tier { position: relative; display: grid; grid-template-columns: var(--axis) minmax(0, 1fr); column-gap: 24px; align-items: start; }
-.tier-label { position: relative; padding-right: 8px; font: 500 var(--fs-label) / 1.3 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate); }
+.tier-label { position: relative; padding-inline-end: 8px; font: 500 var(--fs-label) / 1.3 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate); }
 /* each tier ticks the axis at its name */
-.tier-label::after { content: ""; position: absolute; top: 4px; right: -15px; width: 6px; height: 6px; border-radius: 50%; background: var(--navy); }
+.tier-label::after { content: ""; position: absolute; top: 4px; inset-inline-end: -15px; width: 6px; height: 6px; border-radius: 50%; background: var(--navy); }
 /* blocks: square, hairline, snow over the paper */
 .blocks { display: grid; gap: 8px; }
 .blocks li, .supervisor, .agent, .devices li {
@@ -669,8 +669,8 @@ section { position: relative; color: var(--fg); }
 .group-ai { grid-area: ai; }
 .group-agents { grid-area: agents; }
 .group-app { grid-area: app; }
-.group-ai::after { left: calc(100% - 2px); }
-.group-app::after { right: calc(100% - 2px); }
+.group-ai::after { inset-inline-start: calc(100% - 2px); }
+.group-app::after { inset-inline-end: calc(100% - 2px); }
 /* the hub: the supervisor at the centre, spokes out to every agent; hover lights a spoke amber (a 2px line inside a bounded figure) */
 .hub { position: relative; flex: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(60px, 1fr)); }
 .hub-agents { display: contents; }
@@ -688,7 +688,7 @@ section { position: relative; color: var(--fg); }
 .hub:has(.agent:nth-child(5):hover) .spoke:nth-child(5) { stroke: var(--amber); stroke-width: 2; }
 /* infrastructure and data, linked to each other; the data platform runs as a pipeline once it fits one row */
 .infra { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--link); }
-.infra > .group:first-child::after { left: calc(100% - 2px); }
+.infra > .group:first-child::after { inset-inline-start: calc(100% - 2px); }
 /* the trunk: from the agents frame straight down to the middle of the infrastructure link (the centre of both tiers) */
 .infra::before { display: none; }
 .blocks-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -707,7 +707,7 @@ section { position: relative; color: var(--fg); }
 @media (max-width: 1199px) {
   .services { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "agents agents" "ai app"; }
   /* the agents sit on top: AI and app services link up into them */
-  .group-ai::after, .group-app::after { top: calc(-1 * var(--link) - 4px); right: auto; left: round(calc(50% - 2.5px), 1px); width: 5px; height: calc(var(--link) + 6px); --lw: 2px; --lh: 100%; --lp: 2px 50%; }
+  .group-ai::after, .group-app::after { top: calc(-1 * var(--link) - 4px); inset-inline-end: auto; inset-inline-start: auto; left: round(calc(50% - 2.5px), 1px); width: 5px; height: calc(var(--link) + 6px); --lw: 2px; --lh: 100%; --lp: 2px 50%; }
   .devices li { flex-direction: column; align-items: flex-start; }
 }
 /* under 992px the tier names leave the axis and head their tiers */
@@ -715,8 +715,8 @@ section { position: relative; color: var(--fg); }
   .chart::before { display: none; }
   .tier { grid-template-columns: minmax(0, 1fr); row-gap: 14px; }
   /* the axis dot moves in front of the name, and the name takes ink so it outranks the group names under it */
-  .tier-label { display: flex; flex-direction: row-reverse; justify-content: flex-end; align-items: center; gap: 8px; padding-right: 0; color: var(--ink); }
-  .tier-label::after { position: static; flex: none; }
+  .tier-label { display: flex; align-items: center; gap: 8px; padding-inline-end: 0; color: var(--ink); }
+  .tier-label::after { position: static; flex: none; order: -1; }
 }
 @media (max-width: 767px) {
   .role-grid, .devices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -724,7 +724,7 @@ section { position: relative; color: var(--fg); }
   .role-col:last-child, .devices li:last-child { grid-column: span 2; }
   .devices li { flex-direction: row; align-items: center; }
   .infra { grid-template-columns: minmax(0, 1fr); }
-  .infra > .group:first-child::after { top: calc(100% - 2px); left: round(calc(50% - 2.5px), 1px); width: 5px; height: calc(var(--link) + 6px); --lw: 2px; --lh: 100%; --lp: 2px 50%; }
+  .infra > .group:first-child::after { top: calc(100% - 2px); inset-inline-start: auto; left: round(calc(50% - 2.5px), 1px); width: 5px; height: calc(var(--link) + 6px); --lw: 2px; --lh: 100%; --lp: 2px 50%; }
   /* the hub folds into a list: the supervisor and its note, then the agents two up */
   .hub { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; gap: 8px; }
   .spokes { display: none; }
@@ -1240,11 +1240,13 @@ section { position: relative; color: var(--fg); }
 }
 
 /* ---------- right to left (Arabic) ----------
-   The layout mirrors through logical properties and grid and flex order. The lockups of mark and name, the maps,
-   the platform chart, the trek, and the 24-hour day bar keep their left-to-right drawing; text inside them still
+   The layout mirrors through logical properties and grid and flex order, the platform chart included. The lockups of
+   mark and name, the maps, the trek, and the 24-hour day bar keep their left-to-right drawing; text inside them still
    reads right to left. The mountain's camera moves to the other side of the summit (mountain.ts). */
-[dir="rtl"] :is(.logo, .loader-logo, .foot-word, .worldmap, .chart, .daybar, .trek) { direction: ltr; }
-[dir="rtl"] :is(.chart, .worldmap, .daybar, .trek) :is(h3, h4, li, p, span, b) { unicode-bidi: plaintext; }
+[dir="rtl"] :is(.logo, .loader-logo, .foot-word, .worldmap, .daybar, .trek) { direction: ltr; }
+[dir="rtl"] :is(.worldmap, .daybar, .trek) :is(h3, h4, li, p, span, b) { unicode-bidi: plaintext; }
+/* the hub's columns mirror, so its spokes (drawn in left-to-right SVG space, symmetric about the centre) mirror too */
+[dir="rtl"] .spokes { scale: -1 1; }
 /* a headline line kept in Latin (the "Get IT done." accent) keeps its full stop at its own end */
 [dir="rtl"] .ln > span { unicode-bidi: plaintext; }
 [dir="rtl"] .hero-stage::before { background: radial-gradient(60% 70% at 88% 92%, rgba(3, 8, 19, 0.82), rgba(3, 8, 19, 0) 70%); }

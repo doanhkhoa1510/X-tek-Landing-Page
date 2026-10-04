@@ -20,12 +20,12 @@
   },
   "appsOf": "{{role}}: التطبيقات",
   "apps": {
-    "parentHub": "Parent Hub",
+    "parentHub": "مركز أولياء الأمور",
     "buddy": "روبوتات Buddy360",
-    "wellbeing": "AI Wellbeing",
-    "curriculum": "AI Curriculum Hub",
+    "wellbeing": "الرفاهية بالذكاء الاصطناعي",
+    "curriculum": "مركز المناهج بالذكاء الاصطناعي",
     "reports": "التقارير الأكاديمية",
-    "coach": "IoT Teacher Coach",
+    "coach": "مدرّب المعلم عبر إنترنت الأشياء",
     "other": "تطبيقات أخرى"
   },
   "groups": {
@@ -35,10 +35,10 @@
   },
   "aiServices": {
     "speech": "تحويل الكلام إلى نص والنص إلى كلام",
-    "ml": "تعلّم الآلة، SLMs، LLMs"
+    "ml": "تعلّم الآلة والنماذج اللغوية الصغيرة والكبيرة"
   },
   "appServices": {
-    "mcp": "MCP server",
+    "mcp": "خادم MCP",
     "backend": "الواجهة الخلفية"
   },
   "supervisor": "الوكيل المشرف",
@@ -57,8 +57,8 @@
   },
   "parts": {
     "auth": "المصادقة",
-    "gateway": "API gateway",
-    "iot": "IoT hub",
+    "gateway": "بوابة واجهات البرمجة",
+    "iot": "مركز إنترنت الأشياء",
     "edge": "الحافة الذكية",
     "ingestion": "استيعاب البيانات",
     "storage": "التخزين",
