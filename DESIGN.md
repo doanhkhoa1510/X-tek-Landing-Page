@@ -759,7 +759,7 @@ The name set as a dictionary headword, the page's last word.
   - The ground glow: a glacier plane on the valley floor (gain 0.2).
   - 1,600 stars.
 - **Marks:**
-  - Camps: Plano (−1.5, 4.5), Ho Chi Minh City (2.4, 3.6), and Da Nang (3.4, 2.4), each with an amber dot, a pulsing ring (×1–2.6), and an arc to the summit. The arc head travels at 0.14 cycles/s from ember to amber.
+  - Camps: Plano (3, 3.5) on the south face right of the headline, Ho Chi Minh City (8.8, −7.45), and Da Nang (−5.4, −4.1), each with an amber dot, a pulsing ring (×1–2.6), and an arc to the summit. The arc head travels at 0.14 cycles/s from ember to amber.
   - The summit (`ZION.peakAt`) has a beacon and an amber chip, "Summit · 765 m".
 - **Camera:**
   - Hero: from base camp (−2.5, 5.4, 20 → look −5.2, 3.2, 0) up the south face to the crest (1.4, 9.4, 8 → look 0.4, 5.8, −4), eased with smoothstep and lerped 0.07 per frame.
