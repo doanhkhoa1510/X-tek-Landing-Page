@@ -1,13 +1,13 @@
 ---
 /* The brief: name, work email, and what they are building; the contact page adds a subject and a phone.
    chrome.ts posts it to the mailer (mailer/, behind nginx at /api/contact) and reads the states' words, in the page's language, from data-status. */
-import { phones, services } from "../data/site";
+import { phones, reply, services } from "../data/site";
 import { rich, useT } from "../i18n";
 
 interface Props { full?: boolean }
 const { full = false } = Astro.props;
 const lang = Astro.currentLocale;
-const t = useT(lang, "form"), ts = useT(lang, "site");
+const t = useT(lang, "form"), ts = useT(lang, "site"), tt = useT(lang, "team");
 const call = (s: string) => `<a href="${phones.us.href}">${s}</a>`;
 const status = {
   badEmail: t("status.badEmail"),
@@ -45,4 +45,5 @@ const status = {
   <div class="brief-trap" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off" /></label></div>
   <p class="form-status" role="status" aria-live="polite"></p>
   <button class="btn btn-fill" type="submit"><span class="scr">{t(full ? "sendRequest" : "sendBrief")}</span></button>
+  {reply && <p class="brief-reply">{tt("reply", { who: reply.who, days: reply.days })}</p>}
 </form>

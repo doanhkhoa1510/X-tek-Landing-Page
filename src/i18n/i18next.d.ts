@@ -21,6 +21,7 @@ import type notFound from "./locales/en/notFound.json";
 import type platform from "./locales/en/platform.json";
 import type site from "./locales/en/site.json";
 import type summit from "./locales/en/summit.json";
+import type team from "./locales/en/team.json";
 import type values from "./locales/en/values.json";
 import type why from "./locales/en/why.json";
 import type work from "./locales/en/work.json";
@@ -50,6 +51,7 @@ declare module "i18next" {
       platform: typeof platform;
       site: typeof site;
       summit: typeof summit;
+      team: typeof team;
       values: typeof values;
       why: typeof why;
       work: typeof work;

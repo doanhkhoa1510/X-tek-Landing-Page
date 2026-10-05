@@ -50,6 +50,15 @@ export const phones = {
   wa: { href: "https://wa.me/14694399345", label: ltr("+1 469 439 9345") },
 };
 export const email = "vinni.tran@xiontechs.com";
+
+// the people a buyer talks to (PRODUCT.md › Evidence on Hand); names read the same in every language.
+// photo (a file in public/team/) and linkedin stay null until the owner supplies and approves them (#48): never a stock face
+export const leaders = [
+  { id: "vinni", name: "Vinni Vu Tran", photo: null as string | null, linkedin: null as string | null },
+  { id: "thea", name: "Thea Thu Nguyen", photo: null as string | null, linkedin: null as string | null },
+] as const;
+// what happens after a brief is sent: shown under the form only once the owner gives who replies and in how many business days (#48)
+export const reply = null as null | { who: string; days: number };
 export const recruit = "recruit@xiontechs.com";
 
 // the five software engineering lines

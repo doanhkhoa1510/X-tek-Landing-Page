@@ -1,6 +1,7 @@
 ---
 import Sub from "../../layouts/Sub.astro";
 import Cta from "../../components/Cta.astro";
+import Leaders from "../../components/Leaders.astro";
 import Mindset from "../../components/sections/Mindset.astro";
 import Values from "../../components/sections/Values.astro";
 import { localePaths } from "../../i18n/config";
@@ -33,6 +34,8 @@ const reasons = ["client", "integrity", "quality", "rapid", "reliable", "team"] 
       ))}
     </dl>
   </section>
+
+  <Leaders />
 
   <section class="why" data-on="light" aria-labelledby="why-title">
     <div class="wrap split">

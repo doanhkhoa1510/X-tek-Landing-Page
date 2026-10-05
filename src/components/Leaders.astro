@@ -1,0 +1,26 @@
+---
+/* About us · Leadership: the real people a buyer talks to (#48). A face shows only once the owner supplies the photo;
+   until then the tile carries the initials, so nothing reads as a stock portrait. */
+import { leaders } from "../data/site";
+import { useT } from "../i18n";
+
+const t = useT(Astro.currentLocale, "team");
+const initials = (name: string) => name.split(" ").map((w) => w[0]).filter((_, i, a) => i === 0 || i === a.length - 1).join("");
+---
+<section id="team" class="leaders" data-on="light" aria-labelledby="leaders-title">
+  <div class="wrap split-head">
+    <h2 id="leaders-title" class="tt"><span class="tt-a">{t("title.a")}</span> <span class="tt-b">{t("title.b")}</span></h2>
+  </div>
+  <ul class="wrap leader-list">
+    {leaders.map((p) => (
+      <li class="leader">
+        {p.photo ? <img class="leader-face" src={p.photo} alt="" width="160" height="160" loading="lazy" /> : <span class="leader-face leader-mono" aria-hidden="true">{initials(p.name)}</span>}
+        <div>
+          <h3>{p.name}</h3>
+          <p>{t(`roles.${p.id}`)}</p>
+          {p.linkedin && <a href={p.linkedin} target="_blank" rel="noopener">{t("linkedin", { name: p.name })}</a>}
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>

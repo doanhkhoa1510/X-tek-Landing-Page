@@ -576,6 +576,11 @@ The figure (count-up from 0, 1s power1.out at `top 85%`, once) sits over a Label
 - **Content:** every figure is in PRODUCT.md › Evidence on Hand: 3 offices (US contact, Vietnam build team, both time zones), 25+ years, 5 pillars (Agile + BMAD-METHOD + V-Model, metric-driven), 2 products (the AI-powered development platform and our own AI products). No reason without a proof; no comparison table until the owner approves each claim (#47).
 - **Motion:** reasons rise 24px (1.1s expo, stagger 0.1) at `top 85%` of the row; figures count up like every Stat.
 
+### Leadership (on About us)
+- **Layout:** a split head ("Leadership. / The people you talk to.") over a two-up hairline row (one-up on mobile). Each person: a 112px square face, the name as a Title, the role in Label (Slate), and a LinkedIn link in Label when the owner supplies one.
+- **Faces:** only the owner's photos (`leaders[].photo`, files in `public/team/`). Until then the square is Brand Navy with the initials in Saira 760 Snow. Never a stock portrait or a generated face (#48).
+- **Reply promise:** `reply` in `site.ts` adds one line under every brief form ("{who} replies to every brief within {days} business days."). It stays off until the owner gives both values.
+
 ### Story and mission (mindset, on About us)
 - **Layout:** the topo tile and the sticky two-tone H2 at 1/7; the story at 8/13 as three Lede paragraphs. The H2 reads "Starting with a story. / A mountain is our symbol." The first paragraph names Mount Zion once, as the inspiration for the name; this is the only place the page names it (the Symbol Rule). XionTechs is the only company named (the One-Name Rule: no parent group, no sister company, anywhere on the page). The mission sits under a hairline: a Title head ("Our mission") over Body in Slate, max 46ch. One outline pill leads to the core values.
 - **Entrance:** paragraphs, mission, and button rise 28px (1.1s expo, stagger 0.08).
