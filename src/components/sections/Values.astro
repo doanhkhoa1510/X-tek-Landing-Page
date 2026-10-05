@@ -1,7 +1,8 @@
 ---
-/* 02 · Core values: pinned; the value track slides past while the giant type drifts behind. */
+/* About us · Core values: pinned; the value track slides past while the giant type drifts behind (story.ts). */
 import { useT } from "../../i18n";
 import { values } from "../../data/site";
+import { localize } from "../../i18n/config";
 
 const lang = Astro.currentLocale;
 const t = useT(lang, "values"), tc = useT(lang, "common");
@@ -21,7 +22,7 @@ const alt = `${tc("hud.alt")} {n} ${tc("units.m")}`;
       <div class="routes-intro">
         <h2 id="values-title" class="tt"><span class="tt-a">{t("title.a")}</span> <span class="tt-b">{t("title.b")}</span></h2>
         <p>{t("intro")}</p>
-        <a class="btn btn-line" href="#summit"><span class="scr">{tc("talk")}</span></a>
+        <a class="btn btn-line" href={localize("/contact-us/", lang)}><span class="scr">{tc("talk")}</span></a>
       </div>
       <div class="track-wrap">
       <ol class="track">

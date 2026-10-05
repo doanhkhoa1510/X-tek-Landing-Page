@@ -5,7 +5,9 @@
 const CFG = __CFG__; // { base, only, widths }
 
 const VIEWPORTS = { desktop: [1440, 900], tablet: [834, 1112], mobile: [390, 844] };
-const SECTIONS = ["top", "mindset", "values", "platform", "work", "faq", "camps", "summit"];
+const SECTIONS = ["top", "platform", "work", "faq", "camps", "summit"];
+// sections further down a subpage, shot like the landing sections (About us holds the story and the values since #36)
+const PAGE_SECTIONS = { "/about-us/": ["mindset", "values"] };
 const PAGES = ["/about-us/", "/careers/", "/contact-us/", "/faqs/", "/support/", "/privacy-policy/", "/ar/"];
 // fixed or shared chrome, captured as single elements
 const PARTS = { header: ".hdr", footer: "footer" };
@@ -67,6 +69,12 @@ for (const vp of CFG.widths) {
     await wait(SETTLE);
     await shoot(page, name);
     report.push({ name, ...(await facts(page, "main")), header: await facts(page, ".hdr") });
+    for (const id of PAGE_SECTIONS[path] ?? []) {
+      await page.evaluate((id) => window.scrollTo(0, document.getElementById(id).getBoundingClientRect().top + scrollY), id);
+      await wait(SETTLE);
+      await shoot(page, `${name}-${id}`);
+      report.push({ name: `${name}-${id}`, ...(await facts(page, `#${id}`)) });
+    }
     // the closing ask band, shared by subpages
     if (await page.locator(".page-cta").count()) {
       await page.evaluate(() => document.querySelector(".page-cta").scrollIntoView({ block: "center" }));

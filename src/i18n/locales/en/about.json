@@ -3,9 +3,6 @@
   "description": "XionTechs distinguishes itself through its dedication to its people, processes, and technology: seven core values, one “Get IT Done” attitude.",
   "head": { "a": "About us.", "b": "We are increasing business success with IT solutions." },
   "lede": "XionTechs distinguishes itself through its dedication to its people, processes, and technology, as the core values below show.",
-  "values": {
-    "title": { "a": "Core values.", "b": "People, processes, technology." }
-  },
   "figures": {
     "label": "XionTechs in figures",
     "items": {
