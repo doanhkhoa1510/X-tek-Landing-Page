@@ -24,6 +24,8 @@ You can leave a key out, or leave it as `""`. Either way the English text shows.
 
 ## Rules for values
 
+- **Use the glossary.** `src/i18n/glossary.md` fixes one word per thing in every language (service lines, offices, the main action) and the form of address (Vietnamese buyers are "quý khách"). Check it before you translate, and add new terms there first.
+
 - **Placeholders stay.** `{{phone}}`, `{{brand}}`, and every other `{{name}}` are filled in by the site. Move them where your grammar needs them, but do not translate or delete them.
 - **Tags stay.** `<call>…</call>` and `<faqs>…</faqs>` turn the words between them into a link. Translate the words inside the tags, and keep each pair.
 - **Lists can change length.** `hero.json › lines` holds one entry per headline line. Split the headline into as many lines as reads well in your language.
