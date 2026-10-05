@@ -3,6 +3,7 @@ import "i18next";
 import type about from "./locales/en/about.json";
 import type camps from "./locales/en/camps.json";
 import type careers from "./locales/en/careers.json";
+import type cases from "./locales/en/cases.json";
 import type common from "./locales/en/common.json";
 import type contact from "./locales/en/contact.json";
 import type cta from "./locales/en/cta.json";
@@ -33,6 +34,7 @@ declare module "i18next" {
       about: typeof about;
       camps: typeof camps;
       careers: typeof careers;
+      cases: typeof cases;
       common: typeof common;
       contact: typeof contact;
       cta: typeof cta;
