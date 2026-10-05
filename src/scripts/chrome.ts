@@ -1,5 +1,5 @@
 /* XionTechs · The Night Ascent — the chrome every page shares.
-   Smooth scroll, header, altimeter, clocks, accordion, and forms; see DESIGN.md › Components.
+   Smooth scroll, header, altitude, clocks, accordion, and forms; see DESIGN.md › Components.
    The landing page (app.ts) and the subpages (page.ts) both start here. */
 
 import { gsap } from "gsap";
@@ -194,30 +194,18 @@ function words(s: string) {
   return parts;
 }
 
-/* ---------- altimeter: altitude from descent progress, vertical speed from scroll velocity ---------- */
-export const hud = $(".hud");
-const hudAlt = $(".hud-alt"), hudVs = $(".hud-vs");
+/* ---------- altitude: from descent progress; the contour maps and the ridge rider read it ---------- */
 const altWatchers: ((alt: number, shown: string) => void)[] = [];
-/** Runs whenever the altimeter reading changes (metres, and the formatted reading). */
+/** Runs whenever the altitude reading changes (metres, and the formatted reading). */
 export const onAltitude = (fn: (alt: number, shown: string) => void) => altWatchers.push(fn);
-let vs = 0, lastY = scrollPos(), lastT = performance.now(), shownAlt = "", shownVs = "";
+let shownAlt = "";
 gsap.ticker.add(() => {
-  const now = performance.now(), y = scrollPos();
-  const alt = Math.round(ZION.summitM * (1 - Math.min(1, y / scrollMax()))); // the top of Mount Zion down to sea level
-  let target = Math.abs(y - lastY) / (Math.max(1, now - lastT) / 1000) / 40;
-  if (target > 12) target += Math.random() * 2 - 1;
-  target = Math.min(99, target);
-  vs += (target - vs) * (target > vs ? 0.1 : target === 0 ? 0.15 : 0.06);
-  if (vs < 0.5 && target === 0) vs = 0;
-  lastY = y;
-  lastT = now;
-  const a = alt.toLocaleString("en-US"), v = String(Math.round(vs)).padStart(2, "0");
+  const alt = Math.round(ZION.summitM * (1 - Math.min(1, scrollPos() / scrollMax()))); // the top of Mount Zion down to sea level
+  const a = alt.toLocaleString("en-US");
   if (a !== shownAlt) {
     shownAlt = a;
-    hudAlt.textContent = a;
     altWatchers.forEach((fn) => fn(alt, a));
   }
-  if (v !== shownVs) hudVs.textContent = shownVs = v;
 });
 
 /* ---------- clocks and the shared day bar ---------- */

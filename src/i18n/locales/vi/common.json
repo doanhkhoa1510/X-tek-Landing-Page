@@ -1,13 +1,10 @@
 {
   "skip": "Chuyển đến nội dung",
   "hud": {
-    "alt": "Độ cao",
-    "speed": "Tốc độ",
-    "summit": "Đài lửa"
+    "alt": "Độ cao"
   },
   "units": {
-    "m": "m",
-    "ms": "m/s"
+    "m": "m"
   },
   "call": "Gọi {{phone}}",
   "whatsapp": "WhatsApp {{phone}}",

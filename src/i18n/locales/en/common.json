@@ -1,13 +1,10 @@
 {
   "skip": "Skip to content",
   "hud": {
-    "alt": "Alt",
-    "speed": "V/S",
-    "summit": "Beacon"
+    "alt": "Alt"
   },
   "units": {
-    "m": "m",
-    "ms": "m/s"
+    "m": "m"
   },
   "call": "Call {{phone}}",
   "whatsapp": "WhatsApp {{phone}}",

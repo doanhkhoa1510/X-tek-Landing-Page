@@ -3,7 +3,7 @@
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { $, $$, goTo, hdr, hud, lenis, mountCounters, onAltitude, reduce, root, rtl, syncHeader, twoTone } from "./chrome";
+import { $, $$, goTo, hdr, lenis, mountCounters, onAltitude, reduce, root, rtl, syncHeader, twoTone } from "./chrome";
 import { mountMountain } from "./mountain";
 import { mountTopo } from "./topo";
 import { mountRidge } from "./ridge";
@@ -17,7 +17,7 @@ const topoBg = mountTopo($<HTMLCanvasElement>(".ascent-bg canvas"), { minor: "rg
 const ride = mountRidge($<HTMLCanvasElement>(".ridge canvas"), $(".rider"));
 mountTrail($(".trek-frame"), $(".stages"));
 
-/* ---------- altimeter: the rider and both contour maps follow the reading ---------- */
+/* ---------- altitude: the rider and both contour maps follow the reading ---------- */
 const riderAlt = $(".rider-alt"), riderTpl = riderAlt.dataset.tpl ?? "{n}";
 onAltitude((alt, shown) => {
   riderAlt.textContent = riderTpl.replace("{n}", shown);
@@ -111,9 +111,6 @@ mm.add({ wide: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-prefer
   gsap.from(".city-chip", { autoAlpha: 0, filter: "blur(5px)", duration: 0.6, stagger: 0.08, ease: "power2.out", scrollTrigger: { trigger: map, start: "top 70%" } });
   gsap.from(".offices li", { autoAlpha: 0, filter: "blur(6px)", duration: 0.9, stagger: 0.1, ease: "power2.out", scrollTrigger: { trigger: ".offices", start: "top 85%" } });
 
-  // the altimeter steps aside for the footer's legal row
-  ScrollTrigger.create({ trigger: ".foot-word", start: "top bottom", onEnter: () => hud.classList.add("is-off"), onLeaveBack: () => hud.classList.remove("is-off") });
-
   // summit: the form panel rises from the ridge
   gsap.from(".brief", { autoAlpha: 0, y: 48, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: ".summit-grid", start: "top 75%" } });
 });
@@ -134,7 +131,6 @@ function heroEntrance(delay = 0) {
   }
   tl.to(heroLines, { yPercent: 0, duration: 1.1, ease: "expo.out", stagger: 0.08 }, 0.15)
     .to(heroRest, { autoAlpha: 1, y: 0, duration: 1, ease: "expo.out", stagger: 0.06 }, 0.45)
-    .add(() => hud.classList.add("is-ready"), 0.9)
     .add(() => scene?.labels.forEach((el) => (el.style.transitionDelay = "")), 2.4);
   return tl;
 }
@@ -147,7 +143,6 @@ async function boot() {
   if (reduce || !loader || arrival) {
     loader?.remove();
     hdr.classList.remove("is-waiting");
-    hud.classList.add("is-ready");
     if (arrival) document.fonts.ready.then(() => {
       ScrollTrigger.refresh();
       goTo(arrival, true);
