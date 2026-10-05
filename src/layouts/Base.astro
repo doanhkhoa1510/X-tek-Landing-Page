@@ -53,14 +53,6 @@ const sheet = sheets[`../styles/locales/${locale.code}.css`];
     <span>{t("hud.summit")} <b>{SUMMIT_M} {t("units.m")}</b></span>
   </div>
 
-  <div class="cursor" aria-hidden="true">
-    <div class="cursor-main">
-      <svg class="cursor-ring" viewBox="0 0 60 60"><circle class="cursor-track" r="28.5" cx="30" cy="30"></circle><circle class="cursor-prog" r="28.5" cx="30" cy="30"></circle></svg>
-      <i class="cursor-dot"></i>
-      <span class="cursor-label"></span>
-    </div>
-  </div>
-
   <main id="main">
     <slot />
   </main>

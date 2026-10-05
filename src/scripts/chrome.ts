@@ -1,5 +1,5 @@
 /* XionTechs · The Night Ascent — the chrome every page shares.
-   Smooth scroll, header, cursor, altimeter, clocks, accordion, and forms; see DESIGN.md › Components.
+   Smooth scroll, header, altimeter, clocks, accordion, and forms; see DESIGN.md › Components.
    The landing page (app.ts) and the subpages (page.ts) both start here. */
 
 import { gsap } from "gsap";
@@ -14,7 +14,6 @@ export const root = document.documentElement;
 /** Arabic pages run right to left: horizontal scenes travel the other way. */
 export const rtl = root.dir === "rtl";
 export const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
 export const $ = <T extends HTMLElement = HTMLElement>(s: string, r: ParentNode = document) => r.querySelector<T>(s)!;
 export const $$ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => [...r.querySelectorAll<T>(s)];
 
@@ -92,7 +91,7 @@ function readGrounds() {
 }
 function paintGround() {
   grounds ??= readGrounds();
-  const h = groundHost.offsetHeight, w = innerWidth;
+  const h = groundHost.offsetHeight, w = root.clientWidth; // the header ends at the native scrollbar
   // edges on whole device pixels, as the page paints its boxes, so two grounds meet without a seam
   const px = devicePixelRatio, snap = (v: number) => Math.round(v * px) / px;
   const tiles: { g: Ground; x: number; y: number; gw: number; gh: number; t: number; b: number; l: number; rt: number }[] = [];
@@ -193,42 +192,6 @@ function words(s: string) {
     else parts.push(segment);
   }
   return parts;
-}
-
-/* ---------- cursor: ring + dot, blend difference, ring draws the climb ---------- */
-if (finePointer && innerWidth > 991 && !reduce) {
-  root.classList.add("has-cursor");
-  const cur = $(".cursor"), main = $(".cursor-main"), prog = $(".cursor-prog"), label = $(".cursor-label");
-  cur.classList.add("is-hidden");
-  const at = { x: innerWidth / 2, y: innerHeight / 2 }, to = { ...at };
-  let seen = false;
-  addEventListener("pointermove", (e) => {
-    to.x = e.clientX;
-    to.y = e.clientY;
-    if (!seen) {
-      seen = true;
-      Object.assign(at, to);
-      cur.classList.remove("is-hidden");
-    }
-  }, { passive: true });
-  const setX = gsap.quickSetter(main, "x", "px"), setY = gsap.quickSetter(main, "y", "px");
-  gsap.ticker.add(() => {
-    at.x += (to.x - at.x) * 0.15;
-    at.y += (to.y - at.y) * 0.15;
-    setX(at.x);
-    setY(at.y);
-    prog.style.strokeDashoffset = (179.07 * (1 - scrollPos() / scrollMax())).toFixed(2);
-  });
-  document.addEventListener("pointerover", (e) => {
-    const t = e.target as Element;
-    const tagged = t.closest<HTMLElement>("[data-cursor-label]");
-    const control = t.closest("a, button, input, textarea, select, label, summary");
-    cur.classList.toggle("is-label", !!tagged);
-    cur.classList.toggle("is-hidden", !tagged && !!control);
-    if (tagged) label.textContent = tagged.dataset.cursorLabel!;
-  });
-  root.addEventListener("pointerleave", () => cur.classList.add("is-hidden"));
-  root.addEventListener("pointerenter", () => seen && cur.classList.remove("is-hidden"));
 }
 
 /* ---------- altimeter: altitude from descent progress, vertical speed from scroll velocity ---------- */

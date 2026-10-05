@@ -7,7 +7,6 @@
     "title": { "a": "Vị trí đang mở.", "b": "Hiện chưa có." },
     "note": "Xin hãy kiên nhẫn: đợt tuyển dụng mới sẽ sớm bắt đầu.",
     "past": "Vị trí trước đây · {{category}}",
-    "read": "Xem vị trí",
     "meta": "{{type}} · {{city}} · Đóng ngày {{date}}"
   },
   "perks": {

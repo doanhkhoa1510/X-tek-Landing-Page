@@ -281,7 +281,6 @@ The mountain is XionTechs' symbol and goal, and the landing page is a climb up i
 The mechanics come from unitedcarriers.com (Awwwards Site of the Day, teardown in the appendix), because the user named it as the quality bar:
 - Lenis smooth scroll and GSAP ScrollTrigger scenes scrubbed to scroll.
 - A preloader with a dot world map and a counter.
-- A ring-and-dot cursor in difference blend.
 - Mono button labels that shuffle their own letters on hover.
 - Two-tone uppercase headlines whose ink line fills word by word.
 - A giant background type band over a dark service track.
@@ -299,7 +298,7 @@ The mood is heavy, exact, and confident. It is not soft; a pale-haze, rounded, s
 - Flat surfaces and 1px hairlines. No shadows, no cards with depth, no glass.
 - Pills for controls, a 2px radius for chips, square for everything else.
 - Motion is scrubbed to scroll or answers a gesture. The only things that loop are the 3D scene, the map beacons, and the route arcs, and only while on screen.
-- Every interactive element answers the pointer: an amber fill, a cell tint, or a cursor state.
+- Every interactive element answers the pointer: an amber fill or a cell tint. The pointer is the system's own.
 
 ## Colors
 
@@ -423,7 +422,6 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
 - **Breakpoints:** desktop ≥ 992px. Tablet 768–991px: headings and copy stack to full width, sticky heads go static, and the route strip moves to columns 1/3. Mobile ≤ 767px:
   - The header becomes a flex row (logo left, menu right), and the CTA, the ticker phones, the HUD, and the 3D camp chips hide.
   - The hero shortens to 170vh, the values stack vertically with no pin, the route strip narrows to 36px, and the map bleeds to the viewport edge.
-  - The cursor turns off with no fine pointer.
 - **Header geometry:** a 32px ticker plus a 64px row (96px total). After 40px of scroll the whole header translates up 32px, so the ticker slides away with a transform, not a layout change.
 
 ### Subpages
@@ -435,7 +433,7 @@ The landing page is for a new buyer and stays lean. Everything else from the old
 - **Closing ask:** an ice band (`components/Cta.astro`) before the footer on About, FAQs, Careers, and jobs. Legal texts end on their own content.
 - **Menu:** landing sections, a hairline, then About us, Careers, and Support, in a flat panel (Night Band or Snow) so ten links never sit on the headline. Subpages link to landing sections as `/#id`. An arrival with a hash skips the preloader and lands on the section.
 - **Footer:** map 1/4, then base camps, reach us, explore, and company columns. A row of languages sits above the legal row, which carries the three legal links.
-- **Scripts:** `chrome.ts` is shared (scroll, header, cursor, altimeter, clocks, accordion, forms). `app.ts` is the landing page and `page.ts` is the subpages. Terrain math lives in `relief.ts`, so subpages never load Three.js (about 183 KB of JS against 690 KB).
+- **Scripts:** `chrome.ts` is shared (scroll, header, altimeter, clocks, accordion, forms). `app.ts` is the landing page and `page.ts` is the subpages. Terrain math lives in `relief.ts`, so subpages never load Three.js (about 183 KB of JS against 690 KB).
 
 ## Languages
 
@@ -483,7 +481,7 @@ The system is flat. Depth comes from light and from layers sliding over each oth
 - The 3D scene: bloom strength 0.55, radius 0.18, and threshold 0.72, so only rims, beacons, and arcs glow.
 - The horizon limbs.
 - Sticky stages (hero, pinned routes, sticky heads) that later sections pass over.
-- The fixed layers, from back to front: canvas (z 0), 3D chips (1), main (2), HUD (55), header (60), cursor (120), preloader (150), skip link (200).
+- The fixed layers, from back to front: canvas (z 0), 3D chips (1), main (2), HUD (55), header (60), preloader (150), skip link (200).
 
 **The No-Shadow Rule.** No element casts a box shadow. To lift, a surface changes field (snow to ice, night to night band) or gains a hairline. The one box-shadow in the system is a 1px amber underline on a focused field, and it is a rule, not a shadow.
 
@@ -513,16 +511,11 @@ Character: heavy pills with a machine voice. The fill answers the pointer.
 - **Filled on night:** Snow with Navy Ink text. **Filled on daylight:** Brand Navy with Snow text. The theme comes from the nearest `[data-on]` ancestor.
 - **Hover / focus-visible:** fill → Xion Amber with Navy Ink text over 0.4s `cubic-bezier(.445,.05,.55,.95)`. Labels never animate their letters. **Active:** Amber Hi. **Disabled:** 45% opacity, no pointer events.
 - **Outline:** transparent, 1px border at 32% of the text color, going to 100% on hover.
-- The cursor hides over every button and link.
+- The system pointer stays; no element follows the mouse.
 
-### Cursor (signature)
-- **Shape:** a 48px ring (1px track at 22% opacity, 2px progress stroke) with a 5px dot, fixed at z 120, `mix-blend-mode: difference`.
-- **Motion:** it follows the pointer at a lerp of 0.15 per frame.
-- **Progress:** the progress stroke (dasharray 179.07) draws the page's climb progress.
-- **States:**
-  - It hides over links, buttons, inputs, and labels.
-  - It becomes a labeled ring over anything with `data-cursor-label` (the map cities): the ring scales ×1.35, the dot collapses, and a mono label appears.
-- **Scope:** desktop above 991px with a fine pointer only. The native cursor stays visible, as on UC.
+### Pointer and scrollbar
+- **Pointer:** the system pointer on every page. No custom cursor and nothing that trails the mouse: a trailing ring covered the text people wanted to read or click (UAT round 1, #39).
+- **Scrollbar:** the browser's native scrollbar shows, themed with `scrollbar-color: var(--dim-night) var(--night)`. Where it takes space (Windows, macOS "always show"), the fixed header and its ground end at its edge (`root.clientWidth`).
 
 ### Altimeter HUD (signature)
 UC's KM/H speedometer, turned into a climb reading.
@@ -691,7 +684,7 @@ The name set as a dictionary headword, the page's last word.
 ### Do:
 - **Do** drive every scroll-linked scene with GSAP ScrollTrigger `scrub: true`, `ease: "none"`, under a Lenis instance at `lerp: 0.1` synced through `gsap.ticker`. Create pinned triggers before the triggers below them.
 - **Do** run entrances from an already-visible default: set hidden states in JS only, and ease with expo.out over 1.0–1.2s. Vary the entrance per section: mask rise (hero), rise (intro copy), wipe (stats), clip rise (cases), blur (chips), scrub fill (headlines).
-- **Do** keep reduced-motion users on native scroll: no preloader, no pins, no cursor, final states visible, counters at their true values.
+- **Do** keep reduced-motion users on native scroll: no preloader, no pins, final states visible, counters at their true values.
 - **Do** put `scene.background` on the Three.js scene, not only the clear color. The bloom pass restores the clear color outside a render target and double-encodes the night to #1C324D.
 - **Do** keep the render loop gated: it runs only while the hero or the summit is on screen and the tab is visible. The summit gate opens 400px early, because the base camps fade into the scene.
 - **Do** pass every full-bleed night and daylight change through a horizon limb (the Dawn Rule).
@@ -726,7 +719,6 @@ The name set as a dictionary headword, the page's last word.
 | GSAP `none` | scrubbed | hero dive, dawn rise, pinned track, giant drift, ridge rider, headline fill and focus pull, route fill |
 | Lenis | lerp 0.1, wheelMultiplier 1 | page scroll |
 | Anchor scroll | 1.6s, 1-(1-t)^4 | menu and CTA jumps |
-| Cursor | lerp 0.15 per frame | ring follow |
 | Stagger | 0.02 (loader out), 0.035 (value parts), 0.05–0.08 (chips, lines), 0.1–0.12 (cells, stats) | |
 
 ## 3D Scene Specification (mountain.ts)
@@ -765,7 +757,7 @@ The name set as a dictionary headword, the page's last word.
 
 - **Skip link:** the first focusable element is a skip link (amber, slides in on focus).
 - **Focus rings:** 2px, offset 3px, Xion Amber on night and Brand Navy on daylight.
-- **Hidden decoration:** the 3D canvas, chips layer, cursor, HUD, preloader, giant type, and map canvases are all `aria-hidden`.
+- **Hidden decoration:** the 3D canvas, chips layer, HUD, preloader, giant type, and map canvases are all `aria-hidden`.
 - **Real controls:** every city on the map is a real button with its name. The FAQ uses `aria-expanded`, `aria-controls`, and `hidden`. The form has labels and `aria-live` status.
 - **Contrast:** body text meets at least 4.5:1 everywhere. Dim headline lines meet at least 3:1 at display sizes.
 - **Pronunciation:** screen readers get "said see-on-teks" in the logo's label and the full footer entry as a labelled `dl`; the visual IPA under the logo is hidden from them to avoid reading symbols aloud.
@@ -776,7 +768,7 @@ The name set as a dictionary headword, the page's last word.
 - `src/pages/index.astro`: markup, content arrays, and the direction contract comment (first child of `<body>`).
 - `src/data/site.ts`: shared facts (offices, contact lines, service lines, sections) and the SVG mark.
 - `src/styles/global.css`: every token in `:root`, the `[data-on]` theme contexts, and all components.
-- `src/scripts/app.ts`: Lenis, ScrollTrigger scenes, the preloader, cursor, header, altimeter, clocks, FAQ, and form.
+- `src/scripts/app.ts`: Lenis, ScrollTrigger scenes, the preloader, header, altimeter, clocks, FAQ, and form.
 - `src/scripts/mountain.ts`: `heightAt` over the Mount Zion grid, `unitsAt`, and the Three.js mountain, light, camps, arcs, chips, and cameras.
 - `src/scripts/zion-data.ts`: the generated Mount Zion relief. Regenerate with `node scripts/build-zion.mjs` (tiles cached in `.impeccable/zion-tiles/`).
 - `src/scripts/dots.ts`: dot-matrix icons (vector → 13×13 dots) and the dot world map painter.
