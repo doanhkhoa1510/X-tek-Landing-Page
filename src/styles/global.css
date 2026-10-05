@@ -1151,15 +1151,15 @@ section { position: relative; color: var(--fg); }
   .faq-head, .ascent-head { position: static; }
   .faq-list { margin-top: 48px; }
   .brief { margin-top: 48px; }
-  /* the mountain rides at the top of the viewport while the stages scroll beneath it */
+  /* the mountain sits above the stages and scrolls away with the page: pinned, it hid the text passing beneath it (#46) */
   .ascent-grid { display: block; }
   .ascent-side { display: contents; }
-  .ascent-head { margin-bottom: 40px; }
-  .trek { position: sticky; top: 0; z-index: 2; height: calc(34vh + 72px); height: calc(34svh + 72px); min-height: 250px; margin: 0 calc(-1 * var(--gutter)); background: var(--snow); }
-  .trek::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 40px; background: linear-gradient(var(--snow), rgb(255 255 255 / 0)); pointer-events: none; }
-  .trek-frame { inset: 84px var(--gutter) 14px; }
-  .stages { padding-bottom: 32vh; }
-  .stage:first-child { padding-top: 6vh; } /* the text runs beneath the strip, so base camp opens just under it */
+  .ascent-head { margin-bottom: 24px; }
+  .trek { flex: none; height: calc(34vh + 28px); height: calc(34svh + 28px); min-height: 220px; margin: 0 calc(-1 * var(--gutter)); }
+  .trek-frame { inset: 14px var(--gutter); }
+  .stages { padding-bottom: 0; }
+  .stage { opacity: 1; } /* the chart no longer pins beside the entries, so none waits for its camp */
+  .stage:first-child { padding-top: 6vh; }
   .foot-map { grid-column: 1 / -1; margin-bottom: 32px; }
   .foot-col, .foot-col:nth-child(2) { grid-column: span 3; }
 }
@@ -1186,7 +1186,7 @@ section { position: relative; color: var(--fg); }
   .track { width: 100%; }
   .svc { flex: none; border-inline-start: 0; border-top: 1px solid var(--line); padding: 32px var(--gutter); }
   .rider-alt { display: none; }
-  .camp-tag, .trek-scale text { display: none; } /* the stage text below names the camp */
+  .camp-tag, .trek-scale text { display: none; } /* no room for tags on a phone; the stage titles below carry the meaning */
   .stage { padding: 9vh 0; }
   .stage:first-child { padding-top: 2vh; }
   .worldmap { margin-inline: calc(-1 * var(--gutter)); }
