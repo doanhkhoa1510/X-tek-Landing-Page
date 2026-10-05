@@ -1,16 +1,16 @@
 {
   "title": "Giới thiệu",
   "description": "XionTechs tạo nên sự khác biệt nhờ sự tận tâm với con người, quy trình và công nghệ: bảy giá trị cốt lõi, một tinh thần “Get IT Done”.",
-  "head": { "a": "Giới thiệu.", "b": "Chúng tôi thúc đẩy thành công kinh doanh bằng giải pháp CNTT." },
+  "head": { "a": "Giới thiệu.", "b": "Chúng tôi xây dựng phần mềm ứng dụng AI từ Texas và Việt Nam." },
   "lede": "XionTechs tạo nên sự khác biệt nhờ sự tận tâm với con người, quy trình và công nghệ, như các giá trị cốt lõi dưới đây thể hiện.",
   "figures": {
     "label": "XionTechs qua các con số",
     "items": {
-      "years": "Năm kinh nghiệm",
-      "commitment": "Cam kết với khách hàng",
-      "coverage": "Phạm vi toàn cầu",
-      "verticals": "Lĩnh vực ngành",
-      "offerings": "Dịch vụ cung cấp"
+      "years": "Năm trong kỹ thuật phần mềm",
+      "pillars": "Trụ cột của năng lực triển khai xuất sắc",
+      "offices": "Văn phòng tại Hoa Kỳ và Việt Nam",
+      "services": "Mảng dịch vụ kỹ thuật phần mềm",
+      "products": "Sản phẩm của riêng chúng tôi"
     }
   },
   "why": {
@@ -22,7 +22,7 @@
       "quality": "Chất lượng triển khai cao",
       "rapid": "Kỹ thuật sản phẩm nhanh chóng",
       "reliable": "Giải pháp đáng tin cậy",
-      "team": "Đội ngũ chuyên gia 24/7"
+      "team": "Đội ngũ làm việc theo giờ Hoa Kỳ và Việt Nam"
     }
   }
 }

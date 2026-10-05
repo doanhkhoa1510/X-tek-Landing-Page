@@ -10,13 +10,13 @@ export const getStaticPaths = localePaths;
 
 const t = useT(Astro.currentLocale, "about");
 
-// [id, counted number, unit]
+// [id, counted number, unit]: only figures in PRODUCT.md › Evidence on Hand, the same numbers the landing page shows (#44)
 const figures = [
-  ["years", "25", ""],
-  ["commitment", "100", "%"],
-  ["coverage", "", "24/7"],
-  ["verticals", "5", "+"],
-  ["offerings", "8", "+"],
+  ["years", "25", "+"],
+  ["pillars", "5", ""],
+  ["offices", "3", ""],
+  ["services", "5", ""],
+  ["products", "2", ""],
 ] as const;
 
 const reasons = ["client", "integrity", "quality", "rapid", "reliable", "team"] as const;
