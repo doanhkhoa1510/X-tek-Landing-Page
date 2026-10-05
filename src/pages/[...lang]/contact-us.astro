@@ -30,18 +30,18 @@ const maps = (q: string) => `https://www.google.com/maps/search/?api=1&query=${e
             <div class="office">
               <h2>{ts(`offices.${o.id}.name`)}</h2>
               <address>{ts(`offices.${o.id}.role`)}{o.lines.map((l) => <><br /><bdi>{l}</bdi></>)}</address>
-              {o.lines.length > 0 && <a href={maps(o.lines.join(", "))} target="_blank" rel="noopener" data-scramble><span class="scr">{t("maps")}</span></a>}
+              {o.lines.length > 0 && <a href={maps(o.lines.join(", "))} target="_blank" rel="noopener"><span class="scr">{t("maps")}</span></a>}
             </div>
           ))}
         </div>
         <div class="contact-block">
           <p class="label">{t("call")}</p>
-          <a class="contact-line" href={phones.us.href} data-scramble><span class="scr">{phones.us.label}</span></a>
-          <a class="contact-line" href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">{tc("whatsapp", { phone: phones.wa.label })}</span></a>
+          <a class="contact-line" href={phones.us.href}><span class="scr">{phones.us.label}</span></a>
+          <a class="contact-line" href={phones.wa.href} target="_blank" rel="noopener"><span class="scr">{tc("whatsapp", { phone: phones.wa.label })}</span></a>
         </div>
         <div class="contact-block">
           <p class="label">{t("email")}</p>
-          <a class="contact-line" href={`mailto:${email}`} data-scramble><span class="scr">{email}</span></a>
+          <a class="contact-line" href={`mailto:${email}`}><span class="scr">{email}</span></a>
         </div>
       </div>
 

@@ -23,8 +23,8 @@ const here = unlocalize(Astro.url.pathname);
     </p>
     <div class="ticker-end">
       <p class="ticker-links">
-        <a href={phones.us.href} data-scramble><span class="scr">{tc("call", { phone: phones.us.label })}</span></a>
-        <a href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">{tc("whatsapp", { phone: phones.wa.label })}</span></a>
+        <a href={phones.us.href}><span class="scr">{tc("call", { phone: phones.us.label })}</span></a>
+        <a href={phones.wa.href} target="_blank" rel="noopener"><span class="scr">{tc("whatsapp", { phone: phones.wa.label })}</span></a>
       </p>
       <LangSwitch variant="menu" />
     </div>
@@ -39,24 +39,24 @@ const here = unlocalize(Astro.url.pathname);
     </a>
     <div class="hdr-mid">
       <nav class="hdr-nav" aria-label={t("primary")}>
-        {inline.map((id) => <a href={to(id)} data-section={id} data-scramble><span class="scr">{ts(`sections.${id}`)}</span></a>)}
+        {inline.map((id) => <a href={to(id)} data-section={id}><span class="scr">{ts(`sections.${id}`)}</span></a>)}
       </nav>
       <div class="menu">
-        <button class:list={["menu-toggle", { "is-here": pages.some(([href]) => here.startsWith(href)) }]} type="button" aria-expanded="false" aria-controls="menu-list" data-scramble>
+        <button class:list={["menu-toggle", { "is-here": pages.some(([href]) => here.startsWith(href)) }]} type="button" aria-expanded="false" aria-controls="menu-list">
           <span class="menu-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           <span class="menu-text"><span class="scr">{t("menu")}</span><span class="menu-close" aria-hidden="true">{t("close")}</span></span>
           <span class="menu-company">{tf("company")}<svg viewBox="0 0 8 5" aria-hidden="true"><path d="M.7.7 4 4 7.3.7" /></svg></span>
         </button>
         <nav id="menu-list" class="menu-list" aria-label={t("primary")}>
-          {sections.map((id, i) => <a class="menu-sec" href={to(id)} style={`--i:${i}`} data-scramble><span class="scr">{ts(`sections.${id}`)}</span></a>)}
+          {sections.map((id, i) => <a class="menu-sec" href={to(id)} style={`--i:${i}`}><span class="scr">{ts(`sections.${id}`)}</span></a>)}
           <i class="menu-rule" aria-hidden="true" style={`--i:${sections.length}`}></i>
           {pages.map(([href, key], i) => (
-            <a href={localize(href, lang)} style={`--i:${sections.length + 1 + i}`} aria-current={here.startsWith(href) ? "page" : undefined} data-scramble><span class="scr">{ts(`pages.${key}`)}</span></a>
+            <a href={localize(href, lang)} style={`--i:${sections.length + 1 + i}`} aria-current={here.startsWith(href) ? "page" : undefined}><span class="scr">{ts(`pages.${key}`)}</span></a>
           ))}
         </nav>
       </div>
     </div>
-    <a class="btn btn-fill hdr-cta" href={home ? "#summit" : localize("/contact-us/", lang)} data-scramble><span class="scr">{t("start")}</span></a>
+    <a class="btn btn-fill hdr-cta" href={home ? "#summit" : localize("/contact-us/", lang)}><span class="scr">{t("start")}</span></a>
   </div>
 </header>
 <div class="hdr-ground" aria-hidden="true"></div>

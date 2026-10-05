@@ -23,17 +23,17 @@ const explore = ["mindset", "values", "work", "faq"] as const;
     </div>
     <div class="foot-col">
       <p class="label">{t("reach")}</p>
-      <a href={phones.us.href} data-scramble><span class="scr">{phones.us.label}</span></a>
-      <a href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">{t("whatsapp")}</span></a>
+      <a href={phones.us.href}><span class="scr">{phones.us.label}</span></a>
+      <a href={phones.wa.href} target="_blank" rel="noopener"><span class="scr">{t("whatsapp")}</span></a>
       <a class="foot-mail" href={`mailto:${email}`}>{email.split("@")[0]}@<wbr />{email.split("@")[1]}</a>
     </div>
     <nav class="foot-col" aria-label={t("landing")}>
       <p class="label">{t("explore")}</p>
-      {explore.map((id) => <a href={to(id)} data-scramble><span class="scr">{ts(`sections.${id}`)}</span></a>)}
+      {explore.map((id) => <a href={to(id)}><span class="scr">{ts(`sections.${id}`)}</span></a>)}
     </nav>
     <nav class="foot-col" aria-label={t("company")}>
       <p class="label">{t("company")}</p>
-      {company.map(([href, key]) => <a href={localize(href, lang)} data-scramble><span class="scr">{ts(`pages.${key}`)}</span></a>)}
+      {company.map(([href, key]) => <a href={localize(href, lang)}><span class="scr">{ts(`pages.${key}`)}</span></a>)}
     </nav>
   </div>
   <p class="foot-word" aria-hidden="true"><svg viewBox="0 30 294 162" set:html={mark}></svg>{brand.name}</p>
@@ -50,6 +50,6 @@ const explore = ["mindset", "values", "work", "faq"] as const;
     <nav class="foot-legal-links" aria-label={t("legal")}>
       {legal.map(([href, key]) => <a href={localize(href, lang)}>{ts(`legal.${key}`)}</a>)}
     </nav>
-    <a href="#top" class="to-top" data-scramble><span class="scr">{t("toTop")}</span></a>
+    <a href="#top" class="to-top"><span class="scr">{t("toTop")}</span></a>
   </div>
 </footer>

@@ -33,7 +33,7 @@ const textLang = translated ? undefined : "en";
         <dl>
           {facts.map(([k, v]) => <div><dt class="label">{k}</dt><dd lang={textLang} dir={textLang && "ltr"}>{v}</dd></div>)}
         </dl>
-        <a class="btn btn-line" href={localize("/careers/", lang)} data-scramble><span class="scr">{t("all")}</span></a>
+        <a class="btn btn-line" href={localize("/careers/", lang)}><span class="scr">{t("all")}</span></a>
       </aside>
       <div class="prose" lang={textLang} dir={textLang && "ltr"}>
         <Content />

@@ -299,7 +299,7 @@ The mood is heavy, exact, and confident. It is not soft; a pale-haze, rounded, s
 - Flat surfaces and 1px hairlines. No shadows, no cards with depth, no glass.
 - Pills for controls, a 2px radius for chips, square for everything else.
 - Motion is scrubbed to scroll or answers a gesture. The only things that loop are the 3D scene, the map beacons, and the route arcs, and only while on screen.
-- Every interactive element answers the pointer: a letter scramble, an amber fill, a cell tint, or a cursor state.
+- Every interactive element answers the pointer: an amber fill, a cell tint, or a cursor state.
 
 ## Colors
 
@@ -394,7 +394,7 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
 
 **The Uppercase-Is-Display Rule.** Uppercase belongs to Saira headings and mono labels. Body text is always sentence case.
 
-**The IPA-Needs-Its-Own-Face Rule.** Saira, Host Grotesk, and Martian Mono all lack ɒ (U+0252) and ː (U+02D0); measured in the browser, both fall back to a system face. The pronunciation is therefore set whole in Noto Sans Mono, never glyph by glyph, so the string keeps one rhythm. IPA is phonetic data: it is never uppercased, never scrambled, and never letter-spaced beyond 0.02em.
+**The IPA-Needs-Its-Own-Face Rule.** Saira, Host Grotesk, and Martian Mono all lack ɒ (U+0252) and ː (U+02D0); measured in the browser, both fall back to a system face. The pronunciation is therefore set whole in Noto Sans Mono, never glyph by glyph, so the string keeps one rhythm. IPA is phonetic data: it is never uppercased and never letter-spaced beyond 0.02em.
 
 **The Tabular Rule.** Every number that changes in place (clocks, altitude, V/S, figures, the loader counter) uses `font-variant-numeric: tabular-nums` so digits never jitter.
 
@@ -423,7 +423,7 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
 - **Breakpoints:** desktop ≥ 992px. Tablet 768–991px: headings and copy stack to full width, sticky heads go static, and the route strip moves to columns 1/3. Mobile ≤ 767px:
   - The header becomes a flex row (logo left, menu right), and the CTA, the ticker phones, the HUD, and the 3D camp chips hide.
   - The hero shortens to 170vh, the values stack vertically with no pin, the route strip narrows to 36px, and the map bleeds to the viewport edge.
-  - The cursor and scramble turn off with no fine pointer.
+  - The cursor turns off with no fine pointer.
 - **Header geometry:** a 32px ticker plus a 64px row (96px total). After 40px of scroll the whole header translates up 32px, so the ticker slides away with a transform, not a layout change.
 
 ### Subpages
@@ -435,7 +435,7 @@ The landing page is for a new buyer and stays lean. Everything else from the old
 - **Closing ask:** an ice band (`components/Cta.astro`) before the footer on About, FAQs, Careers, and jobs. Legal texts end on their own content.
 - **Menu:** landing sections, a hairline, then About us, Careers, and Support, in a flat panel (Night Band or Snow) so ten links never sit on the headline. Subpages link to landing sections as `/#id`. An arrival with a hash skips the preloader and lands on the section.
 - **Footer:** map 1/4, then base camps, reach us, explore, and company columns. A row of languages sits above the legal row, which carries the three legal links.
-- **Scripts:** `chrome.ts` is shared (scroll, header, scramble, cursor, altimeter, clocks, accordion, forms). `app.ts` is the landing page and `page.ts` is the subpages. Terrain math lives in `relief.ts`, so subpages never load Three.js (about 183 KB of JS against 690 KB).
+- **Scripts:** `chrome.ts` is shared (scroll, header, cursor, altimeter, clocks, accordion, forms). `app.ts` is the landing page and `page.ts` is the subpages. Terrain math lives in `relief.ts`, so subpages never load Three.js (about 183 KB of JS against 690 KB).
 
 ## Languages
 
@@ -511,17 +511,9 @@ The system is flat. Depth comes from light and from layers sliding over each oth
 Character: heavy pills with a machine voice. The fill answers the pointer.
 - **Shape:** pill (999px), 44px tall, padding 0 26px, Button type, no wrap.
 - **Filled on night:** Snow with Navy Ink text. **Filled on daylight:** Brand Navy with Snow text. The theme comes from the nearest `[data-on]` ancestor.
-- **Hover / focus-visible:** fill → Xion Amber with Navy Ink text over 0.4s `cubic-bezier(.445,.05,.55,.95)`, and the label scrambles. **Active:** Amber Hi. **Disabled:** 45% opacity, no pointer events.
-- **Outline:** transparent, 1px border at 32% of the text color, going to 100% on hover. The label scrambles.
+- **Hover / focus-visible:** fill → Xion Amber with Navy Ink text over 0.4s `cubic-bezier(.445,.05,.55,.95)`. Labels never animate their letters. **Active:** Amber Hi. **Disabled:** 45% opacity, no pointer events.
+- **Outline:** transparent, 1px border at 32% of the text color, going to 100% on hover.
 - The cursor hides over every button and link.
-
-### Scramble label (signature)
-UC's hover gesture, rebuilt.
-- **Trigger:** on `pointerenter` (fine pointers only, no reduced motion), the `.scr` span inside any `[data-scramble]` host shuffles its own letters as an anagram, never random glyphs.
-- **Timing:** every 28ms it reshuffles and locks one more letter in reading order, after a 3-tick head start, so a 12-letter label resolves in about 420ms.
-- **Any script:** it shuffles whole graphemes (`Intl.Segmenter`), so a Devanagari conjunct or a Vietnamese mark never leaves its letter, and the bidi isolates around phone numbers stay in place.
-- **Stability:** the width is frozen during the shuffle so layout never moves.
-- **Accessibility:** links get an `aria-label` with the true text, so assistive tech never hears the shuffle.
 
 ### Cursor (signature)
 - **Shape:** a 48px ring (1px track at 22% opacity, 2px progress stroke) with a 5px dot, fixed at z 120, `mix-blend-mode: difference`.
@@ -544,7 +536,7 @@ UC's KM/H speedometer, turned into a climb reading.
 ### Header
 - **Ticker (32px, Micro):**
   - Left: live clocks, `PLANO, TX 08:15 CT · HO CHI MINH CITY 20:15 ICT`. They update on the minute, and mobile uses short names.
-  - Right: the phone and WhatsApp links, which scramble on hover, then the language toggle (see Languages).
+  - Right: the phone and WhatsApp links, then the language toggle (see Languages).
   - A hairline sits under it.
 - **Row (64px):**
   - The logo: the mark plus XIONTECHS, with the pronunciation subtitle under the word (see Pronunciation subtitle). After 80px of scroll, "ION" and "ECHS" collapse through `grid-template-columns: 1fr → 0fr` over 0.7s, leaving **XT**, like UC's UNITEDCARRIERS → UC.
@@ -556,7 +548,7 @@ UC's KM/H speedometer, turned into a climb reading.
 
 ### Navigation (menu)
 - **Layout:** a dropdown under the toggle, a mono uppercase list of seven anchors (Mindset, Core values, Platform, Work, FAQ, Branches, Contact). From 1280px the anchors live in the header row and the dropdown holds only the company pages.
-- **Open:** a clip-path wipe (0.6s expo). Links drop in 8px with a 0.04s stagger and scramble on hover.
+- **Open:** a clip-path wipe (0.6s expo). Links drop in 8px with a 0.04s stagger.
 - **Close:** Esc (focus returns to the toggle), an outside click, or following a link.
 - **Anchors:** Lenis `scrollTo` over 1.6s with quartic ease-out. The target gets focus with `preventScroll`. Night sections with a top limb scroll past the limb, so the heading lands under the header.
 
@@ -656,7 +648,7 @@ UC's truck on its road, rebuilt as a climber on a ridge.
 Two 12px rows on a shared 24h UTC track with hourly ticks. The work window is 08:00–17:00 local: Plano in amber, Vietnam in glacier. A 1px snow "NOW" rule marks the current UTC time.
 
 ### Contact lines (summit)
-Under the summit copy: phone, WhatsApp, and email as Button-type links in Xion Amber on night, stacked 10px apart, each scrambling on hover. They are the fallback when the brief does not send.
+Under the summit copy: phone, WhatsApp, and email as Button-type links in Xion Amber on night, stacked 10px apart. They are the fallback when the brief does not send.
 
 ### Inputs / Fields
 - **Label:** mono 10.5px in Mist, stacked above the field.
@@ -699,7 +691,7 @@ The name set as a dictionary headword, the page's last word.
 ### Do:
 - **Do** drive every scroll-linked scene with GSAP ScrollTrigger `scrub: true`, `ease: "none"`, under a Lenis instance at `lerp: 0.1` synced through `gsap.ticker`. Create pinned triggers before the triggers below them.
 - **Do** run entrances from an already-visible default: set hidden states in JS only, and ease with expo.out over 1.0–1.2s. Vary the entrance per section: mask rise (hero), rise (intro copy), wipe (stats), clip rise (cases), blur (chips), scrub fill (headlines).
-- **Do** keep reduced-motion users on native scroll: no preloader, no pins, no cursor, no scramble, final states visible, counters at their true values.
+- **Do** keep reduced-motion users on native scroll: no preloader, no pins, no cursor, final states visible, counters at their true values.
 - **Do** put `scene.background` on the Three.js scene, not only the clear color. The bloom pass restores the clear color outside a render target and double-encodes the night to #1C324D.
 - **Do** keep the render loop gated: it runs only while the hero or the summit is on screen and the tab is visible. The summit gate opens 400px early, because the base camps fade into the scene.
 - **Do** pass every full-bleed night and daylight change through a horizon limb (the Dawn Rule).
@@ -735,7 +727,6 @@ The name set as a dictionary headword, the page's last word.
 | Lenis | lerp 0.1, wheelMultiplier 1 | page scroll |
 | Anchor scroll | 1.6s, 1-(1-t)^4 | menu and CTA jumps |
 | Cursor | lerp 0.15 per frame | ring follow |
-| Scramble | 28ms per tick, 3-tick head start | mono labels |
 | Stagger | 0.02 (loader out), 0.035 (value parts), 0.05–0.08 (chips, lines), 0.1–0.12 (cells, stats) | |
 
 ## 3D Scene Specification (mountain.ts)
@@ -785,7 +776,7 @@ The name set as a dictionary headword, the page's last word.
 - `src/pages/index.astro`: markup, content arrays, and the direction contract comment (first child of `<body>`).
 - `src/data/site.ts`: shared facts (offices, contact lines, service lines, sections) and the SVG mark.
 - `src/styles/global.css`: every token in `:root`, the `[data-on]` theme contexts, and all components.
-- `src/scripts/app.ts`: Lenis, ScrollTrigger scenes, the preloader, cursor, scramble, header, altimeter, clocks, FAQ, and form.
+- `src/scripts/app.ts`: Lenis, ScrollTrigger scenes, the preloader, cursor, header, altimeter, clocks, FAQ, and form.
 - `src/scripts/mountain.ts`: `heightAt` over the Mount Zion grid, `unitsAt`, and the Three.js mountain, light, camps, arcs, chips, and cameras.
 - `src/scripts/zion-data.ts`: the generated Mount Zion relief. Regenerate with `node scripts/build-zion.mjs` (tiles cached in `.impeccable/zion-tiles/`).
 - `src/scripts/dots.ts`: dot-matrix icons (vector → 13×13 dots) and the dot world map painter.
