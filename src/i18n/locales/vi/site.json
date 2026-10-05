@@ -5,9 +5,9 @@
     "danang": { "name": "Đà Nẵng", "short": "Đà Nẵng", "long": "Đà Nẵng" }
   },
   "offices": {
-    "plano": { "name": "Chi nhánh Plano", "role": "Texas, Hoa Kỳ" },
-    "hcmc": { "name": "Chi nhánh TP.HCM", "role": "TP. Hồ Chí Minh, Việt Nam" },
-    "danang": { "name": "Chi nhánh Đà Nẵng", "role": "Đà Nẵng, Việt Nam" }
+    "plano": { "name": "Văn phòng Plano", "role": "Texas, Hoa Kỳ", "tag": "Đầu mối liên hệ tại Hoa Kỳ" },
+    "hcmc": { "name": "Văn phòng TP.HCM", "role": "TP. Hồ Chí Minh, Việt Nam" },
+    "danang": { "name": "Văn phòng Đà Nẵng", "role": "Đà Nẵng, Việt Nam" }
   },
   "services": {
     "engineering": {
@@ -36,7 +36,7 @@
     "work": "Dự án",
     "why": "Vì sao chọn chúng tôi",
     "faq": "Hỏi đáp",
-    "camps": "Các chi nhánh",
+    "camps": "Văn phòng",
     "summit": "Liên hệ"
   },
   "pages": {
