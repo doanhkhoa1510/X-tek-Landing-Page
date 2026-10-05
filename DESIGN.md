@@ -275,7 +275,7 @@ components:
 The mountain is XionTechs' symbol and goal, and the landing page is a climb up it. The name is inspired by Mount Zion, but the page is not about that place (the Symbol Rule: the story names Mount Zion once as the inspiration; no label, caption, chip, reading, or coordinate names it, and the copy carries no religious text). It opens at night at base camp: a Three.js mountain made of white particle dots under stars. The shape is not invented; the relief data is the real SRTM ground of Mount Zion (see the 3D spec), used as form only. An amber dawn glows behind the ridge and a glacier-blue rim light catches the lower slopes. Chips mark the camps where the team lives, Plano, TX and Ho Chi Minh City. As the visitor scrolls, the camera climbs toward the summit and dawn breaks. A curved atmospheric limb, glacier blue with an amber sunrise line, hands the page to snow-white daylight. From there the page reads in daylight: the story of Xion, the seven core values on a night band, and the log of the climb so far. The last night opens on the two base camps and ends on the summit, where the visitor names their project. The footer closes in daylight with the wordmark at mountain scale.
 
 The mechanics come from unitedcarriers.com (Awwwards Site of the Day, teardown in the appendix), because the user named it as the quality bar:
-- Lenis smooth scroll and GSAP ScrollTrigger scenes scrubbed to scroll.
+- GSAP ScrollTrigger scenes scrubbed to scroll. UC's Lenis smooth scroll is not used: its 0.8s glide after each wheel step read as lag (UAT round 1, #40), so the page runs on the browser's native scroll.
 - A preloader with a dot world map and a counter.
 - Mono button labels that shuffle their own letters on hover.
 - Two-tone uppercase headlines whose ink line fills word by word.
@@ -535,7 +535,7 @@ Character: heavy pills with a machine voice. The fill answers the pointer.
 - **Layout:** a dropdown under the toggle, a mono uppercase list of seven anchors (Mindset, Core values, Platform, Work, FAQ, Branches, Contact). From 1280px the anchors live in the header row and the dropdown holds only the company pages.
 - **Open:** a clip-path wipe (0.6s expo). Links drop in 8px with a 0.04s stagger.
 - **Close:** Esc (focus returns to the toggle), an outside click, or following a link.
-- **Anchors:** Lenis `scrollTo` over 1.6s with quartic ease-out. The target gets focus with `preventScroll`. Night sections with a top limb scroll past the limb, so the heading lands under the header.
+- **Anchors:** native `scrollTo` with `behavior: "smooth"` (instant for reduced motion and arrivals from another page). The target gets focus with `preventScroll`. Night sections with a top limb scroll past the limb, so the heading lands under the header.
 
 ### Preloader
 - **Layout:**
@@ -674,7 +674,7 @@ The name set as a dictionary headword, the page's last word.
 ## Do's and Don'ts
 
 ### Do:
-- **Do** drive every scroll-linked scene with GSAP ScrollTrigger `scrub: true`, `ease: "none"`, under a Lenis instance at `lerp: 0.1` synced through `gsap.ticker`. Create pinned triggers before the triggers below them.
+- **Do** drive every scroll-linked scene with GSAP ScrollTrigger `scrub: true`, `ease: "none"`, on the browser's native scroll (no smoothing library: the page stops when the wheel stops). Create pinned triggers before the triggers below them.
 - **Do** run entrances from an already-visible default: set hidden states in JS only, and ease with expo.out over 1.0–1.2s. Vary the entrance per section: mask rise (hero), rise (intro copy), wipe (stats), clip rise (cases), blur (chips), scrub fill (headlines).
 - **Do** keep reduced-motion users on native scroll: no preloader, no pins, final states visible, counters at their true values.
 - **Do** put `scene.background` on the Three.js scene, not only the clear color. The bloom pass restores the clear color outside a render target and double-encodes the night to #1C324D.
@@ -709,8 +709,8 @@ The name set as a dictionary headword, the page's last word.
 | GSAP `circ.inOut` | 1.3s | 3D glow rise |
 | GSAP `power1.out` | 1s | count-up figures |
 | GSAP `none` | scrubbed | hero dive, dawn rise, pinned track, giant drift, ridge rider, headline fill and focus pull, route fill |
-| Lenis | lerp 0.1, wheelMultiplier 1 | page scroll |
-| Anchor scroll | 1.6s, 1-(1-t)^4 | menu and CTA jumps |
+| Native scroll | browser default, no smoothing | page scroll |
+| Anchor scroll | native `behavior: "smooth"` | menu and CTA jumps |
 | Stagger | 0.02 (loader out), 0.035 (value parts), 0.05–0.08 (chips, lines), 0.1–0.12 (cells, stats) | |
 
 ## 3D Scene Specification (mountain.ts)
@@ -760,7 +760,7 @@ The name set as a dictionary headword, the page's last word.
 - `src/pages/index.astro`: markup, content arrays, and the direction contract comment (first child of `<body>`).
 - `src/data/site.ts`: shared facts (offices, contact lines, service lines, sections) and the SVG mark.
 - `src/styles/global.css`: every token in `:root`, the `[data-on]` theme contexts, and all components.
-- `src/scripts/app.ts`: Lenis, ScrollTrigger scenes, the preloader, header, altitude, clocks, FAQ, and form.
+- `src/scripts/app.ts`: ScrollTrigger scenes, the preloader, header, altitude, clocks, FAQ, and form.
 - `src/scripts/mountain.ts`: `heightAt` over the Mount Zion grid, `unitsAt`, and the Three.js mountain, light, camps, arcs, chips, and cameras.
 - `src/scripts/zion-data.ts`: the generated Mount Zion relief. Regenerate with `node scripts/build-zion.mjs` (tiles cached in `.impeccable/zion-tiles/`).
 - `src/scripts/dots.ts`: dot-matrix icons (vector → 13×13 dots) and the dot world map painter.

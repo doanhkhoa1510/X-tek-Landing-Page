@@ -1,9 +1,9 @@
 /* XionTechs · The Night Ascent — landing page orchestration.
-   Lenis + GSAP ScrollTrigger drive every scroll scene; see DESIGN.md › Motion. The shared chrome lives in chrome.ts. */
+   GSAP ScrollTrigger drives every scroll scene on the browser's native scroll; see DESIGN.md › Motion. The shared chrome lives in chrome.ts. */
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { $, $$, goTo, hdr, lenis, mountCounters, onAltitude, reduce, root, rtl, syncHeader, twoTone } from "./chrome";
+import { $, $$, goTo, hdr, mountCounters, onAltitude, reduce, root, rtl, syncHeader, twoTone } from "./chrome";
 import { mountMountain } from "./mountain";
 import { mountTopo } from "./topo";
 import { mountRidge } from "./ridge";
@@ -135,6 +135,22 @@ function heroEntrance(delay = 0) {
   return tl;
 }
 
+/* the loader holds the page still: wheel, touch, and scroll keys wait until it folds away (the scrollbar stays put) */
+const scrollKeys = new Set([" ", "PageDown", "PageUp", "End", "Home", "ArrowDown", "ArrowUp"]);
+const hold = (e: Event) => e.preventDefault();
+const holdKeys = (e: KeyboardEvent) => scrollKeys.has(e.key) && e.preventDefault();
+function holdScroll(on: boolean) {
+  if (on) {
+    addEventListener("wheel", hold, { passive: false });
+    addEventListener("touchmove", hold, { passive: false });
+    addEventListener("keydown", holdKeys);
+  } else {
+    removeEventListener("wheel", hold);
+    removeEventListener("touchmove", hold);
+    removeEventListener("keydown", holdKeys);
+  }
+}
+
 async function boot() {
   syncHeader();
   scene?.labels.forEach((el, i) => (el.style.transitionDelay = `${0.6 + i * 0.07}s`));
@@ -150,7 +166,7 @@ async function boot() {
     return;
   }
   hdr.classList.add("is-waiting");
-  lenis?.stop();
+  holdScroll(true);
   gsap.set(heroLines, { yPercent: (_: number, el: Element) => parseFloat(getComputedStyle(el).getPropertyValue("--ln-from")) || 110 });
   gsap.set(heroRest, { autoAlpha: 0, y: 24 });
   if (scene) Object.assign(scene.rig, { scale: 0.6, shift: 7, glow: 0, arcs: 0 });
@@ -183,7 +199,7 @@ async function boot() {
     .to(loader, { autoAlpha: 0, duration: 0.6, ease: "power2.out" }, 1.0)
     .add(() => {
       loader.remove();
-      lenis?.start();
+      holdScroll(false);
       ScrollTrigger.refresh();
     });
   heroEntrance(0.95);
