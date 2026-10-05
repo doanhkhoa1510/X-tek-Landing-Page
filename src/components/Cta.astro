@@ -13,8 +13,8 @@ const { a = t("title.a"), b = t("title.b"), href = localize("/contact-us/", lang
   <div class="wrap page-cta-grid">
     <h2 id="cta-title" class="tt"><span class="tt-a">{a}</span> <span class="tt-b">{b}</span></h2>
     <div class="actions">
-      <a class="btn btn-fill" href={href} data-scramble><span class="scr">{label}</span></a>
-      {call && <a class="btn btn-line" href={phones.us.href} data-scramble><span class="scr">{tc("call", { phone: phones.us.label })}</span></a>}
+      <a class="btn btn-fill" href={href}><span class="scr">{label}</span></a>
+      {call && <a class="btn btn-line" href={phones.us.href}><span class="scr">{tc("call", { phone: phones.us.label })}</span></a>}
     </div>
   </div>
 </section>

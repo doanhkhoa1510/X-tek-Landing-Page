@@ -13,9 +13,9 @@ const t = useT(lang, "summit"), tc = useT(lang, "common");
       <h2 id="summit-title" class="tt"><span class="tt-a">{t("title.a")}</span> <span class="tt-b">{t("title.b")}</span></h2>
       <p>{t("text")}</p>
       <ul class="summit-lines">
-        <li><a href={phones.us.href} data-scramble><span class="scr">{tc("call", { phone: phones.us.label })}</span></a></li>
-        <li><a href={phones.wa.href} target="_blank" rel="noopener" data-scramble><span class="scr">{tc("whatsapp", { phone: phones.wa.label })}</span></a></li>
-        <li><a href={`mailto:${email}`} data-scramble><span class="scr">{email}</span></a></li>
+        <li><a href={phones.us.href}><span class="scr">{tc("call", { phone: phones.us.label })}</span></a></li>
+        <li><a href={phones.wa.href} target="_blank" rel="noopener"><span class="scr">{tc("whatsapp", { phone: phones.wa.label })}</span></a></li>
+        <li><a href={`mailto:${email}`}><span class="scr">{email}</span></a></li>
       </ul>
     </div>
     <BriefForm />

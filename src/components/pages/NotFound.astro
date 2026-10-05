@@ -9,7 +9,7 @@ const t = useT(lang, "notFound"), ts = useT(lang, "site");
 ---
 <Sub title={t("title")} description={t("description")} a={t("head.a")} b={t("head.b")} lede={t("lede")}>
   <div slot="aside" class="actions page-actions">
-    <a class="btn btn-fill" href={localize("/", lang)} data-scramble><span class="scr">{t("home")}</span></a>
-    <a class="btn btn-line" href={localize("/contact-us/", lang)} data-scramble><span class="scr">{ts("pages.contact")}</span></a>
+    <a class="btn btn-fill" href={localize("/", lang)}><span class="scr">{t("home")}</span></a>
+    <a class="btn btn-line" href={localize("/contact-us/", lang)}><span class="scr">{ts("pages.contact")}</span></a>
   </div>
 </Sub>

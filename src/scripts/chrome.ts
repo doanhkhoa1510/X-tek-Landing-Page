@@ -1,5 +1,5 @@
 /* XionTechs · The Night Ascent — the chrome every page shares.
-   Smooth scroll, header, scramble, cursor, altimeter, clocks, accordion, and forms; see DESIGN.md › Components.
+   Smooth scroll, header, cursor, altimeter, clocks, accordion, and forms; see DESIGN.md › Components.
    The landing page (app.ts) and the subpages (page.ts) both start here. */
 
 import { gsap } from "gsap";
@@ -181,10 +181,8 @@ $$<HTMLAnchorElement>('a[href^="#"]').forEach((a) =>
   }),
 );
 
-/* ---------- text in any script: graphemes (a letter with its marks) and words (CJK has no spaces) ---------- */
-const segmenter = (granularity: "grapheme" | "word") => ("Segmenter" in Intl ? new Intl.Segmenter(root.lang, { granularity }) : null);
-const graphemeSeg = segmenter("grapheme"), wordSeg = segmenter("word");
-const graphemes = (s: string) => (graphemeSeg ? [...graphemeSeg.segment(s)].map((g) => g.segment) : [...s]);
+/* ---------- text in any script: words (CJK has no spaces) ---------- */
+const wordSeg = "Segmenter" in Intl ? new Intl.Segmenter(root.lang, { granularity: "word" }) : null;
 /** Words with their punctuation, and the spaces between them as their own parts. */
 function words(s: string) {
   if (!wordSeg) return s.split(/(\s+)/).filter(Boolean);
@@ -196,44 +194,6 @@ function words(s: string) {
   }
   return parts;
 }
-
-/* ---------- scramble: the label shuffles its own letters, then locks in reading order ---------- */
-function scramble(el: HTMLElement) {
-  if (el.dataset.busy) return;
-  const text = (el.dataset.text ??= el.textContent ?? "");
-  // whole graphemes, so no mark leaves its letter; bidi isolates around phone numbers stay where they are
-  const letters = graphemes(text);
-  const free = letters.flatMap((g, i) => (/\p{Cf}/u.test(g) ? [] : [i]));
-  el.dataset.busy = "1";
-  el.style.width = `${el.getBoundingClientRect().width}px`;
-  let locked = -3;
-  const tick = () => {
-    if (locked >= letters.length) {
-      el.textContent = text;
-      el.style.width = "";
-      delete el.dataset.busy;
-      return;
-    }
-    const mix = letters.slice(), pool = free.map((i) => letters[i]);
-    for (let i = pool.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [pool[i], pool[j]] = [pool[j], pool[i]];
-    }
-    free.forEach((i, k) => (mix[i] = pool[k]));
-    for (let i = 0; i < locked; i++) mix[i] = letters[i];
-    el.textContent = mix.join("");
-    locked++;
-    setTimeout(tick, 28);
-  };
-  tick();
-}
-$$("[data-scramble]").forEach((host) => {
-  const label = host.querySelector<HTMLElement>(".scr");
-  if (!label) return;
-  if (!host.hasAttribute("aria-label") && host.tagName === "A") host.setAttribute("aria-label", label.textContent!.trim());
-  if (reduce || !finePointer) return;
-  host.addEventListener("pointerenter", () => scramble(label));
-});
 
 /* ---------- cursor: ring + dot, blend difference, ring draws the climb ---------- */
 if (finePointer && innerWidth > 991 && !reduce) {
