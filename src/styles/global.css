@@ -871,6 +871,8 @@ section { position: relative; color: var(--fg); }
 .faq-head { grid-column: 1 / 6; align-self: start; position: sticky; top: 140px; }
 .faq-head p { margin-top: 24px; color: var(--fg-soft); }
 .faq-head a { color: var(--ink); text-decoration-color: var(--navy); }
+/* the logo mark at section scale: navy body, its own amber swoosh (the mark's fill, as in the footer wordmark) */
+.faq-mark { display: block; width: clamp(160px, 15vw, 240px); margin-top: clamp(48px, 6vw, 88px); color: var(--navy); }
 .faq-list { grid-column: 7 / 13; border-top: 1px solid var(--line); }
 .qa { border-bottom: 1px solid var(--line); }
 .qa button {
@@ -1207,6 +1209,7 @@ section { position: relative; color: var(--fg); }
   .camps-copy, .strata-copy { margin-top: 28px; }
   .strata + .ascent { padding-top: var(--section); } /* the log head is static here, so it takes a full section gap */
   .faq-head, .ascent-head { position: static; }
+  .faq-mark { display: none; } /* stacked, the head has no empty half to hold it */
   .faq-list { margin-top: 48px; }
   .brief { margin-top: 48px; }
   /* the mountain sits above the stages and scrolls away with the page: pinned, it hid the text passing beneath it (#46) */

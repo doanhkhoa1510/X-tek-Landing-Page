@@ -667,6 +667,7 @@ Under the summit copy: phone, WhatsApp, and email as Button-type links in Xion A
   - Status text is amber on success. An inline link in a status is Snow with an amber underline.
 
 ### FAQ accordion
+- **Mark** (#50, change 2): the XT logo mark (`mark`, navy body, its own amber swoosh) sits at section scale (160–240px) in the empty lower half of the sticky FAQ head, under the "Something else?" line. Hidden below 992px, where the head stacks and has no empty half. The swoosh is part of the logo's fill, as in the footer wordmark, so the No-Amber-On-Snow Rule holds.
 - **Layout:** an Ice field with hairline rows. The question is a Title in a full-width button; the answer is Body in Slate, max 56ch.
 - **Icon:** a 14px plus built from two 2px bars, rotating 45° into a cross (0.5s expo).
 - **Motion:** the height tweens 0↔auto (0.5s/0.45s power2.inOut), using the `hidden` attribute plus `aria-expanded` and `aria-controls`.

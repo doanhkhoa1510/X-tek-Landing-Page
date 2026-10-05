@@ -1,6 +1,6 @@
 ---
 /* 05 · FAQ: six answers before the brief; the full list lives on /faqs/. */
-import { phones } from "../../data/site";
+import { mark, phones } from "../../data/site";
 import { localize } from "../../i18n/config";
 import { rich, useT } from "../../i18n";
 
@@ -17,6 +17,8 @@ const more = rich(t("more", { phone: phones.us.label }), {
     <div class="faq-head">
       <h2 id="faq-title" class="tt"><span class="tt-a">{t("title.a")}</span> <span class="tt-b">{t("title.b")}</span></h2>
       <p set:html={more} />
+      {/* brand character (#50, change 2): the XT mark holds the empty half of the sticky head */}
+      <svg class="faq-mark" viewBox="0 30 294 162" aria-hidden="true" set:html={mark}></svg>
     </div>
     <div class="faq-list">
       {faqs.map((id, i) => (
