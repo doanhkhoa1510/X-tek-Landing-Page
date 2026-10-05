@@ -1,5 +1,5 @@
 {
-  "title": { "a": "Questions", "b": "before the climb." },
+  "title": { "a": "Questions", "b": "before you start." },
   "more": "Something else? Read <faqs>all FAQs</faqs>, or call <call>{{phone}}</call>.",
   "items": {
     "what": {
