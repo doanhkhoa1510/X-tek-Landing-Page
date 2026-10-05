@@ -334,6 +334,8 @@ The atmospheric limb between night and daylight always uses these five stops, in
 - **Hairlines:** `rgba(255,255,255,.12)` on night, `rgba(11,26,51,.12)` on daylight.
 
 ### Named Rules
+**The One-Sky Rule (no theme toggle).** The page has no light/dark switch and does not follow `prefers-color-scheme`: the night-to-day scroll is the theme, and every section already has a fixed ground (night, snow, or ice) that the header ground, the limbs, and the contrast checks depend on. A toggle would double every limb, the header replica, and the 3D clear colour. Decided as Option A of #51 (UAT round 1: 1 of 4 testers asked); re-check in round 2 UAT and build a toggle only if 2 or more testers ask.
+
 **The Dawn Rule.** Full-bleed night and daylight never meet at a straight edge. Night to daylight goes through a dawn limb (a snow dome rising from below, glacier band, amber sunrise). Daylight to night goes through a dusk limb (a night dome rising under a white or ice sky). Bands inside a section, like the value track under the giant type, may cut hard: they are ground, not sky. Night to night needs no limb: the base camps' ground fades over its last 220px into the WebGL night of the summit.
 
 **The Limb-Never-Fades Rule.** A horizon moves; it never fades. Snow faded over night at partial opacity reads as grey mud (measured #252933 → #D8D9DB on the first build). A limb rises or sets as a whole (the hero dawn is `yPercent 100 → 0` at full opacity) so the saturated glacier band always leads.
