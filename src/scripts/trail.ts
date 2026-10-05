@@ -40,7 +40,7 @@ export function mountTrail(panel: HTMLElement, list: HTMLElement) {
   const camps = stages.map((s, i) => {
     const el = document.createElement("div");
     el.className = i === last ? "camp camp-summit" : "camp";
-    el.innerHTML = `<i class="camp-dot"></i><span class="camp-tag"><b>0${i + 1}</b> ${s.querySelector(".stage-meta")?.textContent?.trim() ?? ""} · <em></em> ${unit}</span>`;
+    el.innerHTML = `<i class="camp-dot"></i><span class="camp-tag"><b>0${i + 1}</b> ${s.dataset.camp ?? ""} · <em></em> ${unit}</span>`;
     panel.insertBefore(el, climber);
     return el;
   });

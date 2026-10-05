@@ -26,42 +26,37 @@ const domains = ["edtech", "healthcare", "logistics"] as const;
       </div>
     </div>
     <ol class="stages">
-      <li class="stage">
+      <li class="stage" data-camp={t("achieved.camp")}>
         <span class="stage-icon" data-icon="clock"></span>
         <h3>{t("achieved.title")}</h3>
         <p>{t("achieved.text")}</p>
         <dl class="stats stage-stats">
           {stats.map(([id, n, unit]) => <div class="stat"><dt>{t(`achieved.stats.${id}`)}</dt><dd><span data-count={n}>{n}</span>{unit}</dd></div>)}
         </dl>
-        <p class="stage-meta">{t("achieved.camp")}</p>
       </li>
-      <li class="stage">
+      <li class="stage" data-camp={t("done.camp")}>
         <span class="stage-icon" data-icon="development"></span>
         <h3>{t("done.title")}</h3>
         <p>{t("done.text")}</p>
         <ul class="log">
           {services.map((id) => <li><h4>{ts(`services.${id}.name`)}</h4><p>{ts(`services.${id}.text`)}</p></li>)}
         </ul>
-        <p class="stage-meta">{t("done.camp")}</p>
       </li>
-      <li class="stage">
+      <li class="stage" data-camp={t("products.camp")}>
         <span class="stage-icon" data-icon="product"></span>
         <h3>{t("products.title")}</h3>
         <p>{t("products.text")}</p>
         <ul class="log">
           {products.map((id) => <li><h4>{t(`products.items.${id}.name`)}</h4><p>{t(`products.items.${id}.text`)}</p></li>)}
         </ul>
-        <p class="stage-meta">{t("products.camp")}</p>
       </li>
-      <li class="stage">
+      <li class="stage" data-camp={t("customers.camp")}>
         <span class="stage-icon" data-icon="cocreate"></span>
         <h3>{t("customers.title")}</h3>
         <p>{t("customers.text")}</p>
         <ul class="tags" aria-label={t("customers.domainsLabel")}>
           {domains.map((id) => <li>{t(`customers.domains.${id}`)}</li>)}
         </ul>
-        <p class="pending">{t("customers.pending")}</p>
-        <p class="stage-meta">{t("customers.camp")}</p>
       </li>
     </ol>
   </div>
