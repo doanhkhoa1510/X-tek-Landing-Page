@@ -62,10 +62,12 @@ mm.add({ motion: "(prefers-reduced-motion: no-preference)" }, (ctx) => {
   const base = $(".stage");
   ScrollTrigger.create({ trigger: base, start: "top 62%", onEnter: () => base.classList.add("is-on"), onLeaveBack: () => base.classList.remove("is-on") });
   // stats wipe in and count; log rows rise out of their rules
-  gsap.from(".stat", {
+  gsap.from(".stats .stat", {
     clipPath: rtl ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)", duration: 1.2, ease: "expo.out", stagger: 0.12,
     scrollTrigger: { trigger: ".stats", start: "top 85%" },
   });
+  // why XionTechs: each reason rises with its proof, then the figure counts up
+  gsap.from(".reason", { autoAlpha: 0, y: 24, duration: 1.1, ease: "expo.out", stagger: 0.1, scrollTrigger: { trigger: ".reasons", start: "top 85%" } });
   $$(".log").forEach((log) =>
     gsap.from(log.children, { autoAlpha: 0, y: 20, duration: 1, ease: "expo.out", stagger: 0.06, scrollTrigger: { trigger: log, start: "top 82%" } }),
   );

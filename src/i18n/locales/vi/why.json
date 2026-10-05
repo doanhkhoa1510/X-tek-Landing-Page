@@ -1,0 +1,32 @@
+{
+  "title": {
+    "a": "Vì sao chọn XionTechs.",
+    "b": "Bốn lý do, mỗi lý do có bằng chứng."
+  },
+  "intro": "Điều làm chúng tôi khác biệt, và căn cứ cho từng điều.",
+  "items": {
+    "zones": {
+      "name": "Đầu mối tại Hoa Kỳ, đội phát triển tại Việt Nam",
+      "text": "Quý khách trao đổi với chúng tôi tại Plano, Texas, trong giờ làm việc của mình. Kỹ sư của chúng tôi phát triển tại TP. Hồ Chí Minh và Đà Nẵng, nên công việc vẫn tiếp tục khi quý khách nghỉ ngơi.",
+      "proof": "Văn phòng tại Hoa Kỳ và Việt Nam",
+      "link": "Xem các văn phòng"
+    },
+    "years": {
+      "name": "Chiều sâu kỹ thuật",
+      "text": "Hơn 25 năm kinh nghiệm kỹ thuật phần mềm, ở mọi tầng, từ hệ thống nhúng đến ứng dụng doanh nghiệp.",
+      "proof": "Năm trong kỹ thuật phần mềm",
+      "link": "Xem những gì chúng tôi đã làm"
+    },
+    "process": {
+      "name": "Quy trình đo lường được",
+      "text": "Agile kết hợp BMAD-METHOD và V-Model, có công cụ AI hỗ trợ. Quản lý dự án dựa trên số liệu, nên quý khách theo dõi chất lượng và tiến độ bằng con số.",
+      "proof": "Trụ cột của năng lực triển khai xuất sắc"
+    },
+    "ai": {
+      "name": "AI trong cách chúng tôi xây dựng",
+      "text": "Một nền tảng phát triển Agile ứng dụng AI vận hành quy trình triển khai của chúng tôi, và chúng tôi tự xây dựng sản phẩm AI cho trường học.",
+      "proof": "Sản phẩm AI của riêng chúng tôi",
+      "link": "Xem nền tảng"
+    }
+  }
+}
