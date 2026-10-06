@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { $$, goTo, mountCounters, onAltitude, rtl, syncHeader, twoTone } from "./chrome";
 import { mountTopo } from "./topo";
+import { mountStory } from "./story";
 
 /* ---------- the head: Mount Zion's contours on night; the amber line follows the altitude ---------- */
 const topoCanvas = document.querySelector<HTMLCanvasElement>(".page-topo canvas");
@@ -11,6 +12,9 @@ if (topoCanvas) {
   const topo = mountTopo(topoCanvas, { minor: "rgba(169, 180, 204, 0.09)", major: "rgba(169, 180, 204, 0.22)", amber: 1.5, cover: true });
   onAltitude((alt) => topo(alt));
 }
+
+/* ---------- About us: the story of Xion and the seven core values (pins first, so before the other scenes) ---------- */
+if (document.querySelector(".routes")) mountStory();
 
 /* ---------- on-this-page index: the section being read is marked ---------- */
 const toc = $$<HTMLAnchorElement>(".doc-toc a[href^='#']");

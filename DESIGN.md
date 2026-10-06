@@ -405,13 +405,12 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
   - Headings get more space above than below.
 - **Section order and fields:**
   1. Main: hero `#top` (night, 210vh with a sticky 100svh stage)
-  2. Mindset `#mindset` (snow): the story of Xion and the mission
-  3. Core values `#values` (snow sky over a night-band track of seven columns, pinned for about 1.15× the track overflow)
-  4. Platform `#platform` (snow): the smart-school product as one architecture chart, four tiers on a y-axis
-  5. The log `#work` (snow, sticky head and trek): achieved, done, products, customers
-  6. FAQ `#faq` (ice)
-  7. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
-  8. Footer (snow)
+  2. Platform `#platform` (snow): the smart-school product as one architecture chart, four tiers on a y-axis
+  3. The log `#work` (snow, sticky head and trek): achieved, done, products, customers
+  4. FAQ `#faq` (ice)
+  5. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
+  6. Footer (snow)
+  - The story of Xion (`#mindset`) and the core values (`#values`) live on About us since #36: on the landing page they stood between the hero and what XionTechs does, and buyers lost the thread. The hero's outline pill ("Our mindset") leads to `/about-us/#mindset`.
 - **Class names keep the mountain vocabulary** (`.intro`, `.routes`, `.strata`, `.ascent`, `.camps`, `.summit`); ids carry the content names.
 - **Breakpoints:** desktop ≥ 992px. Tablet 768–991px: headings and copy stack to full width, sticky heads go static, and the route strip moves to columns 1/3. Mobile ≤ 767px:
   - The header becomes a flex row (logo left, menu right), and the CTA, the ticker phones, and the 3D camp chips hide.
@@ -427,7 +426,7 @@ The landing page is for a new buyer and stays lean. Everything else from the old
 - **Closing ask:** an ice band (`components/Cta.astro`) before the footer on About, FAQs, Careers, and jobs. Legal texts end on their own content.
 - **Menu:** landing sections, a hairline, then About us, Careers, and Support, in a flat panel (Night Band or Snow) so ten links never sit on the headline. Subpages link to landing sections as `/#id`. An arrival with a hash skips the preloader and lands on the section.
 - **Footer:** map 1/4, then base camps, reach us, explore, and company columns. A row of languages sits above the legal row, which carries the three legal links.
-- **Scripts:** `chrome.ts` is shared (scroll, header, altitude, clocks, accordion, forms). `app.ts` is the landing page and `page.ts` is the subpages. Terrain math lives in `relief.ts`, so subpages never load Three.js (about 183 KB of JS against 690 KB).
+- **Scripts:** `chrome.ts` is shared (scroll, header, altitude, clocks, accordion, forms). `app.ts` is the landing page and `page.ts` is the subpages; `story.ts` drives the story and the value track on About us. Terrain math lives in `relief.ts`, so subpages never load Three.js (about 183 KB of JS against 690 KB).
 
 ## Languages
 
@@ -530,7 +529,7 @@ Character: heavy pills with a machine voice. The fill answers the pointer.
 - **Theme:** on every scroll frame, the header probes the section under its row with `elementsFromPoint` and takes that section's `data-on` (dark/light). Text colors cross-fade in 0.4s. Each limb's flip (`--flip`, between glacier and limb-mid) is where its ground turns, and around it the soft link ink goes full (`.is-mid`) so the links hold contrast over the mid blue. Once scrolled, the header's ground (`.hdr-ground`) repaints the page's own backgrounds (sections, bands, limbs, clipped as on the page, on whole device pixels) behind the row, without their content, in the scroll frame itself; it fades out over 36px below the row. So a night/snow edge slides through the header exactly with the scroll, nothing ghosts behind the links, and no line, shadow, or tint parts the header from the page.
 
 ### Navigation (menu)
-- **Layout:** a dropdown under the toggle, a mono uppercase list of seven anchors (Mindset, Core values, Platform, Work, FAQ, Branches, Contact). From 1280px the anchors live in the header row and the dropdown holds only the company pages.
+- **Layout:** a dropdown under the toggle, a mono uppercase list of five anchors (Platform, Work, FAQ, Branches, Contact). From 1280px the anchors live in the header row and the dropdown holds only the company pages.
 - **Open:** a clip-path wipe (0.6s expo). Links drop in 8px with a 0.04s stagger.
 - **Close:** Esc (focus returns to the toggle), an outside click, or following a link.
 - **Anchors:** native `scrollTo` with `behavior: "smooth"` (instant for reduced motion and arrivals from another page). The target gets focus with `preventScroll`. Night sections with a top limb scroll past the limb, so the heading lands under the header.
@@ -565,11 +564,12 @@ Two block spans in one H2, following the Two-Tone Rule. On night the fill runs D
 ### Stat
 The figure (count-up from 0, 1s power1.out at `top 85%`, once) sits over a Label, with a top hairline. The row wipes in with clip-path from the left (1.2s expo, stagger 0.12). It sits three-up in the first log entry. The figures are real: 25+ years in software engineering, 5 pillars of delivery excellence, 3 offices.
 
-### Story and mission (mindset)
+### Story and mission (mindset, on About us)
 - **Layout:** the topo tile and the sticky two-tone H2 at 1/7; the story at 8/13 as three Lede paragraphs. The H2 reads "Starting with a story. / A mountain is our symbol." The first paragraph names Mount Zion once, as the inspiration for the name; this is the only place the page names it (the Symbol Rule). XionTechs is the only company named (the One-Name Rule: no parent group, no sister company, anywhere on the page). The mission sits under a hairline: a Title head ("Our mission") over Body in Slate, max 46ch. One outline pill leads to the core values.
 - **Entrance:** paragraphs, mission, and button rise 28px (1.1s expo, stagger 0.08).
 
-### Value column (core values)
+### Value column (core values, on About us)
+The section follows the story on About us (`story.ts`, called from `page.ts` before the page's other scenes, because it pins). Its pill leads to `/contact-us/`.
 - **Layout:** a 270–340px column on the night band with a 1px left hairline. It holds a 44px dot icon that names the value (check, rocket, target, shield, spark, flag, people), a Title (max 12ch), the motto in Snow, and the promise in Body Small in Mist.
 - **Motion:** on desktop the seven columns ride a horizontal track pinned under the giant type ("Seven core values").
   - The track clip is `.track-wrap` with overflow hidden, so columns never slide over the intro copy.

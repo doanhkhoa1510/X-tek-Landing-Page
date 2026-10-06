@@ -1,5 +1,6 @@
 ---
 /* 01 · Main: the four-line headline bottom-left, over the mountain. */
+import { localize } from "../../i18n/config";
 import { useT } from "../../i18n";
 
 const lang = Astro.currentLocale;
@@ -16,7 +17,7 @@ const lines = t("lines", { returnObjects: true });
       <p class="hero-lede">{t("lede")}</p>
       <div class="actions">
         <a class="btn btn-fill" href="#summit"><span class="scr">{tc("talk")}</span></a>
-        <a class="btn btn-line" href="#mindset"><span class="scr">{t("mindset")}</span></a>
+        <a class="btn btn-line" href={`${localize("/about-us/", lang)}#mindset`}><span class="scr">{t("mindset")}</span></a>
       </div>
     </div>
     <div class="hero-dawn" aria-hidden="true"></div>

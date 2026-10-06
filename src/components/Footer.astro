@@ -9,7 +9,7 @@ const { home = false } = Astro.props;
 const lang = Astro.currentLocale;
 const t = useT(lang, "footer"), ts = useT(lang, "site");
 const to = (id: string) => (home ? `#${id}` : `${localize("/", lang)}#${id}`);
-const explore = ["mindset", "values", "work", "faq"] as const;
+const explore = ["platform", "work", "faq", "camps"] as const;
 ---
 <footer class="foot" data-on="light">
   <div class="wrap foot-grid">

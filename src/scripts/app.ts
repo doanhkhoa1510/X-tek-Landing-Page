@@ -6,24 +6,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { $, $$, goTo, hdr, mountCounters, onAltitude, reduce, root, rtl, syncHeader, twoTone } from "./chrome";
 import { mountMountain } from "./mountain";
 import { mountTopo } from "./topo";
-import { mountRidge } from "./ridge";
 import { mountTrail } from "./trail";
 
 /* ---------- scene and maps ---------- */
 const scene = mountMountain($<HTMLCanvasElement>("#mountain"), $("#chips"), () => root.classList.add("no-webgl"));
 if (!scene) root.classList.add("no-webgl");
-const topo = mountTopo($<HTMLCanvasElement>(".topo canvas"));
 const topoBg = mountTopo($<HTMLCanvasElement>(".ascent-bg canvas"), { minor: "rgba(16, 48, 96, 0.07)", major: "rgba(16, 48, 96, 0.15)", amber: 0, cover: true } /* no live line: it shifted on scroll behind the copy */);
-const ride = mountRidge($<HTMLCanvasElement>(".ridge canvas"), $(".rider"));
 mountTrail($(".trek-frame"), $(".stages"));
 
-/* ---------- altitude: the rider and both contour maps follow the reading ---------- */
-const riderAlt = $(".rider-alt"), riderTpl = riderAlt.dataset.tpl ?? "{n}";
-onAltitude((alt, shown) => {
-  riderAlt.textContent = riderTpl.replace("{n}", shown);
-  topo(alt);
-  topoBg(alt);
-});
+/* ---------- altitude: the log's contour backdrop follows the reading ---------- */
+onAltitude((alt) => topoBg(alt));
 
 /* ---------- scene gating: render only while the night is on screen ---------- */
 const night = { hero: false, summit: false };
@@ -43,8 +35,8 @@ ScrollTrigger.create({
 
 /* ---------- scroll scenes (created top to bottom; pins first in their section) ---------- */
 const mm = gsap.matchMedia();
-mm.add({ wide: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-preference)" }, (ctx) => {
-  const { wide, motion } = ctx.conditions as { wide: boolean; motion: boolean };
+mm.add({ motion: "(prefers-reduced-motion: no-preference)" }, (ctx) => {
+  const { motion } = ctx.conditions as { motion: boolean };
   if (!motion) {
     scene?.setHero(0);
     return;
@@ -57,31 +49,6 @@ mm.add({ wide: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-prefer
     .to(".hero-copy", { yPercent: -16, autoAlpha: 0, ease: "none", duration: 0.42 }, 0)
     // y:0 clears the px offset GSAP parses from the CSS resting transform, so only yPercent drives the rise
     .fromTo(".hero-dawn", { y: 0, yPercent: 100 }, { y: 0, yPercent: 0, ease: "none", duration: 0.58 }, 0.42);
-
-  // mindset: the story rises, then the mission
-  gsap.from(".intro-right .lede, .mission, .intro-right .btn", {
-    autoAlpha: 0, y: 28, duration: 1.1, ease: "expo.out", stagger: 0.08,
-    scrollTrigger: { trigger: ".intro-right", start: "top 80%" },
-  });
-  gsap.from(".topo", { clipPath: "inset(0 0 100% 0)", duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: ".topo", start: "top 85%" } });
-
-  // core values: pinned; the value track slides past while the giant type drifts behind
-  const track = $(".track"), giant = $(".giant");
-  if (wide) {
-    const clip = track.parentElement!;
-    const dist = () => Math.max(0, track.scrollWidth - clip.clientWidth);
-    gsap.timeline({
-      scrollTrigger: { trigger: ".routes", start: "top top", end: () => `+=${Math.max(innerHeight * 0.8, dist() * 1.15)}`, pin: true, scrub: true, invalidateOnRefresh: true, onUpdate: (s) => ride(s.progress) },
-    })
-      .to(track, { x: () => (rtl ? dist() : -dist()), ease: "none" }, 0)
-      .to(giant, { x: () => (rtl ? 1 : -1) * Math.max(0, giant.scrollWidth - innerWidth * 0.9), ease: "none" }, 0);
-  } else {
-    gsap.to(giant, { xPercent: rtl ? 45 : -45, ease: "none", scrollTrigger: { trigger: ".routes", start: "top bottom", end: "bottom top", scrub: true, onUpdate: (s) => ride(s.progress) } });
-  }
-  gsap.from(".svc > *", {
-    autoAlpha: 0, y: 24, duration: 1, ease: "expo.out", stagger: 0.035,
-    scrollTrigger: { trigger: ".routes-band", start: wide ? "top 70%" : "top 85%" },
-  });
 
   // platform: the chart builds tier by tier, and the spokes draw out from the supervisor
   $$(".tier").forEach((t) => gsap.from(t, { autoAlpha: 0, y: 24, duration: 1.1, ease: "expo.out", scrollTrigger: { trigger: t, start: "top 95%" } }));
