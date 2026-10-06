@@ -23,7 +23,6 @@ colors:
   map-dot-night: "#1F3566"
   map-dot-loader: "#2A3B63"
   map-dot-snow: "#C9D2E3"
-  pending: "#B8470F"
   error: "#FF9A7A"
   line-dark: "rgba(255, 255, 255, 0.12)"
   line-light: "rgba(11, 26, 51, 0.12)"
@@ -331,7 +330,6 @@ The atmospheric limb between night and daylight always uses these five stops, in
 - **Dim Night** (#76839F): the dim first line on night, plus the loader lists and the day-bar axis (5.2:1, so it passes at micro sizes too).
 - **Giant Ink** (#E6EBF3): background type on snow. It is atmosphere, never the only carrier of meaning.
 - **Map Dot Night / Loader / Snow** (#1F3566, #2A3B63, #C9D2E3): the land dots of the world map on night, in the preloader, and in the footer. The map is always quieter than its amber beacons.
-- **Pending** (#B8470F): the mono tag on every unfinished placeholder (5.3:1 on white). It marks content the user must replace (today: customer names and quotes).
 - **Error** (#FF9A7A): form error text and invalid field rule on night (8.7:1).
 - **Hairlines:** `rgba(255,255,255,.12)` on night, `rgba(11,26,51,.12)` on daylight.
 
@@ -349,7 +347,7 @@ The atmospheric limb between night and daylight always uses these five stops, in
 
 A live line that crosses copy is navy.
 
-**The Placeholder Is Loud Rule.** Anything the user must still supply (customer names, quotes) carries the Pending mono tag. A placeholder that looks finished is a fabrication.
+**The No-Placeholder Rule.** Visitors never see an internal note. Anything the user must still supply (customer names, quotes) stays off the page and is tracked as a GitHub issue (#20); an entry shows only the facts on hand. A placeholder that looks finished is a fabrication, and one that says "pending" tells a buyer we have nothing to show (UAT round 1, #37).
 
 ## Typography
 
@@ -376,7 +374,7 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
 - **Body** (400, 17px, 1.5, max 40–60ch) and **Body Small** (400, 15px, 1.5, max 30ch in value columns): prose.
 - **Button** (Martian Mono 500, 12px, 0.03em, uppercase): every pill and the menu toggle.
 - **Label** (Martian Mono 500, 11px, 0.04em, uppercase): stat labels, the trailing camp name of a log entry, office roles, form labels, footer column heads. A label never sits above a heading.
-- **Micro** (Martian Mono 400–500, 10–10.5px, 0.05em, uppercase): the ticker, chips, domain tags, the rider reading, captions, pending tags, and the legal line. 10px is the floor on every breakpoint.
+- **Micro** (Martian Mono 400–500, 10–10.5px, 0.05em, uppercase): the ticker, chips, domain tags, the rider reading, captions, and the legal line. 10px is the floor on every breakpoint.
 - **IPA** (Noto Sans Mono 400, 11px under the wordmark, 17px in the footer entry, 0.02em, never uppercase): the pronunciation only.
 
 ### Named Rules
@@ -385,7 +383,7 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
 - On full night sections (base camps, summit), the ink words pull into focus instead: blur 10px→0 and opacity 0.15→1, stagger 0.12, scrubbed `top 85%`→`top 45%`. It reads like a summit coming out of cloud.
 - Without JS or with reduced motion, the final colors show at once.
 
-**The Mono-Means-Machine Rule.** Mono is only for what you press or read as data: buttons, the menu, chips, clocks, coordinates, altitude, counters' labels, legal and pending tags. Paragraphs are never mono.
+**The Mono-Means-Machine Rule.** Mono is only for what you press or read as data: buttons, the menu, chips, clocks, coordinates, altitude, counters' labels, legal tags. Paragraphs are never mono.
 
 **The Uppercase-Is-Display Rule.** Uppercase belongs to Saira headings and mono labels. Body text is always sentence case.
 
@@ -598,13 +596,13 @@ The record of the climb so far: four camps, four entries. Drawn in the page's su
 - **Mountain:** Mount Zion from the south, framed closer than the routes sky so the dome fills it: the real skyline (highest ground behind each point, from `heightAt`). The routes-sky dot matrix (7px grid, 6px under 560px wide; body dots 20% navy, skyline band 62%) over a white knockout that hides the contour backdrop. Both edges fade out over 10–14% instead of cropping. Dashed 50 m guides (12% navy) run behind it.
 - **Elevation scale:** a hairline axis on the east edge, 10 m ticks, labels every 50 m ("700 m", Micro mono, slate). Labels hide on mobile.
 - **Trail:** switchbacks up the dome's face from the trailhead (609 m) to the summit. Straight traverses joined by semicircle hairpins (radius up to 10px), cut inside the ground at each level; legs vary in length, wander toward the summit and tighten as the dome narrows. About one leg per 80px of relief (36px on narrow). Ahead: a 1.2px navy dash (3/4, 55%). Walked: a 2px amber line up to the climber. Always climbs upward on screen; never a road, rail or straight bar.
-- **Camps:** an 8px ring (1.5px navy) on the trailhead, two hairpins and the summit; it fills amber once reached, and the summit ring pings. Each has a tag with a 17px hairline leader, pointing outside its hairpin (the summit's points up): `01 Base camp · 609 m`, `02 Camp I`, `03 Camp II`, `04 Summit · 765 m`, elevations from the real profile. Tag states: ahead = snow with a light border and slate text; reached = Night Band with mist text; current (the camp the climber is nearest) = amber with ink text, like a focused hero chip. On mobile the tags hide; the stage text names the camp.
+- **Camps:** an 8px ring (1.5px navy) on the trailhead, two hairpins and the summit; it fills amber once reached, and the summit ring pings. Each has a tag with a 17px hairline leader, pointing outside its hairpin (the summit's points up): `01 Base camp · 609 m`, `02 Camp I`, `03 Camp II`, `04 Summit · 765 m`, elevations from the real profile. Tag states: ahead = snow with a light border and slate text; reached = Night Band with mist text; current (the camp the climber is nearest) = amber with ink text, like a focused hero chip. On mobile the tags hide.
 - **Climber:** the amber diamond (14px, 2px snow halo), like the ridge rider. It waits on base camp until the chart has settled in full view (wide: the side column pins; tablet and mobile: the strip pins), then stands on camp s while stage s's title holds the line where base camp's title stood at that moment, and walks between camps in step with scroll. On wide screens the first entry opens level with the middle of the mountain (padding-top 50vh + 80px), so that line runs through the mountain's middle; the stage list keeps calc(32vh - 160px) below so the climber summits before the side unpins.
-- **Entries:** 32% opacity, then full: the first as its top passes `top 62%`, each later one as its camp turns current. Each entry, in order: a dot icon, a Stage title, Body, its payload, and a trailing Label with the camp name (Base camp, Camp I, Camp II, Summit). `trail.ts` reads the first `h3` and `.stage-meta` of each entry.
+- **Entries:** 32% opacity, then full: the first as its top passes `top 62%`, each later one as its camp turns current. Each entry, in order: a dot icon, a Stage title, Body, and its payload. No label trails the entry: the camp name lives in `data-camp`, and `trail.ts` reads it for the chart's camp tag (a lone label under an entry read as a stray, #37).
   1. **What we have achieved** (clock): the three-up stat row.
   2. **What we have done** (code): five log rows, one per service line.
   3. **Products** (box): two log rows.
-  4. **Customers** (linked rings): three domain tags and the Pending tag.
+  4. **Customers** (linked rings): three domain tags; the October 2025 visit is in its body.
 - **Log row:** a hairline list; each row is a Title (h4) over Body Small in Slate, max 46ch, padding 18px 0 20px. Rows rise 20px out of their rules (1s expo, stagger 0.06).
 - **Tag:** a 2px chip with a 32% ink border, Micro, no fill.
 
@@ -681,7 +679,7 @@ The name set as a dictionary headword, the page's last word.
 - **Do** keep the render loop gated: it runs only while the hero or the summit is on screen and the tab is visible. The summit gate opens 400px early, because the base camps fade into the scene.
 - **Do** pass every full-bleed night and daylight change through a horizon limb (the Dawn Rule).
 - **Do** keep amber at or under 5% of a resting viewport (the Amber Ration Rule).
-- **Do** tag every placeholder with the Pending mono tag until the user supplies the real content.
+- **Do** leave missing content off the page (the No-Placeholder Rule); track it in an issue.
 - **Do** clip sections whose decoration bleeds past the grid (`overflow-x: clip` on the summit, for its copy scrim). A pseudo-element 25% wider than the viewport once pushed the mobile MENU off-screen.
 - **Do** keep a physical trace of the mountain in every scene (particles, dot ridge, contours, dot map): the page is one climb, not a stack of type slides.
 

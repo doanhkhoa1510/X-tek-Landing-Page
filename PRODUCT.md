@@ -78,7 +78,7 @@ Delivery center of excellence, five pillars: domain knowledge, technologies, ski
 - Domains: EdTech, Healthcare, Logistics.
 - Customer event (newsroom, unnamed client): a visit to the XionTechs delivery center in Ho Chi Minh City on AI and robotics in education (2025-10-10).
 - Leadership: Vinni Vu Tran (Founder and CEO), Thea Thu Nguyen (product marketing and UX).
-- Absent, never fabricate: customer names, client logos, testimonials, metrics per case, pricing, certifications. The customers entry ships with a Pending tag until the user supplies them.
+- Absent, never fabricate: customer names, client logos, testimonials, metrics per case, pricing, certifications. The customers entry shows only the domains and the October 2025 visit until the user supplies them (tracked in #20); no "pending" note ever reaches a visitor.
 
 ## Product Principles
 
