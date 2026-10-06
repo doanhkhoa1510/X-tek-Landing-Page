@@ -1,9 +1,9 @@
 {
   "title": {
-    "a": "Le journal à ce jour.",
-    "b": "Les ascensions que nous avons menées."
+    "a": "Nos réalisations.",
+    "b": "Ce que nous avons construit."
   },
-  "intro": "Quatre camps sur la voie du sommet : ce que nous avons atteint, ce que nous avons réalisé, les produits et les clients.",
+  "intro": "Ce que nous avons atteint, ce que nous avons réalisé, nos produits et nos clients.",
   "achieved": {
     "title": "Ce que nous avons atteint",
     "text": "L’équipe apporte plus de 25 ans d’expérience en ingénierie logicielle. Notre centre d’excellence de livraison repose sur cinq piliers : connaissance du domaine, technologies, ressources qualifiées, processus d’ingénierie et gestion de projet.",
@@ -12,12 +12,12 @@
       "pillars": "Piliers de l’excellence de livraison",
       "offices": "Bureaux aux États-Unis et au Vietnam"
     },
-    "camp": "Succursale"
+    "camp": "Acquis"
   },
   "done": {
     "title": "Ce que nous avons réalisé",
     "text": "Des logiciels de bout en bout propulsés par l’IA et les technologies modernes : applications sur mesure, intégration de systèmes et solutions cloud évolutives, sur cinq lignes de services.",
-    "camp": "Camp I"
+    "camp": "Réalisations"
   },
   "products": {
     "title": "Produits",
@@ -32,7 +32,7 @@
         "text": "Un système de planification intelligent qui automatise la création et l’optimisation des emplois du temps scolaires, et compare des emplois du temps construits à partir d’entrées et de contraintes différentes."
       }
     },
-    "camp": "Camp II"
+    "camp": "Produits"
   },
   "customers": {
     "title": "Clients",
@@ -43,6 +43,6 @@
       "healthcare": "Santé",
       "logistics": "Logistique"
     },
-    "camp": "Flambeau"
+    "camp": "Clients"
   }
 }
