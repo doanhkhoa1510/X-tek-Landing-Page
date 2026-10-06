@@ -556,7 +556,9 @@ Character: heavy pills with a machine voice. The fill answers the pointer.
 - **The dive** (scrubbed over the 210vh hero):
   - The camera climbs from the Hinnom valley up the south face to the crest of Mount Zion.
   - The amber altitude contour climbs the hill.
-  - The headline block drifts up 16% and fades by 42% progress.
+  - The headline block holds until 16%, then drifts up 16% and fades by 42% progress.
+  - **What we do** (`.hero-next`) rises from 30% to 42% and stays to the end: a Micro label, the five service lines as Titles, and an outline pill to the log. It sits high on the night (top `clamp(120px, 17vh, 170px)`), above the rising dawn, so no screen of the hero is only decoration (#38).
+  - **Copy night:** the headline and the second-screen block each carry their own soft night field (`::before`, `rgba(3,8,19,.92)`, blur 56px, 9% wider and 14% taller than the copy). It follows the copy's real size in every language, so the white ridge never runs through the text. Measured: at least 4.5:1 at the brightest pixel behind every headline line, the lede, and the service lines, in all 7 languages at 1440, 834, and 390 (min 8.6:1 for the headline).
   - The dawn limb rises (`yPercent 100 → 0` at full opacity, never a fade) from 42% to 100%, ending in pure snow that meets the intro. GSAP's `fromTo` zeroes `y` so it does not stack on the CSS resting `translateY(100%)`.
 
 ### Two-tone headline

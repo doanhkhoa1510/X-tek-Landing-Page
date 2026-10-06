@@ -7,5 +7,6 @@
   ],
   "accent": "Get IT done.",
   "lede": "XionTechs est une équipe de services et de produits IT propulsée par l’IA. Nous concevons des logiciels sûrs et très performants depuis le Texas et le Vietnam. Laissez votre empreinte.",
-  "mindset": "Notre état d’esprit"
+  "mindset": "Notre état d’esprit",
+  "next": { "label": "Ce que nous faisons", "link": "Voir nos réalisations" }
 }

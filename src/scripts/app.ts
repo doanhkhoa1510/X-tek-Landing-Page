@@ -46,7 +46,9 @@ mm.add({ motion: "(prefers-reduced-motion: no-preference)" }, (ctx) => {
   gsap.timeline({
     scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom bottom", scrub: true, onUpdate: (s) => scene?.setHero(s.progress) },
   })
-    .to(".hero-copy", { yPercent: -16, autoAlpha: 0, ease: "none", duration: 0.42 }, 0)
+    .to(".hero-copy", { yPercent: -16, autoAlpha: 0, ease: "none", duration: 0.26 }, 0.16)
+    // the second screen is never only decoration: what we do rises as the headline leaves, and stays until the hero ends
+    .fromTo(".hero-next", { autoAlpha: 0, y: 32 }, { autoAlpha: 1, y: 0, ease: "none", duration: 0.12 }, 0.3)
     // y:0 clears the px offset GSAP parses from the CSS resting transform, so only yPercent drives the rise
     .fromTo(".hero-dawn", { y: 0, yPercent: 100 }, { y: 0, yPercent: 0, ease: "none", duration: 0.58 }, 0.42);
 
