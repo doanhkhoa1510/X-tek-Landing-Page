@@ -1,18 +1,18 @@
 {
-  "name": "Tên của bạn",
+  "name": "Họ và tên",
   "email": "Email công việc",
-  "msg": "Bạn đang xây dựng điều gì?",
+  "msg": "Quý khách đang xây dựng sản phẩm gì?",
   "subject": "Chủ đề",
   "chooseService": "Chọn dịch vụ",
   "phone": "Điện thoại",
   "optional": "tùy chọn",
-  "sendBrief": "Gửi brief",
+  "sendBrief": "Gửi yêu cầu",
   "sendRequest": "Gửi yêu cầu",
   "status": {
-    "badEmail": "Email này có vẻ chưa đầy đủ. Hãy kiểm tra và gửi lại.",
-    "required": "Hãy điền cả ba trường bắt buộc để chúng tôi biết bắt đầu từ đâu.",
-    "sending": "Đang gửi brief của bạn…",
-    "sent": "Đã gửi brief. Chúng tôi phản hồi qua email.",
-    "failed": "Chưa gửi được brief. Hãy thử lại, hoặc gọi <call>{{phone}}</call>."
+    "badEmail": "Email chưa đầy đủ. Vui lòng kiểm tra và gửi lại.",
+    "required": "Vui lòng điền đủ ba trường bắt buộc để chúng tôi nắm được nhu cầu.",
+    "sending": "Đang gửi yêu cầu…",
+    "sent": "Đã gửi yêu cầu. Chúng tôi sẽ phản hồi qua email.",
+    "failed": "Chưa gửi được yêu cầu. Vui lòng thử lại hoặc gọi <call>{{phone}}</call>."
   }
 }
