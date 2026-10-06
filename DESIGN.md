@@ -347,6 +347,8 @@ The atmospheric limb between night and daylight always uses these five stops, in
 
 A live line that crosses copy is navy.
 
+**The One-Office-List Rule.** The offices are always Plano, Ho Chi Minh City, Da Nang, in that order, and every count matches the list ("Three offices. One team."). Plano carries an amber "US contact point" tag on the landing offices and on Contact us, because US buyers look for it first (UAT round 1, #43).
+
 **The Plain-Words Rule.** The mountain is the picture, not the vocabulary. Every heading, button, link, and nav label says what the section is or does in business words, so a visitor who never reads the story still knows what XionTechs sells ("Our work.", "Questions before you start.", "Start a project.", "Back to top"). Climbing words may stay in decoration only: the 3D chips, the trail chart's elevations, the rider reading, and the footer's dictionary entry (UAT round 1, #42).
 
 **The No-Placeholder Rule.** Visitors never see an internal note. Anything the user must still supply (customer names, quotes) stays off the page and is tracked as a GitHub issue (#20); an entry shows only the facts on hand. A placeholder that looks finished is a fabrication, and one that says "pending" tells a buyer we have nothing to show (UAT round 1, #37).
@@ -526,13 +528,13 @@ Character: heavy pills with a machine voice. The fill answers the pointer.
 - **Row (64px):**
   - The logo: the mark plus XIONTECHS, with the pronunciation subtitle under the word (see Pronunciation subtitle). After 80px of scroll, "ION" and "ECHS" collapse through `grid-template-columns: 1fr → 0fr` over 0.7s, leaving **XT**, like UC's UNITEDCARRIERS → UC.
   - The `•••• MENU` toggle: four 3px squares at opacity .24/.5/.7/1. On hover they go to 1 and the odd dots hop 2px. On open, MENU rolls up and CLOSE rolls in.
-  - From 1280px, the six section links (Mindset to Branches, Micro-sized Button type, Fg Soft) sit in the row, centred, with `COMPANY ▾` last; that toggle opens the same panel holding only About us, Careers, and Support. Contact stays with the CTA. Below 1280px the `•••• MENU` toggle sits next to the CTA and opens the full list.
+  - From 1280px, the five section links (Platform to Offices, Micro-sized Button type, Fg Soft) sit in the row, centred, with `COMPANY ▾` last; that toggle opens the same panel holding only About us, Careers, and Support. Contact stays with the CTA. Below 1280px the `•••• MENU` toggle sits next to the CTA and opens the full list.
   - **Active marker:** the link of the section under the header takes Fg and a 2px amber rule that grows from the start (0.5s expo). On a company page, `COMPANY` carries the rule.
   - The `START A PROJECT` filled pill.
 - **Theme:** on every scroll frame, the header probes the section under its row with `elementsFromPoint` and takes that section's `data-on` (dark/light). Text colors cross-fade in 0.4s. Each limb's flip (`--flip`, between glacier and limb-mid) is where its ground turns, and around it the soft link ink goes full (`.is-mid`) so the links hold contrast over the mid blue. Once scrolled, the header's ground (`.hdr-ground`) repaints the page's own backgrounds (sections, bands, limbs, clipped as on the page, on whole device pixels) behind the row, without their content, in the scroll frame itself; it fades out over 36px below the row. So a night/snow edge slides through the header exactly with the scroll, nothing ghosts behind the links, and no line, shadow, or tint parts the header from the page.
 
 ### Navigation (menu)
-- **Layout:** a dropdown under the toggle, a mono uppercase list of six anchors (Platform, Work, Why us, FAQ, Branches, Contact). From 1280px the anchors live in the header row and the dropdown holds only the company pages.
+- **Layout:** a dropdown under the toggle, a mono uppercase list of six anchors (Platform, Work, Why us, FAQ, Offices, Contact). From 1280px the anchors live in the header row and the dropdown holds only the company pages.
 - **Open:** a clip-path wipe (0.6s expo). Links drop in 8px with a 0.04s stagger.
 - **Close:** Esc (focus returns to the toggle), an outside click, or following a link.
 - **Anchors:** native `scrollTo` with `behavior: "smooth"` (instant for reduced motion and arrivals from another page). The target gets focus with `preventScroll`. Night sections with a top limb scroll past the limb, so the heading lands under the header.
@@ -659,7 +661,7 @@ Under the summit copy: phone, WhatsApp, and email as Button-type links in Xion A
 - **Motion:** the height tweens 0↔auto (0.5s/0.45s power2.inOut), using the `hidden` attribute plus `aria-expanded` and `aria-controls`.
 
 ### Footer
-- **Top:** a snow field with a light dot map (columns 1–4) and four columns (Base camps, Reach us, Explore, Company) with Label heads. Reach us holds the phone, WhatsApp, and email (may wrap).
+- **Top:** a snow field with a light dot map (columns 1–4) and four columns (Offices, Reach us, Explore, Company) with Label heads. Reach us holds the phone, WhatsApp, and email (may wrap).
 - **Wordmark:** the mark plus XIONTECHS at 11.4vw (10.2vw on mobile), Saira 800 125% in Brand Navy.
 - **Dictionary entry:** directly under the wordmark (see below).
 - **Legal:** a hairline row with © and "AI-powered IT services and products", the line "Get IT done. Make your mark.", the legal links, and "Back to base camp".

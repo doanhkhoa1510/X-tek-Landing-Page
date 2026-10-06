@@ -36,10 +36,11 @@ export const arc = (a: City, b: City, lift: number) =>
 
 // postal lines stay as written for the post, in every language (rendered in <bdi>, so they read left to right in Arabic too)
 export const offices = [
-  { id: "plano", lines: ["7950 Legacy Drive, Suite 400", "Plano, Texas 75024, USA"] },
+  // Plano comes first everywhere (chips, offices, footer, Contact us): it is the US contact point (#43)
+  { id: "plano", lines: ["7950 Legacy Drive, Suite 400", "Plano, Texas 75024, USA"], us: true },
   // the Vietnam base camps carry no street address (owner's call, 2026-09-30)
-  { id: "hcmc", lines: [] as string[] },
-  { id: "danang", lines: [] as string[] },
+  { id: "hcmc", lines: [] as string[], us: false },
+  { id: "danang", lines: [] as string[], us: false },
 ] as const;
 
 // a phone number reads left to right even inside Arabic text: the isolates (LRI … PDI) stop the groups from reversing
