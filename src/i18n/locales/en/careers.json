@@ -7,7 +7,6 @@
     "title": { "a": "Open roles.", "b": "None right now." },
     "note": "Be patient: a new recruitment campaign starts soon.",
     "past": "Past roles · {{category}}",
-    "read": "Read the role",
     "meta": "{{type}} · {{city}} · Closed {{date}}"
   },
   "perks": {

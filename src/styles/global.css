@@ -91,10 +91,9 @@
 
 html {
   background: var(--night);
-  scrollbar-width: none; /* the altimeter shows progress; no browser scrollbar */
+  scrollbar-color: var(--dim-night) var(--night); /* the native scrollbar shows progress, in the night palette */
   -webkit-text-size-adjust: 100%;
 }
-html::-webkit-scrollbar { display: none; }
 body {
   font: 400 var(--fs-body) / 1.5 var(--body);
   color: var(--snow);
@@ -465,25 +464,6 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
 .hud b { font-weight: 500; font-variant-numeric: tabular-nums; }
 .hud.is-ready { opacity: 1; }
 .hud.is-ready.is-off { opacity: 0; }
-
-/* ---------- cursor ---------- */
-.cursor { display: none; }
-.has-cursor .cursor { display: block; position: fixed; inset: 0; z-index: 120; pointer-events: none; mix-blend-mode: difference; color: #fff; }
-.cursor-main { position: absolute; left: 0; top: 0; width: 48px; height: 48px; margin: -24px 0 0 -24px; will-change: transform; transition: opacity 0.35s var(--ui); }
-.cursor-ring { position: absolute; inset: 0; width: 100%; height: 100%; rotate: -90deg; transition: scale 0.4s var(--expo); }
-.cursor-ring circle { fill: none; stroke: currentColor; }
-.cursor-track { stroke-width: 1; opacity: 0.22; }
-.cursor-prog { stroke-width: 2; stroke-dasharray: 179.07; stroke-dashoffset: 179.07; }
-.cursor-dot { position: absolute; left: 50%; top: 50%; width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; border-radius: 50%; background: currentColor; transition: scale 0.3s var(--expo); }
-.cursor-label {
-  position: absolute; left: calc(100% + 8px); top: 50%; translate: 0 -50%;
-  font: 500 10px var(--mono); letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap;
-  opacity: 0; transition: opacity 0.3s var(--ui);
-}
-.cursor.is-hidden .cursor-main { opacity: 0; }
-.cursor.is-label .cursor-ring { scale: 1.35; }
-.cursor.is-label .cursor-dot { scale: 0; }
-.cursor.is-label .cursor-label { opacity: 1; }
 
 /* ---------- sections share ---------- */
 main { position: relative; z-index: 2; }
