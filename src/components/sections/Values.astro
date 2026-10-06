@@ -5,7 +5,7 @@ import { values } from "../../data/site";
 
 const lang = Astro.currentLocale;
 const t = useT(lang, "values"), tc = useT(lang, "common");
-// app.ts fills {n} with the altimeter reading
+// app.ts fills {n} with the altitude reading
 const alt = `${tc("hud.alt")} {n} ${tc("units.m")}`;
 ---
 <section id="values" class="routes" data-on="light" aria-labelledby="values-title">

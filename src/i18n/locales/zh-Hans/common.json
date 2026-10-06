@@ -1,13 +1,10 @@
 {
   "skip": "跳到正文",
   "hud": {
-    "alt": "海拔",
-    "speed": "垂速",
-    "summit": "火炬台"
+    "alt": "海拔"
   },
   "units": {
-    "m": "米",
-    "ms": "米/秒"
+    "m": "米"
   },
   "call": "致电 {{phone}}",
   "whatsapp": "WhatsApp {{phone}}",

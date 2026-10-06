@@ -1,5 +1,5 @@
 /* The intro tile: a top-down contour map of Mount Zion, the same relief the hero renders in 3D.
-   Real 10 m contours in navy (index contour every 50 m); one amber contour follows the altimeter. */
+   Real 10 m contours in navy (index contour every 50 m); one amber contour follows the altitude. */
 
 import { BASE_M, heightAt, PEAK, TOP_M, unitsAt } from "./relief";
 import { paintWhenNear } from "./defer";

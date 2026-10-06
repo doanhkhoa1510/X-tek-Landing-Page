@@ -247,10 +247,6 @@ components:
     textColor: "{colors.navy-ink}"
     typography: "{typography.figure}"
     padding: "22px 0 30px"
-  altimeter:
-    backgroundColor: "transparent"
-    textColor: "{colors.snow}"
-    typography: "{typography.micro}"
   climber-chip:
     backgroundColor: "{colors.night-band}"
     textColor: "{colors.snow}"
@@ -276,7 +272,7 @@ components:
 
 **Creative North Star: "The Night Ascent"**
 
-The mountain is XionTechs' symbol and goal, and the landing page is a climb up it. The name is inspired by Mount Zion, but the page is not about that place (the Symbol Rule: the story names Mount Zion once as the inspiration; no label, caption, chip, reading, or coordinate names it, and the copy carries no religious text). It opens at night at base camp: a Three.js mountain made of white particle dots under stars. The shape is not invented; the relief data is the real SRTM ground of Mount Zion (see the 3D spec), used as form only. An amber dawn glows behind the ridge and a glacier-blue rim light catches the lower slopes. Chips mark the camps where the team lives, Plano, TX and Ho Chi Minh City. As the visitor scrolls, the camera climbs toward the summit and dawn breaks. A curved atmospheric limb, glacier blue with an amber sunrise line, hands the page to snow-white daylight. From there the page reads in daylight: the story of Xion, the seven core values on a night band, and the log of the climb so far. An altimeter in the corner counts the climb in meters. The last night opens on the two base camps and ends on the summit, where the visitor names their project. The footer closes in daylight with the wordmark at mountain scale.
+The mountain is XionTechs' symbol and goal, and the landing page is a climb up it. The name is inspired by Mount Zion, but the page is not about that place (the Symbol Rule: the story names Mount Zion once as the inspiration; no label, caption, chip, reading, or coordinate names it, and the copy carries no religious text). It opens at night at base camp: a Three.js mountain made of white particle dots under stars. The shape is not invented; the relief data is the real SRTM ground of Mount Zion (see the 3D spec), used as form only. An amber dawn glows behind the ridge and a glacier-blue rim light catches the lower slopes. Chips mark the camps where the team lives, Plano, TX and Ho Chi Minh City. As the visitor scrolls, the camera climbs toward the summit and dawn breaks. A curved atmospheric limb, glacier blue with an amber sunrise line, hands the page to snow-white daylight. From there the page reads in daylight: the story of Xion, the seven core values on a night band, and the log of the climb so far. The last night opens on the two base camps and ends on the summit, where the visitor names their project. The footer closes in daylight with the wordmark at mountain scale.
 
 The mechanics come from unitedcarriers.com (Awwwards Site of the Day, teardown in the appendix), because the user named it as the quality bar:
 - Lenis smooth scroll and GSAP ScrollTrigger scenes scrubbed to scroll.
@@ -286,13 +282,13 @@ The mechanics come from unitedcarriers.com (Awwwards Site of the Day, teardown i
 - A giant background type band over a dark service track.
 - Hairline grids, dot-matrix icons, and a strict dark and light rhythm joined by atmospheric horizons.
 
-Only the story and the palette are XionTechs': the globe becomes the mountain, freight lanes become routes to the summit, the KM/H speedometer becomes an altimeter, and UC's electric blue and orange become the logo navy and amber.
+Only the story and the palette are XionTechs': the globe becomes the mountain, freight lanes become routes to the summit, the KM/H speedometer becomes a climb altitude (read by the ridge rider and the contour maps), and UC's electric blue and orange become the logo navy and amber.
 
 The mood is heavy, exact, and confident. It is not soft; a pale-haze, rounded, sentence-case rewrite was tried and rejected. Density is low: sections run tall, type runs big, and a lot of the screen is left empty.
 
 **Key Characteristics:**
 - One continuous story: night, dawn, daylight, dusk, summit, daylight.
-- One mountain, a symbol: the same relief in 3D, as contours, and as the ridge silhouette, never labeled with a place name. The altimeter reads its metres, from the 765 m summit down to 0.
+- One mountain, a symbol: the same relief in 3D, as contours, and as the ridge silhouette, never labeled with a place name. The page's altitude reads its metres, from the 765 m summit down to 0.
 - The name teaches itself: /siː.ɒn.teks/ hangs under the wordmark, and the footer closes with a dictionary entry.
 - Saira at 125% width, uppercase, carries every heading. Host Grotesk carries prose. Martian Mono carries every control, label, and reading.
 - Flat surfaces and 1px hairlines. No shadows, no cards with depth, no glass.
@@ -309,7 +305,7 @@ The palette is the two logo colors, brand navy and Xion amber, stretched across 
   - The filled button on daylight, the ink of the footer wordmark and the logo mark, the contour lines of the topo tile (at 34% and 72% alpha), and the dot icons of the log.
   - It is also the focus-ring color on daylight surfaces.
 - **Xion Amber** (#F8C000): the logo swoosh.
-  - Always: the "GET IT DONE." hero line, the walked trail, camps and climber diamond, the 3D beacons and arcs, the map beacons and arcs, office phone links on night, and the altimeter's amber contour on the topo tile.
+  - Always: the "GET IT DONE." hero line, the walked trail, camps and climber diamond, the 3D beacons and arcs, the map beacons and arcs, office phone links on night, and the altitude's amber contour on the topo tile.
   - As a surface, only as the hover fill of every filled button and the focus fill of chips.
   - It is the focus-ring color on night.
 - **Amber Hi** (#FFD23D): the pressed (:active) state of a filled button. Nothing else.
@@ -380,7 +376,7 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
 - **Body** (400, 17px, 1.5, max 40–60ch) and **Body Small** (400, 15px, 1.5, max 30ch in value columns): prose.
 - **Button** (Martian Mono 500, 12px, 0.03em, uppercase): every pill and the menu toggle.
 - **Label** (Martian Mono 500, 11px, 0.04em, uppercase): stat labels, the trailing camp name of a log entry, office roles, form labels, footer column heads. A label never sits above a heading.
-- **Micro** (Martian Mono 400–500, 10–10.5px, 0.05em, uppercase): the ticker, chips, domain tags, the altimeter, captions, pending tags, and the legal line. 10px is the floor on every breakpoint.
+- **Micro** (Martian Mono 400–500, 10–10.5px, 0.05em, uppercase): the ticker, chips, domain tags, the rider reading, captions, pending tags, and the legal line. 10px is the floor on every breakpoint.
 - **IPA** (Noto Sans Mono 400, 11px under the wordmark, 17px in the footer entry, 0.02em, never uppercase): the pronunciation only.
 
 ### Named Rules
@@ -389,13 +385,13 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
 - On full night sections (base camps, summit), the ink words pull into focus instead: blur 10px→0 and opacity 0.15→1, stagger 0.12, scrubbed `top 85%`→`top 45%`. It reads like a summit coming out of cloud.
 - Without JS or with reduced motion, the final colors show at once.
 
-**The Mono-Means-Machine Rule.** Mono is only for what you press or read as data: buttons, the menu, chips, clocks, coordinates, altitude, vertical speed, counters' labels, legal and pending tags. Paragraphs are never mono.
+**The Mono-Means-Machine Rule.** Mono is only for what you press or read as data: buttons, the menu, chips, clocks, coordinates, altitude, counters' labels, legal and pending tags. Paragraphs are never mono.
 
 **The Uppercase-Is-Display Rule.** Uppercase belongs to Saira headings and mono labels. Body text is always sentence case.
 
 **The IPA-Needs-Its-Own-Face Rule.** Saira, Host Grotesk, and Martian Mono all lack ɒ (U+0252) and ː (U+02D0); measured in the browser, both fall back to a system face. The pronunciation is therefore set whole in Noto Sans Mono, never glyph by glyph, so the string keeps one rhythm. IPA is phonetic data: it is never uppercased and never letter-spaced beyond 0.02em.
 
-**The Tabular Rule.** Every number that changes in place (clocks, altitude, V/S, figures, the loader counter) uses `font-variant-numeric: tabular-nums` so digits never jitter.
+**The Tabular Rule.** Every number that changes in place (clocks, altitude, figures, the loader counter) uses `font-variant-numeric: tabular-nums` so digits never jitter.
 
 ## Layout
 
@@ -420,7 +416,7 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
   8. Footer (snow)
 - **Class names keep the mountain vocabulary** (`.intro`, `.routes`, `.strata`, `.ascent`, `.camps`, `.summit`); ids carry the content names.
 - **Breakpoints:** desktop ≥ 992px. Tablet 768–991px: headings and copy stack to full width, sticky heads go static, and the route strip moves to columns 1/3. Mobile ≤ 767px:
-  - The header becomes a flex row (logo left, menu right), and the CTA, the ticker phones, the HUD, and the 3D camp chips hide.
+  - The header becomes a flex row (logo left, menu right), and the CTA, the ticker phones, and the 3D camp chips hide.
   - The hero shortens to 170vh, the values stack vertically with no pin, the route strip narrows to 36px, and the map bleeds to the viewport edge.
 - **Header geometry:** a 32px ticker plus a 64px row (96px total). After 40px of scroll the whole header translates up 32px, so the ticker slides away with a transform, not a layout change.
 
@@ -428,12 +424,12 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
 
 The landing page is for a new buyer and stays lean. Everything else from the old xiontechs.com lives on subpages at its old URL, because app store listings link to `/support/` and `/privacy-policy/`.
 - **Pages:** `/about-us/`, `/faqs/`, `/careers/` plus five closed `/job/<slug>/` posts, `/contact-us/`, `/support/`, `/privacy-policy/`, `/terms-of-service/`, `/cookie-policy/`, and a 404. Long texts are Markdown in `src/content/` (collections in `src/content.config.ts`).
-- **Head (night):** `layouts/Sub.astro`. The H1 is a two-tone Headline at 1/9, and the lede and meta chips sit at 9/13 on the baseline. Mount Zion's contour map (the intro tile, recoloured for night, `cover`) fills the right side under a radial mask, and its amber contour follows the altimeter. A dawn limb (`clamp(200px, 30vh, 320px)`) rises whole on load, which is the Dawn Rule, and the first daylight band starts close under it. Contact has no limb; it stays on night down to its own dawn above the footer.
-- **Bands (daylight):** hairline cell grids (`.cells`; the 1px gaps are the rules), a sticky side head against a body at 8/13 (`.split`), and figure rows (`.figures`). Long texts use a sticky "On this page" index at 1/4 (mono, a navy square marks the section being read, and it ends above the altimeter) against prose at 5/12, max 68ch.
+- **Head (night):** `layouts/Sub.astro`. The H1 is a two-tone Headline at 1/9, and the lede and meta chips sit at 9/13 on the baseline. Mount Zion's contour map (the intro tile, recoloured for night, `cover`) fills the right side under a radial mask, and its amber contour follows the altitude. A dawn limb (`clamp(200px, 30vh, 320px)`) rises whole on load, which is the Dawn Rule, and the first daylight band starts close under it. Contact has no limb; it stays on night down to its own dawn above the footer.
+- **Bands (daylight):** hairline cell grids (`.cells`; the 1px gaps are the rules), a sticky side head against a body at 8/13 (`.split`), and figure rows (`.figures`). Long texts use a sticky "On this page" index at 1/4 (mono, a navy square marks the section being read,) against prose at 5/12, max 68ch.
 - **Closing ask:** an ice band (`components/Cta.astro`) before the footer on About, FAQs, Careers, and jobs. Legal texts end on their own content.
 - **Menu:** landing sections, a hairline, then About us, Careers, and Support, in a flat panel (Night Band or Snow) so ten links never sit on the headline. Subpages link to landing sections as `/#id`. An arrival with a hash skips the preloader and lands on the section.
 - **Footer:** map 1/4, then base camps, reach us, explore, and company columns. A row of languages sits above the legal row, which carries the three legal links.
-- **Scripts:** `chrome.ts` is shared (scroll, header, altimeter, clocks, accordion, forms). `app.ts` is the landing page and `page.ts` is the subpages. Terrain math lives in `relief.ts`, so subpages never load Three.js (about 183 KB of JS against 690 KB).
+- **Scripts:** `chrome.ts` is shared (scroll, header, altitude, clocks, accordion, forms). `app.ts` is the landing page and `page.ts` is the subpages. Terrain math lives in `relief.ts`, so subpages never load Three.js (about 183 KB of JS against 690 KB).
 
 ## Languages
 
@@ -469,7 +465,7 @@ Each script face follows the brand face in the stack, so Latin words, numbers, a
 **The No-Tracking-In-Arabic Rule.** Arabic letters join, and any letter-spacing pulls a word apart, so Arabic text never takes letter-spacing.
 
 ### Right to left (Arabic)
-- **Mirror:** the layout mirrors through logical properties and grid and flex order. The headline and copy sit on the right, the menu and CTA on the left, and the altimeter at bottom right. The mountain's camera moves to the other side of the summit (`mountain.ts`), so the hill rises on the left without flipping the terrain.
+- **Mirror:** the layout mirrors through logical properties and grid and flex order. The headline and copy sit on the right, and the menu and CTA on the left. The mountain's camera moves to the other side of the summit (`mountain.ts`), so the hill rises on the left without flipping the terrain.
 - **Motion:** the value track, the giant type, the ridge and its rider, and the stat wipes run right to left; the track's fade moves to its exit edge.
 - **Kept left to right:** the lockups of mark and name, the world map, the platform chart, the trek, and the 24-hour day bar keep their drawing. Text inside them still reads right to left (`unicode-bidi: plaintext`).
 - **Digits:** Latin digits everywhere. Phone numbers carry LTR isolates in `site.ts`, and postal lines render in `<bdi>`, so their digit groups never reverse.
@@ -481,7 +477,7 @@ The system is flat. Depth comes from light and from layers sliding over each oth
 - The 3D scene: bloom strength 0.55, radius 0.18, and threshold 0.72, so only rims, beacons, and arcs glow.
 - The horizon limbs.
 - Sticky stages (hero, pinned routes, sticky heads) that later sections pass over.
-- The fixed layers, from back to front: canvas (z 0), 3D chips (1), main (2), HUD (55), header (60), preloader (150), skip link (200).
+- The fixed layers, from back to front: canvas (z 0), 3D chips (1), main (2), header (60), preloader (150), skip link (200).
 
 **The No-Shadow Rule.** No element casts a box shadow. To lift, a surface changes field (snow to ice, night to night band) or gains a hairline. The one box-shadow in the system is a 1px amber underline on a focused field, and it is a rule, not a shadow.
 
@@ -517,14 +513,10 @@ Character: heavy pills with a machine voice. The fill answers the pointer.
 - **Pointer:** the system pointer on every page. No custom cursor and nothing that trails the mouse: a trailing ring covered the text people wanted to read or click (UAT round 1, #39).
 - **Scrollbar:** the browser's native scrollbar shows, themed with `scrollbar-color: var(--dim-night) var(--night)`. Where it takes space (Windows, macOS "always show"), the fixed header and its ground end at its edge (`root.clientWidth`).
 
-### Altimeter HUD (signature)
-UC's KM/H speedometer, turned into a climb reading.
-- **Placement:** fixed bottom-left in Micro type, `mix-blend-mode: difference`, reading `ALT 684 M · V/S 10 M/S · SUMMIT 765 M`.
-- **Altitude:** metres above sea level, linear in page progress from the published summit (765 m, `ZION.summitM`) at the top of the page down to 0 at the bottom, rounded to 1 m. Scrolling down is the descent.
-- **Summit:** the third reading is fixed, the summit height (`SUMMIT_M`). It gives the climb a goal. It carries no place name and no coordinates (the Symbol Rule).
-- **Vertical speed:** scroll velocity ÷ 40, capped at 99, with ±1 jitter above 12. It eases up at 0.1, down at 0.06, and to zero at 0.15.
-- **Linked readouts:** the same altitude drives the rider chip over the routes sky and the amber contour on the topo tile. The page never shows two different altitudes.
-- **Visibility:** it fades in with the hero entrance, steps aside (opacity 0) when the footer wordmark enters so it never prints over the legal row, and hides on mobile.
+### Altitude (no HUD)
+- **Reading:** metres above sea level, linear in page progress from the published summit (765 m, `ZION.summitM`) at the top of the page down to 0 at the bottom, rounded to 1 m. Scrolling down is the descent. `chrome.ts` computes it and calls `onAltitude` watchers.
+- **Readouts:** only in the flow of the page: the rider chip over the routes sky and the amber/navy contour on the topo tiles. The page never shows two different altitudes.
+- **No fixed HUD:** the bottom-corner altimeter (`ALT · V/S · BEACON`) was removed (UAT round 1, #41): it printed over headings and chart labels, and the readings meant nothing to a buyer. No fixed element may sit over page content.
 
 ### Header
 - **Ticker (32px, Micro):**
@@ -621,7 +613,7 @@ The record of the climb so far: four camps, four entries. Drawn in the page's su
 - **Content:** Mount Zion as marching-squares contours at real 10 m intervals (610–760 m), in Brand Navy at 7% (minor) and 15% (index contours at every 50 m: 650, 700, 750).
 - **Extent:** a 5:3 excerpt of the ground, x −9…9 and z −7.4…3.4 world units (1.26 × 0.76 km): the hill, the Hinnom bend, and the Kidron edge. The intro tile shows the same excerpt, captioned "Summit survey · 10 m contours".
 - **Fit:** cover-fit, so the hill never distorts on portrait screens.
-- **Live line:** a 1.5px Brand Navy contour at 34% sits at the altimeter's current altitude. It is navy, not amber, because it crosses copy, and an amber line through text reads as a strike-through. Between the hero and the summit, this is where the mountain stays physically present.
+- **Live line:** a 1.5px Brand Navy contour at 34% sits at the page's current altitude. It is navy, not amber, because it crosses copy, and an amber line through text reads as a strike-through. Between the hero and the summit, this is where the mountain stays physically present.
 
 ### Ridge and rider (routes sky, signature)
 UC's truck on its road, rebuilt as a climber on a ridge.
@@ -728,7 +720,7 @@ The name set as a dictionary headword, the page's last word.
   - Axes: x runs east and z runs south, so the camera stands in the Hinnom valley looking north. The Wikipedia summit point is the origin; the highest sample of the western hill is `ZION.peakAt` (0.75, −4), about 280 m north, on the crest of the western hill inside the Old City walls (historically part of Zion).
   - Scale: one world unit is 70 m on the ground. Relief above the valley floor (618 m in the data) is 163 m, drawn at 6.4 units, a vertical exaggeration of ×2.75, the standard relief-map practice that lets a 163 m hill read as a mountain.
   - Processing: a 22 m Gaussian blur removes roof and street noise but keeps every landform wider than about 50 m. A radial skirt (full height to 420 m, zero at 950 m, 1.5× tighter to the north) lets the hill stand alone; inside it, the Hinnom valley on the west and south, and the fall to the Tyropoeon and Kidron on the east, are untouched.
-  - Height to metres: `unitsAt(m) = (m − 602) / 163 × 6.4`. The altimeter, the topo contours, and the summit chip all use this one mapping.
+  - Height to metres: `unitsAt(m) = (m − 602) / 163 × 6.4`. The altitude, the topo contours, and the summit chip all use this one mapping.
   - Sampled every 0.07 units (0.105 on mobile) over ±15 × (−10.5…11.25), about 90k points, with per-point normals from finite differences.
 - **Point shader:**
   - Valley glacier (0.08, 0.2, 0.62) blending to snow (0.9, 0.93, 1.0) by height, smoothstep 0.1→0.9. The real crest is broad, so only its top turns white, and per-point alpha rises 0.46 with height (not more), so the plateau never reads as a white blob.
@@ -757,7 +749,7 @@ The name set as a dictionary headword, the page's last word.
 
 - **Skip link:** the first focusable element is a skip link (amber, slides in on focus).
 - **Focus rings:** 2px, offset 3px, Xion Amber on night and Brand Navy on daylight.
-- **Hidden decoration:** the 3D canvas, chips layer, HUD, preloader, giant type, and map canvases are all `aria-hidden`.
+- **Hidden decoration:** the 3D canvas, chips layer, preloader, giant type, and map canvases are all `aria-hidden`.
 - **Real controls:** every city on the map is a real button with its name. The FAQ uses `aria-expanded`, `aria-controls`, and `hidden`. The form has labels and `aria-live` status.
 - **Contrast:** body text meets at least 4.5:1 everywhere. Dim headline lines meet at least 3:1 at display sizes.
 - **Pronunciation:** screen readers get "said see-on-teks" in the logo's label and the full footer entry as a labelled `dl`; the visual IPA under the logo is hidden from them to avoid reading symbols aloud.
@@ -768,7 +760,7 @@ The name set as a dictionary headword, the page's last word.
 - `src/pages/index.astro`: markup, content arrays, and the direction contract comment (first child of `<body>`).
 - `src/data/site.ts`: shared facts (offices, contact lines, service lines, sections) and the SVG mark.
 - `src/styles/global.css`: every token in `:root`, the `[data-on]` theme contexts, and all components.
-- `src/scripts/app.ts`: Lenis, ScrollTrigger scenes, the preloader, header, altimeter, clocks, FAQ, and form.
+- `src/scripts/app.ts`: Lenis, ScrollTrigger scenes, the preloader, header, altitude, clocks, FAQ, and form.
 - `src/scripts/mountain.ts`: `heightAt` over the Mount Zion grid, `unitsAt`, and the Three.js mountain, light, camps, arcs, chips, and cameras.
 - `src/scripts/zion-data.ts`: the generated Mount Zion relief. Regenerate with `node scripts/build-zion.mjs` (tiles cached in `.impeccable/zion-tiles/`).
 - `src/scripts/dots.ts`: dot-matrix icons (vector → 13×13 dots) and the dot world map painter.

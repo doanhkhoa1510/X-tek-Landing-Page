@@ -452,19 +452,6 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
   .menu-list :is(.menu-sec, .menu-rule) { display: none; }
 }
 
-/* ---------- HUD altimeter ---------- */
-.hud {
-  position: fixed; inset-inline-start: var(--gutter); bottom: 18px; z-index: 55;
-  display: flex; gap: 18px;
-  font: 500 10.5px / 1 var(--mono); letter-spacing: 0.05em; text-transform: uppercase;
-  color: #fff; mix-blend-mode: difference;
-  pointer-events: none;
-  opacity: 0; transition: opacity 0.6s var(--ui);
-}
-.hud b { font-weight: 500; font-variant-numeric: tabular-nums; }
-.hud.is-ready { opacity: 1; }
-.hud.is-ready.is-off { opacity: 0; }
-
 /* ---------- sections share ---------- */
 main { position: relative; z-index: 2; }
 section { position: relative; color: var(--fg); }
@@ -1036,7 +1023,7 @@ section { position: relative; color: var(--fg); }
 /* ---------- long-form: index + prose ---------- */
 .doc { padding-block: clamp(64px, 7vw, 112px) var(--section); }
 .doc-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); align-items: start; }
-.doc-toc { grid-column: 1 / 4; position: sticky; top: 110px; max-height: calc(100vh - 180px); /* ends above the altimeter */ overflow: auto; scrollbar-width: thin; padding-inline-end: 8px; }
+.doc-toc { grid-column: 1 / 4; position: sticky; top: 110px; max-height: calc(100vh - 180px); overflow: auto; scrollbar-width: thin; padding-inline-end: 8px; }
 .doc-toc > .label { color: var(--slate); margin-bottom: 14px; }
 .doc-toc ol { border-top: 1px solid var(--line); }
 .doc-toc li a {
@@ -1184,7 +1171,7 @@ section { position: relative; color: var(--fg); }
 /* ---------- mobile ---------- */
 @media (max-width: 767px) {
   :root { --hdr-h: 88px; }
-  .ticker .ticker-links, .hud, .chip-camp { display: none; }
+  .ticker .ticker-links, .chip-camp { display: none; }
   .ticker { justify-content: space-between; }
   .ticker p { gap: 14px; }
   .t-long { display: none; }

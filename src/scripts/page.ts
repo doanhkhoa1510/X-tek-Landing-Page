@@ -2,10 +2,10 @@
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { $$, goTo, hud, mountCounters, onAltitude, rtl, syncHeader, twoTone } from "./chrome";
+import { $$, goTo, mountCounters, onAltitude, rtl, syncHeader, twoTone } from "./chrome";
 import { mountTopo } from "./topo";
 
-/* ---------- the head: Mount Zion's contours on night; the amber line follows the altimeter ---------- */
+/* ---------- the head: Mount Zion's contours on night; the amber line follows the altitude ---------- */
 const topoCanvas = document.querySelector<HTMLCanvasElement>(".page-topo canvas");
 if (topoCanvas) {
   const topo = mountTopo(topoCanvas, { minor: "rgba(169, 180, 204, 0.09)", major: "rgba(169, 180, 204, 0.22)", amber: 1.5, cover: true });
@@ -49,14 +49,10 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
     ScrollTrigger.create({ trigger: map, start: "top bottom", end: "bottom top", toggleClass: { targets: map, className: "is-in" } });
     gsap.from(".arc-base", { strokeDashoffset: 1, duration: 1.8, ease: "power3.inOut", stagger: 0.25, scrollTrigger: { trigger: map, start: "top 80%" } });
   }
-
-  // the altimeter steps aside for the footer's legal row
-  ScrollTrigger.create({ trigger: ".foot-word", start: "top bottom", onEnter: () => hud.classList.add("is-off"), onLeaveBack: () => hud.classList.remove("is-off") });
 });
 mountCounters();
 
 syncHeader();
-hud.classList.add("is-ready");
 document.fonts?.ready.then(() => {
   ScrollTrigger.refresh();
   // deep links into a long page (/privacy-policy/#data-retention) land under the header
