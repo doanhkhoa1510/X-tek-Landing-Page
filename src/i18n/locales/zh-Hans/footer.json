@@ -1,5 +1,5 @@
 {
-  "camps": "分公司",
+  "camps": "办公室",
   "reach": "联系方式",
   "whatsapp": "WhatsApp",
   "explore": "浏览",
@@ -14,5 +14,5 @@
   },
   "rights": "© {{year}} {{brand}} · AI 驱动的 IT 服务与产品",
   "tagline": "Get IT done. 留下您的印记。",
-  "toTop": "回到分公司"
+  "toTop": "回到顶部"
 }

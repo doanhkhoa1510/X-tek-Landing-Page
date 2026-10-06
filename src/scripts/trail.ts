@@ -1,8 +1,9 @@
 /* The 4-D ascent as a trek, drawn in the page's own survey language: Mount Zion's real south profile
    in the dot matrix of the routes sky, a surveyed switchback trail up the dome, camps tagged like the
-   hero's chips, and an elevation scale in metres. The panel holds still while the stages scroll past;
-   the climb waits until the chart has settled in full view, then the climber reaches camp s as stage s
-   rises to the line where base camp stood at that moment. */
+   hero's chips, and an elevation scale in metres. On wide screens the panel holds still while the stages
+   scroll past; the climb waits until the chart has settled in full view, then the climber reaches camp s as
+   stage s rises to the line where base camp stood at that moment. Stacked, the chart sits above the stages
+   and climbs as it crosses the screen. */
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BASE_M, domeAt, PEAK, SUMMIT_M, unitsAt } from "./relief";
@@ -40,7 +41,7 @@ export function mountTrail(panel: HTMLElement, list: HTMLElement) {
   const camps = stages.map((s, i) => {
     const el = document.createElement("div");
     el.className = i === last ? "camp camp-summit" : "camp";
-    el.innerHTML = `<i class="camp-dot"></i><span class="camp-tag"><b>0${i + 1}</b> ${s.querySelector(".stage-meta")?.textContent?.trim() ?? ""} · <em></em> ${unit}</span>`;
+    el.innerHTML = `<i class="camp-dot"></i><span class="camp-tag"><b>0${i + 1}</b> ${s.dataset.camp ?? ""} · <em></em> ${unit}</span>`;
     panel.insertBefore(el, climber);
     return el;
   });
@@ -195,10 +196,10 @@ export function mountTrail(panel: HTMLElement, list: HTMLElement) {
   };
   // the climb runs from base camp's title to the summit's, so scroll distance maps one to one onto the stages
   const span = (m = marks()) => Math.max(1, m[last] - m[0]);
-  // the chart has settled in full view once its sticky box pins: wide, the side column pins level with the
-  // list's top; stacked, the trek strip pins above the list, so the list's top sits at its foot
+  // wide, the side column pins level with the list's top, so the chart has settled in full view once the list
+  // reaches the top; stacked (tablet, mobile), the chart sits above the list and never pins (#46)
   const trek = panel.parentElement!;
-  const settle = () => (getComputedStyle(trek).position === "sticky" ? trek.offsetHeight : 0);
+  const stacked = matchMedia("(max-width: 991px)");
 
   // progress through the climb, remapped so the climber stands on camp s while stage s's title holds base camp's line
   function walk(p: number) {
@@ -226,7 +227,12 @@ export function mountTrail(panel: HTMLElement, list: HTMLElement) {
   paintWhenNear(panel, build);
   ScrollTrigger.create({
     trigger: list, refreshPriority: -1 /* after the pinned routes above add their spacer */,
-    start: () => `top ${settle()}px`, end: () => `+=${span()}`,
-    onUpdate: (s) => walk(s.progress), onRefresh: (s) => walk(s.progress),
+    start: "top top", end: () => `+=${span()}`,
+    onUpdate: (s) => !stacked.matches && walk(s.progress), onRefresh: (s) => !stacked.matches && walk(s.progress),
+  });
+  // stacked: the climber walks the whole trail while the chart crosses the middle of the screen
+  ScrollTrigger.create({
+    trigger: trek, refreshPriority: -1, start: "top 70%", end: "bottom 30%",
+    onUpdate: (s) => stacked.matches && walk(s.progress), onRefresh: (s) => stacked.matches && walk(s.progress),
   });
 }

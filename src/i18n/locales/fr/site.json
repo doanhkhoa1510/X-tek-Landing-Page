@@ -18,15 +18,15 @@
   },
   "offices": {
     "plano": {
-      "name": "Succursale de Plano",
-      "role": "Texas, États-Unis"
+      "name": "Bureau de Plano",
+      "role": "Texas, États-Unis", "tag": "Contact aux États-Unis"
     },
     "hcmc": {
-      "name": "Succursale de HCMV",
+      "name": "Bureau de HCMV",
       "role": "Hô Chi Minh-Ville, Vietnam"
     },
     "danang": {
-      "name": "Succursale de Da Nang",
+      "name": "Bureau de Da Nang",
       "role": "Da Nang, Vietnam"
     }
   },
@@ -53,12 +53,11 @@
     }
   },
   "sections": {
-    "mindset": "État d’esprit",
-    "values": "Valeurs clés",
     "platform": "Plateforme",
     "work": "Réalisations",
+    "why": "Pourquoi nous",
     "faq": "FAQ",
-    "camps": "Succursales",
+    "camps": "Bureaux",
     "summit": "Contact"
   },
   "pages": {

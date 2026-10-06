@@ -18,7 +18,6 @@
   --slate: #4a5670;
   --dim-ink: #858fa1;
   --dim-night: #76839f;
-  --pending: #b8470f;
   --error: #ff9a7a;
   --limb-deep: #10277a; /* horizon ramp: night side of the glow */
   --limb-mid: #6f9af5; /* horizon ramp: glacier falling off into daylight */
@@ -32,8 +31,8 @@
   --body: "Host Grotesk Variable", "Helvetica Neue", Arial, sans-serif;
   --mono: "Martian Mono Variable", ui-monospace, "SFMono-Regular", monospace;
   --ipa: "Noto Sans Mono Variable", var(--mono);
-  --fs-display: clamp(3rem, 6.2vw, 6rem);
-  --fs-display-sm: clamp(2.2rem, 11.2vw, 3.4rem); /* INTELLIGENCE fits one line down to 320px */
+  --fs-display: clamp(2.4rem, 5vw, 4.8rem);
+  --fs-display-sm: clamp(1.75rem, 9vw, 2.7rem); /* INTELLIGENCE fits one line down to 320px */
   --fs-giant: clamp(7rem, 21vw, 21rem);
   --fs-h2: clamp(2.25rem, 4.4vw, 4.25rem);
   --fs-h2-compact: clamp(1.75rem, 2.8vw, 2.75rem);
@@ -155,7 +154,7 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
   --mono: "Noto Sans Mono Variable", ui-monospace, monospace;
 }
 /* French puts an elision on the longest hero word (L’INTELLIGENCE), so its mobile display size steps down to keep it on one line */
-:root:lang(fr) { --fs-display-sm: clamp(1.9rem, 9.4vw, 2.9rem); }
+:root:lang(fr) { --fs-display-sm: clamp(1.5rem, 7.5vw, 2.3rem); }
 :root:lang(zh) {
   --display: "Saira Variable", "Noto Sans SC Variable", sans-serif;
   --body: "Host Grotesk Variable", "Noto Sans SC Variable", sans-serif;
@@ -452,19 +451,6 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
   .menu-list :is(.menu-sec, .menu-rule) { display: none; }
 }
 
-/* ---------- HUD altimeter ---------- */
-.hud {
-  position: fixed; inset-inline-start: var(--gutter); bottom: 18px; z-index: 55;
-  display: flex; gap: 18px;
-  font: 500 10.5px / 1 var(--mono); letter-spacing: 0.05em; text-transform: uppercase;
-  color: #fff; mix-blend-mode: difference;
-  pointer-events: none;
-  opacity: 0; transition: opacity 0.6s var(--ui);
-}
-.hud b { font-weight: 500; font-variant-numeric: tabular-nums; }
-.hud.is-ready { opacity: 1; }
-.hud.is-ready.is-off { opacity: 0; }
-
 /* ---------- sections share ---------- */
 main { position: relative; z-index: 2; }
 section { position: relative; color: var(--fg); }
@@ -498,7 +484,21 @@ section { position: relative; color: var(--fg); }
   background: radial-gradient(60% 70% at 12% 92%, rgba(3, 8, 19, 0.82), rgba(3, 8, 19, 0) 70%);
 }
 .hero-copy { position: relative; z-index: 2; max-width: max(820px, 62vw); /* room for MEETS IDENTITY. on one line */ }
-.hero-title { font-size: var(--fs-display); font-weight: 760; line-height: 0.92; letter-spacing: -0.012em; }
+/* the copy's own night: a soft dark field sized to the copy, so the white ridge never runs through the text in any
+   language (#38: "WHERE" and Vietnamese "NƠI" sat inside the ridge). Off behind the headline for now, under owner review. */
+.hero-next::before {
+  content: ""; position: absolute; z-index: -1; inset: -14% -9% -5% -9%; pointer-events: none;
+  background: rgba(3, 8, 19, 0.92); filter: blur(56px); border-radius: 48px;
+}
+/* the second screen: as the headline leaves, what we do takes its place, high on the night above the rising dawn */
+.hero-next { position: absolute; z-index: 2; inset-inline-start: var(--gutter); top: clamp(120px, 17vh, 170px); max-width: min(560px, 100% - 2 * var(--gutter)); visibility: hidden; }
+.hero-next-label { font: 500 11px / 1.3 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--mist); }
+.hero-services { margin-top: 18px; display: grid; gap: 6px; }
+.hero-services li { font: 700 var(--fs-h3) / 1.15 var(--display); font-stretch: 125%; text-transform: uppercase; color: var(--fg); }
+.hero-next .btn { margin-top: 28px; }
+/* a halo in the sky's own color: unseen on the night, a dark gap wherever the ridge runs behind the letters.
+   On the headline, not its lines: each line clips its floor, and would cut the halo off under the caps */
+.hero-title { font-size: var(--fs-display); font-weight: 760; line-height: 0.92; letter-spacing: -0.012em; filter: drop-shadow(0 0 0.14em rgba(3, 8, 19, 0.55)); }
 /* each line rises out of its own floor; the clip reaches up and out, so marks stacked over the caps (Vietnamese Ắ, Ả) stay whole */
 .ln { display: block; clip-path: inset(-0.6em -0.6em 0); padding-bottom: 0.06em; margin-bottom: -0.06em; }
 .ln > span { display: inline-block; }
@@ -766,7 +766,6 @@ section { position: relative; color: var(--fg); }
 .stage { padding: 14vh 0; opacity: 0.32; transition: opacity 0.6s var(--ui); }
 .stage:first-child { padding-top: calc(50vh + 80px); } /* base camp opens level with the middle of the mountain as the side pins; the climb starts there */
 .stage.is-on { opacity: 1; }
-.stage-meta { margin-top: 18px; font: 500 var(--fs-label) var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
 .stage-icon { margin-bottom: 18px; }
 .stage h3 { font-size: var(--fs-stage); font-weight: 760; }
 .stage h3 + p { margin-top: 12px; color: var(--fg-soft); max-width: 40ch; }
@@ -783,7 +782,6 @@ section { position: relative; color: var(--fg); }
   padding: 5px 8px; border: 1px solid color-mix(in srgb, var(--fg) 32%, transparent); border-radius: 2px;
   font: 500 var(--fs-micro) / 1.2 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--fg);
 }
-.stage .pending { margin-top: 18px; }
 
 /* ---------- base camps ---------- */
 /* the night fades into the summit scene below: night over night, so no limb is needed */
@@ -832,8 +830,30 @@ section { position: relative; color: var(--fg); }
 .offices address { color: var(--mist); font-size: var(--fs-small); line-height: 1.45; }
 .offices a { justify-self: start; font: 500 12px var(--mono); color: var(--amber); text-decoration: none; }
 .offices a:hover { text-decoration: underline; }
+/* the US contact point: Plano, marked so a US buyer finds it first (#43) */
+.offices .office-tag, .office .office-tag { justify-self: start; padding: 3px 7px; font: 500 var(--fs-label) / 1.3 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); background: var(--amber); }
 
-.pending { font: 500 10.5px / 1.4 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--pending); }
+
+/* ---------- why XionTechs: four reasons, each led by its proof ---------- */
+.why-us { padding-block: var(--section); }
+.why-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); align-items: end; }
+.why-head .tt { grid-column: 1 / 8; }
+.why-head p { grid-column: 8 / 13; max-width: 40ch; color: var(--fg-soft); }
+.reasons { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); margin-top: clamp(56px, 6vw, 96px); }
+.reason { display: flex; flex-direction: column; }
+.reason .stat { padding-bottom: 20px; }
+.reason h3 { margin-top: 4px; font-size: var(--fs-h3); max-width: 16ch; }
+.reason p { margin-top: 12px; font-size: var(--fs-small); line-height: 1.5; color: var(--fg-soft); max-width: 36ch; }
+.reason-link { align-self: flex-start; margin-top: 18px; font: 500 11px / 1.3 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink); text-decoration: underline; text-decoration-color: var(--navy); text-underline-offset: 4px; }
+.reason-link:hover { text-decoration-color: var(--amber); }
+
+/* case-study cards in the log's Customers entry (#49): shown only for approved, NDA-checked cases */
+.cases { display: grid; gap: 1px; margin-top: 28px; background: var(--line); border-block: 1px solid var(--line); }
+.cases a { display: grid; gap: 8px; padding: 20px 0; background: var(--snow); color: inherit; text-decoration: none; }
+.cases h4 { font-size: var(--fs-h3); }
+.cases p { font-size: var(--fs-small); color: var(--fg-soft); max-width: 46ch; }
+.cases-read { font: 500 11px / 1.3 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; text-decoration: underline; text-decoration-color: var(--navy); text-underline-offset: 4px; }
+.cases a:hover .cases-read { text-decoration-color: var(--amber); }
 
 /* ---------- faq ---------- */
 .faq { padding-block: var(--section); }
@@ -973,7 +993,18 @@ section { position: relative; color: var(--fg); }
 .page-dawn { height: clamp(200px, 30vh, 320px); z-index: 0; }
 
 /* ---------- daylight bands ---------- */
-.values, .why, .roles, .perks { padding-block: clamp(96px, 10vw, 160px); }
+.facts, .why, .roles, .perks, .leaders { padding-block: clamp(96px, 10vw, 160px); }
+.leaders { border-top: 1px solid var(--line-light); }
+/* leadership: real people, real roles; the face is the owner's photo or, until then, the initials (#48) */
+.leader-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); margin-top: clamp(48px, 5vw, 80px); }
+.leader { display: flex; align-items: center; gap: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
+.leader-face { flex: none; width: 112px; height: 112px; object-fit: cover; }
+.leader-mono { display: grid; place-items: center; font: 760 2.25rem / 1 var(--display); font-stretch: 125%; color: var(--snow); background: var(--navy); }
+.leader h3 { font-size: var(--fs-h3); }
+.leader p { margin-top: 6px; font: 500 var(--fs-label) / 1.3 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate); }
+.leader a { display: inline-block; margin-top: 12px; font: 500 var(--fs-label) / 1.3 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink); text-decoration-color: var(--navy); }
+.brief-reply { margin-top: 14px; font-size: var(--fs-small); color: var(--mist); }
+.facts .figures { margin-top: 0; }
 .why, .perks { border-top: 1px solid var(--line-light); }
 /* the dawn limb already ends in snow, so the first band starts close under it */
 .page-head + section[data-on="light"] { padding-top: clamp(24px, 3vw, 48px); }
@@ -992,7 +1023,6 @@ section { position: relative; color: var(--fg); }
 .cells-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .cells-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 /* the first cell takes the whole row, so the rest fill whole rows at three and two columns */
-.cells-lead .cell:first-child { grid-column: 1 / -1; }
 .cell {
   display: flex; flex-direction: column; gap: 14px;
   min-height: clamp(220px, 18vw, 280px); padding: 28px;
@@ -1036,7 +1066,7 @@ section { position: relative; color: var(--fg); }
 /* ---------- long-form: index + prose ---------- */
 .doc { padding-block: clamp(64px, 7vw, 112px) var(--section); }
 .doc-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); align-items: start; }
-.doc-toc { grid-column: 1 / 4; position: sticky; top: 110px; max-height: calc(100vh - 180px); /* ends above the altimeter */ overflow: auto; scrollbar-width: thin; padding-inline-end: 8px; }
+.doc-toc { grid-column: 1 / 4; position: sticky; top: 110px; max-height: calc(100vh - 180px); overflow: auto; scrollbar-width: thin; padding-inline-end: 8px; }
 .doc-toc > .label { color: var(--slate); margin-bottom: 14px; }
 .doc-toc ol { border-top: 1px solid var(--line); }
 .doc-toc li a {
@@ -1161,6 +1191,8 @@ section { position: relative; color: var(--fg); }
 
 /* ---------- tablet ---------- */
 @media (max-width: 991px) {
+  .why-head .tt, .why-head p { grid-column: 1 / -1; }
+  .reasons { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 48px; }
   .intro-left, .intro-right, .camps-head .tt, .camps-copy, .strata-head .tt, .strata-copy, .faq-head, .faq-list, .summit-head, .brief { grid-column: 1 / -1; }
   .intro-right { margin-top: 48px; }
   .camps-copy, .strata-copy { margin-top: 28px; }
@@ -1168,23 +1200,28 @@ section { position: relative; color: var(--fg); }
   .faq-head, .ascent-head { position: static; }
   .faq-list { margin-top: 48px; }
   .brief { margin-top: 48px; }
-  /* the mountain rides at the top of the viewport while the stages scroll beneath it */
+  /* the mountain sits above the stages and scrolls away with the page: pinned, it hid the text passing beneath it (#46) */
   .ascent-grid { display: block; }
   .ascent-side { display: contents; }
-  .ascent-head { margin-bottom: 40px; }
-  .trek { position: sticky; top: 0; z-index: 2; height: calc(34vh + 72px); height: calc(34svh + 72px); min-height: 250px; margin: 0 calc(-1 * var(--gutter)); background: var(--snow); }
-  .trek::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 40px; background: linear-gradient(var(--snow), rgb(255 255 255 / 0)); pointer-events: none; }
-  .trek-frame { inset: 84px var(--gutter) 14px; }
-  .stages { padding-bottom: 32vh; }
-  .stage:first-child { padding-top: 6vh; } /* the text runs beneath the strip, so base camp opens just under it */
+  .ascent-head { margin-bottom: 24px; }
+  .trek { flex: none; height: calc(34vh + 28px); height: calc(34svh + 28px); min-height: 220px; margin: 0 calc(-1 * var(--gutter)); }
+  .trek-frame { inset: 14px var(--gutter); }
+  .stages { padding-bottom: 0; }
+  .stage { opacity: 1; } /* the chart no longer pins beside the entries, so none waits for its camp */
+  .stage:first-child { padding-top: 6vh; }
   .foot-map { grid-column: 1 / -1; margin-bottom: 32px; }
   .foot-col, .foot-col:nth-child(2) { grid-column: span 3; }
 }
 
 /* ---------- mobile ---------- */
 @media (max-width: 767px) {
+  .leader-list { grid-template-columns: 1fr; }
+  .leader-face { width: 88px; height: 88px; }
+  .reasons { grid-template-columns: 1fr; row-gap: 40px; }
+  .reason .stat { padding: 18px 0 10px; }
+  .reason .stat dd { font-size: 3rem; }
   :root { --hdr-h: 88px; }
-  .ticker .ticker-links, .hud, .chip-camp { display: none; }
+  .ticker .ticker-links, .chip-camp { display: none; }
   .ticker { justify-content: space-between; }
   .ticker p { gap: 14px; }
   .t-long { display: none; }
@@ -1203,7 +1240,7 @@ section { position: relative; color: var(--fg); }
   .track { width: 100%; }
   .svc { flex: none; border-inline-start: 0; border-top: 1px solid var(--line); padding: 32px var(--gutter); }
   .rider-alt { display: none; }
-  .camp-tag, .trek-scale text { display: none; } /* the stage text below names the camp */
+  .camp-tag, .trek-scale text { display: none; } /* no room for tags on a phone; the stage titles below carry the meaning */
   .stage { padding: 9vh 0; }
   .stage:first-child { padding-top: 2vh; }
   .worldmap { margin-inline: calc(-1 * var(--gutter)); }

@@ -1,0 +1,32 @@
+{
+  "title": {
+    "a": "Why XionTechs.",
+    "b": "Four reasons, each with proof."
+  },
+  "intro": "What sets us apart, and the fact behind each claim.",
+  "items": {
+    "zones": {
+      "name": "A US contact, a Vietnam build team",
+      "text": "You talk to us in Plano, Texas, in your working day. Our engineers build in Ho Chi Minh City and Da Nang, so the work moves on while you sleep.",
+      "proof": "Offices in the USA and Vietnam",
+      "link": "See our offices"
+    },
+    "years": {
+      "name": "Engineering depth",
+      "text": "More than 25 years in software engineering, across every layer from embedded systems to enterprise applications.",
+      "proof": "Years in software engineering",
+      "link": "See what we have done"
+    },
+    "process": {
+      "name": "A process you can measure",
+      "text": "Agile with the BMAD-METHOD and the V-Model, supported by AI tools. Project management is metric-driven, so you read quality and progress in numbers.",
+      "proof": "Pillars of delivery excellence"
+    },
+    "ai": {
+      "name": "AI in how we build",
+      "text": "An AI-powered agile development platform runs our delivery, and we build AI products of our own for schools.",
+      "proof": "AI products of our own",
+      "link": "See the platform"
+    }
+  }
+}

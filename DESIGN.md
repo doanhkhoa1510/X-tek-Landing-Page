@@ -23,7 +23,6 @@ colors:
   map-dot-night: "#1F3566"
   map-dot-loader: "#2A3B63"
   map-dot-snow: "#C9D2E3"
-  pending: "#B8470F"
   error: "#FF9A7A"
   line-dark: "rgba(255, 255, 255, 0.12)"
   line-light: "rgba(11, 26, 51, 0.12)"
@@ -247,10 +246,6 @@ components:
     textColor: "{colors.navy-ink}"
     typography: "{typography.figure}"
     padding: "22px 0 30px"
-  altimeter:
-    backgroundColor: "transparent"
-    textColor: "{colors.snow}"
-    typography: "{typography.micro}"
   climber-chip:
     backgroundColor: "{colors.night-band}"
     textColor: "{colors.snow}"
@@ -276,23 +271,23 @@ components:
 
 **Creative North Star: "The Night Ascent"**
 
-The mountain is XionTechs' symbol and goal, and the landing page is a climb up it. The name is inspired by Mount Zion, but the page is not about that place (the Symbol Rule: the story names Mount Zion once as the inspiration; no label, caption, chip, reading, or coordinate names it, and the copy carries no religious text). It opens at night at base camp: a Three.js mountain made of white particle dots under stars. The shape is not invented; the relief data is the real SRTM ground of Mount Zion (see the 3D spec), used as form only. An amber dawn glows behind the ridge and a glacier-blue rim light catches the lower slopes. Chips mark the camps where the team lives, Plano, TX and Ho Chi Minh City. As the visitor scrolls, the camera climbs toward the summit and dawn breaks. A curved atmospheric limb, glacier blue with an amber sunrise line, hands the page to snow-white daylight. From there the page reads in daylight: the story of Xion, the seven core values on a night band, and the log of the climb so far. An altimeter in the corner counts the climb in meters. The last night opens on the two base camps and ends on the summit, where the visitor names their project. The footer closes in daylight with the wordmark at mountain scale.
+The mountain is XionTechs' symbol and goal, and the landing page is a climb up it. The name is inspired by Mount Zion, but the page is not about that place (the Symbol Rule: the story names Mount Zion once as the inspiration; no label, caption, chip, reading, or coordinate names it, and the copy carries no religious text). It opens at night at base camp: a Three.js mountain made of white particle dots under stars. The shape is not invented; the relief data is the real SRTM ground of Mount Zion (see the 3D spec), used as form only. An amber dawn glows behind the ridge and a glacier-blue rim light catches the lower slopes. Chips mark the camps where the team lives, Plano, TX and Ho Chi Minh City. As the visitor scrolls, the camera climbs toward the summit and dawn breaks. A curved atmospheric limb, glacier blue with an amber sunrise line, hands the page to snow-white daylight. From there the page reads in daylight: the story of Xion, the seven core values on a night band, and the log of the climb so far. The last night opens on the two base camps and ends on the summit, where the visitor names their project. The footer closes in daylight with the wordmark at mountain scale.
 
 The mechanics come from unitedcarriers.com (Awwwards Site of the Day, teardown in the appendix), because the user named it as the quality bar:
-- Lenis smooth scroll and GSAP ScrollTrigger scenes scrubbed to scroll.
+- GSAP ScrollTrigger scenes scrubbed to scroll. UC's Lenis smooth scroll is not used: its 0.8s glide after each wheel step read as lag (UAT round 1, #40), so the page runs on the browser's native scroll.
 - A preloader with a dot world map and a counter.
 - Mono button labels that shuffle their own letters on hover.
 - Two-tone uppercase headlines whose ink line fills word by word.
 - A giant background type band over a dark service track.
 - Hairline grids, dot-matrix icons, and a strict dark and light rhythm joined by atmospheric horizons.
 
-Only the story and the palette are XionTechs': the globe becomes the mountain, freight lanes become routes to the summit, the KM/H speedometer becomes an altimeter, and UC's electric blue and orange become the logo navy and amber.
+Only the story and the palette are XionTechs': the globe becomes the mountain, freight lanes become routes to the summit, the KM/H speedometer becomes a climb altitude (read by the ridge rider and the contour maps), and UC's electric blue and orange become the logo navy and amber.
 
 The mood is heavy, exact, and confident. It is not soft; a pale-haze, rounded, sentence-case rewrite was tried and rejected. Density is low: sections run tall, type runs big, and a lot of the screen is left empty.
 
 **Key Characteristics:**
 - One continuous story: night, dawn, daylight, dusk, summit, daylight.
-- One mountain, a symbol: the same relief in 3D, as contours, and as the ridge silhouette, never labeled with a place name. The altimeter reads its metres, from the 765 m summit down to 0.
+- One mountain, a symbol: the same relief in 3D, as contours, and as the ridge silhouette, never labeled with a place name. The page's altitude reads its metres, from the 765 m summit down to 0.
 - The name teaches itself: /siː.ɒn.teks/ hangs under the wordmark, and the footer closes with a dictionary entry.
 - Saira at 125% width, uppercase, carries every heading. Host Grotesk carries prose. Martian Mono carries every control, label, and reading.
 - Flat surfaces and 1px hairlines. No shadows, no cards with depth, no glass.
@@ -309,7 +304,7 @@ The palette is the two logo colors, brand navy and Xion amber, stretched across 
   - The filled button on daylight, the ink of the footer wordmark and the logo mark, the contour lines of the topo tile (at 34% and 72% alpha), and the dot icons of the log.
   - It is also the focus-ring color on daylight surfaces.
 - **Xion Amber** (#F8C000): the logo swoosh.
-  - Always: the "GET IT DONE." hero line, the walked trail, camps and climber diamond, the 3D beacons and arcs, the map beacons and arcs, office phone links on night, and the altimeter's amber contour on the topo tile.
+  - Always: the "GET IT DONE." hero line, the walked trail, camps and climber diamond, the 3D beacons and arcs, the map beacons and arcs, office phone links on night, and the altitude's amber contour on the topo tile.
   - As a surface, only as the hover fill of every filled button and the focus fill of chips.
   - It is the focus-ring color on night.
 - **Amber Hi** (#FFD23D): the pressed (:active) state of a filled button. Nothing else.
@@ -335,7 +330,6 @@ The atmospheric limb between night and daylight always uses these five stops, in
 - **Dim Night** (#76839F): the dim first line on night, plus the loader lists and the day-bar axis (5.2:1, so it passes at micro sizes too).
 - **Giant Ink** (#E6EBF3): background type on snow. It is atmosphere, never the only carrier of meaning.
 - **Map Dot Night / Loader / Snow** (#1F3566, #2A3B63, #C9D2E3): the land dots of the world map on night, in the preloader, and in the footer. The map is always quieter than its amber beacons.
-- **Pending** (#B8470F): the mono tag on every unfinished placeholder (5.3:1 on white). It marks content the user must replace (today: customer names and quotes).
 - **Error** (#FF9A7A): form error text and invalid field rule on night (8.7:1).
 - **Hairlines:** `rgba(255,255,255,.12)` on night, `rgba(11,26,51,.12)` on daylight.
 
@@ -353,7 +347,11 @@ The atmospheric limb between night and daylight always uses these five stops, in
 
 A live line that crosses copy is navy.
 
-**The Placeholder Is Loud Rule.** Anything the user must still supply (customer names, quotes) carries the Pending mono tag. A placeholder that looks finished is a fabrication.
+**The One-Office-List Rule.** The offices are always Plano, Ho Chi Minh City, Da Nang, in that order, and every count matches the list ("Three offices. One team."). Plano carries an amber "US contact point" tag on the landing offices and on Contact us, because US buyers look for it first (UAT round 1, #43).
+
+**The Plain-Words Rule.** The mountain is the picture, not the vocabulary. Every heading, button, link, and nav label says what the section is or does in business words, so a visitor who never reads the story still knows what XionTechs sells ("Our work.", "Questions before you start.", "Start a project.", "Back to top"). Climbing words may stay in decoration only: the 3D chips, the trail chart's elevations, the rider reading, and the footer's dictionary entry (UAT round 1, #42).
+
+**The No-Placeholder Rule.** Visitors never see an internal note. Anything the user must still supply (customer names, quotes) stays off the page and is tracked as a GitHub issue (#20); an entry shows only the facts on hand. A placeholder that looks finished is a fabrication, and one that says "pending" tells a buyer we have nothing to show (UAT round 1, #37).
 
 ## Typography
 
@@ -380,7 +378,7 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
 - **Body** (400, 17px, 1.5, max 40–60ch) and **Body Small** (400, 15px, 1.5, max 30ch in value columns): prose.
 - **Button** (Martian Mono 500, 12px, 0.03em, uppercase): every pill and the menu toggle.
 - **Label** (Martian Mono 500, 11px, 0.04em, uppercase): stat labels, the trailing camp name of a log entry, office roles, form labels, footer column heads. A label never sits above a heading.
-- **Micro** (Martian Mono 400–500, 10–10.5px, 0.05em, uppercase): the ticker, chips, domain tags, the altimeter, captions, pending tags, and the legal line. 10px is the floor on every breakpoint.
+- **Micro** (Martian Mono 400–500, 10–10.5px, 0.05em, uppercase): the ticker, chips, domain tags, the rider reading, captions, and the legal line. 10px is the floor on every breakpoint.
 - **IPA** (Noto Sans Mono 400, 11px under the wordmark, 17px in the footer entry, 0.02em, never uppercase): the pronunciation only.
 
 ### Named Rules
@@ -389,13 +387,13 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
 - On full night sections (base camps, summit), the ink words pull into focus instead: blur 10px→0 and opacity 0.15→1, stagger 0.12, scrubbed `top 85%`→`top 45%`. It reads like a summit coming out of cloud.
 - Without JS or with reduced motion, the final colors show at once.
 
-**The Mono-Means-Machine Rule.** Mono is only for what you press or read as data: buttons, the menu, chips, clocks, coordinates, altitude, vertical speed, counters' labels, legal and pending tags. Paragraphs are never mono.
+**The Mono-Means-Machine Rule.** Mono is only for what you press or read as data: buttons, the menu, chips, clocks, coordinates, altitude, counters' labels, legal tags. Paragraphs are never mono.
 
 **The Uppercase-Is-Display Rule.** Uppercase belongs to Saira headings and mono labels. Body text is always sentence case.
 
 **The IPA-Needs-Its-Own-Face Rule.** Saira, Host Grotesk, and Martian Mono all lack ɒ (U+0252) and ː (U+02D0); measured in the browser, both fall back to a system face. The pronunciation is therefore set whole in Noto Sans Mono, never glyph by glyph, so the string keeps one rhythm. IPA is phonetic data: it is never uppercased and never letter-spaced beyond 0.02em.
 
-**The Tabular Rule.** Every number that changes in place (clocks, altitude, V/S, figures, the loader counter) uses `font-variant-numeric: tabular-nums` so digits never jitter.
+**The Tabular Rule.** Every number that changes in place (clocks, altitude, figures, the loader counter) uses `font-variant-numeric: tabular-nums` so digits never jitter.
 
 ## Layout
 
@@ -411,16 +409,16 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
   - Headings get more space above than below.
 - **Section order and fields:**
   1. Main: hero `#top` (night, 210vh with a sticky 100svh stage)
-  2. Mindset `#mindset` (snow): the story of Xion and the mission
-  3. Core values `#values` (snow sky over a night-band track of seven columns, pinned for about 1.15× the track overflow)
-  4. Platform `#platform` (snow): the smart-school product as one architecture chart, four tiers on a y-axis
-  5. The log `#work` (snow, sticky head and trek): achieved, done, products, customers
-  6. FAQ `#faq` (ice)
-  7. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
-  8. Footer (snow)
+  2. Platform `#platform` (snow): the smart-school product as one architecture chart, four tiers on a y-axis
+  3. The log `#work` (snow, sticky head and trek): achieved, done, products, customers
+  4. Why XionTechs `#why` (snow): four reasons, each led by its proof
+  5. FAQ `#faq` (ice)
+  6. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
+  7. Footer (snow)
+  - The story of Xion (`#mindset`) and the core values (`#values`) live on About us since #36: on the landing page they stood between the hero and what XionTechs does, and buyers lost the thread. The hero's outline pill ("Our mindset") leads to `/about-us/#mindset`.
 - **Class names keep the mountain vocabulary** (`.intro`, `.routes`, `.strata`, `.ascent`, `.camps`, `.summit`); ids carry the content names.
 - **Breakpoints:** desktop ≥ 992px. Tablet 768–991px: headings and copy stack to full width, sticky heads go static, and the route strip moves to columns 1/3. Mobile ≤ 767px:
-  - The header becomes a flex row (logo left, menu right), and the CTA, the ticker phones, the HUD, and the 3D camp chips hide.
+  - The header becomes a flex row (logo left, menu right), and the CTA, the ticker phones, and the 3D camp chips hide.
   - The hero shortens to 170vh, the values stack vertically with no pin, the route strip narrows to 36px, and the map bleeds to the viewport edge.
 - **Header geometry:** a 32px ticker plus a 64px row (96px total). After 40px of scroll the whole header translates up 32px, so the ticker slides away with a transform, not a layout change.
 
@@ -428,12 +426,12 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
 
 The landing page is for a new buyer and stays lean. Everything else from the old xiontechs.com lives on subpages at its old URL, because app store listings link to `/support/` and `/privacy-policy/`.
 - **Pages:** `/about-us/`, `/faqs/`, `/careers/` plus five closed `/job/<slug>/` posts, `/contact-us/`, `/support/`, `/privacy-policy/`, `/terms-of-service/`, `/cookie-policy/`, and a 404. Long texts are Markdown in `src/content/` (collections in `src/content.config.ts`).
-- **Head (night):** `layouts/Sub.astro`. The H1 is a two-tone Headline at 1/9, and the lede and meta chips sit at 9/13 on the baseline. Mount Zion's contour map (the intro tile, recoloured for night, `cover`) fills the right side under a radial mask, and its amber contour follows the altimeter. A dawn limb (`clamp(200px, 30vh, 320px)`) rises whole on load, which is the Dawn Rule, and the first daylight band starts close under it. Contact has no limb; it stays on night down to its own dawn above the footer.
-- **Bands (daylight):** hairline cell grids (`.cells`; the 1px gaps are the rules), a sticky side head against a body at 8/13 (`.split`), and figure rows (`.figures`). Long texts use a sticky "On this page" index at 1/4 (mono, a navy square marks the section being read, and it ends above the altimeter) against prose at 5/12, max 68ch.
+- **Head (night):** `layouts/Sub.astro`. The H1 is a two-tone Headline at 1/9, and the lede and meta chips sit at 9/13 on the baseline. Mount Zion's contour map (the intro tile, recoloured for night, `cover`) fills the right side under a radial mask, and its amber contour follows the altitude. A dawn limb (`clamp(200px, 30vh, 320px)`) rises whole on load, which is the Dawn Rule, and the first daylight band starts close under it. Contact has no limb; it stays on night down to its own dawn above the footer.
+- **Bands (daylight):** hairline cell grids (`.cells`; the 1px gaps are the rules), a sticky side head against a body at 8/13 (`.split`), and figure rows (`.figures`). Long texts use a sticky "On this page" index at 1/4 (mono, a navy square marks the section being read,) against prose at 5/12, max 68ch.
 - **Closing ask:** an ice band (`components/Cta.astro`) before the footer on About, FAQs, Careers, and jobs. Legal texts end on their own content.
 - **Menu:** landing sections, a hairline, then About us, Careers, and Support, in a flat panel (Night Band or Snow) so ten links never sit on the headline. Subpages link to landing sections as `/#id`. An arrival with a hash skips the preloader and lands on the section.
 - **Footer:** map 1/4, then base camps, reach us, explore, and company columns. A row of languages sits above the legal row, which carries the three legal links.
-- **Scripts:** `chrome.ts` is shared (scroll, header, altimeter, clocks, accordion, forms). `app.ts` is the landing page and `page.ts` is the subpages. Terrain math lives in `relief.ts`, so subpages never load Three.js (about 183 KB of JS against 690 KB).
+- **Scripts:** `chrome.ts` is shared (scroll, header, altitude, clocks, accordion, forms). `app.ts` is the landing page and `page.ts` is the subpages; `story.ts` drives the story and the value track on About us. Terrain math lives in `relief.ts`, so subpages never load Three.js (about 183 KB of JS against 690 KB).
 
 ## Languages
 
@@ -469,7 +467,7 @@ Each script face follows the brand face in the stack, so Latin words, numbers, a
 **The No-Tracking-In-Arabic Rule.** Arabic letters join, and any letter-spacing pulls a word apart, so Arabic text never takes letter-spacing.
 
 ### Right to left (Arabic)
-- **Mirror:** the layout mirrors through logical properties and grid and flex order. The headline and copy sit on the right, the menu and CTA on the left, and the altimeter at bottom right. The mountain's camera moves to the other side of the summit (`mountain.ts`), so the hill rises on the left without flipping the terrain.
+- **Mirror:** the layout mirrors through logical properties and grid and flex order. The headline and copy sit on the right, and the menu and CTA on the left. The mountain's camera moves to the other side of the summit (`mountain.ts`), so the hill rises on the left without flipping the terrain.
 - **Motion:** the value track, the giant type, the ridge and its rider, and the stat wipes run right to left; the track's fade moves to its exit edge.
 - **Kept left to right:** the lockups of mark and name, the world map, the platform chart, the trek, and the 24-hour day bar keep their drawing. Text inside them still reads right to left (`unicode-bidi: plaintext`).
 - **Digits:** Latin digits everywhere. Phone numbers carry LTR isolates in `site.ts`, and postal lines render in `<bdi>`, so their digit groups never reverse.
@@ -481,7 +479,7 @@ The system is flat. Depth comes from light and from layers sliding over each oth
 - The 3D scene: bloom strength 0.55, radius 0.18, and threshold 0.72, so only rims, beacons, and arcs glow.
 - The horizon limbs.
 - Sticky stages (hero, pinned routes, sticky heads) that later sections pass over.
-- The fixed layers, from back to front: canvas (z 0), 3D chips (1), main (2), HUD (55), header (60), preloader (150), skip link (200).
+- The fixed layers, from back to front: canvas (z 0), 3D chips (1), main (2), header (60), preloader (150), skip link (200).
 
 **The No-Shadow Rule.** No element casts a box shadow. To lift, a surface changes field (snow to ice, night to night band) or gains a hairline. The one box-shadow in the system is a 1px amber underline on a focused field, and it is a rule, not a shadow.
 
@@ -517,14 +515,10 @@ Character: heavy pills with a machine voice. The fill answers the pointer.
 - **Pointer:** the system pointer on every page. No custom cursor and nothing that trails the mouse: a trailing ring covered the text people wanted to read or click (UAT round 1, #39).
 - **Scrollbar:** the browser's native scrollbar shows, themed with `scrollbar-color: var(--dim-night) var(--night)`. Where it takes space (Windows, macOS "always show"), the fixed header and its ground end at its edge (`root.clientWidth`).
 
-### Altimeter HUD (signature)
-UC's KM/H speedometer, turned into a climb reading.
-- **Placement:** fixed bottom-left in Micro type, `mix-blend-mode: difference`, reading `ALT 684 M · V/S 10 M/S · SUMMIT 765 M`.
-- **Altitude:** metres above sea level, linear in page progress from the published summit (765 m, `ZION.summitM`) at the top of the page down to 0 at the bottom, rounded to 1 m. Scrolling down is the descent.
-- **Summit:** the third reading is fixed, the summit height (`SUMMIT_M`). It gives the climb a goal. It carries no place name and no coordinates (the Symbol Rule).
-- **Vertical speed:** scroll velocity ÷ 40, capped at 99, with ±1 jitter above 12. It eases up at 0.1, down at 0.06, and to zero at 0.15.
-- **Linked readouts:** the same altitude drives the rider chip over the routes sky and the amber contour on the topo tile. The page never shows two different altitudes.
-- **Visibility:** it fades in with the hero entrance, steps aside (opacity 0) when the footer wordmark enters so it never prints over the legal row, and hides on mobile.
+### Altitude (no HUD)
+- **Reading:** metres above sea level, linear in page progress from the published summit (765 m, `ZION.summitM`) at the top of the page down to 0 at the bottom, rounded to 1 m. Scrolling down is the descent. `chrome.ts` computes it and calls `onAltitude` watchers.
+- **Readouts:** only in the flow of the page: the rider chip over the routes sky and the amber/navy contour on the topo tiles. The page never shows two different altitudes.
+- **No fixed HUD:** the bottom-corner altimeter (`ALT · V/S · BEACON`) was removed (UAT round 1, #41): it printed over headings and chart labels, and the readings meant nothing to a buyer. No fixed element may sit over page content.
 
 ### Header
 - **Ticker (32px, Micro):**
@@ -534,16 +528,16 @@ UC's KM/H speedometer, turned into a climb reading.
 - **Row (64px):**
   - The logo: the mark plus XIONTECHS, with the pronunciation subtitle under the word (see Pronunciation subtitle). After 80px of scroll, "ION" and "ECHS" collapse through `grid-template-columns: 1fr → 0fr` over 0.7s, leaving **XT**, like UC's UNITEDCARRIERS → UC.
   - The `•••• MENU` toggle: four 3px squares at opacity .24/.5/.7/1. On hover they go to 1 and the odd dots hop 2px. On open, MENU rolls up and CLOSE rolls in.
-  - From 1280px, the six section links (Mindset to Branches, Micro-sized Button type, Fg Soft) sit in the row, centred, with `COMPANY ▾` last; that toggle opens the same panel holding only About us, Careers, and Support. Contact stays with the CTA. Below 1280px the `•••• MENU` toggle sits next to the CTA and opens the full list.
+  - From 1280px, the five section links (Platform to Offices, Micro-sized Button type, Fg Soft) sit in the row, centred, with `COMPANY ▾` last; that toggle opens the same panel holding only About us, Careers, and Support. Contact stays with the CTA. Below 1280px the `•••• MENU` toggle sits next to the CTA and opens the full list.
   - **Active marker:** the link of the section under the header takes Fg and a 2px amber rule that grows from the start (0.5s expo). On a company page, `COMPANY` carries the rule.
   - The `START A PROJECT` filled pill.
 - **Theme:** on every scroll frame, the header probes the section under its row with `elementsFromPoint` and takes that section's `data-on` (dark/light). Text colors cross-fade in 0.4s. Each limb's flip (`--flip`, between glacier and limb-mid) is where its ground turns, and around it the soft link ink goes full (`.is-mid`) so the links hold contrast over the mid blue. Once scrolled, the header's ground (`.hdr-ground`) repaints the page's own backgrounds (sections, bands, limbs, clipped as on the page, on whole device pixels) behind the row, without their content, in the scroll frame itself; it fades out over 36px below the row. So a night/snow edge slides through the header exactly with the scroll, nothing ghosts behind the links, and no line, shadow, or tint parts the header from the page.
 
 ### Navigation (menu)
-- **Layout:** a dropdown under the toggle, a mono uppercase list of seven anchors (Mindset, Core values, Platform, Work, FAQ, Branches, Contact). From 1280px the anchors live in the header row and the dropdown holds only the company pages.
+- **Layout:** a dropdown under the toggle, a mono uppercase list of six anchors (Platform, Work, Why us, FAQ, Offices, Contact). From 1280px the anchors live in the header row and the dropdown holds only the company pages.
 - **Open:** a clip-path wipe (0.6s expo). Links drop in 8px with a 0.04s stagger.
 - **Close:** Esc (focus returns to the toggle), an outside click, or following a link.
-- **Anchors:** Lenis `scrollTo` over 1.6s with quartic ease-out. The target gets focus with `preventScroll`. Night sections with a top limb scroll past the limb, so the heading lands under the header.
+- **Anchors:** native `scrollTo` with `behavior: "smooth"` (instant for reduced motion and arrivals from another page). The target gets focus with `preventScroll`. Night sections with a top limb scroll past the limb, so the heading lands under the header.
 
 ### Preloader
 - **Layout:**
@@ -566,7 +560,9 @@ UC's KM/H speedometer, turned into a climb reading.
 - **The dive** (scrubbed over the 210vh hero):
   - The camera climbs from the Hinnom valley up the south face to the crest of Mount Zion.
   - The amber altitude contour climbs the hill.
-  - The headline block drifts up 16% and fades by 42% progress.
+  - The headline block holds until 16%, then drifts up 16% and fades by 42% progress.
+  - **What we do** (`.hero-next`) rises from 30% to 42% and stays to the end: a Micro label, the five service lines as Titles, and an outline pill to the log. It sits high on the night (top `clamp(120px, 17vh, 170px)`), above the rising dawn, so no screen of the hero is only decoration (#38).
+  - **Copy night:** the headline and the second-screen block each carry their own soft night field (`::before`, `rgba(3,8,19,.92)`, blur 56px, 9% wider and 14% taller than the copy). It follows the copy's real size in every language, so the white ridge never runs through the text. Measured: at least 4.5:1 at the brightest pixel behind every headline line, the lede, and the service lines, in all 7 languages at 1440, 834, and 390 (min 8.6:1 for the headline).
   - The dawn limb rises (`yPercent 100 → 0` at full opacity, never a fade) from 42% to 100%, ending in pure snow that meets the intro. GSAP's `fromTo` zeroes `y` so it does not stack on the CSS resting `translateY(100%)`.
 
 ### Two-tone headline
@@ -575,11 +571,27 @@ Two block spans in one H2, following the Two-Tone Rule. On night the fill runs D
 ### Stat
 The figure (count-up from 0, 1s power1.out at `top 85%`, once) sits over a Label, with a top hairline. The row wipes in with clip-path from the left (1.2s expo, stagger 0.12). It sits three-up in the first log entry. The figures are real: 25+ years in software engineering, 5 pillars of delivery excellence, 3 offices.
 
-### Story and mission (mindset)
+### Why XionTechs (reasons)
+- **Layout:** a two-tone H2 at 1/8 ("Why XionTechs. / Four reasons, each with proof.") with a one-line intro at 8/13 on its baseline; under it a four-up row (two-up on tablet, one-up on mobile). Each reason is a Stat (the proof figure over its Micro label), a Title, Body Small in Slate (max 36ch), and an optional Micro link with a navy underline to the section that shows the proof.
+- **Content:** every figure is in PRODUCT.md › Evidence on Hand: 3 offices (US contact, Vietnam build team, both time zones), 25+ years, 5 pillars (Agile + BMAD-METHOD + V-Model, metric-driven), 2 products (the AI-powered development platform and our own AI products). No reason without a proof; no comparison table until the owner approves each claim (#47).
+- **Motion:** reasons rise 24px (1.1s expo, stagger 0.1) at `top 85%` of the row; figures count up like every Stat.
+
+### Case studies (`/work/<slug>/`)
+- **Source:** `src/content/cases/<locale>/<slug>.md` (template in its README). A case builds its page and its card only when `approved` and `ndaChecked` are both true; today none are, so nothing shows (#49).
+- **Card:** in the log's Customers entry, under the domain tags, up to three hairline rows: client (Label), the title (Title), the result (Body Small, Slate), and a "Read the case study" Micro link.
+- **Page:** the job-post layout: project facts at the side (client, team, duration, stack) and Problem, What we built, Result, then the body, in the prose column; the closing ask band at the end.
+
+### Leadership (on About us)
+- **Layout:** a split head ("Leadership. / The people you talk to.") over a hairline row of people (two-up on desktop, one-up on mobile). Each person: a 112px square face, the name as a Title, the role in Label (Slate), and a LinkedIn link in Label when the owner supplies one.
+- **Faces:** only the owner's photos (`leaders[].photo`, files in `public/team/`). Until then the square is Brand Navy with the initials in Saira 760 Snow. Never a stock portrait or a generated face (#48).
+- **Reply promise:** `reply` in `site.ts` adds one line under every brief form ("{who} replies to every brief within {days} business days."). It stays off until the owner gives both values.
+
+### Story and mission (mindset, on About us)
 - **Layout:** the topo tile and the sticky two-tone H2 at 1/7; the story at 8/13 as three Lede paragraphs. The H2 reads "Starting with a story. / A mountain is our symbol." The first paragraph names Mount Zion once, as the inspiration for the name; this is the only place the page names it (the Symbol Rule). XionTechs is the only company named (the One-Name Rule: no parent group, no sister company, anywhere on the page). The mission sits under a hairline: a Title head ("Our mission") over Body in Slate, max 46ch. One outline pill leads to the core values.
 - **Entrance:** paragraphs, mission, and button rise 28px (1.1s expo, stagger 0.08).
 
-### Value column (core values)
+### Value column (core values, on About us)
+The section follows the story on About us (`story.ts`, called from `page.ts` before the page's other scenes, because it pins). Its pill leads to `/contact-us/`.
 - **Layout:** a 270–340px column on the night band with a 1px left hairline. It holds a 44px dot icon that names the value (check, rocket, target, shield, spark, flag, people), a Title (max 12ch), the motto in Snow, and the promise in Body Small in Mist.
 - **Motion:** on desktop the seven columns ride a horizontal track pinned under the giant type ("Seven core values").
   - The track clip is `.track-wrap` with overflow hidden, so columns never slide over the intro copy.
@@ -602,26 +614,26 @@ The AI-powered platform for smart schools (from the newxion.com/solutions diagra
 
 ### Mountain trek (the log)
 The record of the climb so far: four camps, four entries. Drawn in the page's survey language (dot matrix, hairlines, mono chips, amber as the one live accent), never as an illustration: no tents, flags, casings or filled shapes.
-- **Panel:** the left half stays in view (sticky, 100vh) while the stages scroll past on the right. On tablet and mobile it becomes a sticky snow strip (34svh + header room) with a 40px fade below. Code: `trail.ts` (canvas for the mountain, inline SVG for the trail and scale, HTML for camps and climber).
+- **Panel:** the left half stays in view (sticky, 100vh) while the stages scroll past on the right. On tablet and mobile it is a static chart (34svh + 28px) above the entries and scrolls away with the page: it never pins, so it never covers their text (#46). Code: `trail.ts` (canvas for the mountain, inline SVG for the trail and scale, HTML for camps and climber).
 - **Mountain:** Mount Zion from the south, framed closer than the routes sky so the dome fills it: the real skyline (highest ground behind each point, from `heightAt`). The routes-sky dot matrix (7px grid, 6px under 560px wide; body dots 20% navy, skyline band 62%) over a white knockout that hides the contour backdrop. Both edges fade out over 10–14% instead of cropping. Dashed 50 m guides (12% navy) run behind it.
 - **Elevation scale:** a hairline axis on the east edge, 10 m ticks, labels every 50 m ("700 m", Micro mono, slate). Labels hide on mobile.
 - **Trail:** switchbacks up the dome's face from the trailhead (609 m) to the summit. Straight traverses joined by semicircle hairpins (radius up to 10px), cut inside the ground at each level; legs vary in length, wander toward the summit and tighten as the dome narrows. About one leg per 80px of relief (36px on narrow). Ahead: a 1.2px navy dash (3/4, 55%). Walked: a 2px amber line up to the climber. Always climbs upward on screen; never a road, rail or straight bar.
-- **Camps:** an 8px ring (1.5px navy) on the trailhead, two hairpins and the summit; it fills amber once reached, and the summit ring pings. Each has a tag with a 17px hairline leader, pointing outside its hairpin (the summit's points up): `01 Base camp · 609 m`, `02 Camp I`, `03 Camp II`, `04 Summit · 765 m`, elevations from the real profile. Tag states: ahead = snow with a light border and slate text; reached = Night Band with mist text; current (the camp the climber is nearest) = amber with ink text, like a focused hero chip. On mobile the tags hide; the stage text names the camp.
-- **Climber:** the amber diamond (14px, 2px snow halo), like the ridge rider. It waits on base camp until the chart has settled in full view (wide: the side column pins; tablet and mobile: the strip pins), then stands on camp s while stage s's title holds the line where base camp's title stood at that moment, and walks between camps in step with scroll. On wide screens the first entry opens level with the middle of the mountain (padding-top 50vh + 80px), so that line runs through the mountain's middle; the stage list keeps calc(32vh - 160px) below so the climber summits before the side unpins.
-- **Entries:** 32% opacity, then full: the first as its top passes `top 62%`, each later one as its camp turns current. Each entry, in order: a dot icon, a Stage title, Body, its payload, and a trailing Label with the camp name (Base camp, Camp I, Camp II, Summit). `trail.ts` reads the first `h3` and `.stage-meta` of each entry.
+- **Camps:** an 8px ring (1.5px navy) on the trailhead, two hairpins and the summit; it fills amber once reached, and the summit ring pings. Each has a tag with a 17px hairline leader, pointing outside its hairpin (the summit's points up): `01 Achieved · 614 m`, `02 Done`, `03 Products`, `04 Customers · 765 m` (the entry names, not climbing words, #42), elevations from the real profile. Tag states: ahead = snow with a light border and slate text; reached = Night Band with mist text; current (the camp the climber is nearest) = amber with ink text, like a focused hero chip. On mobile the tags hide.
+- **Climber:** the amber diamond (14px, 2px snow halo), like the ridge rider. Wide: it waits on base camp until the side column pins with the chart in full view, then stands on camp s while stage s's title holds the line where base camp's title stood at that moment, and walks between camps in step with scroll. On wide screens the first entry opens level with the middle of the mountain (padding-top 50vh + 80px), so that line runs through the mountain's middle; the stage list keeps calc(32vh - 160px) below so the climber summits before the side unpins. Tablet and mobile: it walks the whole trail while the chart crosses the middle of the screen (top 70% → bottom 30%), and every entry shows at full opacity.
+- **Entries:** 32% opacity, then full: the first as its top passes `top 62%`, each later one as its camp turns current. Each entry, in order: a dot icon, a Stage title, Body, and its payload. No label trails the entry: the camp name lives in `data-camp`, and `trail.ts` reads it for the chart's camp tag (a lone label under an entry read as a stray, #37).
   1. **What we have achieved** (clock): the three-up stat row.
   2. **What we have done** (code): five log rows, one per service line.
   3. **Products** (box): two log rows.
-  4. **Customers** (linked rings): three domain tags and the Pending tag.
+  4. **Customers** (linked rings): three domain tags; the October 2025 visit is in its body.
 - **Log row:** a hairline list; each row is a Title (h4) over Body Small in Slate, max 46ch, padding 18px 0 20px. Rows rise 20px out of their rules (1s expo, stagger 0.06).
 - **Tag:** a 2px chip with a 32% ink border, Micro, no fill.
 
 ### Contour backdrop (ascent)
 - **Layout:** a sticky, full-viewport canvas (`position: sticky; top: 0; height: 100vh; margin-bottom: -100vh`) behind the ascent.
 - **Content:** Mount Zion as marching-squares contours at real 10 m intervals (610–760 m), in Brand Navy at 7% (minor) and 15% (index contours at every 50 m: 650, 700, 750).
-- **Extent:** a 5:3 excerpt of the ground, x −9…9 and z −7.4…3.4 world units (1.26 × 0.76 km): the hill, the Hinnom bend, and the Kidron edge. The intro tile shows the same excerpt, captioned "Summit survey · 10 m contours".
+- **Extent:** a 5:3 excerpt of the ground, x −9…9 and z −7.4…3.4 world units (1.26 × 0.76 km): the hill, the Hinnom bend, and the Kidron edge. The intro tile shows the same excerpt, captioned "Our symbol · a contour map".
 - **Fit:** cover-fit, so the hill never distorts on portrait screens.
-- **Live line:** a 1.5px Brand Navy contour at 34% sits at the altimeter's current altitude. It is navy, not amber, because it crosses copy, and an amber line through text reads as a strike-through. Between the hero and the summit, this is where the mountain stays physically present.
+- **Live line:** a 1.5px Brand Navy contour at 34% sits at the page's current altitude. It is navy, not amber, because it crosses copy, and an amber line through text reads as a strike-through. Between the hero and the summit, this is where the mountain stays physically present.
 
 ### Ridge and rider (routes sky, signature)
 UC's truck on its road, rebuilt as a climber on a ridge.
@@ -659,7 +671,7 @@ Under the summit copy: phone, WhatsApp, and email as Button-type links in Xion A
 - **Motion:** the height tweens 0↔auto (0.5s/0.45s power2.inOut), using the `hidden` attribute plus `aria-expanded` and `aria-controls`.
 
 ### Footer
-- **Top:** a snow field with a light dot map (columns 1–4) and four columns (Base camps, Reach us, Explore, Company) with Label heads. Reach us holds the phone, WhatsApp, and email (may wrap).
+- **Top:** a snow field with a light dot map (columns 1–4) and four columns (Offices, Reach us, Explore, Company) with Label heads. Reach us holds the phone, WhatsApp, and email (may wrap).
 - **Wordmark:** the mark plus XIONTECHS at 11.4vw (10.2vw on mobile), Saira 800 125% in Brand Navy.
 - **Dictionary entry:** directly under the wordmark (see below).
 - **Legal:** a hairline row with © and "AI-powered IT services and products", the line "Get IT done. Make your mark.", the legal links, and "Back to base camp".
@@ -682,14 +694,14 @@ The name set as a dictionary headword, the page's last word.
 ## Do's and Don'ts
 
 ### Do:
-- **Do** drive every scroll-linked scene with GSAP ScrollTrigger `scrub: true`, `ease: "none"`, under a Lenis instance at `lerp: 0.1` synced through `gsap.ticker`. Create pinned triggers before the triggers below them.
+- **Do** drive every scroll-linked scene with GSAP ScrollTrigger `scrub: true`, `ease: "none"`, on the browser's native scroll (no smoothing library: the page stops when the wheel stops). Create pinned triggers before the triggers below them.
 - **Do** run entrances from an already-visible default: set hidden states in JS only, and ease with expo.out over 1.0–1.2s. Vary the entrance per section: mask rise (hero), rise (intro copy), wipe (stats), clip rise (cases), blur (chips), scrub fill (headlines).
 - **Do** keep reduced-motion users on native scroll: no preloader, no pins, final states visible, counters at their true values.
 - **Do** put `scene.background` on the Three.js scene, not only the clear color. The bloom pass restores the clear color outside a render target and double-encodes the night to #1C324D.
 - **Do** keep the render loop gated: it runs only while the hero or the summit is on screen and the tab is visible. The summit gate opens 400px early, because the base camps fade into the scene.
 - **Do** pass every full-bleed night and daylight change through a horizon limb (the Dawn Rule).
 - **Do** keep amber at or under 5% of a resting viewport (the Amber Ration Rule).
-- **Do** tag every placeholder with the Pending mono tag until the user supplies the real content.
+- **Do** leave missing content off the page (the No-Placeholder Rule); track it in an issue.
 - **Do** clip sections whose decoration bleeds past the grid (`overflow-x: clip` on the summit, for its copy scrim). A pseudo-element 25% wider than the viewport once pushed the mobile MENU off-screen.
 - **Do** keep a physical trace of the mountain in every scene (particles, dot ridge, contours, dot map): the page is one climb, not a stack of type slides.
 
@@ -717,8 +729,8 @@ The name set as a dictionary headword, the page's last word.
 | GSAP `circ.inOut` | 1.3s | 3D glow rise |
 | GSAP `power1.out` | 1s | count-up figures |
 | GSAP `none` | scrubbed | hero dive, dawn rise, pinned track, giant drift, ridge rider, headline fill and focus pull, route fill |
-| Lenis | lerp 0.1, wheelMultiplier 1 | page scroll |
-| Anchor scroll | 1.6s, 1-(1-t)^4 | menu and CTA jumps |
+| Native scroll | browser default, no smoothing | page scroll |
+| Anchor scroll | native `behavior: "smooth"` | menu and CTA jumps |
 | Stagger | 0.02 (loader out), 0.035 (value parts), 0.05–0.08 (chips, lines), 0.1–0.12 (cells, stats) | |
 
 ## 3D Scene Specification (mountain.ts)
@@ -728,7 +740,7 @@ The name set as a dictionary headword, the page's last word.
   - Axes: x runs east and z runs south, so the camera stands in the Hinnom valley looking north. The Wikipedia summit point is the origin; the highest sample of the western hill is `ZION.peakAt` (0.75, −4), about 280 m north, on the crest of the western hill inside the Old City walls (historically part of Zion).
   - Scale: one world unit is 70 m on the ground. Relief above the valley floor (618 m in the data) is 163 m, drawn at 6.4 units, a vertical exaggeration of ×2.75, the standard relief-map practice that lets a 163 m hill read as a mountain.
   - Processing: a 22 m Gaussian blur removes roof and street noise but keeps every landform wider than about 50 m. A radial skirt (full height to 420 m, zero at 950 m, 1.5× tighter to the north) lets the hill stand alone; inside it, the Hinnom valley on the west and south, and the fall to the Tyropoeon and Kidron on the east, are untouched.
-  - Height to metres: `unitsAt(m) = (m − 602) / 163 × 6.4`. The altimeter, the topo contours, and the summit chip all use this one mapping.
+  - Height to metres: `unitsAt(m) = (m − 602) / 163 × 6.4`. The altitude, the topo contours, and the summit chip all use this one mapping.
   - Sampled every 0.07 units (0.105 on mobile) over ±15 × (−10.5…11.25), about 90k points, with per-point normals from finite differences.
 - **Point shader:**
   - Valley glacier (0.08, 0.2, 0.62) blending to snow (0.9, 0.93, 1.0) by height, smoothstep 0.1→0.9. The real crest is broad, so only its top turns white, and per-point alpha rises 0.46 with height (not more), so the plateau never reads as a white blob.
@@ -757,7 +769,7 @@ The name set as a dictionary headword, the page's last word.
 
 - **Skip link:** the first focusable element is a skip link (amber, slides in on focus).
 - **Focus rings:** 2px, offset 3px, Xion Amber on night and Brand Navy on daylight.
-- **Hidden decoration:** the 3D canvas, chips layer, HUD, preloader, giant type, and map canvases are all `aria-hidden`.
+- **Hidden decoration:** the 3D canvas, chips layer, preloader, giant type, and map canvases are all `aria-hidden`.
 - **Real controls:** every city on the map is a real button with its name. The FAQ uses `aria-expanded`, `aria-controls`, and `hidden`. The form has labels and `aria-live` status.
 - **Contrast:** body text meets at least 4.5:1 everywhere. Dim headline lines meet at least 3:1 at display sizes.
 - **Pronunciation:** screen readers get "said see-on-teks" in the logo's label and the full footer entry as a labelled `dl`; the visual IPA under the logo is hidden from them to avoid reading symbols aloud.
@@ -768,7 +780,7 @@ The name set as a dictionary headword, the page's last word.
 - `src/pages/index.astro`: markup, content arrays, and the direction contract comment (first child of `<body>`).
 - `src/data/site.ts`: shared facts (offices, contact lines, service lines, sections) and the SVG mark.
 - `src/styles/global.css`: every token in `:root`, the `[data-on]` theme contexts, and all components.
-- `src/scripts/app.ts`: Lenis, ScrollTrigger scenes, the preloader, header, altimeter, clocks, FAQ, and form.
+- `src/scripts/app.ts`: ScrollTrigger scenes, the preloader, header, altitude, clocks, FAQ, and form.
 - `src/scripts/mountain.ts`: `heightAt` over the Mount Zion grid, `unitsAt`, and the Three.js mountain, light, camps, arcs, chips, and cameras.
 - `src/scripts/zion-data.ts`: the generated Mount Zion relief. Regenerate with `node scripts/build-zion.mjs` (tiles cached in `.impeccable/zion-tiles/`).
 - `src/scripts/dots.ts`: dot-matrix icons (vector → 13×13 dots) and the dot world map painter.

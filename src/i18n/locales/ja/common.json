@@ -1,13 +1,10 @@
 {
   "skip": "メインコンテンツへ移動",
   "hud": {
-    "alt": "標高",
-    "speed": "V/S",
-    "summit": "灯火"
+    "alt": "標高"
   },
   "units": {
-    "m": "m",
-    "ms": "m/s"
+    "m": "m"
   },
   "call": "{{phone}}に電話する",
   "whatsapp": "WhatsApp {{phone}}",

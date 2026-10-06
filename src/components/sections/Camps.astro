@@ -27,6 +27,7 @@ const t = useT(lang, "camps"), ts = useT(lang, "site");
       {offices.map((o) => (
         <li>
           <h3>{ts(`offices.${o.id}.name`)}</h3>
+          {o.us && <p class="office-tag">{ts("offices.plano.tag")}</p>}
           <p>{ts(`offices.${o.id}.role`)}</p>
           {o.lines.length > 0 && <address><bdi>{o.lines[0]}</bdi><br /><bdi>{o.lines[1]}</bdi></address>}
         </li>

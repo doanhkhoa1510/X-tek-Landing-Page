@@ -1,45 +1,41 @@
 ---
 import Sub from "../../layouts/Sub.astro";
 import Cta from "../../components/Cta.astro";
+import Leaders from "../../components/Leaders.astro";
+import Mindset from "../../components/sections/Mindset.astro";
+import Values from "../../components/sections/Values.astro";
 import { localePaths } from "../../i18n/config";
 import { useT } from "../../i18n";
-import { values } from "../../data/site";
 
 export const getStaticPaths = localePaths;
 
-const t = useT(Astro.currentLocale, "about"), tv = useT(Astro.currentLocale, "values");
+const t = useT(Astro.currentLocale, "about");
 
-// [id, counted number, unit]
+// [id, counted number, unit]: only figures in PRODUCT.md › Evidence on Hand, the same numbers the landing page shows (#44)
 const figures = [
-  ["years", "25", ""],
-  ["commitment", "100", "%"],
-  ["coverage", "", "24/7"],
-  ["verticals", "5", "+"],
-  ["offerings", "8", "+"],
+  ["years", "25", "+"],
+  ["pillars", "5", ""],
+  ["offices", "3", ""],
+  ["services", "5", ""],
+  ["products", "2", ""],
 ] as const;
 
 const reasons = ["client", "integrity", "quality", "rapid", "reliable", "team"] as const;
 ---
 <Sub title={t("title")} description={t("description")} a={t("head.a")} b={t("head.b")} lede={t("lede")}>
-  <section class="values" data-on="light" aria-labelledby="values-title">
-    <div class="wrap split-head">
-      <h2 id="values-title" class="tt"><span class="tt-a">{t("values.title.a")}</span> <span class="tt-b">{t("values.title.b")}</span></h2>
-    </div>
-    <ul class="wrap cells cells-3 cells-lead">
-      {values.map(([id, icon]) => (
-        <li class="cell">
-          <span class="cell-icon" data-icon={icon}></span>
-          <h3>{tv(`items.${id}.name`)}</h3>
-          <p>{tv(`items.${id}.motto`)}</p>
-        </li>
-      ))}
-    </ul>
-    <dl class="wrap figures" aria-label={t("figures.label")}>
+  <!-- the story of Xion and the seven core values, moved here from the landing page (#36) -->
+  <Mindset />
+  <Values />
+
+  <section class="facts" data-on="light" aria-label={t("figures.label")}>
+    <dl class="wrap figures">
       {figures.map(([id, n, unit]) => (
         <div class="stat"><dt>{t(`figures.items.${id}`)}</dt><dd>{n && <span data-count={n}>{n}</span>}{unit}</dd></div>
       ))}
     </dl>
   </section>
+
+  <Leaders />
 
   <section class="why" data-on="light" aria-labelledby="why-title">
     <div class="wrap split">

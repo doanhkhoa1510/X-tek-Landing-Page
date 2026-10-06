@@ -5,9 +5,9 @@
     "danang": { "name": "Da Nang", "short": "Da Nang", "long": "Da Nang" }
   },
   "offices": {
-    "plano": { "name": "Plano branch", "role": "Texas, USA" },
-    "hcmc": { "name": "HCMC branch", "role": "Ho Chi Minh City, Vietnam" },
-    "danang": { "name": "Da Nang branch", "role": "Da Nang, Vietnam" }
+    "plano": { "name": "Plano office", "role": "Texas, USA", "tag": "US contact point" },
+    "hcmc": { "name": "HCMC office", "role": "Ho Chi Minh City, Vietnam" },
+    "danang": { "name": "Da Nang office", "role": "Da Nang, Vietnam" }
   },
   "services": {
     "engineering": {
@@ -32,12 +32,11 @@
     }
   },
   "sections": {
-    "mindset": "Mindset",
-    "values": "Core values",
     "platform": "Platform",
     "work": "Work",
+    "why": "Why us",
     "faq": "FAQ",
-    "camps": "Branches",
+    "camps": "Offices",
     "summit": "Contact"
   },
   "pages": {

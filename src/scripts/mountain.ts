@@ -2,11 +2,63 @@ import * as THREE from "three";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ZION } from "./zion-data";
 import { heightAt, PEAK, SUMMIT_M } from "./relief";
 
 /* ---------- terrain ---------- */
+
+// the picture is drawn against the window's height, not CSS pixels: browser zoom changes CSS pixels, and dots or a glow
+// sized in them crowded and brightened the ridge on zoom in, thinned and dimmed it on zoom out
+const REF_H = 960; // a 1080p screen at 100% zoom, the size the look is tuned at
+// the glow works at twice that height, the detail a Retina laptop gave it: fine enough to light lone dots, so the
+// whole slope wears a soft haze around a bright crest, not a thin lit line
+const BLOOM_H = REF_H * 2;
+
+/** bloom whose blur runs at a fixed height, so the glow spreads over the same share of the picture at any size */
+class SteadyBloom extends UnrealBloomPass {
+  private read = { uStep: { value: new THREE.Vector2() }, uTaps: { value: 1 } };
+  constructor(...args: ConstructorParameters<typeof UnrealBloomPass>) {
+    super(...args);
+    // a sharp screen holds more pixels than the glow reads: one sample per glow pixel caught a lone dot on some frames
+    // and missed it on others, so dots flashed with a halo. The glow reads the average of every pixel it covers
+    Object.assign(this.highPassUniforms, this.read);
+    this.materialHighPassFilter.fragmentShader = /* glsl */ `
+      uniform sampler2D tDiffuse;
+      uniform vec3 defaultColor;
+      uniform float defaultOpacity, luminosityThreshold, smoothWidth;
+      uniform vec2 uStep;
+      uniform int uTaps;
+      varying vec2 vUv;
+      void main() {
+        vec4 texel = vec4(0.0);
+        for (int i = 0; i < 4; i++) {
+          if (i >= uTaps) break;
+          for (int j = 0; j < 4; j++) {
+            if (j >= uTaps) break;
+            // each tap falls between four pixels, so the filter averages them
+            texel += texture2D(tDiffuse, vUv + vec2(float(2 * i + 1 - uTaps), float(2 * j + 1 - uTaps)) * uStep);
+          }
+        }
+        texel /= float(uTaps * uTaps);
+        float alpha = smoothstep(luminosityThreshold, luminosityThreshold + smoothWidth, luminance(texel.xyz));
+        gl_FragColor = mix(vec4(defaultColor.rgb, defaultOpacity), texel, alpha);
+      }`;
+    // each blur reaches a fifth further than three.js's 3, 5, 7, 9, 11 pixels: a wider glow at the same strength
+    this.separableBlurMaterials.forEach((m, i) => {
+      const r = [3, 5, 7, 9, 11][i] * 1.2, n = Math.ceil(r);
+      m.defines.KERNEL_RADIUS = n;
+      m.uniforms.gaussianCoefficients.value = Array.from({ length: n }, (_, x) => Math.exp((-0.5 * x * x) / (r * r)));
+      m.needsUpdate = true;
+    });
+  }
+  setSize(width: number, height: number) {
+    super.setSize(Math.round((width / height) * BLOOM_H), BLOOM_H);
+    this.read.uStep.value.set(1 / width, 1 / height);
+    this.read.uTaps.value = Math.min(4, Math.max(1, Math.ceil(height / BLOOM_H)));
+  }
+}
 
 function hash(x: number, y: number) {
   const s = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
@@ -67,7 +119,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
       s.look[0] = 2 * ZION.peakAt[0] - s.look[0];
     }
   }
-  const pixelRatio = Math.min(devicePixelRatio, small ? 1.5 : 2);
+  const ratio = () => Math.min(devicePixelRatio, small ? 1.5 : 2);
 
   const scene = new THREE.Scene();
   // background (not only the clear color): the bloom pass restores the clear color outside a render target,
@@ -99,6 +151,10 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
       normals.push(nx / len, (2 * e) / len, nz / len);
     }
   }
+  // a dot keeps the same share of the on-screen gap to its neighbors at any zoom, window, or camera: the dot cover,
+  // and with it the ridge's brightness, stays put (the gap a step of terrain makes at one unit away, in drawing pixels)
+  const gap = (fov: number, step: number, height: number) => (step * height) / (2 * Math.tan((fov * Math.PI) / 360));
+  const dotScale = () => gap(camera.fov, STEP, innerHeight * ratio()) / gap(40, 0.07, REF_H);
   const geo = new THREE.BufferGeometry();
   geo.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
   geo.setAttribute("h", new THREE.Float32BufferAttribute(heights, 1));
@@ -110,13 +166,13 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     blending: THREE.AdditiveBlending,
     uniforms: {
       uTime: { value: 0 },
-      uPixel: { value: pixelRatio },
+      uDot: { value: dotScale() },
       uClimb: { value: -1 },
       uFade: { value: 1 },
     },
     vertexShader: /* glsl */ `
       attribute float h;
-      uniform float uTime, uPixel, uClimb, uFade;
+      uniform float uTime, uDot, uClimb, uFade;
       varying vec3 vColor;
       varying float vAlpha;
       void main() {
@@ -145,7 +201,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
         vec4 mv = modelViewMatrix * vec4(p, 1.0);
         // the plateau north of the summit runs higher than Mount Zion: it never grows past the summit's dots, and haze takes it
         float hc = min(h, 1.0);
-        gl_PointSize = min((0.65 + hc * 1.35) * uPixel * (14.0 / -mv.z), 2.4 * uPixel);
+        gl_PointSize = min((0.65 + hc * 1.35) * uDot * (14.0 / -mv.z), 2.4 * uDot);
         vAlpha = uFade * smoothstep(36.0, 12.0, -mv.z) * smoothstep(1.2, 5.0, -mv.z) * (0.3 + hc * 0.46 + rim * 0.45 + line * 0.6)
           * smoothstep(15.0, 10.5, length(position.xz)) * smoothstep(11.2, 7.5, position.z);
         gl_Position = projectionMatrix * mv;
@@ -294,11 +350,41 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   beacon(summit, "summit");
   anchors.push({ el: chip(words.summit ?? `${SUMMIT_M} m`, "summit", "summit"), pos: summit, id: "summit", kind: "summit" });
 
+  /* quiet oval (#38): behind the headline the frame fades toward the night before the bloom, the way a mask over the
+     finished picture would, so the words keep their contrast and no glow forms under them; full brightness outside */
+  const quietU = {
+    tDiffuse: { value: null },
+    uQuiet: { value: new THREE.Vector4(0, 0, 1, 1) },
+    uOn: { value: 0 },
+    uView: { value: new THREE.Vector2(innerWidth, innerHeight) },
+    uSky: { value: new THREE.Color(0x030813) },
+  };
+  const quietPass = () =>
+    new ShaderPass(new THREE.ShaderMaterial({
+      uniforms: quietU,
+      vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+      fragmentShader: /* glsl */ `
+        uniform sampler2D tDiffuse;
+        uniform vec4 uQuiet;
+        uniform float uOn;
+        uniform vec2 uView;
+        uniform vec3 uSky;
+        varying vec2 vUv;
+        void main() {
+          vec4 c = texture2D(tDiffuse, vUv);
+          float q = length((vec2(vUv.x, 1.0 - vUv.y) * uView - uQuiet.xy) / uQuiet.zw);
+          float k = mix(1.0, q < 0.55 ? mix(0.4, 0.55, q / 0.55) : mix(0.55, 1.0, min(1.0, (q - 0.55) / 0.45)), uOn);
+          // the eye sees light capped at white: cap it, then fade toward the night in display light, not linear light
+          vec3 seen = mix(c.rgb, min(c.rgb, vec3(1.0)), smoothstep(1.0, 0.55, k));
+          gl_FragColor = vec4(mix(uSky, seen, pow(k, 2.2)), c.a);
+        }`,
+    }));
+
   /* gpu: the renderer and its post chain hold hundreds of MB of GPU memory, so they exist only while the scene can be
      seen. A tab opened in the background builds nothing; a hidden tab frees them after RELEASE_MS. Scrolling away from
      the night keeps them: a rebuild costs ~0.1 s of main thread, a stall mid-scroll. The scene graph above stays in
      memory and uploads again on the next build. */
-  type Gpu = { renderer: THREE.WebGLRenderer; composer: EffectComposer; ready: boolean };
+  type Gpu = { renderer: THREE.WebGLRenderer; composer: EffectComposer; quiet: ShaderPass; ready: boolean };
   const RELEASE_MS = 10_000;
   let gpu: Gpu | null = null, failed = false, releaseTimer = 0;
   function build() {
@@ -312,15 +398,17 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
       onFail();
       return;
     }
-    renderer.setPixelRatio(pixelRatio);
+    renderer.setPixelRatio(ratio());
     renderer.setSize(innerWidth, innerHeight, false);
     renderer.setClearColor(0x030813, 1);
     const composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
+    const quiet = quietPass();
+    composer.addPass(quiet);
     // tight radius and a high threshold: glow on the rim, the beacons, and the arcs only, never a sky-wide haze
-    composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), small ? 0.5 : 0.55, 0.18, 0.72));
+    composer.addPass(new SteadyBloom(new THREE.Vector2(innerWidth, innerHeight), small ? 0.48 : 0.52, 0.18, 0.72));
     composer.addPass(new OutputPass());
-    const g: Gpu = (gpu = { renderer, composer, ready: false });
+    const g: Gpu = (gpu = { renderer, composer, quiet, ready: false });
     // the browser may take the context back (too many tabs): free ours, and build again when the scene is wanted
     canvas.addEventListener("webglcontextlost", () => {
       if (gpu !== g) return;
@@ -428,6 +516,18 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     const head = titleRuns.flatMap((run) =>
       [...run.range.getClientRects()].map((r) => ({ left: r.left, right: r.right, top: r.top + run.top, bottom: r.bottom - run.bottom })),
     );
+    // the quiet oval sits on the headline's ink wherever the layout puts it, and fades out with it (hero 0.16 to 0.42, app.ts)
+    let qL = Infinity, qR = -Infinity, qT = Infinity, qB = -Infinity;
+    for (const r of head) {
+      qL = Math.min(qL, r.left);
+      qR = Math.max(qR, r.right);
+      qT = Math.min(qT, r.top);
+      qB = Math.max(qB, r.bottom);
+    }
+    quietU.uOn.value = head.length && mode === "hero" ? 1 - Math.min(1, Math.max(0, (hero - 0.16) / 0.26)) : 0;
+    if (head.length) quietU.uQuiet.value.set((qL + qR) / 2, (qT + qB) / 2, Math.max((qR - qL) * 0.76, 1), Math.max((qB - qT) * 0.92, h * 0.2));
+    quietU.uView.value.set(w, h);
+    gpu.quiet.enabled = quietU.uOn.value > 0; // past the first screen and at the summit the pass costs nothing
     massif.updateMatrixWorld();
     for (const a of anchors) {
       v.copy(a.pos).applyMatrix4(massif.matrixWorld).project(camera);
@@ -461,12 +561,23 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   document.addEventListener("visibilitychange", onVisibility);
   onVisibility();
 
-  addEventListener("resize", () => {
+  function fit() {
     camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
+    terrainMat.uniforms.uDot.value = dotScale();
+    gpu?.renderer.setPixelRatio(ratio());
     gpu?.renderer.setSize(innerWidth, innerHeight, false);
+    gpu?.composer.setPixelRatio(ratio());
     gpu?.composer.setSize(innerWidth, innerHeight);
-  });
+  }
+  addEventListener("resize", fit);
+  // browser zoom, or a move to another screen, changes the pixel ratio, and not always with a resize
+  const watchRatio = () =>
+    matchMedia(`(resolution: ${devicePixelRatio}dppx)`).addEventListener("change", () => {
+      fit();
+      watchRatio();
+    }, { once: true });
+  watchRatio();
 
   return {
     rig,

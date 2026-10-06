@@ -5,7 +5,7 @@
     "danang": { "name": "ダナン", "short": "ダナン", "long": "ダナン" }
   },
   "offices": {
-    "plano": { "name": "プレイノ拠点", "role": "米国テキサス州" },
+    "plano": { "name": "プレイノ拠点", "role": "米国テキサス州", "tag": "米国の窓口" },
     "hcmc": { "name": "ホーチミン市拠点", "role": "ベトナム、ホーチミン市" },
     "danang": { "name": "ダナン拠点", "role": "ベトナム、ダナン" }
   },
@@ -32,10 +32,9 @@
     }
   },
   "sections": {
-    "mindset": "マインドセット",
-    "values": "コアバリュー",
     "platform": "プラットフォーム",
     "work": "実績",
+    "why": "選ばれる理由",
     "faq": "FAQ",
     "camps": "拠点",
     "summit": "お問い合わせ"

@@ -1,13 +1,10 @@
 {
   "skip": "सामग्री पर जाएँ",
   "hud": {
-    "alt": "ऊँचाई",
-    "speed": "V/S",
-    "summit": "मशाल"
+    "alt": "ऊँचाई"
   },
   "units": {
-    "m": "मी",
-    "ms": "मी/से"
+    "m": "मी"
   },
   "call": "{{phone}} पर कॉल करें",
   "whatsapp": "WhatsApp {{phone}}",

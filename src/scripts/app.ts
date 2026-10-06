@@ -1,29 +1,21 @@
 /* XionTechs · The Night Ascent — landing page orchestration.
-   Lenis + GSAP ScrollTrigger drive every scroll scene; see DESIGN.md › Motion. The shared chrome lives in chrome.ts. */
+   GSAP ScrollTrigger drives every scroll scene on the browser's native scroll; see DESIGN.md › Motion. The shared chrome lives in chrome.ts. */
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { $, $$, goTo, hdr, hud, lenis, mountCounters, onAltitude, reduce, root, rtl, syncHeader, twoTone } from "./chrome";
+import { $, $$, goTo, hdr, mountCounters, onAltitude, reduce, root, rtl, syncHeader, twoTone } from "./chrome";
 import { mountMountain } from "./mountain";
 import { mountTopo } from "./topo";
-import { mountRidge } from "./ridge";
 import { mountTrail } from "./trail";
 
 /* ---------- scene and maps ---------- */
 const scene = mountMountain($<HTMLCanvasElement>("#mountain"), $("#chips"), () => root.classList.add("no-webgl"));
 if (!scene) root.classList.add("no-webgl");
-const topo = mountTopo($<HTMLCanvasElement>(".topo canvas"));
 const topoBg = mountTopo($<HTMLCanvasElement>(".ascent-bg canvas"), { minor: "rgba(16, 48, 96, 0.07)", major: "rgba(16, 48, 96, 0.15)", amber: 0, cover: true } /* no live line: it shifted on scroll behind the copy */);
-const ride = mountRidge($<HTMLCanvasElement>(".ridge canvas"), $(".rider"));
 mountTrail($(".trek-frame"), $(".stages"));
 
-/* ---------- altimeter: the rider and both contour maps follow the reading ---------- */
-const riderAlt = $(".rider-alt"), riderTpl = riderAlt.dataset.tpl ?? "{n}";
-onAltitude((alt, shown) => {
-  riderAlt.textContent = riderTpl.replace("{n}", shown);
-  topo(alt);
-  topoBg(alt);
-});
+/* ---------- altitude: the log's contour backdrop follows the reading ---------- */
+onAltitude((alt) => topoBg(alt));
 
 /* ---------- scene gating: render only while the night is on screen ---------- */
 const night = { hero: false, summit: false };
@@ -43,8 +35,8 @@ ScrollTrigger.create({
 
 /* ---------- scroll scenes (created top to bottom; pins first in their section) ---------- */
 const mm = gsap.matchMedia();
-mm.add({ wide: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-preference)" }, (ctx) => {
-  const { wide, motion } = ctx.conditions as { wide: boolean; motion: boolean };
+mm.add({ motion: "(prefers-reduced-motion: no-preference)" }, (ctx) => {
+  const { motion } = ctx.conditions as { motion: boolean };
   if (!motion) {
     scene?.setHero(0);
     return;
@@ -54,34 +46,11 @@ mm.add({ wide: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-prefer
   gsap.timeline({
     scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom bottom", scrub: true, onUpdate: (s) => scene?.setHero(s.progress) },
   })
-    .to(".hero-copy", { yPercent: -16, autoAlpha: 0, ease: "none", duration: 0.42 }, 0)
+    .to(".hero-copy", { yPercent: -16, autoAlpha: 0, ease: "none", duration: 0.26 }, 0.16)
+    // the second screen is never only decoration: what we do rises as the headline leaves, and stays until the hero ends
+    .fromTo(".hero-next", { autoAlpha: 0, y: 32 }, { autoAlpha: 1, y: 0, ease: "none", duration: 0.12 }, 0.3)
     // y:0 clears the px offset GSAP parses from the CSS resting transform, so only yPercent drives the rise
     .fromTo(".hero-dawn", { y: 0, yPercent: 100 }, { y: 0, yPercent: 0, ease: "none", duration: 0.58 }, 0.42);
-
-  // mindset: the story rises, then the mission
-  gsap.from(".intro-right .lede, .mission, .intro-right .btn", {
-    autoAlpha: 0, y: 28, duration: 1.1, ease: "expo.out", stagger: 0.08,
-    scrollTrigger: { trigger: ".intro-right", start: "top 80%" },
-  });
-  gsap.from(".topo", { clipPath: "inset(0 0 100% 0)", duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: ".topo", start: "top 85%" } });
-
-  // core values: pinned; the value track slides past while the giant type drifts behind
-  const track = $(".track"), giant = $(".giant");
-  if (wide) {
-    const clip = track.parentElement!;
-    const dist = () => Math.max(0, track.scrollWidth - clip.clientWidth);
-    gsap.timeline({
-      scrollTrigger: { trigger: ".routes", start: "top top", end: () => `+=${Math.max(innerHeight * 0.8, dist() * 1.15)}`, pin: true, scrub: true, invalidateOnRefresh: true, onUpdate: (s) => ride(s.progress) },
-    })
-      .to(track, { x: () => (rtl ? dist() : -dist()), ease: "none" }, 0)
-      .to(giant, { x: () => (rtl ? 1 : -1) * Math.max(0, giant.scrollWidth - innerWidth * 0.9), ease: "none" }, 0);
-  } else {
-    gsap.to(giant, { xPercent: rtl ? 45 : -45, ease: "none", scrollTrigger: { trigger: ".routes", start: "top bottom", end: "bottom top", scrub: true, onUpdate: (s) => ride(s.progress) } });
-  }
-  gsap.from(".svc > *", {
-    autoAlpha: 0, y: 24, duration: 1, ease: "expo.out", stagger: 0.035,
-    scrollTrigger: { trigger: ".routes-band", start: wide ? "top 70%" : "top 85%" },
-  });
 
   // platform: the chart builds tier by tier, and the spokes draw out from the supervisor
   $$(".tier").forEach((t) => gsap.from(t, { autoAlpha: 0, y: 24, duration: 1.1, ease: "expo.out", scrollTrigger: { trigger: t, start: "top 95%" } }));
@@ -95,10 +64,12 @@ mm.add({ wide: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-prefer
   const base = $(".stage");
   ScrollTrigger.create({ trigger: base, start: "top 62%", onEnter: () => base.classList.add("is-on"), onLeaveBack: () => base.classList.remove("is-on") });
   // stats wipe in and count; log rows rise out of their rules
-  gsap.from(".stat", {
+  gsap.from(".stats .stat", {
     clipPath: rtl ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)", duration: 1.2, ease: "expo.out", stagger: 0.12,
     scrollTrigger: { trigger: ".stats", start: "top 85%" },
   });
+  // why XionTechs: each reason rises with its proof, then the figure counts up
+  gsap.from(".reason", { autoAlpha: 0, y: 24, duration: 1.1, ease: "expo.out", stagger: 0.1, scrollTrigger: { trigger: ".reasons", start: "top 85%" } });
   $$(".log").forEach((log) =>
     gsap.from(log.children, { autoAlpha: 0, y: 20, duration: 1, ease: "expo.out", stagger: 0.06, scrollTrigger: { trigger: log, start: "top 82%" } }),
   );
@@ -110,9 +81,6 @@ mm.add({ wide: "(min-width: 768px)", motion: "(prefers-reduced-motion: no-prefer
   // chips keep their CSS translate offsets, so no transform tween here (GSAP would inline translate: none)
   gsap.from(".city-chip", { autoAlpha: 0, filter: "blur(5px)", duration: 0.6, stagger: 0.08, ease: "power2.out", scrollTrigger: { trigger: map, start: "top 70%" } });
   gsap.from(".offices li", { autoAlpha: 0, filter: "blur(6px)", duration: 0.9, stagger: 0.1, ease: "power2.out", scrollTrigger: { trigger: ".offices", start: "top 85%" } });
-
-  // the altimeter steps aside for the footer's legal row
-  ScrollTrigger.create({ trigger: ".foot-word", start: "top bottom", onEnter: () => hud.classList.add("is-off"), onLeaveBack: () => hud.classList.remove("is-off") });
 
   // summit: the form panel rises from the ridge
   gsap.from(".brief", { autoAlpha: 0, y: 48, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: ".summit-grid", start: "top 75%" } });
@@ -134,9 +102,24 @@ function heroEntrance(delay = 0) {
   }
   tl.to(heroLines, { yPercent: 0, duration: 1.1, ease: "expo.out", stagger: 0.08 }, 0.15)
     .to(heroRest, { autoAlpha: 1, y: 0, duration: 1, ease: "expo.out", stagger: 0.06 }, 0.45)
-    .add(() => hud.classList.add("is-ready"), 0.9)
     .add(() => scene?.labels.forEach((el) => (el.style.transitionDelay = "")), 2.4);
   return tl;
+}
+
+/* the loader holds the page still: wheel, touch, and scroll keys wait until it folds away (the scrollbar stays put) */
+const scrollKeys = new Set([" ", "PageDown", "PageUp", "End", "Home", "ArrowDown", "ArrowUp"]);
+const hold = (e: Event) => e.preventDefault();
+const holdKeys = (e: KeyboardEvent) => scrollKeys.has(e.key) && e.preventDefault();
+function holdScroll(on: boolean) {
+  if (on) {
+    addEventListener("wheel", hold, { passive: false });
+    addEventListener("touchmove", hold, { passive: false });
+    addEventListener("keydown", holdKeys);
+  } else {
+    removeEventListener("wheel", hold);
+    removeEventListener("touchmove", hold);
+    removeEventListener("keydown", holdKeys);
+  }
 }
 
 async function boot() {
@@ -147,7 +130,6 @@ async function boot() {
   if (reduce || !loader || arrival) {
     loader?.remove();
     hdr.classList.remove("is-waiting");
-    hud.classList.add("is-ready");
     if (arrival) document.fonts.ready.then(() => {
       ScrollTrigger.refresh();
       goTo(arrival, true);
@@ -155,7 +137,7 @@ async function boot() {
     return;
   }
   hdr.classList.add("is-waiting");
-  lenis?.stop();
+  holdScroll(true);
   gsap.set(heroLines, { yPercent: (_: number, el: Element) => parseFloat(getComputedStyle(el).getPropertyValue("--ln-from")) || 110 });
   gsap.set(heroRest, { autoAlpha: 0, y: 24 });
   if (scene) Object.assign(scene.rig, { scale: 0.6, shift: 7, glow: 0, arcs: 0 });
@@ -188,7 +170,7 @@ async function boot() {
     .to(loader, { autoAlpha: 0, duration: 0.6, ease: "power2.out" }, 1.0)
     .add(() => {
       loader.remove();
-      lenis?.start();
+      holdScroll(false);
       ScrollTrigger.refresh();
     });
   heroEntrance(0.95);

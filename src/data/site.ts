@@ -36,10 +36,11 @@ export const arc = (a: City, b: City, lift: number) =>
 
 // postal lines stay as written for the post, in every language (rendered in <bdi>, so they read left to right in Arabic too)
 export const offices = [
-  { id: "plano", lines: ["7950 Legacy Drive, Suite 400", "Plano, Texas 75024, USA"] },
+  // Plano comes first everywhere (chips, offices, footer, Contact us): it is the US contact point (#43)
+  { id: "plano", lines: ["7950 Legacy Drive, Suite 400", "Plano, Texas 75024, USA"], us: true },
   // the Vietnam base camps carry no street address (owner's call, 2026-09-30)
-  { id: "hcmc", lines: [] as string[] },
-  { id: "danang", lines: [] as string[] },
+  { id: "hcmc", lines: [] as string[], us: false },
+  { id: "danang", lines: [] as string[], us: false },
 ] as const;
 
 // a phone number reads left to right even inside Arabic text: the isolates (LRI … PDI) stop the groups from reversing
@@ -49,13 +50,21 @@ export const phones = {
   wa: { href: "https://wa.me/14694399345", label: ltr("+1 469 439 9345") },
 };
 export const email = "vinni.tran@xiontechs.com";
+
+// the people a buyer talks to (PRODUCT.md › Evidence on Hand); names read the same in every language.
+// photo (a file in public/team/) and linkedin stay null until the owner supplies and approves them (#48): never a stock face
+export const leaders = [
+  { id: "vinni", name: "Vinni Vu Tran", photo: null as string | null, linkedin: null as string | null },
+] as const;
+// what happens after a brief is sent: shown under the form only once the owner gives who replies and in how many business days (#48)
+export const reply = null as null | { who: string; days: number };
 export const recruit = "recruit@xiontechs.com";
 
 // the five software engineering lines
 export const services = ["engineering", "insights", "robotics", "cocreation", "managed"] as const;
 
 // landing sections; subpages reach them through "/"
-export const sections = ["mindset", "values", "platform", "work", "faq", "camps", "summit"] as const;
+export const sections = ["platform", "work", "why", "faq", "camps", "summit"] as const;
 
 export const company = [
   ["/about-us/", "about"],

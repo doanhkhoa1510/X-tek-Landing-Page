@@ -3,8 +3,8 @@
   "description": "Cette page ne figure pas sur la carte de XionTechs.",
   "head": {
     "a": "404.",
-    "b": "Hors sentier."
+    "b": "Page introuvable."
   },
   "lede": "Cette page n’est pas sur la carte. Elle a peut-être été déplacée lors de la refonte du site.",
-  "home": "Retour à la succursale"
+  "home": "Retour à l’accueil"
 }
