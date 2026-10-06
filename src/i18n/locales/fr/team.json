@@ -1,6 +1,6 @@
 {
   "title": { "a": "Direction.", "b": "Les personnes avec qui vous parlez." },
-  "roles": { "vinni": "Fondateur et PDG", "thea": "Marketing produit et UX" },
+  "roles": { "vinni": "Fondateur et PDG" },
   "linkedin": "{{name}} sur LinkedIn",
   "reply": "{{who}} répond à chaque brief sous {{days}} jours ouvrés."
 }

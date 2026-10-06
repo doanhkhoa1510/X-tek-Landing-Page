@@ -55,7 +55,6 @@ export const email = "vinni.tran@xiontechs.com";
 // photo (a file in public/team/) and linkedin stay null until the owner supplies and approves them (#48): never a stock face
 export const leaders = [
   { id: "vinni", name: "Vinni Vu Tran", photo: null as string | null, linkedin: null as string | null },
-  { id: "thea", name: "Thea Thu Nguyen", photo: null as string | null, linkedin: null as string | null },
 ] as const;
 // what happens after a brief is sent: shown under the form only once the owner gives who replies and in how many business days (#48)
 export const reply = null as null | { who: string; days: number };

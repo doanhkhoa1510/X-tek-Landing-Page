@@ -1,6 +1,6 @@
 {
   "title": { "a": "リーダーシップ。", "b": "ご担当するメンバー。" },
-  "roles": { "vinni": "創業者兼CEO", "thea": "プロダクトマーケティングとUX" },
+  "roles": { "vinni": "創業者兼CEO" },
   "linkedin": "{{name}}のLinkedIn",
   "reply": "{{who}}が{{days}}営業日以内にすべてのご要望に返信します。"
 }

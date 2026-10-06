@@ -1,6 +1,6 @@
 {
   "title": { "a": "Leadership.", "b": "The people you talk to." },
-  "roles": { "vinni": "Founder and CEO", "thea": "Product marketing and UX" },
+  "roles": { "vinni": "Founder and CEO" },
   "linkedin": "{{name}} on LinkedIn",
   "reply": "{{who}} replies to every brief within {{days}} business days."
 }

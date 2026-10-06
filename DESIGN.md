@@ -577,7 +577,7 @@ The figure (count-up from 0, 1s power1.out at `top 85%`, once) sits over a Label
 - **Motion:** reasons rise 24px (1.1s expo, stagger 0.1) at `top 85%` of the row; figures count up like every Stat.
 
 ### Leadership (on About us)
-- **Layout:** a split head ("Leadership. / The people you talk to.") over a two-up hairline row (one-up on mobile). Each person: a 112px square face, the name as a Title, the role in Label (Slate), and a LinkedIn link in Label when the owner supplies one.
+- **Layout:** a split head ("Leadership. / The people you talk to.") over a hairline row of people (two-up on desktop, one-up on mobile). Each person: a 112px square face, the name as a Title, the role in Label (Slate), and a LinkedIn link in Label when the owner supplies one.
 - **Faces:** only the owner's photos (`leaders[].photo`, files in `public/team/`). Until then the square is Brand Navy with the initials in Saira 760 Snow. Never a stock portrait or a generated face (#48).
 - **Reply promise:** `reply` in `site.ts` adds one line under every brief form ("{who} replies to every brief within {days} business days."). It stays off until the owner gives both values.
 
