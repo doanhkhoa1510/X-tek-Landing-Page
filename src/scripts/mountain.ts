@@ -12,6 +12,9 @@ import { heightAt, PEAK, SUMMIT_M } from "./relief";
 // the picture is drawn against the window's height, not CSS pixels: browser zoom changes CSS pixels, and dots or a glow
 // sized in them crowded and brightened the ridge on zoom in, thinned and dimmed it on zoom out
 const REF_H = 960; // a 1080p screen at 100% zoom, the size the look is tuned at
+// the glow works at twice that height, the detail a Retina laptop gave it: fine enough to light lone dots, so the
+// whole slope wears a soft haze around a bright crest, not a thin lit line
+const BLOOM_H = REF_H * 2;
 
 /** bloom whose blur runs at a fixed height, so the glow spreads over the same share of the picture at any size */
 class SteadyBloom extends UnrealBloomPass {
@@ -42,11 +45,18 @@ class SteadyBloom extends UnrealBloomPass {
         float alpha = smoothstep(luminosityThreshold, luminosityThreshold + smoothWidth, luminance(texel.xyz));
         gl_FragColor = mix(vec4(defaultColor.rgb, defaultOpacity), texel, alpha);
       }`;
+    // each blur reaches a fifth further than three.js's 3, 5, 7, 9, 11 pixels: a wider glow at the same strength
+    this.separableBlurMaterials.forEach((m, i) => {
+      const r = [3, 5, 7, 9, 11][i] * 1.2, n = Math.ceil(r);
+      m.defines.KERNEL_RADIUS = n;
+      m.uniforms.gaussianCoefficients.value = Array.from({ length: n }, (_, x) => Math.exp((-0.5 * x * x) / (r * r)));
+      m.needsUpdate = true;
+    });
   }
   setSize(width: number, height: number) {
-    super.setSize(Math.round((width / height) * REF_H), REF_H);
+    super.setSize(Math.round((width / height) * BLOOM_H), BLOOM_H);
     this.read.uStep.value.set(1 / width, 1 / height);
-    this.read.uTaps.value = Math.min(4, Math.max(1, Math.ceil(height / REF_H)));
+    this.read.uTaps.value = Math.min(4, Math.max(1, Math.ceil(height / BLOOM_H)));
   }
 }
 
@@ -396,7 +406,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     const quiet = quietPass();
     composer.addPass(quiet);
     // tight radius and a high threshold: glow on the rim, the beacons, and the arcs only, never a sky-wide haze
-    composer.addPass(new SteadyBloom(new THREE.Vector2(innerWidth, innerHeight), small ? 0.32 : 0.36, 0.18, 0.72));
+    composer.addPass(new SteadyBloom(new THREE.Vector2(innerWidth, innerHeight), small ? 0.48 : 0.52, 0.18, 0.72));
     composer.addPass(new OutputPass());
     const g: Gpu = (gpu = { renderer, composer, quiet, ready: false });
     // the browser may take the context back (too many tabs): free ours, and build again when the scene is wanted
