@@ -985,7 +985,17 @@ section { position: relative; color: var(--fg); }
 .page-dawn { height: clamp(200px, 30vh, 320px); z-index: 0; }
 
 /* ---------- daylight bands ---------- */
-.facts, .why, .roles, .perks { padding-block: clamp(96px, 10vw, 160px); }
+.facts, .why, .roles, .perks, .leaders { padding-block: clamp(96px, 10vw, 160px); }
+.leaders { border-top: 1px solid var(--line-light); }
+/* leadership: real people, real roles; the face is the owner's photo or, until then, the initials (#48) */
+.leader-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); margin-top: clamp(48px, 5vw, 80px); }
+.leader { display: flex; align-items: center; gap: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
+.leader-face { flex: none; width: 112px; height: 112px; object-fit: cover; }
+.leader-mono { display: grid; place-items: center; font: 760 2.25rem / 1 var(--display); font-stretch: 125%; color: var(--snow); background: var(--navy); }
+.leader h3 { font-size: var(--fs-h3); }
+.leader p { margin-top: 6px; font: 500 var(--fs-label) / 1.3 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate); }
+.leader a { display: inline-block; margin-top: 12px; font: 500 var(--fs-label) / 1.3 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink); text-decoration-color: var(--navy); }
+.brief-reply { margin-top: 14px; font-size: var(--fs-small); color: var(--mist); }
 .facts .figures { margin-top: 0; }
 .why, .perks { border-top: 1px solid var(--line-light); }
 /* the dawn limb already ends in snow, so the first band starts close under it */
@@ -1197,6 +1207,8 @@ section { position: relative; color: var(--fg); }
 
 /* ---------- mobile ---------- */
 @media (max-width: 767px) {
+  .leader-list { grid-template-columns: 1fr; }
+  .leader-face { width: 88px; height: 88px; }
   .reasons { grid-template-columns: 1fr; row-gap: 40px; }
   .reason .stat { padding: 18px 0 10px; }
   .reason .stat dd { font-size: 3rem; }
