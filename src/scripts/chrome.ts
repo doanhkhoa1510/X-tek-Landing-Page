@@ -1,10 +1,9 @@
 /* XionTechs · The Night Ascent — the chrome every page shares.
-   Smooth scroll, header, altitude, clocks, accordion, and forms; see DESIGN.md › Components.
+   Native scroll, header, altitude, clocks, accordion, and forms; see DESIGN.md › Components.
    The landing page (app.ts) and the subpages (page.ts) both start here. */
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 import { mountIcons, paintDotMap } from "./dots";
 import { ZION } from "./zion-data";
 
@@ -17,14 +16,7 @@ export const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 export const $ = <T extends HTMLElement = HTMLElement>(s: string, r: ParentNode = document) => r.querySelector<T>(s)!;
 export const $$ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => [...r.querySelectorAll<T>(s)];
 
-/* ---------- smooth scroll ---------- */
-export const lenis = reduce ? null : new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1 });
-if (lenis) {
-  lenis.on("scroll", ScrollTrigger.update);
-  gsap.ticker.add((t) => lenis.raf(t * 1000));
-  gsap.ticker.lagSmoothing(0);
-}
-export const scrollPos = () => (lenis ? lenis.scroll : scrollY);
+/* ---------- scroll: the browser's own (no smoothing: the page stops when the hand stops) ---------- */
 const scrollMax = () => Math.max(1, root.scrollHeight - innerHeight);
 
 /* ---------- icons, maps ---------- */
@@ -122,7 +114,7 @@ const navLinks = $$<HTMLAnchorElement>('.hdr-nav a[href^="#"]');
 let themeQueued = false;
 export function syncHeader() {
   themeQueued = false;
-  const y = scrollPos();
+  const y = scrollY;
   hdr.classList.toggle("is-scrolled", y > 40);
   if (y > 40) setLang(false); // the list leaves with the ticker
   hdr.classList.toggle("is-compact", y > 80);
@@ -153,8 +145,9 @@ const queueHeader = () => {
     requestAnimationFrame(syncHeader);
   }
 };
-// in the scroll frame itself, after ScrollTrigger has moved the pins and limbs, so the ground never trails the page
-lenis ? lenis.on("scroll", syncHeader) : addEventListener("scroll", syncHeader, { passive: true });
+// in the scroll frame's animation callback: ScrollTrigger has already moved the pins and limbs in its own scroll
+// listener, and the frame has not painted yet, so the ground never trails the page
+addEventListener("scroll", queueHeader, { passive: true });
 addEventListener("resize", () => {
   grounds = null;
   queueHeader();
@@ -163,8 +156,7 @@ addEventListener("resize", () => {
 /* anchors: smooth, offset past the horizon bands and the header, focus moved for keyboard users */
 export function goTo(target: HTMLElement | null, immediate = false) {
   const offset = target?.matches(".camps, .summit") ? parseFloat(getComputedStyle(target).paddingTop) - 150 : target?.matches("h2, h3") ? -110 : 0;
-  if (lenis) lenis.scrollTo(target ?? 0, { offset, immediate, duration: 1.6, easing: (t) => 1 - Math.pow(1 - t, 4) });
-  else scrollTo({ top: target ? target.getBoundingClientRect().top + scrollY + offset : 0 });
+  scrollTo({ top: target ? target.getBoundingClientRect().top + scrollY + offset : 0, behavior: immediate || reduce ? "instant" : "smooth" });
   const focusEl = target ?? $("#top");
   focusEl.setAttribute("tabindex", "-1");
   focusEl.focus({ preventScroll: true });
@@ -200,7 +192,7 @@ const altWatchers: ((alt: number, shown: string) => void)[] = [];
 export const onAltitude = (fn: (alt: number, shown: string) => void) => altWatchers.push(fn);
 let shownAlt = "";
 gsap.ticker.add(() => {
-  const alt = Math.round(ZION.summitM * (1 - Math.min(1, scrollPos() / scrollMax()))); // the top of Mount Zion down to sea level
+  const alt = Math.round(ZION.summitM * (1 - Math.min(1, scrollY / scrollMax()))); // the top of Mount Zion down to sea level
   const a = alt.toLocaleString("en-US");
   if (a !== shownAlt) {
     shownAlt = a;
