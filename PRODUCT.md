@@ -28,7 +28,7 @@ The mountain is a symbol and a goal. The name "Xion" is inspired by Mount Zion, 
 
 ## Landing Flow
 
-Main → Platform (the AI-powered platform for smart schools, layer by layer) → The log (what we have achieved, what we have done, products, customers) → FAQ → Contact (base camps, then the brief) → Footer. The story of Xion and the seven core values live on About us (#36), so the landing page leads with what XionTechs does.
+Main → Platform (the AI-powered platform for smart schools, layer by layer) → The log (what we have achieved, what we have done, products, customers) → Why XionTechs (four reasons, each with its proof) → FAQ → Contact (base camps, then the brief) → Footer. The story of Xion and the seven core values live on About us (#36), so the landing page leads with what XionTechs does.
 
 ## Operating Context
 

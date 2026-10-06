@@ -1,0 +1,30 @@
+---
+/* 04 · Why XionTechs: four reasons to pick the team, each led by the fact that backs it (#47).
+   Every figure is in PRODUCT.md › Evidence on Hand; the links lead to the section that shows it. */
+import { useT } from "../../i18n";
+
+const t = useT(Astro.currentLocale, "why");
+// [id, figure, unit, the section that proves it]
+const reasons = [
+  ["zones", 3, "", "#camps"],
+  ["years", 25, "+", "#work"],
+  ["process", 5, "", ""],
+  ["ai", 2, "", "#platform"],
+] as const;
+---
+<section id="why" class="why-us" data-on="light" aria-labelledby="why-title">
+  <div class="wrap why-head">
+    <h2 id="why-title" class="tt"><span class="tt-a">{t("title.a")}</span> <span class="tt-b">{t("title.b")}</span></h2>
+    <p>{t("intro")}</p>
+  </div>
+  <ol class="wrap reasons">
+    {reasons.map(([id, n, unit, href]) => (
+      <li class="reason">
+        <dl class="stat"><dt>{t(`items.${id}.proof`)}</dt><dd><span data-count={n}>{n}</span>{unit}</dd></dl>
+        <h3>{t(`items.${id}.name`)}</h3>
+        <p>{t(`items.${id}.text`)}</p>
+        {href && <a class="reason-link" href={href}>{t(`items.${id}.link`)}</a>}
+      </li>
+    ))}
+  </ol>
+</section>

@@ -407,9 +407,10 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
   1. Main: hero `#top` (night, 210vh with a sticky 100svh stage)
   2. Platform `#platform` (snow): the smart-school product as one architecture chart, four tiers on a y-axis
   3. The log `#work` (snow, sticky head and trek): achieved, done, products, customers
-  4. FAQ `#faq` (ice)
-  5. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
-  6. Footer (snow)
+  4. Why XionTechs `#why` (snow): four reasons, each led by its proof
+  5. FAQ `#faq` (ice)
+  6. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
+  7. Footer (snow)
   - The story of Xion (`#mindset`) and the core values (`#values`) live on About us since #36: on the landing page they stood between the hero and what XionTechs does, and buyers lost the thread. The hero's outline pill ("Our mindset") leads to `/about-us/#mindset`.
 - **Class names keep the mountain vocabulary** (`.intro`, `.routes`, `.strata`, `.ascent`, `.camps`, `.summit`); ids carry the content names.
 - **Breakpoints:** desktop ≥ 992px. Tablet 768–991px: headings and copy stack to full width, sticky heads go static, and the route strip moves to columns 1/3. Mobile ≤ 767px:
@@ -529,7 +530,7 @@ Character: heavy pills with a machine voice. The fill answers the pointer.
 - **Theme:** on every scroll frame, the header probes the section under its row with `elementsFromPoint` and takes that section's `data-on` (dark/light). Text colors cross-fade in 0.4s. Each limb's flip (`--flip`, between glacier and limb-mid) is where its ground turns, and around it the soft link ink goes full (`.is-mid`) so the links hold contrast over the mid blue. Once scrolled, the header's ground (`.hdr-ground`) repaints the page's own backgrounds (sections, bands, limbs, clipped as on the page, on whole device pixels) behind the row, without their content, in the scroll frame itself; it fades out over 36px below the row. So a night/snow edge slides through the header exactly with the scroll, nothing ghosts behind the links, and no line, shadow, or tint parts the header from the page.
 
 ### Navigation (menu)
-- **Layout:** a dropdown under the toggle, a mono uppercase list of five anchors (Platform, Work, FAQ, Branches, Contact). From 1280px the anchors live in the header row and the dropdown holds only the company pages.
+- **Layout:** a dropdown under the toggle, a mono uppercase list of six anchors (Platform, Work, Why us, FAQ, Branches, Contact). From 1280px the anchors live in the header row and the dropdown holds only the company pages.
 - **Open:** a clip-path wipe (0.6s expo). Links drop in 8px with a 0.04s stagger.
 - **Close:** Esc (focus returns to the toggle), an outside click, or following a link.
 - **Anchors:** native `scrollTo` with `behavior: "smooth"` (instant for reduced motion and arrivals from another page). The target gets focus with `preventScroll`. Night sections with a top limb scroll past the limb, so the heading lands under the header.
@@ -563,6 +564,11 @@ Two block spans in one H2, following the Two-Tone Rule. On night the fill runs D
 
 ### Stat
 The figure (count-up from 0, 1s power1.out at `top 85%`, once) sits over a Label, with a top hairline. The row wipes in with clip-path from the left (1.2s expo, stagger 0.12). It sits three-up in the first log entry. The figures are real: 25+ years in software engineering, 5 pillars of delivery excellence, 3 offices.
+
+### Why XionTechs (reasons)
+- **Layout:** a two-tone H2 at 1/8 ("Why XionTechs. / Four reasons, each with proof.") with a one-line intro at 8/13 on its baseline; under it a four-up row (two-up on tablet, one-up on mobile). Each reason is a Stat (the proof figure over its Micro label), a Title, Body Small in Slate (max 36ch), and an optional Micro link with a navy underline to the section that shows the proof.
+- **Content:** every figure is in PRODUCT.md › Evidence on Hand: 3 offices (US contact, Vietnam build team, both time zones), 25+ years, 5 pillars (Agile + BMAD-METHOD + V-Model, metric-driven), 2 products (the AI-powered development platform and our own AI products). No reason without a proof; no comparison table until the owner approves each claim (#47).
+- **Motion:** reasons rise 24px (1.1s expo, stagger 0.1) at `top 85%` of the row; figures count up like every Stat.
 
 ### Story and mission (mindset, on About us)
 - **Layout:** the topo tile and the sticky two-tone H2 at 1/7; the story at 8/13 as three Lede paragraphs. The H2 reads "Starting with a story. / A mountain is our symbol." The first paragraph names Mount Zion once, as the inspiration for the name; this is the only place the page names it (the Symbol Rule). XionTechs is the only company named (the One-Name Rule: no parent group, no sister company, anywhere on the page). The mission sits under a hairline: a Title head ("Our mission") over Body in Slate, max 46ch. One outline pill leads to the core values.

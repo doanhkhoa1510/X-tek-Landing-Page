@@ -1,0 +1,32 @@
+{
+  "title": {
+    "a": "Pourquoi XionTechs.",
+    "b": "Quatre raisons, chacune prouvée."
+  },
+  "intro": "Ce qui nous distingue, et le fait derrière chaque affirmation.",
+  "items": {
+    "zones": {
+      "name": "Un contact aux États-Unis, une équipe de développement au Vietnam",
+      "text": "Vous échangez avec nous à Plano, au Texas, pendant votre journée de travail. Nos ingénieurs développent à Hô Chi Minh-Ville et à Da Nang : le travail avance pendant votre nuit.",
+      "proof": "Bureaux aux États-Unis et au Vietnam",
+      "link": "Voir nos bureaux"
+    },
+    "years": {
+      "name": "Profondeur d’ingénierie",
+      "text": "Plus de 25 ans en ingénierie logicielle, à chaque couche, des systèmes embarqués aux applications d’entreprise.",
+      "proof": "Années en ingénierie logicielle",
+      "link": "Voir nos réalisations"
+    },
+    "process": {
+      "name": "Un processus mesurable",
+      "text": "Agile avec la BMAD-METHOD et le V-Model, appuyé par des outils d’IA. Le pilotage de projet repose sur des indicateurs : vous lisez la qualité et l’avancement en chiffres.",
+      "proof": "Piliers de l’excellence de livraison"
+    },
+    "ai": {
+      "name": "L’IA dans notre façon de construire",
+      "text": "Une plateforme de développement agile propulsée par l’IA porte notre livraison, et nous créons nos propres produits d’IA pour les écoles.",
+      "proof": "Produits d’IA à nous",
+      "link": "Voir la plateforme"
+    }
+  }
+}
