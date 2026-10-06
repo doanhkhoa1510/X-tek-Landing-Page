@@ -104,10 +104,10 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   geo.setAttribute("h", new THREE.Float32BufferAttribute(heights, 1));
   geo.setAttribute("normal", new THREE.Float32BufferAttribute(normals, 3));
 
+  // normal blending, not additive: dots cover each other instead of summing, so a dense ridge never passes the snow color
   const terrainMat = new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
-    blending: THREE.AdditiveBlending,
     uniforms: {
       uTime: { value: 0 },
       uPixel: { value: pixelRatio },
@@ -121,7 +121,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
       varying float vAlpha;
       void main() {
         vec3 valley = vec3(0.08, 0.2, 0.62);
-        vec3 snow = vec3(0.9, 0.93, 1.0);
+        vec3 snow = vec3(0.521); // #BFBFBF on screen; the shader works in linear light
         vec3 c = mix(valley, snow, smoothstep(0.1, 0.9, h));
 
         // rim light: slopes seen edge-on catch the dawn (high) or the glacier glow (low)
@@ -156,7 +156,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
       void main() {
         float d = length(gl_PointCoord - 0.5);
         if (d > 0.5) discard;
-        gl_FragColor = vec4(vColor, (1.0 - d * 2.0) * vAlpha);
+        gl_FragColor = vec4(vColor, min(1.0, (1.0 - d * 2.0) * vAlpha)); // the float target does not clamp alpha
       }`,
   });
   massif.add(new THREE.Points(geo, terrainMat));
@@ -318,7 +318,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     const composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
     // tight radius and a high threshold: glow on the rim, the beacons, and the arcs only, never a sky-wide haze
-    composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), small ? 0.5 : 0.55, 0.18, 0.72));
+    composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), small ? 0.5 : 0.4, 0.18, 0.72));
     composer.addPass(new OutputPass());
     const g: Gpu = (gpu = { renderer, composer, ready: false });
     // the browser may take the context back (too many tabs): free ours, and build again when the scene is wanted
