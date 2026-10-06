@@ -3,17 +3,17 @@
   "description": "XionTechs se distingue par son engagement envers ses équipes, ses processus et sa technologie : sept valeurs fondamentales, une seule attitude « Get IT Done ».",
   "head": {
     "a": "À propos de nous.",
-    "b": "Nous renforçons la réussite des entreprises grâce aux solutions IT."
+    "b": "Nous développons des logiciels propulsés par l’IA depuis le Texas et le Vietnam."
   },
   "lede": "XionTechs se distingue par son engagement envers ses équipes, ses processus et sa technologie, comme le montrent les valeurs fondamentales ci-dessous.",
   "figures": {
     "label": "XionTechs en chiffres",
     "items": {
-      "years": "Années d’expérience",
-      "commitment": "Engagement client",
-      "coverage": "Couverture mondiale",
-      "verticals": "Secteurs d’activité",
-      "offerings": "Offres de services"
+      "years": "Années en ingénierie logicielle",
+      "pillars": "Piliers de l’excellence de livraison",
+      "offices": "Bureaux aux États-Unis et au Vietnam",
+      "services": "Lignes de services d’ingénierie logicielle",
+      "products": "Produits à nous"
     }
   },
   "why": {
@@ -28,7 +28,7 @@
       "quality": "Livraison de haute qualité",
       "rapid": "Ingénierie produit rapide",
       "reliable": "Solutions fiables",
-      "team": "Équipe d’experts 24 h/24, 7 j/7"
+      "team": "Des équipes aux heures des États-Unis et du Vietnam"
     }
   }
 }

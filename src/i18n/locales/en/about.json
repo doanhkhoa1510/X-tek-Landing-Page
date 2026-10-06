@@ -1,16 +1,16 @@
 {
   "title": "About us",
   "description": "XionTechs distinguishes itself through its dedication to its people, processes, and technology: seven core values, one “Get IT Done” attitude.",
-  "head": { "a": "About us.", "b": "We are increasing business success with IT solutions." },
+  "head": { "a": "About us.", "b": "We build AI-powered software from Texas and Vietnam." },
   "lede": "XionTechs distinguishes itself through its dedication to its people, processes, and technology, as the core values below show.",
   "figures": {
     "label": "XionTechs in figures",
     "items": {
-      "years": "Years of experience",
-      "commitment": "Client commitment",
-      "coverage": "Global coverage",
-      "verticals": "Industry verticals",
-      "offerings": "Service offerings"
+      "years": "Years in software engineering",
+      "pillars": "Pillars of delivery excellence",
+      "offices": "Offices in the USA and Vietnam",
+      "services": "Software engineering service lines",
+      "products": "Products of our own"
     }
   },
   "why": {
@@ -22,7 +22,7 @@
       "quality": "High quality delivery",
       "rapid": "Rapid product engineering",
       "reliable": "Reliable solutions",
-      "team": "24/7 expert team"
+      "team": "Teams on US and Vietnam hours"
     }
   }
 }
