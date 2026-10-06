@@ -4,7 +4,7 @@
 import { getCollection } from "astro:content";
 import { defaultLocale, localeOf } from "./config";
 
-type LongForm = "docs" | "jobs";
+type LongForm = "docs" | "jobs" | "cases";
 const split = (id: string) => [id.slice(0, id.indexOf("/")), id.slice(id.indexOf("/") + 1)] as const;
 
 /** Every slug of a collection. */
@@ -22,4 +22,9 @@ export async function entryFor<C extends LongForm>(collection: C, slug: string, 
 /** Every entry of a collection in a locale, English where a translation is missing. */
 export async function entriesFor<C extends LongForm>(collection: C, locale?: string) {
   return Promise.all((await slugs(collection)).map((slug) => entryFor(collection, slug, locale)));
+}
+
+/** Case studies cleared to show: owner-approved and NDA-checked (#49). */
+export async function publishedCases(locale?: string) {
+  return (await entriesFor("cases", locale)).filter(({ entry }) => entry.data.approved && entry.data.ndaChecked);
 }

@@ -1,0 +1,51 @@
+---
+/* A client case study (#49): problem, what we built, and the result, with the project facts at the side.
+   Only owner-approved, NDA-checked cases build a page (src/content/cases/README.md). */
+import { render } from "astro:content";
+import Sub from "../../../layouts/Sub.astro";
+import Cta from "../../../components/Cta.astro";
+import { localePaths, localize } from "../../../i18n/config";
+import { entryFor, publishedCases } from "../../../i18n/content";
+import { useT } from "../../../i18n";
+
+export async function getStaticPaths() {
+  const cases = (await publishedCases()).map((c) => c.slug);
+  return localePaths().flatMap(({ params }) => cases.map((slug) => ({ params: { ...params, slug } })));
+}
+
+const lang = Astro.currentLocale;
+const t = useT(lang, "cases"), tw = useT(lang, "work"), tc = useT(lang, "common");
+const { entry, translated } = await entryFor("cases", Astro.params.slug!, lang);
+const { Content } = await render(entry);
+const { client, title, summary, problem, built, stack, team, duration, result } = entry.data;
+const facts = [
+  [t("client"), client],
+  [t("team"), team],
+  [t("duration"), duration],
+  [t("stack"), stack.join(", ")],
+];
+const textLang = translated ? undefined : "en";
+---
+<Sub title={`${client} · ${title}`} description={summary} a={tw("title.a")} b={title} lede={summary} meta={[client]} lang={textLang} note={translated ? undefined : tc("englishOnly")}>
+  <section class="doc case" data-on="light" aria-label={title}>
+    <div class="wrap doc-grid">
+      <aside class="doc-toc job-facts" aria-label={t("label")}>
+        <dl>
+          {facts.map(([k, v]) => <div><dt class="label">{k}</dt><dd lang={textLang} dir={textLang && "ltr"}>{v}</dd></div>)}
+        </dl>
+        <a class="btn btn-line" href={`${localize("/", lang)}#work`}><span class="scr">{t("all")}</span></a>
+      </aside>
+      <div class="prose" lang={textLang} dir={textLang && "ltr"}>
+        <h2>{t("problem")}</h2>
+        <p>{problem}</p>
+        <h2>{t("built")}</h2>
+        <p>{built}</p>
+        <h2>{t("result")}</h2>
+        <p>{result}</p>
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Sub>

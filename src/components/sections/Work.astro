@@ -2,9 +2,13 @@
 /* 04 · The log: achieved, done, products, customers; the climber walks the trail as each camp is read (trail.ts). */
 import { services } from "../../data/site";
 import { useT } from "../../i18n";
+import { localize } from "../../i18n/config";
+import { publishedCases } from "../../i18n/content";
 
 const lang = Astro.currentLocale;
-const t = useT(lang, "work"), ts = useT(lang, "site"), tc = useT(lang, "common");
+const t = useT(lang, "work"), ts = useT(lang, "site"), tc = useT(lang, "common"), tk = useT(lang, "cases");
+// case studies show only once owner-approved and NDA-checked (#49); none are, so the entry shows the domains and the visit
+const cases = (await publishedCases(lang)).slice(0, 3);
 const stats = [["years", 25, "+"], ["pillars", 5, ""], ["offices", 3, ""]] as const;
 const products = ["school", "timetabling"] as const;
 const domains = ["edtech", "healthcare", "logistics"] as const;
@@ -57,6 +61,13 @@ const domains = ["edtech", "healthcare", "logistics"] as const;
         <ul class="tags" aria-label={t("customers.domainsLabel")}>
           {domains.map((id) => <li>{t(`customers.domains.${id}`)}</li>)}
         </ul>
+        {cases.length > 0 && (
+          <ul class="cases" aria-label={tk("label")}>
+            {cases.map(({ entry, slug }) => (
+              <li><a href={localize(`/work/${slug}/`, lang)}><span class="label">{entry.data.client}</span><h4>{entry.data.title}</h4><p>{entry.data.result}</p><span class="cases-read">{tk("read")}</span></a></li>
+            ))}
+          </ul>
+        )}
       </li>
     </ol>
   </div>

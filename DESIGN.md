@@ -576,6 +576,11 @@ The figure (count-up from 0, 1s power1.out at `top 85%`, once) sits over a Label
 - **Content:** every figure is in PRODUCT.md › Evidence on Hand: 3 offices (US contact, Vietnam build team, both time zones), 25+ years, 5 pillars (Agile + BMAD-METHOD + V-Model, metric-driven), 2 products (the AI-powered development platform and our own AI products). No reason without a proof; no comparison table until the owner approves each claim (#47).
 - **Motion:** reasons rise 24px (1.1s expo, stagger 0.1) at `top 85%` of the row; figures count up like every Stat.
 
+### Case studies (`/work/<slug>/`)
+- **Source:** `src/content/cases/<locale>/<slug>.md` (template in its README). A case builds its page and its card only when `approved` and `ndaChecked` are both true; today none are, so nothing shows (#49).
+- **Card:** in the log's Customers entry, under the domain tags, up to three hairline rows: client (Label), the title (Title), the result (Body Small, Slate), and a "Read the case study" Micro link.
+- **Page:** the job-post layout: project facts at the side (client, team, duration, stack) and Problem, What we built, Result, then the body, in the prose column; the closing ask band at the end.
+
 ### Leadership (on About us)
 - **Layout:** a split head ("Leadership. / The people you talk to.") over a hairline row of people (two-up on desktop, one-up on mobile). Each person: a 112px square face, the name as a Title, the role in Label (Slate), and a LinkedIn link in Label when the owner supplies one.
 - **Faces:** only the owner's photos (`leaders[].photo`, files in `public/team/`). Until then the square is Brand Navy with the initials in Saira 760 Snow. Never a stock portrait or a generated face (#48).

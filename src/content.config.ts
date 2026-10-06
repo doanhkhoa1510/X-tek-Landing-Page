@@ -31,4 +31,23 @@ const jobs = defineCollection({
   }),
 });
 
-export const collections = { docs, jobs };
+// client case studies (#49): one per project from #20. A case is published only once the owner approved every fact
+// and the client's NDA allows it; until both flags are true it builds no page and no landing card
+const cases = defineCollection({
+  loader: perLocale("./src/content/cases"),
+  schema: z.object({
+    client: z.string(),
+    title: z.string(),
+    summary: z.string(),
+    problem: z.string(),
+    built: z.string(),
+    stack: z.array(z.string()),
+    team: z.string(),
+    duration: z.string(),
+    result: z.string(),
+    approved: z.boolean().default(false),
+    ndaChecked: z.boolean().default(false),
+  }),
+});
+
+export const collections = { docs, jobs, cases };
