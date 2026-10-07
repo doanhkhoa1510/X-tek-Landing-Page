@@ -1,0 +1,51 @@
+{
+  "title": {
+    "a": "Our services.",
+    "b": "Engineering, data, and AI."
+  },
+  "intro": "Bring us in for one service, or for the whole product.",
+  "groups": {
+    "engineering": {
+      "name": "Digital product engineering",
+      "text": "Design, build, test, and run your product."
+    }
+  },
+  "items": {
+    "uxui": {
+      "name": "UX/UI design",
+      "text": "Interfaces people find easy to use: responsive layouts, clear navigation, and accessibility from the first screen."
+    },
+    "product": {
+      "name": "Product engineering",
+      "text": "Concept to deployment: architecture, prototypes, development, testing, and maintenance, built to scale and to ship sooner."
+    },
+    "lowcode": {
+      "name": "Low-code application development",
+      "text": "Apps built on low-code platforms, for less time and cost. They stay secure, scalable, and open to change."
+    },
+    "testing": {
+      "name": "Testing services",
+      "text": "Functional, automation, performance, and security testing on every platform you ship to."
+    },
+    "sustenance": {
+      "name": "Product sustenance and maintenance",
+      "text": "Bug fixes, performance tuning, new features, and compliance updates that keep a live product reliable and current."
+    },
+    "devops": {
+      "name": "DevOps and DevSecOps",
+      "text": "Automated CI/CD pipelines, infrastructure as code, and security checks at every stage of delivery."
+    },
+    "cocreation": {
+      "name": "Product co-creation",
+      "text": "We build the product with you. Your vision meets our engineering, with agile delivery and fast prototypes from the first idea to the market.",
+      "steps": {
+        "ideation": "Ideation and concept",
+        "ux": "User experience design",
+        "mvp": "Rapid prototype and MVP",
+        "launch": "Launch and deployment",
+        "marketing": "Product digital marketing"
+      },
+      "stepsLabel": "What co-creation covers"
+    }
+  }
+}

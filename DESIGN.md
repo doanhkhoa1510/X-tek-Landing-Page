@@ -409,14 +409,15 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
   - Headings get more space above than below.
 - **Section order and fields:**
   1. Main: hero `#top` (night, 210vh with a sticky 100svh stage)
-  2. Platform `#platform` (snow): the smart-school product as one architecture chart, four tiers on a y-axis
-  3. The log `#work` (snow, sticky head and trek): achieved, done, products, customers
-  4. Why XionTechs `#why` (snow): four reasons, each led by its proof
-  5. FAQ `#faq` (ice)
-  6. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
-  7. Footer (snow)
+  2. Services `#services` (snow): what a buyer can hire XionTechs for: the digital product engineering services (#35)
+  3. Platform `#platform` (snow): the smart-school product as one architecture chart, four tiers on a y-axis
+  4. The log `#work` (snow, sticky head and trek): achieved, done, products, customers
+  5. Why XionTechs `#why` (snow): four reasons, each led by its proof
+  6. FAQ `#faq` (ice)
+  7. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
+  8. Footer (snow)
   - The story of Xion (`#mindset`) and the core values (`#values`) live on About us since #36: on the landing page they stood between the hero and what XionTechs does, and buyers lost the thread. The hero's outline pill ("Our mindset") leads to `/about-us/#mindset`.
-- **Class names keep the mountain vocabulary** (`.intro`, `.routes`, `.strata`, `.ascent`, `.camps`, `.summit`); ids carry the content names.
+- **Class names keep the mountain vocabulary** (`.intro`, `.routes`, `.gear`, `.strata`, `.ascent`, `.camps`, `.summit`); ids carry the content names.
 - **Breakpoints:** desktop ≥ 992px. Tablet 768–991px: headings and copy stack to full width, sticky heads go static, and the route strip moves to columns 1/3. Mobile ≤ 767px:
   - The header becomes a flex row (logo left, menu right), and the CTA, the ticker phones, and the 3D camp chips hide.
   - The hero shortens to 170vh, the values stack vertically with no pin, the route strip narrows to 36px, and the map bleeds to the viewport edge.
@@ -528,13 +529,13 @@ Character: heavy pills with a machine voice. The fill answers the pointer.
 - **Row (64px):**
   - The logo: the mark plus XIONTECHS, with the pronunciation subtitle under the word (see Pronunciation subtitle). After 80px of scroll, "ION" and "ECHS" collapse through `grid-template-columns: 1fr → 0fr` over 0.7s, leaving **XT**, like UC's UNITEDCARRIERS → UC.
   - The `•••• MENU` toggle: four 3px squares at opacity .24/.5/.7/1. On hover they go to 1 and the odd dots hop 2px. On open, MENU rolls up and CLOSE rolls in.
-  - From 1280px, the five section links (Platform to Offices, Micro-sized Button type, Fg Soft) sit in the row, centred, with `COMPANY ▾` last; that toggle opens the same panel holding only About us, Careers, and Support. Contact stays with the CTA. Below 1280px the `•••• MENU` toggle sits next to the CTA and opens the full list.
+  - From 1280px, the six section links (Services to Offices, Micro-sized Button type, Fg Soft) sit in the row, centred, with `COMPANY ▾` last; that toggle opens the same panel holding only About us, Careers, and Support. Contact stays with the CTA. Below 1280px the `•••• MENU` toggle sits next to the CTA and opens the full list.
   - **Active marker:** the link of the section under the header takes Fg and a 2px amber rule that grows from the start (0.5s expo). On a company page, `COMPANY` carries the rule.
   - The `START A PROJECT` filled pill.
 - **Theme:** on every scroll frame, the header probes the section under its row with `elementsFromPoint` and takes that section's `data-on` (dark/light). Text colors cross-fade in 0.4s. Each limb's flip (`--flip`, between glacier and limb-mid) is where its ground turns, and around it the soft link ink goes full (`.is-mid`) so the links hold contrast over the mid blue. Once scrolled, the header's ground (`.hdr-ground`) repaints the page's own backgrounds (sections, bands, limbs, clipped as on the page, on whole device pixels) behind the row, without their content, in the scroll frame itself; it fades out over 36px below the row. So a night/snow edge slides through the header exactly with the scroll, nothing ghosts behind the links, and no line, shadow, or tint parts the header from the page.
 
 ### Navigation (menu)
-- **Layout:** a dropdown under the toggle, a mono uppercase list of six anchors (Platform, Work, Why us, FAQ, Offices, Contact). From 1280px the anchors live in the header row and the dropdown holds only the company pages.
+- **Layout:** a dropdown under the toggle, a mono uppercase list of seven anchors (Services, Platform, Work, Why us, FAQ, Offices, Contact). From 1280px the anchors live in the header row and the dropdown holds only the company pages.
 - **Open:** a clip-path wipe (0.6s expo). Links drop in 8px with a 0.04s stagger.
 - **Close:** Esc (focus returns to the toggle), an outside click, or following a link.
 - **Anchors:** native `scrollTo` with `behavior: "smooth"` (instant for reduced motion and arrivals from another page). The target gets focus with `preventScroll`. Night sections with a top limb scroll past the limb, so the heading lands under the header.
@@ -563,13 +564,24 @@ Character: heavy pills with a machine voice. The fill answers the pointer.
   - The headline block holds until 16%, then drifts up 16% and fades by 42% progress.
   - **What we do** (`.hero-next`) rises from 30% to 42% and stays to the end: a Micro label, the five service lines as Titles, and an outline pill to the log. It sits high on the night (top `clamp(120px, 17vh, 170px)`), above the rising dawn, so no screen of the hero is only decoration (#38).
   - **Copy night:** the headline and the second-screen block each carry their own soft night field (`::before`, `rgba(3,8,19,.92)`, blur 56px, 9% wider and 14% taller than the copy). It follows the copy's real size in every language, so the white ridge never runs through the text. Measured: at least 4.5:1 at the brightest pixel behind every headline line, the lede, and the service lines, in all 7 languages at 1440, 834, and 390 (min 8.6:1 for the headline).
-  - The dawn limb rises (`yPercent 100 → 0` at full opacity, never a fade) from 42% to 100%, ending in pure snow that meets the intro. GSAP's `fromTo` zeroes `y` so it does not stack on the CSS resting `translateY(100%)`.
+  - The dawn limb rises (at full opacity, never a fade) from 42% to 100%, ending in pure snow that meets the next section. GSAP's `fromTo` zeroes `y` so it does not stack on the CSS resting `translateY(100%)`.
+  - The limb is the bottom 90vh of a 200vh box (`yPercent 45 → 0`), so the box's top edge stays above the stage, which clips it. With a 90vh box that edge crossed the night mid-rise, and a GPU drew it as a 1px white line at 25% (#35). The gradients are sized in vh from the box's bottom, and `--flip`/`--mid` are fractions of the 200vh box.
 
 ### Two-tone headline
 Two block spans in one H2, following the Two-Tone Rule. On night the fill runs Dim Night → Glacier → Snow. On daylight it runs Dim Ink → Glacier → Navy Ink. Words come from `Intl.Segmenter`, so Chinese and Japanese lines fill word by word, and punctuation rides with the word before it.
 
 ### Stat
 The figure (count-up from 0, 1s power1.out at `top 85%`, once) sits over a Label, with a top hairline. The row wipes in with clip-path from the left (1.2s expo, stagger 0.12). It sits three-up in the first log entry. The figures are real: 25+ years in software engineering, 5 pillars of delivery excellence, 3 offices.
+
+### Gear (services)
+What a buyer can hire XionTechs for, straight under the hero, so the first daylight answers "what do you sell" (#35). Content from newxion.com/services: the Digital product engineering group only. Digital insights and analytics and Odoo ERP stay off (owner's call, 2026-10-07), and the source's third-party quotes are not carried over.
+- **Head:** a two-tone H2 at 1/8 ("Our services. / Engineering, data, and AI.") with a one-line intro at 8/13 on its baseline, like Why XionTechs.
+- **Group:** Digital product engineering (seven services), as one row: at 1/5 a top hairline, the group name (Title LG, max 14ch) and one Body Small line in Slate, sticky at `top: 130px` beside its list on desktop; the list at 5/13.
+- **List:** a hairline cell grid, two up (the 1px gaps are the rules, as in the subpage cells). A cell holds its index (`01`, Micro mono, Slate, tabular) in a 3ch column beside a Title (h4, max 22ch) over Body Small in Slate (max 46ch). The last service of an odd count spans the row. Hover tints Ice. Product co-creation carries its five steps as tags.
+- **No icons:** the source's icons say nothing a name does not, so the index is the only mark (Don't: an icon with no meaning). The index sits beside the name, never above it (no eyebrows).
+- **Breakpoints:** under 992px the group head stacks above its list and goes static; under 768px the list is one column and bleeds to the viewport edge, its text kept on the gutter.
+- **Spacing:** the section has no bottom padding; the platform that follows pads one section, so the two daylight sections share one gap.
+- **Motion:** each list's contents rise 24px (1.1s expo, stagger 0.03) at `top 85%`. The cells themselves stay put, so their hairline ground never shows as a grey block while the text is still hidden.
 
 ### Why XionTechs (reasons)
 - **Layout:** a two-tone H2 at 1/8 ("Why XionTechs. / Four reasons, each with proof.") with a one-line intro at 8/13 on its baseline; under it a four-up row (two-up on tablet, one-up on mobile). Each reason is a Stat (the proof figure over its Micro label), a Title, Body Small in Slate (max 36ch), and an optional Micro link with a navy underline to the section that shows the proof.

@@ -1,0 +1,42 @@
+---
+/* 02 · Services: what a buyer can hire XionTechs for, right under the hero (#35). From newxion.com/services,
+   kept to the software engineering services; Odoo ERP stays off (PRODUCT.md › Operating Context). */
+import { useT } from "../../i18n";
+
+const t = useT(Astro.currentLocale, "services");
+const groups = [
+  ["engineering", ["uxui", "product", "lowcode", "testing", "sustenance", "devops", "cocreation"]],
+] as const;
+const steps = ["ideation", "ux", "mvp", "launch", "marketing"] as const;
+const num = (i: number) => String(i + 1).padStart(2, "0");
+---
+<section id="services" class="gear" data-on="light" aria-labelledby="services-title">
+  <div class="wrap gear-head">
+    <h2 id="services-title" class="tt"><span class="tt-a">{t("title.a")}</span> <span class="tt-b">{t("title.b")}</span></h2>
+    <p>{t("intro")}</p>
+  </div>
+  {groups.map(([group, items]) => (
+    <div class="wrap gear-group">
+      <div class="gear-group-head">
+        <h3 id={`services-${group}`}>{t(`groups.${group}.name`)}</h3>
+        <p>{t(`groups.${group}.text`)}</p>
+      </div>
+      <ol class="gear-list" aria-labelledby={`services-${group}`}>
+        {items.map((id, i) => (
+          <li class="gear-item">
+            <span class="gear-num" aria-hidden="true">{num(i)}</span>
+            <div>
+              <h4>{t(`items.${id}.name`)}</h4>
+              <p>{t(`items.${id}.text`)}</p>
+              {id === "cocreation" && (
+                <ul class="tags" aria-label={t("items.cocreation.stepsLabel")}>
+                  {steps.map((s) => <li>{t(`items.cocreation.steps.${s}`)}</li>)}
+                </ul>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  ))}
+</section>

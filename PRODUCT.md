@@ -28,7 +28,7 @@ The mountain is a symbol and a goal. The name "Xion" is inspired by Mount Zion, 
 
 ## Landing Flow
 
-Main → Platform (the AI-powered platform for smart schools, layer by layer) → The log (what we have achieved, what we have done, products, customers) → Why XionTechs (four reasons, each with its proof) → FAQ → Contact (base camps, then the brief) → Footer. The story of Xion and the seven core values live on About us (#36), so the landing page leads with what XionTechs does.
+Main → Services (what a buyer can hire us for, from newxion.com/services, #35) → Platform (the AI-powered platform for smart schools, layer by layer) → The log (what we have achieved, what we have done, products, customers) → Why XionTechs (four reasons, each with its proof) → FAQ → Contact (base camps, then the brief) → Footer. The story of Xion and the seven core values live on About us (#36), so the landing page leads with what XionTechs does.
 
 ## Operating Context
 
@@ -51,6 +51,10 @@ Service lines (five, software engineering):
 5. Application managed services (monitoring, troubleshooting, enhancement, DBA, CI/CD release management)
 
 Left off as not XionTechs' own (old xiontechs.com never listed them): Odoo ERP implementation and BeeSuite ERP. Restore only if the owner confirms.
+
+Services (landing Services section, from newxion.com/services, crawled 2026-10-07), one group:
+- Digital product engineering: UX/UI design, product engineering, low-code application development, testing, product sustenance and maintenance, DevOps/DevSecOps, product co-creation (ideation and concept, UX design, rapid prototype and MVP, launch, product digital marketing).
+- The page's other groups stay off (owner's call, 2026-10-07, #35): Digital insights and analytics (BI and process modeling, AI/ML and generative AI engineering, data engineering, data analytics platforms, AI robotics and IoT) and Odoo ERP implementation. The page's third-party quotes (Warren Buffett, Analytics Insight, Gartner) are not used.
 
 Products: AI-powered platform for smart schools, AI-powered timetabling.
 

@@ -32,6 +32,7 @@
     }
   },
   "sections": {
+    "services": "Services",
     "platform": "Platform",
     "work": "Work",
     "why": "Why us",

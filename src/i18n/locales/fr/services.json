@@ -1,0 +1,51 @@
+{
+  "title": {
+    "a": "Nos services.",
+    "b": "Ingénierie, données et IA."
+  },
+  "intro": "Faites appel à nous pour un seul service, ou pour tout votre produit.",
+  "groups": {
+    "engineering": {
+      "name": "Ingénierie de produits numériques",
+      "text": "Nous concevons, développons, testons et exploitons votre produit."
+    }
+  },
+  "items": {
+    "uxui": {
+      "name": "Conception UX/UI",
+      "text": "Des interfaces simples à utiliser : mises en page adaptatives, navigation claire et accessibilité dès le premier écran."
+    },
+    "product": {
+      "name": "Ingénierie produit",
+      "text": "Du concept au déploiement : architecture, prototypes, développement, tests et maintenance, conçus pour évoluer et livrer plus vite."
+    },
+    "lowcode": {
+      "name": "Développement d’applications low-code",
+      "text": "Des applications créées sur des plateformes low-code, pour gagner du temps et réduire les coûts. Elles restent sécurisées, évolutives et ouvertes au changement."
+    },
+    "testing": {
+      "name": "Services de test",
+      "text": "Tests fonctionnels, d’automatisation, de performance et de sécurité, sur chaque plateforme où vous livrez."
+    },
+    "sustenance": {
+      "name": "Maintien et maintenance du produit",
+      "text": "Correction de bugs, optimisation des performances, nouvelles fonctionnalités et mises à jour de conformité pour garder un produit en production fiable et à jour."
+    },
+    "devops": {
+      "name": "DevOps et DevSecOps",
+      "text": "Pipelines CI/CD automatisés, infrastructure as code et contrôles de sécurité à chaque étape de la livraison."
+    },
+    "cocreation": {
+      "name": "Co-création de produit",
+      "text": "Nous construisons le produit avec vous. Votre vision rencontre notre ingénierie, avec une livraison agile et des prototypes rapides, de la première idée au marché.",
+      "steps": {
+        "ideation": "Idéation et concept",
+        "ux": "Conception de l’expérience utilisateur",
+        "mvp": "Prototype rapide et MVP",
+        "launch": "Lancement et déploiement",
+        "marketing": "Marketing digital du produit"
+      },
+      "stepsLabel": "Ce que couvre la co-création"
+    }
+  }
+}
