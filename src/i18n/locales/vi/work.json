@@ -36,6 +36,23 @@
     "text": "Kiến thức chuyên ngành của chúng tôi sâu nhất ở ba lĩnh vực. Tháng 10 năm 2025, một khách hàng đã đến thăm trung tâm triển khai của chúng tôi tại TP. Hồ Chí Minh để tìm hiểu về AI và robot trong giáo dục.",
     "domainsLabel": "Lĩnh vực",
     "domains": { "edtech": "EdTech", "healthcare": "Y tế", "logistics": "Logistics" },
+    "clientsLabel": "Danh sách khách hàng",
+    "projectsLabel": "Dự án cho {{client}}",
+    "clients": {
+      "varkey": {
+        "text": "Tập đoàn giáo dục K–12 có trụ sở tại Dubai.",
+        "projects": {
+          "pxp": "ParentXP, ứng dụng dành cho phụ huynh. Trợ lý AI Nova trả lời câu hỏi về trường học và soạn email gửi nhà trường."
+        }
+      },
+      "cyberhive": {
+        "text": "Công ty an ninh mạng của Anh, xây dựng mạng zero-trust với mã hóa kháng lượng tử.",
+        "projects": {
+          "diagnostic": "Đánh giá mức độ an ninh của một tổ chức và chỉ ra những điểm dễ bị tấn công.",
+          "intel": "Thu thập dữ liệu về mối đe dọa và cho đội ngũ bảo mật biết cần theo dõi điều gì."
+        }
+      }
+    },
     "camp": "Khách hàng"
   }
 }

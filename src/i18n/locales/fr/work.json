@@ -43,6 +43,23 @@
       "healthcare": "Santé",
       "logistics": "Logistique"
     },
+    "clientsLabel": "Nos clients",
+    "projectsLabel": "Projets pour {{client}}",
+    "clients": {
+      "varkey": {
+        "text": "Un groupe scolaire basé à Dubaï, de la maternelle au lycée.",
+        "projects": {
+          "pxp": "ParentXP, l’application des parents. Son assistant IA, Nova, répond aux questions sur l’école et rédige les e-mails au personnel."
+        }
+      },
+      "cyberhive": {
+        "text": "Une entreprise britannique de cybersécurité qui construit des réseaux zero trust protégés par un chiffrement résistant au quantique.",
+        "projects": {
+          "diagnostic": "Évalue la sécurité d’une organisation et montre où elle est exposée.",
+          "intel": "Collecte les données sur les menaces et montre à l’équipe de sécurité ce qu’il faut surveiller."
+        }
+      }
+    },
     "camp": "Clients"
   }
 }

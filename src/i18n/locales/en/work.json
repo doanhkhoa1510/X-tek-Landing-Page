@@ -36,6 +36,23 @@
     "text": "Our domain knowledge runs deepest in three sectors. In October 2025, a client visited our Ho Chi Minh City delivery center to explore AI and robotics in education.",
     "domainsLabel": "Domains",
     "domains": { "edtech": "EdTech", "healthcare": "Healthcare", "logistics": "Logistics" },
+    "clientsLabel": "Clients",
+    "projectsLabel": "Projects for {{client}}",
+    "clients": {
+      "varkey": {
+        "text": "A K–12 school group based in Dubai.",
+        "projects": {
+          "pxp": "ParentXP, the app for parents. Its AI assistant, Nova, answers school questions and drafts emails to staff."
+        }
+      },
+      "cyberhive": {
+        "text": "A UK cyber security company that builds zero-trust networks with quantum-safe encryption.",
+        "projects": {
+          "diagnostic": "Assesses an organization's security and shows where it is exposed.",
+          "intel": "Gathers threat data and shows a security team what to watch."
+        }
+      }
+    },
     "camp": "Customers"
   }
 }

@@ -636,7 +636,7 @@ The record of the climb so far: four camps, four entries. Drawn in the page's su
   1. **What we have achieved** (clock): the three-up stat row.
   2. **What we have done** (code): five log rows, one per service line.
   3. **Products** (box): two log rows.
-  4. **Customers** (linked rings): three domain tags; the October 2025 visit is in its body.
+  4. **Customers** (linked rings): three domain tags (the October 2025 visit is in its body), then one log row per client (#20): the client as a Title over one Body Small line, and its projects in a list set in from a 1px hairline. Each project is its name (Body Small 600, ink) over an optional line (Body Small, Slate, max 44ch); a project without public detail shows its name only.
 - **Log row:** a hairline list; each row is a Title (h4) over Body Small in Slate, max 46ch, padding 18px 0 20px. Rows rise 20px out of their rules (1s expo, stagger 0.06).
 - **Tag:** a 2px chip with a 32% ink border, Micro, no fill.
 
