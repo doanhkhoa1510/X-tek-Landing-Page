@@ -17,7 +17,7 @@ The values below are read from `src/i18n/locales/*/` today. When a native review
 
 ## Rules
 
-- **Keep in Latin letters:** XionTechs, Get IT done, product names (Parent Hub, Buddy360, AI Curriculum Hub, IoT Teacher Coach), method names (Agile, BMAD-METHOD, V-Model), and technical names a buyer searches for (AI, API gateway, MCP server, DevOps).
+- **Keep in Latin letters:** XionTechs, Get IT done, product names (Parent Hub, Buddy360, AI Curriculum Hub, IoT Teacher Coach), client and client-project names (Varkey Education, PXP, ParentXP, SXP, ESS, Nova, Cyberhive, Cyber Diagnostic, Threat Intel), method names (Agile, BMAD-METHOD, V-Model), and technical names a buyer searches for (AI, API gateway, MCP server, DevOps).
 - **"Brief" means the project request form.** In Vietnamese it is "yêu cầu" (not "brief"); other languages keep the word they use for the form button.
 - **Plain words, not climbing words** (DESIGN.md › The Plain-Words Rule): headings, buttons, and links say what the section is. The mountain stays a picture.
 - **Numbers** come only from PRODUCT.md › Evidence on Hand: 25+ years, 5 pillars, 3 offices, 5 service lines, 2 products.

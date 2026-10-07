@@ -43,6 +43,23 @@
       "healthcare": "医疗健康",
       "logistics": "物流"
     },
+    "clientsLabel": "客户名单",
+    "projectsLabel": "为 {{client}} 打造的项目",
+    "clients": {
+      "varkey": {
+        "text": "总部位于迪拜的 K–12 教育集团。",
+        "projects": {
+          "pxp": "ParentXP，面向家长的应用。内置 AI 助手 Nova，解答学校相关问题，并起草发给教职员工的邮件。"
+        }
+      },
+      "cyberhive": {
+        "text": "提供网络安全、风险与隐私服务的公司。",
+        "projects": {
+          "diagnostic": "网络安全评估与合规框架管理。",
+          "intel": "威胁情报监测与暗网监控。"
+        }
+      }
+    },
     "camp": "客户"
   }
 }

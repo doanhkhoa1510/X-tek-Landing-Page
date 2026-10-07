@@ -12,6 +12,12 @@ const cases = (await publishedCases(lang)).slice(0, 3);
 const stats = [["years", 25, "+"], ["pillars", 5, ""], ["offices", 3, ""]] as const;
 const products = ["school", "timetabling"] as const;
 const domains = ["edtech", "healthcare", "logistics"] as const;
+// clients the owner named in #20; names stay in Latin letters in every language. A project with no public detail
+// shows its name only (owner's call), so `about: false` keeps any sentence off it
+const clients = [
+  { id: "varkey", name: "Varkey Education", projects: [{ id: "pxp", name: "PXP", about: true }, { id: "sxp", name: "SXP", about: false }, { id: "ess", name: "ESS", about: false }] },
+  { id: "cyberhive", name: "Cyberhive", projects: [{ id: "diagnostic", name: "Cyber Diagnostic", about: true }, { id: "intel", name: "Threat Intel", about: true }] },
+] as const;
 ---
 <section id="work" class="ascent" data-on="light" aria-labelledby="work-title">
   <div class="ascent-bg" aria-hidden="true"><canvas></canvas></div>
@@ -60,6 +66,17 @@ const domains = ["edtech", "healthcare", "logistics"] as const;
         <p>{t("customers.text")}</p>
         <ul class="tags" aria-label={t("customers.domainsLabel")}>
           {domains.map((id) => <li>{t(`customers.domains.${id}`)}</li>)}
+        </ul>
+        <ul class="log clients" aria-label={t("customers.clientsLabel")}>
+          {clients.map((c) => (
+            <li>
+              <h4>{c.name}</h4>
+              <p>{t(`customers.clients.${c.id}.text`)}</p>
+              <ul class="projects" aria-label={t("customers.projectsLabel", { client: c.name })}>
+                {c.projects.map((p) => <li><b>{p.name}</b>{p.about && <span>{t(`customers.clients.${c.id}.projects.${p.id}`)}</span>}</li>)}
+              </ul>
+            </li>
+          ))}
         </ul>
         {cases.length > 0 && (
           <ul class="cases" aria-label={tk("label")}>

@@ -82,7 +82,10 @@ Delivery center of excellence, five pillars: domain knowledge, technologies, ski
 - Domains: EdTech, Healthcare, Logistics.
 - Customer event (newsroom, unnamed client): a visit to the XionTechs delivery center in Ho Chi Minh City on AI and robotics in education (2025-10-10).
 - Leadership: Vinni Vu Tran (Founder and CEO), Thea Thu Nguyen (product marketing and UX).
-- Absent, never fabricate: customer names, client logos, testimonials, metrics per case, pricing, certifications. The customers entry shows only the domains and the October 2025 visit until the user supplies them (tracked in #20); no "pending" note ever reaches a visitor.
+- Clients (named by the owner, #20, 2026-10-07):
+  - Varkey Education (K–12 school group, Dubai): PXP, SXP, ESS. PXP is ParentXP, the parents' app with the Nova AI assistant (App Store, since 2025-08). SXP and ESS have no public detail, so they show by name only until the owner describes them.
+  - Cyberhive (Cyberhive Technology Partners, thecyberhive.org: cybersecurity, risk, and privacy services; not the UK CyberHive of cyberhive.com): Cyber Diagnostic (cybersecurity assessments and compliance framework management) and Threat Intel (threat intelligence monitoring and dark web surveillance), worded from the platform's own home screen the owner shared (2026-10-07). The platform's third app, Insider Risk Management, stays off: the owner did not list it.
+- Absent, never fabricate: client logos, testimonials, metrics per case, pricing, certifications, and any project detail beyond the lines above. No "pending" note ever reaches a visitor.
 
 ## Product Principles
 
