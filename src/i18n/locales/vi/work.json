@@ -46,10 +46,10 @@
         }
       },
       "cyberhive": {
-        "text": "Công ty an ninh mạng của Anh, xây dựng mạng zero-trust với mã hóa kháng lượng tử.",
+        "text": "Công ty cung cấp dịch vụ an ninh mạng, quản trị rủi ro và quyền riêng tư.",
         "projects": {
-          "diagnostic": "Đánh giá mức độ an ninh của một tổ chức và chỉ ra những điểm dễ bị tấn công.",
-          "intel": "Thu thập dữ liệu về mối đe dọa và cho đội ngũ bảo mật biết cần theo dõi điều gì."
+          "diagnostic": "Đánh giá an ninh mạng và quản lý các khung tuân thủ.",
+          "intel": "Giám sát thông tin về mối đe dọa và theo dõi dark web."
         }
       }
     },

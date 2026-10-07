@@ -46,10 +46,10 @@
         }
       },
       "cyberhive": {
-        "text": "A UK cyber security company that builds zero-trust networks with quantum-safe encryption.",
+        "text": "A firm that offers cybersecurity, risk, and privacy services.",
         "projects": {
-          "diagnostic": "Assesses an organization's security and shows where it is exposed.",
-          "intel": "Gathers threat data and shows a security team what to watch."
+          "diagnostic": "Cybersecurity assessments and compliance framework management.",
+          "intel": "Threat intelligence monitoring and dark web surveillance."
         }
       }
     },

@@ -53,10 +53,10 @@
         }
       },
       "cyberhive": {
-        "text": "Une entreprise britannique de cybersécurité qui construit des réseaux zero trust protégés par un chiffrement résistant au quantique.",
+        "text": "Un cabinet de services en cybersécurité, gestion des risques et protection de la vie privée.",
         "projects": {
-          "diagnostic": "Évalue la sécurité d’une organisation et montre où elle est exposée.",
-          "intel": "Collecte les données sur les menaces et montre à l’équipe de sécurité ce qu’il faut surveiller."
+          "diagnostic": "Évaluations de cybersécurité et gestion des référentiels de conformité.",
+          "intel": "Veille sur les menaces et surveillance du dark web."
         }
       }
     },

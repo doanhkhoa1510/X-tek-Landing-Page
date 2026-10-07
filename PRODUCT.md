@@ -84,7 +84,7 @@ Delivery center of excellence, five pillars: domain knowledge, technologies, ski
 - Leadership: Vinni Vu Tran (Founder and CEO), Thea Thu Nguyen (product marketing and UX).
 - Clients (named by the owner, #20, 2026-10-07):
   - Varkey Education (K–12 school group, Dubai): PXP, SXP, ESS. PXP is ParentXP, the parents' app with the Nova AI assistant (App Store, since 2025-08). SXP and ESS have no public detail, so they show by name only until the owner describes them.
-  - CyberHive (UK cyber security, zero-trust networks with quantum-safe encryption): Cyber Diagnostic and Threat Intel. Neither is on CyberHive's public site; each carries one generic line the owner approved, with no claim of scale or result.
+  - Cyberhive (Cyberhive Technology Partners, thecyberhive.org: cybersecurity, risk, and privacy services; not the UK CyberHive of cyberhive.com): Cyber Diagnostic (cybersecurity assessments and compliance framework management) and Threat Intel (threat intelligence monitoring and dark web surveillance), worded from the platform's own home screen the owner shared (2026-10-07). The platform's third app, Insider Risk Management, stays off: the owner did not list it.
 - Absent, never fabricate: client logos, testimonials, metrics per case, pricing, certifications, and any project detail beyond the lines above. No "pending" note ever reaches a visitor.
 
 ## Product Principles
