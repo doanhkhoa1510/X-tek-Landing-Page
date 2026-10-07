@@ -53,6 +53,7 @@
     }
   },
   "sections": {
+    "services": "Services",
     "platform": "Plateforme",
     "work": "Réalisations",
     "why": "Pourquoi nous",

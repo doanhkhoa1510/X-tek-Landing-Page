@@ -49,8 +49,14 @@ mm.add({ motion: "(prefers-reduced-motion: no-preference)" }, (ctx) => {
     .to(".hero-copy", { yPercent: -16, autoAlpha: 0, ease: "none", duration: 0.26 }, 0.16)
     // the second screen is never only decoration: what we do rises as the headline leaves, and stays until the hero ends
     .fromTo(".hero-next", { autoAlpha: 0, y: 32 }, { autoAlpha: 1, y: 0, ease: "none", duration: 0.12 }, 0.3)
-    // y:0 clears the px offset GSAP parses from the CSS resting transform, so only yPercent drives the rise
-    .fromTo(".hero-dawn", { y: 0, yPercent: 100 }, { y: 0, yPercent: 0, ease: "none", duration: 0.58 }, 0.42);
+    // y:0 clears the px offset GSAP parses from the CSS resting transform, so only yPercent drives the rise;
+    // the limb is the bottom 90vh of a 200vh box, so it starts hidden at 45%
+    .fromTo(".hero-dawn", { y: 0, yPercent: 45 }, { y: 0, yPercent: 0, ease: "none", duration: 0.58 }, 0.42);
+
+  // services: each group's list rises service by service; the cells stay put, so their hairlines never show as a block
+  $$(".gear-list").forEach((list) =>
+    gsap.from(list.querySelectorAll(".gear-item > *"), { autoAlpha: 0, y: 24, duration: 1.1, ease: "expo.out", stagger: 0.03, scrollTrigger: { trigger: list, start: "top 85%" } }),
+  );
 
   // platform: the chart builds tier by tier, and the spokes draw out from the supervisor
   $$(".tier").forEach((t) => gsap.from(t, { autoAlpha: 0, y: 24, duration: 1.1, ease: "expo.out", scrollTrigger: { trigger: t, start: "top 95%" } }));

@@ -129,9 +129,9 @@ export function syncHeader() {
   host?.querySelectorAll<HTMLElement>(":scope > .horizon, .hero-dawn").forEach((limb) => {
     const r = limb.getBoundingClientRect();
     if (py < r.top || py > r.bottom) return;
-    const t = (py - r.top) / r.height, flip = parseFloat(getComputedStyle(limb).getPropertyValue("--flip"));
+    const cs = getComputedStyle(limb), t = (py - r.top) / r.height, flip = parseFloat(cs.getPropertyValue("--flip"));
     if (limb.matches(".dawn, .hero-dawn") ? t > flip : t < flip) on = on === "dark" ? "light" : "dark";
-    if (Math.abs(t - flip) < 0.06) mid = true;
+    if (Math.abs(t - flip) < (parseFloat(cs.getPropertyValue("--mid")) || 0.06)) mid = true;
   });
   hdr.dataset.on = on;
   hdr.classList.toggle("is-mid", mid);

@@ -53,6 +53,7 @@
     }
   },
   "sections": {
+    "services": "服务",
     "platform": "平台",
     "work": "成果",
     "why": "为何选择我们",

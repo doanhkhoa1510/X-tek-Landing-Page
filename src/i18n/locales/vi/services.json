@@ -1,0 +1,51 @@
+{
+  "title": {
+    "a": "Dịch vụ của chúng tôi.",
+    "b": "Kỹ thuật, dữ liệu và AI."
+  },
+  "intro": "Quý khách có thể chọn một dịch vụ riêng lẻ, hoặc giao trọn sản phẩm cho chúng tôi.",
+  "groups": {
+    "engineering": {
+      "name": "Kỹ thuật sản phẩm số",
+      "text": "Thiết kế, xây dựng, kiểm thử và vận hành sản phẩm của quý khách."
+    }
+  },
+  "items": {
+    "uxui": {
+      "name": "Thiết kế UX/UI",
+      "text": "Giao diện dễ dùng: bố cục tương thích mọi màn hình, điều hướng rõ ràng và khả năng tiếp cận ngay từ màn hình đầu tiên."
+    },
+    "product": {
+      "name": "Kỹ thuật sản phẩm",
+      "text": "Từ ý tưởng đến triển khai: kiến trúc, bản mẫu, phát triển, kiểm thử và bảo trì, sẵn sàng mở rộng và ra mắt sớm hơn."
+    },
+    "lowcode": {
+      "name": "Phát triển ứng dụng low-code",
+      "text": "Ứng dụng xây trên nền tảng low-code, tốn ít thời gian và chi phí hơn. Vẫn an toàn, dễ mở rộng và linh hoạt khi cần thay đổi."
+    },
+    "testing": {
+      "name": "Dịch vụ kiểm thử",
+      "text": "Kiểm thử chức năng, tự động hóa, hiệu năng và bảo mật trên mọi nền tảng quý khách phát hành."
+    },
+    "sustenance": {
+      "name": "Duy trì và bảo trì sản phẩm",
+      "text": "Sửa lỗi, tinh chỉnh hiệu năng, bổ sung tính năng và cập nhật tuân thủ, giúp sản phẩm đang chạy luôn ổn định và theo kịp thời đại."
+    },
+    "devops": {
+      "name": "DevOps và DevSecOps",
+      "text": "Quy trình CI/CD tự động, hạ tầng dưới dạng mã và kiểm tra bảo mật ở mọi khâu phát hành."
+    },
+    "cocreation": {
+      "name": "Đồng sáng tạo sản phẩm",
+      "text": "Chúng tôi cùng quý khách xây dựng sản phẩm. Tầm nhìn của quý khách gặp năng lực kỹ thuật của chúng tôi, với phát triển Agile và bản mẫu nhanh từ ý tưởng đầu tiên đến thị trường.",
+      "steps": {
+        "ideation": "Hình thành ý tưởng và khái niệm",
+        "ux": "Thiết kế trải nghiệm người dùng",
+        "mvp": "Bản mẫu nhanh và MVP",
+        "launch": "Ra mắt và triển khai",
+        "marketing": "Tiếp thị số cho sản phẩm"
+      },
+      "stepsLabel": "Đồng sáng tạo bao gồm"
+    }
+  }
+}

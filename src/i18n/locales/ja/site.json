@@ -32,6 +32,7 @@
     }
   },
   "sections": {
+    "services": "サービス",
     "platform": "プラットフォーム",
     "work": "実績",
     "why": "選ばれる理由",
