@@ -38,6 +38,7 @@ const sheet = sheets[`../styles/locales/${locale.code}.css`];
   <link rel="icon" href="/xiontechs-logo.png" />
   {sheet && <link rel="stylesheet" href={sheet} />}
   <script is:inline>document.documentElement.classList.add("js");</script>
+  <slot name="head" />
 </head>
 <body>
   <a class="skip" href="#main">{t("skip")}</a>

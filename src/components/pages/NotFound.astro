@@ -1,13 +1,29 @@
 ---
-/* The 404 body, shared by /404.html and each language's /<locale>/404/ (nginx serves the one matching the path). */
+/* The 404 body, shared by /404.html and each language's /<locale>/404/ (nginx serves the one matching the path).
+   Hosts that answer every missing page with /404.html (astro dev, astro preview) get the same result from the head script. */
 import Sub from "../../layouts/Sub.astro";
-import { localize } from "../../i18n/config";
+import { defaultLocale, localeOf, locales, localize } from "../../i18n/config";
 import { useT } from "../../i18n";
 
 const lang = Astro.currentLocale;
 const t = useT(lang, "notFound"), ts = useT(lang, "site");
+// the language prefixes, and this page's own ("" on the English /404.html)
+const prefixes = locales.filter((l) => l.code !== defaultLocale).map((l) => l.path);
+const here = localeOf(lang).code === defaultLocale ? "" : localeOf(lang).path;
 ---
 <Sub title={t("title")} description={t("description")} a={t("head.a")} b={t("head.b")} lede={t("lede")}>
+  <Fragment slot="head">
+    <script is:inline define:vars={{ prefixes, here }}>
+      // /404.html under a language's prefix hands over to that language's 404, which puts the visitor's address back
+      const [, first] = location.pathname.split("/");
+      if (!here && prefixes.includes(first) && location.pathname !== `/${first}/404/`) {
+        location.replace(`/${first}/404/?from=${encodeURIComponent(location.pathname + location.search + location.hash)}`);
+      } else if (here) {
+        const from = new URLSearchParams(location.search).get("from");
+        if (from?.startsWith(`/${here}/`)) history.replaceState(null, "", from);
+      }
+    </script>
+  </Fragment>
   <div slot="aside" class="actions page-actions">
     <a class="btn btn-fill" href={localize("/", lang)}><span class="scr">{t("home")}</span></a>
     <a class="btn btn-line" href={localize("/contact-us/", lang)}><span class="scr">{ts("pages.contact")}</span></a>

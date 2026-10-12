@@ -21,6 +21,7 @@ const { title, description, a, b, lede, meta = [], note, lang, dawn = true } = A
 const aside = !!lede || meta.length > 0 || !!note || Astro.slots.has("aside");
 ---
 <Base title={`${title} · ${brand.name}`} description={description}>
+  <slot name="head" slot="head" />
   <section id="top" class:list={["page-head", { "no-dawn": !dawn }]} data-on="dark" aria-labelledby="page-title">
     <div class="page-topo" aria-hidden="true"><canvas></canvas></div>
     <div class="wrap page-head-grid">
