@@ -6,13 +6,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { $, $$, goTo, hdr, mountCounters, onAltitude, reduce, root, rtl, syncHeader, twoTone } from "./chrome";
 import { mountMountain } from "./mountain";
 import { mountTopo } from "./topo";
-import { mountTrail } from "./trail";
+import { mountDial } from "./dial";
 
 /* ---------- scene and maps ---------- */
 const scene = mountMountain($<HTMLCanvasElement>("#mountain"), $("#chips"), () => root.classList.add("no-webgl"));
 if (!scene) root.classList.add("no-webgl");
 const topoBg = mountTopo($<HTMLCanvasElement>(".ascent-bg canvas"), { minor: "rgba(16, 48, 96, 0.07)", major: "rgba(16, 48, 96, 0.15)", amber: 0, cover: true } /* no live line: it shifted on scroll behind the copy */);
-mountTrail($(".trek-frame"), $(".stages"));
+mountDial($(".dial-frame"), $(".stages"));
 
 /* ---------- altitude: the log's contour backdrop follows the reading ---------- */
 onAltitude((alt) => topoBg(alt));
@@ -65,8 +65,8 @@ mm.add({ motion: "(prefers-reduced-motion: no-preference)" }, (ctx) => {
   // two-tone headlines: the ink line fills word by word, dim → glacier → ink
   $$(".tt").forEach(twoTone);
 
-  // the log: the climber walks the trail up Mount Zion (trail.ts), which wakes each later entry as its camp turns
-  // current; the first entry wakes as it rises into view
+  // the log: the dial fills arc by arc (dial.ts), which wakes each later entry as its arc turns current; the first
+  // entry wakes as it rises into view
   const base = $(".stage");
   ScrollTrigger.create({ trigger: base, start: "top 62%", onEnter: () => base.classList.add("is-on"), onLeaveBack: () => base.classList.remove("is-on") });
   // stats wipe in and count; log rows rise out of their rules

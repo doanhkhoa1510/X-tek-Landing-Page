@@ -1,5 +1,5 @@
 /* The routes sky: the massif's silhouette in dots, standing on the service band like
-   UC's truck stands on its road. The amber climber rides the ridge from the left base
+   UC's truck stands on its road. The amber rider rides the ridge from the left base
    to the summit while the service track slides past, then carries on down the ascent rail. */
 
 import { domeAt } from "./relief";
