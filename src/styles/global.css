@@ -641,7 +641,7 @@ section { position: relative; color: var(--fg); }
 .chart {
   --pad: clamp(20px, 2.4vw, 36px);
   --axis: 128px; /* the tier names */
-  --wire: rgba(16, 48, 96, 0.35); /* connectors: the leader tone of the trek */
+  --wire: rgba(16, 48, 96, 0.35); /* connectors: the survey leader tone */
   --link-wire: color-mix(in srgb, var(--wire) 80%, transparent); /* the 2px links between frames, a touch lighter than the 1px wires */
   --edge: rgba(16, 48, 96, 0.2); /* block and frame outlines */
   --tier-gap: 36px;
@@ -766,50 +766,38 @@ section { position: relative; color: var(--fg); }
 .ascent-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); }
 .ascent-side { grid-column: 1 / 7; align-self: start; position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; padding: 140px 0 72px; }
 .ascent-head p { margin-top: 24px; max-width: 40ch; color: var(--fg-soft); }
-/* the trek: an abstract survey; level lines (strata) cut from Mount Zion's south profile, a route that follows and climbs them */
-.trek { position: relative; flex: 1; min-height: 240px; margin-top: 40px; }
-.trek-frame { position: absolute; inset: 0; }
-.trek canvas, .trek svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.trek svg { overflow: visible; fill: none; }
-.trek-axis, .trek-scale path { stroke: rgba(16, 48, 96, 0.4); stroke-width: 1; }
-.trek-scale text { fill: var(--slate); stroke: none; font: 400 var(--fs-micro) var(--mono); letter-spacing: 0.05em; text-transform: uppercase; text-anchor: end; dominant-baseline: middle; font-variant-numeric: tabular-nums; }
-/* the path ahead: a hairline dash, as survey maps draw a trail; the walked part is the live amber line */
-.trail-way { stroke: rgba(16, 48, 96, 0.55); stroke-width: 1.2; stroke-dasharray: 3 4; stroke-linecap: round; }
-.trail-walked { stroke: var(--amber); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.camp { position: absolute; left: 0; top: 0; width: 0; height: 0; }
-.camp-dot {
-  position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 50%;
-  background: var(--snow); box-shadow: inset 0 0 0 1.5px var(--navy);
-  transition: background-color var(--t-ui) var(--ui), box-shadow var(--t-ui) var(--ui);
-}
-.camp.is-reached .camp-dot { background: var(--amber); box-shadow: inset 0 0 0 1.5px var(--amber); }
-.camp-dot::after { content: ""; position: absolute; inset: -1px; border-radius: 50%; border: 1px solid var(--amber); opacity: 0; }
-.camp-summit.is-reached .camp-dot::after { animation: ping 2.4s var(--expo) infinite; }
-.camp-tag {
-  position: absolute; left: 24px; top: 0; translate: 0 -50%;
+/* the dial: one ring in four arcs, one per entry, read clockwise from the top; the reading in the middle names the entry in view */
+.dial { position: relative; flex: 1; min-height: 240px; margin-top: 40px; container-type: size; }
+.dial-frame { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: min(100cqw, 100cqh); aspect-ratio: 1; }
+.dial svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; fill: none; }
+.dial-track { stroke: rgba(16, 48, 96, 0.16); stroke-width: 3; stroke-linecap: round; }
+.dial-tip { fill: none; stroke: rgba(16, 48, 96, 0.4); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: stroke var(--t-ui) var(--ui); }
+.dial-tip.is-full { stroke: var(--amber); }
+/* the filled part is the live amber line; it runs over its track as the entry is read */
+.dial-fill { stroke: var(--amber); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.dial-core { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; text-align: center; }
+/* the reading is two slot reels: a one-line window over a stack of every entry, spun by dial.ts */
+.dial-num { display: block; font: 800 clamp(4rem, 22cqw, 7rem) / 0.9 var(--display); font-stretch: 125%; letter-spacing: -0.02em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.dial-name { display: block; margin-top: 10px; font: 500 var(--fs-label) / 1.3 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
+.dial-num, .dial-name { overflow: hidden; height: 1lh; }
+.dial-reel { display: block; will-change: transform; }
+.dial-reel i { display: block; height: 1lh; font-style: normal; white-space: nowrap; text-align: center; }
+/* each entry's name beside its arc, tagged like a chip; the one in view turns amber */
+.dial-chip {
+  position: absolute; translate: 0 -50%;
   padding: 4px 7px;
   background: var(--snow); border: 1px solid var(--line-light); border-radius: 2px;
   font: 400 var(--fs-micro) / 1.2 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap;
   color: var(--slate); font-variant-numeric: tabular-nums;
   transition: background-color var(--t-ui) var(--ui), color var(--t-ui) var(--ui), border-color var(--t-ui) var(--ui);
 }
-.camp-tag b { font-weight: 500; color: var(--navy); transition: color var(--t-ui) var(--ui); }
-.camp-tag em { font-style: normal; }
-/* a hairline leader from the camp to its tag */
-.camp-tag::before { content: ""; position: absolute; top: 50%; right: 100%; width: 17px; height: 1px; background: rgba(16, 48, 96, 0.35); }
-.camp.to-left .camp-tag { left: auto; right: 24px; }
-.camp.to-left .camp-tag::before { right: auto; left: 100%; }
-.camp-summit .camp-tag, .camp.to-top .camp-tag { left: 0; right: auto; top: auto; bottom: 22px; translate: -50% 0; }
-.camp-summit .camp-tag::before, .camp.to-top .camp-tag::before { top: 100%; right: auto; left: 50%; width: 1px; height: 17px; }
-.camp.is-reached .camp-tag { background: var(--band); border-color: var(--band); color: var(--mist); }
-.camp.is-reached .camp-tag b { color: var(--snow); }
-.camp.is-current .camp-tag { background: var(--amber); border-color: var(--amber); color: var(--ink); }
-.camp.is-current .camp-tag b { color: var(--ink); }
-.climber { position: absolute; left: 0; top: 0; z-index: 1; will-change: transform; }
-.climber i { position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; background: var(--amber); rotate: 45deg; box-shadow: 0 0 0 2px var(--snow); }
-.stages { grid-column: 8 / 13; padding-bottom: calc(32vh - 160px); } /* room for the last stage to reach base camp's line, so the climber summits in view */
+.dial-chip.to-left { translate: -100% -50%; }
+.dial-chip b { font-weight: 500; color: var(--navy); transition: color var(--t-ui) var(--ui); }
+.dial-chip.is-current { background: var(--amber); border-color: var(--amber); color: var(--ink); }
+.dial-chip.is-current b { color: var(--ink); }
+.stages { grid-column: 8 / 13; padding-bottom: calc(32vh - 160px); } /* room for the last stage to reach the first's line, so the dial completes in view */
 .stage { padding: 14vh 0; opacity: 0.32; transition: opacity 0.6s var(--ui); }
-.stage:first-child { padding-top: calc(50vh + 80px); } /* base camp opens level with the middle of the mountain as the side pins; the climb starts there */
+.stage:first-child { padding-top: calc(50vh + 80px); } /* the first entry opens level with the middle of the dial as the side pins; the fill starts there */
 .stage.is-on { opacity: 1; }
 .stage-icon { margin-bottom: 18px; }
 .stage h3 { font-size: var(--fs-stage); font-weight: 760; overflow-wrap: break-word; }
@@ -1268,14 +1256,13 @@ section { position: relative; color: var(--fg); }
   .faq-head, .ascent-head { position: static; }
   .faq-list { margin-top: 48px; }
   .brief { margin-top: 48px; }
-  /* the mountain sits above the stages and scrolls away with the page: pinned, it hid the text passing beneath it (#46) */
+  /* the dial sits above the stages and scrolls away with the page: pinned, it hid the text passing beneath it (#46) */
   .ascent-grid { display: block; }
   .ascent-side { display: contents; }
   .ascent-head { margin-bottom: 24px; }
-  .trek { flex: none; height: calc(34vh + 28px); height: calc(34svh + 28px); min-height: 220px; margin: 0 calc(-1 * var(--gutter)); }
-  .trek-frame { inset: 14px var(--gutter); }
+  .dial { flex: none; height: calc(34vh + 28px); height: calc(34svh + 28px); min-height: 220px; }
   .stages { padding-bottom: 0; }
-  .stage { opacity: 1; } /* the chart no longer pins beside the entries, so none waits for its camp */
+  .stage { opacity: 1; } /* the dial no longer pins beside the entries, so none waits for its arc */
   .stage:first-child { padding-top: 6vh; }
   .foot-map { grid-column: 1 / -1; margin-bottom: 32px; }
   .foot-col, .foot-col:nth-child(2) { grid-column: span 3; }
@@ -1311,7 +1298,7 @@ section { position: relative; color: var(--fg); }
   .track { width: 100%; }
   .svc { flex: none; border-inline-start: 0; border-top: 1px solid var(--line); padding: 32px var(--gutter); }
   .rider-alt { display: none; }
-  .camp-tag, .trek-scale text { display: none; } /* no room for tags on a phone; the stage titles below carry the meaning */
+  .dial-chip { display: none; } /* no room for chips on a phone; the reading in the middle and the titles below carry the meaning */
   .stage { padding: 9vh 0; }
   .stage:first-child { padding-top: 2vh; }
   .worldmap { margin-inline: calc(-1 * var(--gutter)); }
@@ -1329,10 +1316,10 @@ section { position: relative; color: var(--fg); }
 
 /* ---------- right to left (Arabic) ----------
    The layout mirrors through logical properties and grid and flex order, the platform chart included. The lockups of
-   mark and name, the maps, the trek, and the 24-hour day bar keep their left-to-right drawing; text inside them still
+   mark and name, the maps, the dial, and the 24-hour day bar keep their left-to-right drawing; text inside them still
    reads right to left. The mountain's camera moves to the other side of the summit (mountain.ts). */
-[dir="rtl"] :is(.logo, .loader-logo, .foot-word, .worldmap, .daybar, .trek) { direction: ltr; }
-[dir="rtl"] :is(.worldmap, .daybar, .trek) :is(h3, h4, li, p, span, b) { unicode-bidi: plaintext; }
+[dir="rtl"] :is(.logo, .loader-logo, .foot-word, .worldmap, .daybar, .dial) { direction: ltr; }
+[dir="rtl"] :is(.worldmap, .daybar, .dial) :is(h3, h4, li, p, span, b) { unicode-bidi: plaintext; }
 /* the hub's columns mirror, so its spokes (drawn in left-to-right SVG space, symmetric about the centre) mirror too */
 [dir="rtl"] .spokes { scale: -1 1; }
 /* a headline line kept in Latin (the "Get IT done." accent) keeps its full stop at its own end */
