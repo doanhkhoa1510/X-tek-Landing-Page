@@ -246,12 +246,12 @@ components:
     textColor: "{colors.navy-ink}"
     typography: "{typography.figure}"
     padding: "22px 0 30px"
-  climber-chip:
-    backgroundColor: "{colors.night-band}"
-    textColor: "{colors.snow}"
+  dial-chip:
+    backgroundColor: "{colors.snow}"
+    textColor: "{colors.slate}"
     typography: "{typography.micro}"
     rounded: "{rounded.chip}"
-    padding: "5px 8px"
+    padding: "4px 7px"
   pronunciation:
     backgroundColor: "transparent"
     textColor: "currentColor"
@@ -304,7 +304,7 @@ The palette is the two logo colors, brand navy and Xion amber, stretched across 
   - The filled button on daylight, the ink of the footer wordmark and the logo mark, the contour lines of the topo tile (at 34% and 72% alpha), and the dot icons of the log.
   - It is also the focus-ring color on daylight surfaces.
 - **Xion Amber** (#F8C000): the logo swoosh.
-  - Always: the "GET IT DONE." hero line, the walked trail, camps and climber diamond, the 3D beacons and arcs, the map beacons and arcs, office phone links on night, and the altitude's amber contour on the topo tile.
+  - Always: the "GET IT DONE." hero line, the dial's filled arcs and current chip, the 3D beacons and arcs, the map beacons and arcs, office phone links on night, and the altitude's amber contour on the topo tile.
   - As a surface, only as the hover fill of every filled button and the focus fill of chips.
   - It is the focus-ring color on night.
 - **Amber Hi** (#FFD23D): the pressed (:active) state of a filled button. Nothing else.
@@ -320,7 +320,7 @@ The atmospheric limb between night and daylight always uses these five stops, in
 
 ### Neutral
 - **Night** (#030813): the hero, the summit section, the preloader, the WebGL clear color and `scene.background`, and the html/body background.
-- **Night Band** (#07101F): dark fields inside the flow: the value track, the brief form panel, reached camp tags, and map chips.
+- **Night Band** (#07101F): dark fields inside the flow: the value track, the brief form panel, and map chips.
 - **Navy Ink** (#0B1A33): primary text on snow and ice (17.4:1 on white), and the text on any amber fill (10.4:1).
 - **Snow** (#FFFFFF): daylight sections (mindset, values sky, the log, footer).
 - **Ice** (#F3F5F9): the FAQ field, subpage cell hovers, and the sky of the base camps' dusk limb.
@@ -343,13 +343,13 @@ The atmospheric limb between night and daylight always uses these five stops, in
 **The No-Amber-On-Snow Rule.** Amber is never text or a thin rule on white (1.6:1). On daylight, amber appears only in these forms:
 - As a fill that carries navy ink.
 - As a 2px graphic line inside a bounded figure (the intro topo tile's altitude contour).
-- As the climber diamond.
+- As the dial's filled arcs.
 
 A live line that crosses copy is navy.
 
 **The One-Office-List Rule.** The offices are always Plano, Ho Chi Minh City, Da Nang, in that order, and every count matches the list ("Three offices. One team."). Plano carries an amber "US contact point" tag on the landing offices and on Contact us, because US buyers look for it first (UAT round 1, #43).
 
-**The Plain-Words Rule.** The mountain is the picture, not the vocabulary. Every heading, button, link, and nav label says what the section is or does in business words, so a visitor who never reads the story still knows what XionTechs sells ("Our work.", "Questions before you start.", "Start a project.", "Back to top"). Climbing words may stay in decoration only: the 3D chips, the trail chart's elevations, the rider reading, and the footer's dictionary entry (UAT round 1, #42).
+**The Plain-Words Rule.** The mountain is the picture, not the vocabulary. Every heading, button, link, and nav label says what the section is or does in business words, so a visitor who never reads the story still knows what XionTechs sells ("Our work.", "Questions before you start.", "Start a project.", "Back to top"). Climbing words may stay in decoration only: the 3D chips, the rider reading, and the footer's dictionary entry (UAT round 1, #42).
 
 **The No-Placeholder Rule.** Visitors never see an internal note. Anything the user must still supply (customer names, quotes) stays off the page and is tracked as a GitHub issue (#20); an entry shows only the facts on hand. A placeholder that looks finished is a fabrication, and one that says "pending" tells a buyer we have nothing to show (UAT round 1, #37).
 
@@ -377,7 +377,7 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
 - **Lede** (400, clamp(17px, 1.35vw, 19px), 1.5, max 44–46ch): the hero and story paragraphs.
 - **Body** (400, 17px, 1.5, max 40–60ch) and **Body Small** (400, 15px, 1.5, max 30ch in value columns): prose.
 - **Button** (Martian Mono 500, 12px, 0.03em, uppercase): every pill and the menu toggle.
-- **Label** (Martian Mono 500, 11px, 0.04em, uppercase): stat labels, the trailing camp name of a log entry, office roles, form labels, footer column heads. A label never sits above a heading.
+- **Label** (Martian Mono 500, 11px, 0.04em, uppercase): stat labels, the reading's label of a log entry, office roles, form labels, footer column heads. A label never sits above a heading.
 - **Micro** (Martian Mono 400–500, 10–10.5px, 0.05em, uppercase): the ticker, chips, domain tags, the rider reading, captions, and the legal line. 10px is the floor on every breakpoint.
 - **IPA** (Noto Sans Mono 400, 11px under the wordmark, 17px in the footer entry, 0.02em, never uppercase): the pronunciation only.
 
@@ -411,7 +411,7 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
   1. Main: hero `#top` (night, 210vh with a sticky 100svh stage)
   2. Services `#services` (snow): what a buyer can hire XionTechs for: the digital product engineering services (#35)
   3. Platform `#platform` (snow): the smart-school product as one architecture chart, four tiers on a y-axis
-  4. The log `#work` (snow, sticky head and trek): achieved, done, products, customers
+  4. The log `#work` (snow, sticky head and dial): achieved, done, products, customers
   5. Why XionTechs `#why` (snow): four reasons, each led by its proof
   6. FAQ `#faq` (ice)
   7. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
@@ -470,7 +470,7 @@ Each script face follows the brand face in the stack, so Latin words, numbers, a
 ### Right to left (Arabic)
 - **Mirror:** the layout mirrors through logical properties and grid and flex order. The headline and copy sit on the right, and the menu and CTA on the left. The mountain's camera moves to the other side of the summit (`mountain.ts`), so the hill rises on the left without flipping the terrain.
 - **Motion:** the value track, the giant type, the ridge and its rider, and the stat wipes run right to left; the track's fade moves to its exit edge.
-- **Kept left to right:** the lockups of mark and name, the world map, the platform chart, the trek, and the 24-hour day bar keep their drawing. Text inside them still reads right to left (`unicode-bidi: plaintext`).
+- **Kept left to right:** the lockups of mark and name, the world map, the platform chart, the dial, and the 24-hour day bar keep their drawing. Text inside them still reads right to left (`unicode-bidi: plaintext`).
 - **Digits:** Latin digits everywhere. Phone numbers carry LTR isolates in `site.ts`, and postal lines render in `<bdi>`, so their digit groups never reverse.
 - **Fallback English:** copy that falls back to English on an Arabic page is isolated left to right, so its full stop stays at its own end. Long-form pages without an Arabic file render the English text with `dir="ltr"`, and the title stays anchored to the right edge.
 
@@ -489,7 +489,7 @@ The system is flat. Depth comes from light and from layers sliding over each oth
 ## Shapes
 
 - **Pill** (999px): every button, the only rounded control.
-- **Chip** (2px): 3D chips, map chips, and the climber chip. Hard, nearly square, like survey tags.
+- **Chip** (2px): 3D chips, map chips, and the dial chips. Hard, nearly square, like survey tags.
 - **Square** (0): grids, bands, cells, the form panel, and inputs. Inputs are a single bottom hairline with no box.
 - **Dot:** everything drawn is made of dots.
   - Mount Zion is particles.
@@ -500,7 +500,7 @@ The system is flat. Depth comes from light and from layers sliding over each oth
   - An amber check-swoosh forms the upper half.
   - A navy T carries a crescent crossbar.
   - The navy parts use `currentColor`, so the mark goes white on night and navy on snow. The amber never changes.
-- **Diamond:** the trek climber and the ridge rider are 14px amber squares rotated 45°. They are the only rotated shapes.
+- **Diamond:** the ridge rider is a 14px amber square rotated 45°. It is the only rotated shape.
 
 ## Components
 
@@ -618,21 +618,20 @@ The AI-powered platform for smart schools (from the newxion.com/solutions diagra
 - **Y-axis:** a hairline runs down the whole chart. The four tier names (Users and apps, Services, Infrastructure and data, Devices) sit left of it in a 128px column in mono Label, Slate, each with a 6px navy dot on the axis. Under 992px the names head their tiers in Navy Ink with the dot in front, so they outrank the group names.
 - **Blocks:** square, snow over the paper, a 1px Brand Navy outline at 20%, Host Grotesk 500 at 14px in Navy Ink; hover tints Ice. Roles are Title h4 centred over their column of app blocks, whose names centre too. Tiers stand 36px apart.
 - **Frames:** each group (AI services, Agents, App services, Infrastructure and connectivity, Modern data platform) sits in a hairline frame at the block outline tone, 12px in, its name inside at the top left in Micro mono, Slate. Roles and devices stay unframed.
-- **Wires:** Brand Navy at 35%, the trek's leader tone. A wire only stands for a real link and always runs frame to frame across the 20px gap, with a 5px navy node centred on each frame's border, drawn over the frames so nothing covers an end. No decorative wires between tiers. AI and app services link into the agents from either side (from below the agents under 1200px), and the two infrastructure frames link to each other (one over the other on mobile). From 1200px a trunk drops from the agents frame to the middle of that link: both sit on the chart's centre line. From 1360px the data platform runs as one row with a wire through its gaps: a pipeline.
+- **Wires:** Brand Navy at 35%, the dial's leader tone. A wire only stands for a real link and always runs frame to frame across the 20px gap, with a 5px navy node centred on each frame's border, drawn over the frames so nothing covers an end. No decorative wires between tiers. AI and app services link into the agents from either side (from below the agents under 1200px), and the two infrastructure frames link to each other (one over the other on mobile). From 1200px a trunk drops from the agents frame to the middle of that link: both sit on the chart's centre line. From 1360px the data platform runs as one row with a wire through its gaps: a pipeline.
 - **Hub:** the supervisor (Night Band, the one dark field) at the centre of a 3×3 grid with "Routes each request" under it; Policy, Buddy, and Academic reports above, Wellbeing and More agents below. Spokes are SVG lines in percent coordinates from the centre to each cell centre (`pathLength="1"`; no viewBox, so no non-scaling-stroke, which breaks the dash maths). Hover on an agent lights its spoke amber at 2px, and hover on the supervisor lights them all: a 2px amber line inside a bounded figure, so the No-Amber-On-Snow Rule holds. On mobile the hub folds into the supervisor, its note, and the agents two up, without spokes.
 - **Breakpoints:** services run AI | Agents | App at 2:5:2 from 1200px, then Agents over AI and App. Roles and devices run five-up, then two-up with the fifth spanning on mobile; device icons stack over their names from 768 to 1199px.
 - **Spacing:** the strata and the log are both daylight, so they share one gap: the strata section has no bottom padding, and the log that follows pads clamp(64px, 6vw, 96px) on top (its sticky head already sits 140px down), or one full section under 992px, where that head is static.
 - **Entrance:** once per tier, no scroll-scrubbed states: each tier rises 24px (1.1s expo) with its frames and links, and the spokes draw out from the supervisor (dashoffset 1→0, 0.9s, stagger 0.06).
 
-### Mountain trek (the log)
-The record of the climb so far: four camps, four entries. Drawn in the page's survey language (dot matrix, hairlines, mono chips, amber as the one live accent), never as an illustration: no tents, flags, casings or filled shapes.
-- **Panel:** the left half stays in view (sticky, 100vh) while the stages scroll past on the right. On tablet and mobile it is a static chart (34svh + 28px) above the entries and scrolls away with the page: it never pins, so it never covers their text (#46). Code: `trail.ts` (canvas for the mountain, inline SVG for the trail and scale, HTML for camps and climber).
-- **Mountain:** Mount Zion from the south, framed closer than the routes sky so the dome fills it: the real skyline (highest ground behind each point, from `heightAt`). The routes-sky dot matrix (7px grid, 6px under 560px wide; body dots 20% navy, skyline band 62%) over a white knockout that hides the contour backdrop. Both edges fade out over 10–14% instead of cropping. Dashed 50 m guides (12% navy) run behind it.
-- **Elevation scale:** a hairline axis on the east edge, 10 m ticks, labels every 50 m ("700 m", Micro mono, slate). Labels hide on mobile.
-- **Trail:** switchbacks up the dome's face from the trailhead (609 m) to the summit. Straight traverses joined by semicircle hairpins (radius up to 10px), cut inside the ground at each level; legs vary in length, wander toward the summit and tighten as the dome narrows. About one leg per 80px of relief (36px on narrow). Ahead: a 1.2px navy dash (3/4, 55%). Walked: a 2px amber line up to the climber. Always climbs upward on screen; never a road, rail or straight bar.
-- **Camps:** an 8px ring (1.5px navy) on the trailhead, two hairpins and the summit; it fills amber once reached, and the summit ring pings. Each has a tag with a 17px hairline leader, pointing outside its hairpin (the summit's points up): `01 Achieved · 614 m`, `02 Done`, `03 Products`, `04 Customers · 765 m` (the entry names, not climbing words, #42), elevations from the real profile. Tag states: ahead = snow with a light border and slate text; reached = Night Band with mist text; current (the camp the climber is nearest) = amber with ink text, like a focused hero chip. On mobile the tags hide.
-- **Climber:** the amber diamond (14px, 2px snow halo), like the ridge rider. Wide: it waits on base camp until the side column pins with the chart in full view, then stands on camp s while stage s's title holds the line where base camp's title stood at that moment, and walks between camps in step with scroll. On wide screens the first entry opens level with the middle of the mountain (padding-top 50vh + 80px), so that line runs through the mountain's middle; the stage list keeps calc(32vh - 160px) below so the climber summits before the side unpins. Tablet and mobile: it walks the whole trail while the chart crosses the middle of the screen (top 70% → bottom 30%), and every entry shows at full opacity.
-- **Entries:** 32% opacity, then full: the first as its top passes `top 62%`, each later one as its camp turns current. Each entry, in order: a dot icon, a Stage title, Body, and its payload. No label trails the entry: the camp name lives in `data-camp`, and `trail.ts` reads it for the chart's camp tag (a lone label under an entry read as a stray, #37).
+### The dial (the log)
+The record of the climb so far: four entries, one arc each. Drawn in the page's survey language (hairlines, mono chips, amber as the one live accent), never as an illustration: no tents, flags, casings or filled discs.
+- **Panel:** the ring stays in view in the left half (sticky, 100vh) while the stages scroll past on the right. On tablet and mobile it is a static dial (34svh + 28px) above the entries and scrolls away with the page: it never pins, so it never covers their text (#46). Code: `dial.ts` (arcs, chips, reading); CSS under "the dial" in `global.css`.
+- **Reading:** a big Saira 800 number (01..04, clamp(4rem, 22cqw, 7rem)) over a mono label naming the entry, in the middle of the ring. Each is a slot reel: a one-line window over a stack of every entry; a change spins the stack to the new entry over 0.8s and lands with a short bounce (back.out 1.3).
+- **Arcs:** one ring of four amber-filled arcs (3px stroke, round caps, 16 degree gaps), one per entry, read clockwise from the top. Each arc ends in a chevron tip in the leader tone (rgba(16,48,96,0.4)) that turns amber once its arc is full. Arc s is empty as entry s's title reaches the line and full as the next title does; the last is full a fifth of a screen (at least 160px) before the list's foot unpins the side, so the ring completes and rests while the panel still holds still.
+- **Chips:** each arc has a chip hung off its middle with the entry's number and name, styled like the hero and map chips (Martian Mono 10px uppercase, 2px radius). The chip in view turns amber. Chips hide on phones.
+- **Fill:** on wide screens the first entry opens level with the middle of the dial (padding-top 50vh + 80px), so the first fill starts there; the stage list keeps calc(32vh - 160px) below so the dial completes in view before the side unpins. Tablet and mobile: every entry shows at full opacity.
+- **Entries:** 32% opacity, then full: the first as its top passes `top 62%`, each later one as its arc turns current. Each entry, in order: a dot icon, a Stage title, Body, and its payload. No label trails the entry: the camp name lives in `data-camp`, and `dial.ts` reads it for the chips and the reading (a lone label under an entry read as a stray, #37).
   1. **What we have achieved** (clock): the three-up stat row.
   2. **What we have done** (code): five log rows, one per service line.
   3. **Products** (box): two log rows.
@@ -799,7 +798,7 @@ The name set as a dictionary headword, the page's last word.
 - `src/scripts/dotmap-data.ts`: a generated land raster. Regenerate with `node scripts/build-dotmap.mjs`.
 - `src/scripts/topo.ts`: marching-squares contours (the intro tile and the cover-fit ascent backdrop), with the amber altitude line.
 - `src/scripts/ridge.ts`: the dot-matrix ridge silhouette and the rider over the routes sky.
-- `src/scripts/trail.ts`: the log trek: Mount Zion in profile, switchback trail, camps and climber.
+- `src/scripts/dial.ts`: the log dial: four arcs, their chips, and the reading.
 
 ## Appendix: unitedcarriers.com teardown (2026-09-29)
 

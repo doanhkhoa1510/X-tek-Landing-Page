@@ -31,7 +31,7 @@ const smooth = (a: number, b: number, t: number) => {
   return k * k * (3 - 2 * k);
 };
 /** The 2-D skylines' hill: the real relief, with the plateau and the far valley sides tapered away
-    so Mount Zion stands alone on the routes band and the trek. The hero and the contour maps use heightAt. */
+    so Mount Zion stands alone on the routes band. The hero and the contour maps use heightAt. */
 export function domeAt(x: number, z: number) {
   const mx = x * ZION.metersPerUnit, mz = z * ZION.metersPerUnit;
   return heightAt(x, z) * (1 - smooth(420, 950, Math.hypot(mx, mz < 0 ? mz * 1.5 : mz)));
