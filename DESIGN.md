@@ -377,8 +377,9 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
 - **Lede** (400, clamp(17px, 1.35vw, 19px), 1.5, max 44–46ch): the hero and story paragraphs.
 - **Body** (400, 17px, 1.5, max 40–60ch) and **Body Small** (400, 15px, 1.5, max 30ch in value columns): prose.
 - **Button** (Martian Mono 500, 12px, 0.03em, uppercase): every pill and the menu toggle.
-- **Label** (Martian Mono 500, 11px, 0.04em, uppercase): stat labels, the reading's label of a log entry, office roles, form labels, footer column heads. A label never sits above a heading.
-- **Micro** (Martian Mono 400–500, 10–10.5px, 0.05em, uppercase): the ticker, chips, domain tags, the rider reading, captions, and the legal line. 10px is the floor on every breakpoint.
+- **Label** (Martian Mono 500, 11px, 0.04em, uppercase): stat labels, the trailing camp name of a log entry, footer column heads. A label never sits above a heading. Form labels and office roles (500), the top-bar CALL and WhatsApp links and the footer language switcher (400) are 12px, the accessibility floor for contact details and form labels (UAT #84).
+- **Micro** (Martian Mono 400–500, 10–10.5px, 0.05em, uppercase): the ticker clocks, chips, domain tags, the rider reading, captions, and the legal line. 10px is the floor on every breakpoint.
+
 - **IPA** (Noto Sans Mono 400, 11px under the wordmark, 17px in the footer entry, 0.02em, never uppercase): the pronunciation only.
 
 ### Named Rules
@@ -667,7 +668,7 @@ Two 12px rows on a shared 24h UTC track with hourly ticks. The work window is 08
 Under the summit copy: phone, WhatsApp, and email as Button-type links in Xion Amber on night, stacked 10px apart. They are the fallback when the brief does not send.
 
 ### Inputs / Fields
-- **Label:** mono 10.5px in Mist, stacked above the field.
+- **Label:** mono 12px in Mist, stacked above the field (UAT #84).
 - **Field:** Body 17px Snow text on transparent, with a single 1px bottom rule at 28% white (55% on hover). No box, no radius.
 - **Focus:** the rule turns Xion Amber, plus a 1px amber underline.
 - **Error:** `aria-invalid` turns the rule Error, and a mono status names the problem and the fix.

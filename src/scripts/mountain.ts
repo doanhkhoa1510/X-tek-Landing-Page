@@ -317,7 +317,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     }
   }
   const words: Record<string, string> = JSON.parse(labelLayer.dataset.labels ?? "{}");
-  const anchors: { el: HTMLElement; pos: THREE.Vector3; id: string; kind: "camp" | "summit" }[] = [];
+  const anchors: { el: HTMLElement; pos: THREE.Vector3; id: string; kind: "camp" | "summit"; w: number; dx: number }[] = [];
   function chip(text: string, kind: string, id: string) {
     const el = document.createElement("div");
     el.className = `chip chip-${kind}`;
@@ -345,10 +345,21 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     const pos = new THREE.Vector3(c.x, heightAt(c.x, c.z) + 0.05, c.z);
     beacon(pos, c.id);
     addArc(pos, 1.6 + i * 0.5, i / 3 + 0.1, campArcs);
-    anchors.push({ el: chip(words[c.id] ?? c.id, "camp", c.id), pos, id: c.id, kind: "camp" });
+    anchors.push({ el: chip(words[c.id] ?? c.id, "camp", c.id), pos, id: c.id, kind: "camp", w: 0, dx: 0 });
   });
   beacon(summit, "summit");
-  anchors.push({ el: chip(words.summit ?? `${SUMMIT_M} m`, "summit", "summit"), pos: summit, id: "summit", kind: "summit" });
+  anchors.push({ el: chip(words.summit ?? `${SUMMIT_M} m`, "summit", "summit"), pos: summit, id: "summit", kind: "summit", w: 0, dx: 0 });
+
+  /* a chip box never runs off the screen: it keeps EDGE px inside the label layer, its tag sliding sideways (--nudge)
+     while the leader stays on the point it marks. Widths are read here (mount, fonts, resize), never per frame. */
+  const EDGE = 8;
+  let layerW = 0;
+  function measureChips() {
+    layerW = labelLayer.clientWidth;
+    for (const a of anchors) a.w = a.el.offsetWidth;
+  }
+  measureChips();
+  document.fonts.ready.then(measureChips);
 
   /* quiet oval (#38): behind the headline the frame fades toward the night before the bloom, the way a mask over the
      finished picture would, so the words keep their contrast and no glow forms under them; full brightness outside */
@@ -542,7 +553,18 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
       if (a.kind === "summit") show &&= mode === "summit" || hero > 0.45;
       a.el.classList.toggle("is-on", show);
       a.el.classList.toggle("is-focus", focus === a.id);
-      a.el.style.transform = `translate3d(${(((v.x + 1) / 2) * w).toFixed(1)}px, ${(((1 - v.y) / 2) * h).toFixed(1)}px, 0)`;
+      const sx = ((v.x + 1) / 2) * w, sy = ((1 - v.y) / 2) * h;
+      let dx = 0;
+      if (a.w) {
+        const left = sx - a.w / 2;
+        if (left < EDGE) dx = EDGE - left;
+        else if (left + a.w > layerW - EDGE) dx = layerW - EDGE - (left + a.w);
+      }
+      if (dx !== a.dx) {
+        a.dx = dx;
+        a.el.style.setProperty("--nudge", `${dx.toFixed(1)}px`);
+      }
+      a.el.style.transform = `translate3d(${sx.toFixed(1)}px, ${sy.toFixed(1)}px, 0)`;
     }
 
     gpu.composer.render();
@@ -562,6 +584,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   onVisibility();
 
   function fit() {
+    measureChips();
     camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
     terrainMat.uniforms.uDot.value = dotScale();
