@@ -1,7 +1,7 @@
 /* The log as a dial: one ring in four arcs, one per entry, read clockwise from the top. On wide screens the
    panel holds still while the entries scroll past; arc s fills as entry s's title rises to the line where the
    first entry's title stood when the panel settled, and the reading in the middle rolls, like a slot reel, to the
-   entry nearest that line. Stacked, the dial sits above the entries and fills as it crosses the screen. */
+   entry whose arc is filling. Stacked, the dial sits above the entries and fills as it crosses the screen. */
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -91,16 +91,26 @@ export function mountDial(panel: HTMLElement, list: HTMLElement) {
   // the entries: the last arc fills over the last entry's own length
   const span = (m = marks()) => Math.max(1, list.getBoundingClientRect().height - m[0]);
   const stacked = matchMedia("(max-width: 991px)");
-  stacked.addEventListener("change", () => ScrollTrigger.refresh());
 
+  // progress is read off the live layout on every scroll, never off a trigger's cached start and end: anything
+  // above the section that changes height after a refresh (a pinned band's spacer, a late font) would shift
+  // a cached range and put the reading a whole entry ahead of the page
+  // wide: 0 when the list's top meets the top of the screen (the first title then holds its line), 1 at its foot
+  // stacked: 0 as the dial's top rises past 70% of the screen, 1 as its foot passes 30%
+  const progress = () => {
+    const vh = innerHeight;
+    if (!stacked.matches) return -list.getBoundingClientRect().top / span();
+    const r = panel.getBoundingClientRect();
+    return (vh * 0.7 - r.top) / (vh * 0.4 + r.height);
+  };
   // progress through the log: arc s is empty as entry s's title reaches the line and full as the next one does
-  // (the last, as the list runs out); the reading rolls to the next entry halfway between the two
+  // (the last, as the list runs out); the reading names the entry whose arc is filling
   function walk(p: number) {
     const m = marks(), len = span(m), knots = [...m.map((y) => (y - m[0]) / len), 1];
     let near = last;
     for (let s = 0; s < last; s++)
       if (p < knots[s + 1]) {
-        near = (p - knots[s]) / (knots[s + 1] - knots[s]) < 0.5 ? s : s + 1;
+        near = s;
         break;
       }
     fills.forEach((f, s) => {
@@ -115,14 +125,7 @@ export function mountDial(panel: HTMLElement, list: HTMLElement) {
   }
 
   show(0);
-  ScrollTrigger.create({
-    trigger: list, refreshPriority: -1 /* after the pinned routes above add their spacer */,
-    start: "top top", end: () => `+=${span()}`,
-    onUpdate: (s) => !stacked.matches && walk(s.progress), onRefresh: (s) => !stacked.matches && walk(s.progress),
-  });
-  // stacked: the dial fills while it crosses the middle of the screen
-  ScrollTrigger.create({
-    trigger: panel, refreshPriority: -1, start: "top 70%", end: "bottom 30%",
-    onUpdate: (s) => stacked.matches && walk(s.progress), onRefresh: (s) => stacked.matches && walk(s.progress),
-  });
+  const tick = () => walk(Math.max(0, Math.min(1, progress())));
+  ScrollTrigger.create({ trigger: panel.closest("section") ?? panel, start: "top bottom", end: "bottom top", onUpdate: tick, onRefresh: tick });
+  stacked.addEventListener("change", tick);
 }
