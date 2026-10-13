@@ -1,6 +1,6 @@
 {
   "title": {
-    "a": "AI搭載プラットフォーム",
+    "a": "AI搭載​プラットフォーム",
     "b": "スマートスクールのために。"
   },
   "lede": "学校では、使う人ごとに開くアプリが違います。しかしその土台では、すべてのアプリが同じAIエージェントと同じデータで動いています。",
@@ -21,7 +21,7 @@
   "appsOf": "{{role}}のアプリ",
   "apps": {
     "parentHub": "Parent Hub",
-    "buddy": "Buddy360ロボット",
+    "buddy": "Buddy360​ロボット",
     "wellbeing": "AI Wellbeing",
     "curriculum": "AI Curriculum Hub",
     "reports": "学業レポート",
@@ -41,15 +41,15 @@
     "mcp": "MCP server",
     "backend": "バックエンド"
   },
-  "supervisor": "スーパーバイザーエージェント",
+  "supervisor": "スーパーバイザー​エージェント",
   "routedTo": "スーパーバイザーが振り分けるエージェント",
   "routes": "各リクエストを振り分け",
   "agents": {
-    "policy": "ポリシーエージェント",
-    "buddy": "Buddyエージェント",
-    "reports": "学業レポートエージェント",
-    "wellbeing": "ウェルビーイングエージェント",
-    "attendance": "出欠エージェント"
+    "policy": "ポリシー​エージェント",
+    "buddy": "Buddy​エージェント",
+    "reports": "学業レポート​エージェント",
+    "wellbeing": "ウェルビーイング​エージェント",
+    "attendance": "出欠​エージェント"
   },
   "infra": {
     "network": "インフラとコネクティビティ",
@@ -59,7 +59,7 @@
     "auth": "認証",
     "gateway": "API gateway",
     "iot": "IoT hub",
-    "edge": "インテリジェントエッジ",
+    "edge": "インテリジェント​エッジ",
     "ingestion": "データ取り込み",
     "storage": "ストレージ",
     "transformation": "データ変換",
@@ -68,7 +68,7 @@
   "devices": {
     "robot": "ロボット",
     "screens": "スマートフォン、タブレット、PC",
-    "watch": "ウェアラブルデバイス",
+    "watch": "ウェアラブル​デバイス",
     "camera": "カメラ、ドローン",
     "sensor": "センサー、アクチュエーター"
   },

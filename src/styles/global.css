@@ -140,6 +140,7 @@ address { font-style: normal; }
   line-height: 0.94;
   letter-spacing: -0.01em;
   text-wrap: balance;
+  overflow-wrap: break-word; /* #79: at 200% text a heading word wider than its column breaks instead of pushing the page sideways */
 }
 .tt-a { display: block; color: var(--dim); }
 .tt-b { display: block; color: var(--fg); }
@@ -164,6 +165,7 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
   --display: "Saira Variable", "Noto Sans JP Variable", sans-serif;
   --body: "Host Grotesk Variable", "Noto Sans JP Variable", sans-serif;
   --mono: "Martian Mono Variable", "Noto Sans JP Variable", monospace;
+  word-break: auto-phrase; line-break: strict; /* #88: break Japanese between phrases; no mid-word break in the root, so a narrow box wraps early instead of splitting a word */
 }
 :root:lang(ar) {
   --display: "Saira Variable", "Noto Kufi Arabic Variable", sans-serif;
@@ -279,7 +281,7 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
 .chip {
   position: absolute; left: 0; top: 0;
   display: grid; justify-items: center; gap: 6px;
-  translate: -50% calc(-100% - 8px);
+  translate: calc(-50% + var(--nudge, 0px)) calc(-100% - 8px); /* --nudge: mountain.ts keeps the tag inside the screen edge */
   opacity: 0; filter: blur(5px);
   transition: opacity 0.5s var(--ui), filter 0.5s var(--ui);
   will-change: transform;
@@ -296,7 +298,7 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
   color: var(--snow);
   transition: background-color var(--t-ui) var(--ui), color var(--t-ui) var(--ui);
 }
-.chip i { width: 1px; height: 14px; background: linear-gradient(var(--line-dark), var(--amber)); }
+.chip i { translate: calc(-1 * var(--nudge, 0px)) 0; width: 1px; height: 14px; background: linear-gradient(var(--line-dark), var(--amber)); }
 .chip.is-on { opacity: 1; filter: blur(0); }
 .chip.is-focus span, .chip-summit span { background: var(--amber); color: var(--ink); border-color: var(--amber); }
 
@@ -335,6 +337,7 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
 .ticker b { font-weight: 500; color: var(--fg); font-variant-numeric: tabular-nums; }
 .ticker a { text-decoration: none; transition: color var(--t-ui) var(--ui); }
 .ticker a:hover { color: var(--fg); }
+.ticker-links a { font-size: 12px; } /* contact details stay readable (UAT #84); the clocks stay 10px */
 .hdr { translate: 0 0; transition: color var(--t-ui) var(--ui), opacity 0.6s var(--ui), translate 0.5s var(--expo); }
 .hdr.is-scrolled { translate: 0 -32px; }
 .hdr.is-scrolled .ticker { opacity: 0; border-bottom-color: transparent; }
@@ -450,6 +453,15 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
   .menu-list { inset-inline-start: -16px; min-width: 196px; }
   .menu-list :is(.menu-sec, .menu-rule) { display: none; }
 }
+/* below 1280px the menu lists every section: rows are 44px tall (tap target), and the open panel scrolls inside
+   the viewport (its top edge sits at 84–88px), so a short landscape phone still reaches the last link */
+@media (max-width: 1279px) {
+  .menu-list {
+    max-height: calc(100vh - 100px); max-height: calc(100dvh - 100px);
+    overflow-y: auto; overscroll-behavior: contain;
+  }
+  .menu-list a { display: flex; align-items: center; min-height: 44px; }
+}
 
 /* ---------- sections share ---------- */
 main { position: relative; z-index: 2; }
@@ -483,7 +495,7 @@ section { position: relative; color: var(--fg); }
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(60% 70% at 12% 92%, rgba(3, 8, 19, 0.82), rgba(3, 8, 19, 0) 70%);
 }
-.hero-copy { position: relative; z-index: 2; max-width: max(820px, 62vw); /* room for MEETS IDENTITY. on one line */ }
+.hero-copy { position: relative; z-index: 2; min-width: 0; max-width: max(820px, 62vw); /* room for MEETS IDENTITY. on one line */ } /* min-width 0: a flex item may shrink below its longest word (#79) */
 /* the copy's own night: a soft dark field sized to the copy, so the white ridge never runs through the text in any
    language (#38: "WHERE" and Vietnamese "NƠI" sat inside the ridge). Off behind the headline for now, under owner review. */
 .hero-next::before {
@@ -498,10 +510,10 @@ section { position: relative; color: var(--fg); }
 .hero-next .btn { margin-top: 28px; }
 /* a halo in the sky's own color: unseen on the night, a dark gap wherever the ridge runs behind the letters.
    On the headline, not its lines: each line clips its floor, and would cut the halo off under the caps */
-.hero-title { font-size: var(--fs-display); font-weight: 760; line-height: 0.92; letter-spacing: -0.012em; filter: drop-shadow(0 0 0.14em rgba(3, 8, 19, 0.55)); }
+.hero-title { font-size: var(--fs-display); font-weight: 760; line-height: 0.92; letter-spacing: -0.012em; overflow-wrap: break-word; filter: drop-shadow(0 0 0.14em rgba(3, 8, 19, 0.55)); }
 /* each line rises out of its own floor; the clip reaches up and out, so marks stacked over the caps (Vietnamese Ắ, Ả) stay whole */
 .ln { display: block; clip-path: inset(-0.6em -0.6em 0); padding-bottom: 0.06em; margin-bottom: -0.06em; }
-.ln > span { display: inline-block; }
+.ln > span { display: inline-block; max-width: 100%; } /* #79: a hero word wider than its column breaks at the edge instead of clipping */
 .accent { color: var(--amber); }
 .hero-lede { margin-top: 26px; max-width: 46ch; font-size: var(--fs-lede); color: var(--mist); }
 .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; }
@@ -595,7 +607,11 @@ section { position: relative; color: var(--fg); }
 .gear-head p { grid-column: 8 / 13; max-width: 40ch; color: var(--fg-soft); }
 .gear-group { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); margin-top: clamp(64px, 7vw, 110px); }
 .gear-group-head { grid-column: 1 / 5; align-self: start; position: sticky; top: 130px; padding-top: 22px; border-top: 1px solid var(--line); }
-.gear-group-head h3 { font-size: var(--fs-h3-lg); max-width: 14ch; }
+.gear-group-head h3 { font-size: var(--fs-h3-lg); max-width: 14ch; overflow-wrap: break-word; }
+:lang(ja) .gear-group-head h3 { max-width: none; overflow-wrap: normal; } /* #88: the 14ch box forced a Japanese title to split mid-word; the column is wide enough without it */
+:lang(ja) :is(h1, h2, h3, h4, .hero-lede) { word-break: keep-all; word-break: auto-phrase; } /* #88: headings and lede keep words whole (keep-all fallback where auto-phrase is unsupported) */
+:lang(ja) a[href^="tel:"] { white-space: nowrap; } /* #88: the phone number's spaces are break points; keep the number on one line */
+:lang(ja) :is(.blocks, .devices) li { overflow-wrap: anywhere; } /* #88: a platform label longer than its narrow block wraps inside the block instead of running under the next one */
 .gear-group-head p { margin-top: 12px; font-size: var(--fs-small); line-height: 1.5; color: var(--fg-soft); max-width: 30ch; }
 /* the gaps are the rules, as in the subpage cells */
 .gear-list { grid-column: 5 / 13; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border-block: 1px solid var(--line); }
@@ -607,7 +623,7 @@ section { position: relative; color: var(--fg); }
 .gear-item:hover { background: var(--ice); }
 .gear-item:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .gear-num { font: 400 var(--fs-micro) / 1 var(--mono); letter-spacing: 0.05em; color: var(--slate); font-variant-numeric: tabular-nums; }
-.gear-item h4 { font: 700 var(--fs-h3) / 1.04 var(--display); font-stretch: 125%; text-transform: uppercase; max-width: 22ch; }
+.gear-item h4 { font: 700 var(--fs-h3) / 1.04 var(--display); font-stretch: 125%; text-transform: uppercase; max-width: 22ch; overflow-wrap: break-word; }
 .gear-item p { margin-top: 10px; font-size: var(--fs-small); line-height: 1.5; color: var(--fg-soft); max-width: 46ch; }
 .gear-item .tags { margin-top: 18px; }
 
@@ -661,7 +677,7 @@ section { position: relative; color: var(--fg); }
 /* users: each role heads its own column of apps */
 .role-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
 .role-col { display: flex; flex-direction: column; gap: 14px; text-align: center; }
-.role-col h4 { font: 700 var(--fs-h3) / 1.04 var(--display); font-stretch: 125%; text-transform: uppercase; }
+.role-col h4 { font: 700 var(--fs-h3) / 1.04 var(--display); font-stretch: 125%; text-transform: uppercase; overflow-wrap: break-word; }
 /* links: a wire across the gap between two frames, a node centred on each frame's border.
    They are drawn over the frames, so no block or frame covers an end. Horizontal by default; --lw/--lh turn one vertical. */
 .group-ai::after, .group-app::after, .infra > .group:first-child::after, .infra::before {
@@ -684,7 +700,7 @@ section { position: relative; color: var(--fg); }
 .hub-agents { display: contents; }
 .supervisor, .agent { position: relative; align-self: center; margin: 6px 10px; text-align: center; }
 .supervisor { grid-area: 2 / 2; background: var(--band); border-color: var(--band); color: var(--snow); }
-.agent { grid-area: var(--r) / var(--c); }
+.agent { grid-area: var(--r) / var(--c); min-width: 0; }
 .hub-note { grid-area: 3 / 2; align-self: start; justify-self: center; font: 400 var(--fs-micro) / 1.2 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
 .spokes { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .spoke { stroke: var(--wire); stroke-width: 1; stroke-dasharray: 1; transition: stroke var(--t-ui) var(--ui), stroke-width var(--t-ui) var(--ui); }
@@ -738,6 +754,7 @@ section { position: relative; color: var(--fg); }
   .spokes { display: none; }
   .supervisor, .agent { margin: 0; text-align: left; }
   .agent { display: flex; align-items: center; align-self: stretch; }
+  :lang(ja) .agent { overflow-wrap: anywhere; } /* #88: a bare Japanese label in a flex box cannot break under break-word; only anywhere lets it wrap */
   .supervisor { grid-area: auto; grid-column: 1 / -1; order: -2; }
   .hub-note { grid-area: auto; grid-column: 1 / -1; order: -1; justify-self: start; margin-bottom: 4px; }
   .agent { grid-area: auto; }
@@ -795,7 +812,7 @@ section { position: relative; color: var(--fg); }
 .stage:first-child { padding-top: calc(50vh + 80px); } /* base camp opens level with the middle of the mountain as the side pins; the climb starts there */
 .stage.is-on { opacity: 1; }
 .stage-icon { margin-bottom: 18px; }
-.stage h3 { font-size: var(--fs-stage); font-weight: 760; }
+.stage h3 { font-size: var(--fs-stage); font-weight: 760; overflow-wrap: break-word; }
 .stage h3 + p { margin-top: 12px; color: var(--fg-soft); max-width: 40ch; }
 /* the log: what each camp holds */
 .stage-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); margin-top: 36px; }
@@ -803,10 +820,10 @@ section { position: relative; color: var(--fg); }
 .stage-stats .stat dd { font-size: clamp(2.75rem, 4.6vw, 4.5rem); }
 .log { margin-top: 28px; border-top: 1px solid var(--line); }
 .log li { padding: 18px 0 20px; border-bottom: 1px solid var(--line); }
-.log h4 { font: 700 var(--fs-h3) / 1.04 var(--display); font-stretch: 125%; text-transform: uppercase; }
+.log h4 { font: 700 var(--fs-h3) / 1.04 var(--display); font-stretch: 125%; text-transform: uppercase; overflow-wrap: break-word; }
 .log p { margin-top: 8px; font-size: var(--fs-small); line-height: 1.5; color: var(--fg-soft); max-width: 46ch; }
 /* the Customers entry: one log row per client (#20), its projects listed under it, a name over an optional line */
-.projects { display: grid; gap: 12px; margin-top: 16px; padding-inline-start: 14px; border-inline-start: 1px solid var(--line); }
+.projects { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 16px; padding-inline-start: 14px; border-inline-start: 1px solid var(--line); }
 .projects li { padding: 0; border: 0; }
 .projects b { display: block; font-size: var(--fs-small); font-weight: 600; line-height: 1.3; color: var(--fg); }
 .projects span { display: block; margin-top: 2px; font-size: var(--fs-small); line-height: 1.5; color: var(--fg-soft); max-width: 44ch; }
@@ -830,7 +847,9 @@ section { position: relative; color: var(--fg); }
 .daybar-row:first-child .work { background: var(--amber); }
 .daybar-axis { display: flex; justify-content: space-between; margin-left: 74px; color: var(--dim-night); }
 .now { position: absolute; top: -4px; bottom: 16px; width: 1px; background: var(--snow); left: calc(74px + var(--now, 0) * (100% - 74px)); }
-.now span { position: absolute; bottom: 100%; left: 4px; color: var(--snow); font-style: normal; }
+.now span { position: absolute; bottom: 100%; left: 4px; color: var(--snow); font-style: normal; white-space: nowrap; }
+/* the no-wrap "now" label flips to the left of its line after 60% of the day, so it never runs off the bar */
+.now span { translate: calc(clamp(0, (var(--now, 0) - 0.6) * 1000, 1) * (-100% - 8px)); }
 .worldmap { position: relative; aspect-ratio: 180 / 68; margin-top: clamp(56px, 7vw, 100px); }
 .worldmap-arcs { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .worldmap-arcs path { fill: none; vector-effect: non-scaling-stroke; }
@@ -859,7 +878,7 @@ section { position: relative; color: var(--fg); }
 .city:hover .city-chip b, .city:focus-visible .city-chip b, .city.is-focus .city-chip b { color: var(--ink); }
 .offices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); margin-top: clamp(48px, 6vw, 88px); }
 .offices li { display: grid; align-content: start; gap: 8px; padding-top: 24px; border-top: 1px solid var(--line); }
-.offices p { font: 500 var(--fs-label) / 1.3 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--dim-night); }
+.offices p { font: 500 12px / 1.3 var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--dim-night); }
 .offices address { color: var(--mist); font-size: var(--fs-small); line-height: 1.45; }
 .offices a { justify-self: start; font: 500 12px var(--mono); color: var(--amber); text-decoration: none; }
 .offices a:hover { text-decoration: underline; }
@@ -899,7 +918,7 @@ section { position: relative; color: var(--fg); }
 .qa { border-bottom: 1px solid var(--line); }
 .qa button {
   width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px;
-  padding: 26px 0; text-align: start;
+  padding: 26px 0; text-align: start; overflow-wrap: anywhere; /* #79: the question is a bare flex item; only anywhere lets it shrink under the + icon */
   font: inherit; letter-spacing: inherit; text-transform: inherit;
   transition: color var(--t-ui) var(--ui);
 }
@@ -924,10 +943,11 @@ section { position: relative; color: var(--fg); }
 .summit-lines a { font: 500 12px / 1.3 var(--mono); letter-spacing: 0.03em; text-transform: uppercase; text-decoration: none; color: var(--amber); }
 .summit-lines a:hover { text-decoration: underline; }
 .brief { grid-column: 8 / 13; display: grid; gap: 22px; padding: clamp(24px, 2.8vw, 40px); background: var(--band); border: 1px solid var(--line); }
-.brief label { display: grid; gap: 8px; font: 500 10.5px / 1.3 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--mist); }
+.brief label { display: grid; gap: 8px; font: 500 12px / 1.3 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--mist); }
 .brief input, .brief textarea {
   font: 400 17px / 1.4 var(--body); color: var(--snow);
   background: transparent; border: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.28); border-radius: 0;
+  width: 100%; min-width: 0;
   padding: 10px 0;
   transition: border-color var(--t-ui) var(--ui), box-shadow var(--t-ui) var(--ui);
 }
@@ -981,7 +1001,7 @@ section { position: relative; color: var(--fg); }
 .foot-langs {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px;
   margin-top: clamp(28px, 3vw, 44px); padding-top: 20px; border-top: 1px solid var(--line);
-  font: 400 10.5px / 1.3 var(--ipa); letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate);
+  font: 400 12px / 1.3 var(--ipa); letter-spacing: 0.04em; text-transform: uppercase; color: var(--slate);
 }
 .foot-langs .label { margin-inline-end: 4px; }
 .foot-langs a { text-decoration: none; transition: color var(--t-ui) var(--ui); }
@@ -1044,7 +1064,7 @@ section { position: relative; color: var(--fg); }
 .split-head, .split { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); }
 .split-head .tt { grid-column: 1 / 9; }
 .split > :first-child { grid-column: 1 / 7; align-self: start; position: sticky; top: 130px; }
-.split-body { grid-column: 8 / 13; display: grid; gap: 32px; align-content: start; }
+.split-body { grid-column: 8 / 13; display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-content: start; }
 .split-note { margin-top: 24px; max-width: 40ch; color: var(--fg-soft); }
 
 /* hairline cell grids: the gaps are the rules, so any column count keeps whole lines */
@@ -1065,7 +1085,7 @@ section { position: relative; color: var(--fg); }
 .cell:hover { background: var(--ice); }
 .cell-icon { display: block; width: 40px; height: 40px; color: var(--navy); }
 .cell-icon svg { width: 100%; height: 100%; }
-.cell h3 { margin-top: auto; max-width: 16ch; }
+.cell h3 { margin-top: auto; max-width: 16ch; overflow-wrap: break-word; }
 .cell p { font-size: var(--fs-small); line-height: 1.5; color: var(--fg-soft); max-width: 36ch; }
 
 .figures { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gap); margin-top: clamp(64px, 7vw, 110px); }
@@ -1079,12 +1099,12 @@ section { position: relative; color: var(--fg); }
 .roles-label { color: var(--slate); }
 .role-list { margin-top: -18px; border-top: 1px solid var(--line); }
 .role {
-  display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; align-items: center;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 24px; align-items: center;
   padding: 24px 0; border-bottom: 1px solid var(--line);
   text-decoration: none;
   transition: background-color var(--t-ui) var(--ui), padding 0.5s var(--expo);
 }
-.role h3 { grid-column: 1; }
+.role h3 { grid-column: 1; overflow-wrap: break-word; }
 .role-meta { grid-column: 1; font: 400 var(--fs-micro) / 1.3 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
 .role-go {
   grid-column: 2; grid-row: 1 / 3; display: grid; place-items: center;
@@ -1164,10 +1184,11 @@ section { position: relative; color: var(--fg); }
 .office a, .contact-line { justify-self: start; font: 500 12px / 1.3 var(--mono); letter-spacing: 0.03em; text-transform: uppercase; text-decoration: none; color: var(--amber); }
 .office a:hover, .contact-line:hover { text-decoration: underline; }
 .contact-form { grid-column: 7 / 13; }
-.brief-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.brief-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; }
 .brief .opt { color: var(--dim-night); }
 .brief select {
   appearance: none; -webkit-appearance: none;
+  width: 100%; min-width: 0;
   font: 400 17px / 1.4 var(--body); color: var(--snow);
   background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%23a9b4cc' stroke-width='1.4'/%3E%3C/svg%3E") no-repeat right 2px center / 12px 8px;
   border: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.28); border-radius: 0;
@@ -1211,7 +1232,7 @@ section { position: relative; color: var(--fg); }
 @media (max-width: 767px) {
   .page-head { min-height: 0; padding-top: calc(var(--hdr-h) + 72px); }
   .page-topo { opacity: 0.7; }
-  .cells-3, .cells-5 { grid-template-columns: 1fr; }
+  .cells-3, .cells-5 { grid-template-columns: minmax(0, 1fr); }
   .cells-5 .cell:last-child { grid-column: auto; }
   .cell { min-height: 0; }
   .cell h3 { margin-top: 12px; }
@@ -1223,6 +1244,16 @@ section { position: relative; color: var(--fg); }
 }
 
 /* ---------- tablet ---------- */
+@media (max-width: 991px) {
+  /* tablet top bar: short clock names and tighter gaps make room for the 12px CALL and WhatsApp links */
+  .t-long { display: none; }
+  .t-short { display: inline; }
+  .ticker p, .ticker-end { gap: 14px; }
+}
+@media (max-width: 879px) {
+  /* narrow tablets keep only CALL in the top bar; WhatsApp stays in the FAQ, contact band, contact page and footer */
+  .ticker-links a + a { display: none; }
+}
 @media (max-width: 991px) {
   .why-head .tt, .why-head p { grid-column: 1 / -1; }
   .gear-head .tt, .gear-head p, .gear-group-head, .gear-list { grid-column: 1 / -1; }
@@ -1269,6 +1300,7 @@ section { position: relative; color: var(--fg); }
   .hdr-ground { height: calc(56px + 36px); }
   .logo-mark { width: 32px; }
   .menu-list { inset-inline: auto -16px; text-align: end; }
+  .menu-list a { justify-content: end; }
   .hdr-cta { display: none; }
   .hero { height: 170vh; }
   .hero-title { font-size: var(--fs-display-sm); }
@@ -1284,7 +1316,7 @@ section { position: relative; color: var(--fg); }
   .stage:first-child { padding-top: 2vh; }
   .worldmap { margin-inline: calc(-1 * var(--gutter)); }
   .city-chip { padding: 3px 5px; }
-  .city-danang .city-chip { display: none; }
+  .city-danang .city-chip { left: 0; top: auto; bottom: 14px; translate: calc(-100% + 14px) 0; }
   .city-hcmc .city-chip { translate: calc(-100% + 14px) 0; }
   .offices { grid-template-columns: 1fr; }
   .foot-col, .foot-col:nth-child(2) { grid-column: 1 / -1; }
