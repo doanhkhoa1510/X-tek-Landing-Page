@@ -754,12 +754,17 @@ section { position: relative; color: var(--fg); }
 .dial-frame { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: min(100cqw, 100cqh); aspect-ratio: 1; }
 .dial svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; fill: none; }
 .dial-track { stroke: rgba(16, 48, 96, 0.16); stroke-width: 3; stroke-linecap: round; }
-.dial-tip { fill: none; stroke: rgba(16, 48, 96, 0.4); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.dial-tip { fill: none; stroke: rgba(16, 48, 96, 0.4); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: stroke var(--t-ui) var(--ui); }
+.dial-tip.is-full { stroke: var(--amber); }
 /* the filled part is the live amber line; it runs over its track as the entry is read */
 .dial-fill { stroke: var(--amber); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
 .dial-core { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; text-align: center; }
-.dial-num { display: block; font: 800 clamp(4rem, 22cqw, 7rem) / 0.9 var(--display); font-stretch: 125%; letter-spacing: -0.02em; color: var(--ink); font-variant-numeric: tabular-nums; will-change: transform, opacity; }
-.dial-name { display: block; margin-top: 10px; max-width: 14ch; font: 500 var(--fs-label) / 1.3 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); will-change: transform, opacity; }
+/* the reading is two slot reels: a one-line window over a stack of every entry, spun by dial.ts */
+.dial-num { display: block; font: 800 clamp(4rem, 22cqw, 7rem) / 0.9 var(--display); font-stretch: 125%; letter-spacing: -0.02em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.dial-name { display: block; margin-top: 10px; font: 500 var(--fs-label) / 1.3 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
+.dial-num, .dial-name { overflow: hidden; height: 1lh; }
+.dial-reel { display: block; will-change: transform; }
+.dial-reel i { display: block; height: 1lh; font-style: normal; white-space: nowrap; text-align: center; }
 /* each entry's name beside its arc, tagged like a chip; the one in view turns amber */
 .dial-chip {
   position: absolute; translate: 0 -50%;

@@ -1,7 +1,7 @@
 /* The log as a dial: one ring in four arcs, one per entry, read clockwise from the top. On wide screens the
    panel holds still while the entries scroll past; arc s fills as entry s's title rises to the line where the
-   first entry's title stood when the panel settled, and the reading in the middle flips to the entry nearest
-   that line. Stacked, the dial sits above the entries and fills as it crosses the screen. */
+   first entry's title stood when the panel settled, and the reading in the middle rolls, like a slot reel, to the
+   entry nearest that line. Stacked, the dial sits above the entries and fills as it crosses the screen. */
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -24,21 +24,24 @@ export function mountDial(panel: HTMLElement, list: HTMLElement) {
   const labels = stages.map((s) => s.dataset.camp ?? "");
 
   svg.setAttribute("viewBox", `0 0 ${SIZE} ${SIZE}`);
-  // each arc ends in a chevron, so the ring reads clockwise
-  svg.innerHTML = `<defs><marker id="dial-tip" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M2 1L7 5L2 9" class="dial-tip"/></marker></defs>`;
-  const fills: SVGPathElement[] = [], chips: HTMLElement[] = [];
+  const fills: SVGPathElement[] = [], tips: SVGPathElement[] = [], chips: HTMLElement[] = [];
   stages.forEach((_, s) => {
     const a = s * sweep + GAP / 2, b = (s + 1) * sweep - GAP / 2, d = arc(a, b);
     const track = document.createElementNS(NS, "path");
     track.setAttribute("class", "dial-track");
     track.setAttribute("d", d);
-    track.setAttribute("marker-end", "url(#dial-tip)");
     const fill = document.createElementNS(NS, "path");
     fill.setAttribute("class", "dial-fill");
     fill.setAttribute("d", d);
     fill.setAttribute("pathLength", "1");
-    svg.append(track, fill);
+    // the arc ends in a chevron just past its tip, so the ring reads clockwise; it turns amber with the fill
+    const [tx, ty] = pt(b + 2.5), tip = document.createElementNS(NS, "path");
+    tip.setAttribute("class", "dial-tip");
+    tip.setAttribute("d", "M-6 -5L0 0L-6 5");
+    tip.setAttribute("transform", `translate(${tx.toFixed(2)} ${ty.toFixed(2)}) rotate(${(b + 2.5).toFixed(1)})`);
+    svg.append(track, fill, tip);
     fills.push(fill);
+    tips.push(tip);
     // the entry's name beside its arc, hung off the ring at the arc's middle, pointing away from it
     const mid = (a + b) / 2, [x, y] = pt(mid, R + 22);
     const chip = document.createElement("span");
@@ -50,30 +53,31 @@ export function mountDial(panel: HTMLElement, list: HTMLElement) {
     chips.push(chip);
   });
 
-  // the reading in the middle: the old one lifts out and fades, the new one rises in under it
-  let shown = -1, flip: gsap.core.Timeline | undefined;
-  const core = [num, name];
+  // the reading in the middle: two slot reels, one of numbers and one of names, each a stack of every entry
+  // behind a one-line window; a change spins the stack to the new entry and lands with a short bounce
+  const reels = [num, name].map((el, k) => {
+    const reel = el.querySelector<HTMLElement>(".dial-reel")!;
+    reel.innerHTML = labels.map((l, i) => `<i>${k === 0 ? `0${i + 1}` : l}</i>`).join("");
+    return reel;
+  });
+  let shown = -1;
+  const spin = (instant: boolean) => {
+    for (const reel of reels) {
+      const y = -shown * (reel.firstElementChild as HTMLElement).offsetHeight;
+      gsap.killTweensOf(reel);
+      if (instant) gsap.set(reel, { y });
+      else gsap.to(reel, { y, duration: 0.8, ease: "back.out(1.3)" });
+    }
+  };
   const show = (s: number) => {
     if (s === shown) return;
     const first = shown < 0;
     shown = s;
     chips.forEach((c, i) => c.classList.toggle("is-current", i === s));
-    const set = () => {
-      num.textContent = `0${s + 1}`;
-      name.textContent = labels[s];
-    };
-    flip?.kill();
-    if (first || matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      set();
-      gsap.set(core, { y: 0, autoAlpha: 1 });
-      return;
-    }
-    flip = gsap
-      .timeline()
-      .to(core, { y: -16, autoAlpha: 0, duration: 0.22, ease: "power2.in", stagger: 0.03 })
-      .add(set)
-      .fromTo(core, { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.55, ease: "expo.out", stagger: 0.04 });
+    spin(first || matchMedia("(prefers-reduced-motion: reduce)").matches);
   };
+  // the window's line height follows the viewport: the reels resettle without a spin
+  new ResizeObserver(() => shown >= 0 && spin(true)).observe(num);
 
   // each entry title's centre, measured from the top of the list
   const marks = () => {
@@ -83,14 +87,16 @@ export function mountDial(panel: HTMLElement, list: HTMLElement) {
       return r.top + r.height / 2 - top;
     });
   };
-  // the dial runs from the first entry's title to the last's, so scroll distance maps one to one onto the entries
-  const span = (m = marks()) => Math.max(1, m[last] - m[0]);
+  // the dial runs from the first entry's title to the foot of the list, so scroll distance maps one to one onto
+  // the entries: the last arc fills over the last entry's own length
+  const span = (m = marks()) => Math.max(1, list.getBoundingClientRect().height - m[0]);
   const stacked = matchMedia("(max-width: 991px)");
   stacked.addEventListener("change", () => ScrollTrigger.refresh());
 
-  // progress through the log: arc s fills while entry s approaches the line, full once its title holds it
+  // progress through the log: arc s is empty as entry s's title reaches the line and full as the next one does
+  // (the last, as the list runs out); the reading rolls to the next entry halfway between the two
   function walk(p: number) {
-    const m = marks(), len = span(m), knots = m.map((y) => (y - m[0]) / len);
+    const m = marks(), len = span(m), knots = [...m.map((y) => (y - m[0]) / len), 1];
     let near = last;
     for (let s = 0; s < last; s++)
       if (p < knots[s + 1]) {
@@ -98,9 +104,10 @@ export function mountDial(panel: HTMLElement, list: HTMLElement) {
         break;
       }
     fills.forEach((f, s) => {
-      const gap = s === 0 ? 0 : knots[s] - knots[s - 1];
-      const t = s === 0 ? 1 : gap > 0 ? Math.max(0, Math.min(1, (p - knots[s - 1]) / gap)) : p >= knots[s] ? 1 : 0;
+      const gap = knots[s + 1] - knots[s];
+      const t = gap > 0 ? Math.max(0, Math.min(1, (p - knots[s]) / gap)) : p >= knots[s] ? 1 : 0;
       f.style.strokeDashoffset = String(1 - t);
+      tips[s].classList.toggle("is-full", t > 0.99);
     });
     show(near);
     // each later entry wakes as its arc turns current (app.ts wakes the first as it rises into view)
