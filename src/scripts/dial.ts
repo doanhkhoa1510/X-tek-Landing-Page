@@ -87,15 +87,19 @@ export function mountDial(panel: HTMLElement, list: HTMLElement) {
       return r.top + r.height / 2 - top;
     });
   };
-  // the dial runs from the first entry's title to the foot of the list, so scroll distance maps one to one onto
-  // the entries: the last arc fills over the last entry's own length
-  const span = (m = marks()) => Math.max(1, list.getBoundingClientRect().height - m[0]);
+  // the dial runs from the first entry's title to a fifth of a screen before the list's foot lifts the pinned
+  // side, so the ring is complete and rests a moment before everything moves; a short screen that never pins
+  // that long gets the last title's line plus a little
+  const span = (m = marks()) => {
+    const rest = Math.max(160, innerHeight * 0.2);
+    return Math.max(m[last] - m[0] + 120, list.getBoundingClientRect().height - innerHeight - rest);
+  };
   const stacked = matchMedia("(max-width: 991px)");
 
   // progress is read off the live layout on every scroll, never off a trigger's cached start and end: anything
   // above the section that changes height after a refresh (a pinned band's spacer, a late font) would shift
   // a cached range and put the reading a whole entry ahead of the page
-  // wide: 0 when the list's top meets the top of the screen (the first title then holds its line), 1 at its foot
+  // wide: 0 when the list's top meets the top of the screen (the first title then holds its line), 1 just before its foot unpins the side
   // stacked: 0 as the dial's top rises past 70% of the screen, 1 as its foot passes 30%
   const progress = () => {
     const vh = innerHeight;
