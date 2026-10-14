@@ -2,6 +2,6 @@
   "title": "Page not found",
   "description": "This page is not on the XionTechs map.",
   "head": { "a": "404.", "b": "Page not found." },
-  "lede": "This page is not on the map. It may have moved when the site was rebuilt.",
+  "lede": "The page you are looking for does not exist or has moved.",
   "home": "Back to home"
 }
