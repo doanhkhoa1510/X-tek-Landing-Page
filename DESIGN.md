@@ -417,7 +417,7 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
   6. FAQ `#faq` (ice)
   7. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
   8. Footer (snow)
-  - The story of Xion (`#mindset`) and the core values (`#values`) live on About us since #36: on the landing page they stood between the hero and what XionTechs does, and buyers lost the thread. The hero's outline pill ("Our mindset") leads to `/about-us/#mindset`.
+  - The story of Xion (`#mindset`) and the core values (`#values`) live on About us since #36: on the landing page they stood between the hero and what XionTechs does, and buyers lost the thread. The hero carries no buttons (#107): its "Talk to our experts" pill repeated the header CTA ("Start a project", to the brief), and the mindset pill told a buyer nothing.
 - **Class names keep the mountain vocabulary** (`.intro`, `.routes`, `.gear`, `.strata`, `.ascent`, `.camps`, `.summit`); ids carry the content names.
 - **Breakpoints:** desktop ≥ 992px. Tablet 768–991px: headings and copy stack to full width, sticky heads go static, and the route strip moves to columns 1/3. Mobile ≤ 767px:
   - The header becomes a flex row (logo left, menu right), and the CTA, the ticker phones, and the 3D camp chips hide.
@@ -558,7 +558,7 @@ Character: heavy pills with a machine voice. The fill answers the pointer.
   - Glow 0→1 over 1.3s, circ.inOut.
   - Arcs and chips 0→1 over 0.9s.
 - **Chips** blur in (5px→0) with a 0.07s stagger.
-- **Headline:** lines rise from masks (yPercent 110→0, 1.1s expo.out, stagger 0.08). The lede and buttons rise 24px and fade in.
+- **Headline:** lines rise from masks (yPercent 110→0, 1.1s expo.out, stagger 0.08). The lede rises 24px and fades in.
 - **The dive** (scrubbed over the 210vh hero):
   - The camera climbs from the Hinnom valley up the south face to the crest of Mount Zion.
   - The amber altitude contour climbs the hill.
