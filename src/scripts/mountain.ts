@@ -323,7 +323,13 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     el.className = `chip chip-${kind}`;
     el.dataset.id = id;
     el.innerHTML = "<span></span><i></i>";
-    el.firstElementChild!.textContent = text;
+    const unit = text.match(/^(.*\d) m$/); // metres stay a lowercase "m" under the chip's uppercase
+    if (unit) {
+      const u = document.createElement("span");
+      u.className = "unit";
+      u.textContent = "m";
+      el.firstElementChild!.append(`${unit[1]} `, u);
+    } else el.firstElementChild!.textContent = text;
     labelLayer.appendChild(el);
     labels.push(el);
     return el;
