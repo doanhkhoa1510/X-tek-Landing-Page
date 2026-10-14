@@ -54,7 +54,7 @@ export function mountDial(panel: HTMLElement, list: HTMLElement) {
   });
 
   // the reading in the middle: two slot reels, one of numbers and one of names, each a stack of every entry
-  // behind a one-line window; a change spins the stack to the new entry and lands with a short bounce
+  // behind a one-line window; a change spins the stack to the new entry and eases to a stop
   const reels = [num, name].map((el, k) => {
     const reel = el.querySelector<HTMLElement>(".dial-reel")!;
     reel.innerHTML = labels.map((l, i) => `<i>${k === 0 ? `0${i + 1}` : l}</i>`).join("");
@@ -66,7 +66,7 @@ export function mountDial(panel: HTMLElement, list: HTMLElement) {
       const y = -shown * (reel.firstElementChild as HTMLElement).offsetHeight;
       gsap.killTweensOf(reel);
       if (instant) gsap.set(reel, { y });
-      else gsap.to(reel, { y, duration: 0.8, ease: "back.out(1.3)" });
+      else gsap.to(reel, { y, duration: 0.25, ease: "power2.out" });
     }
   };
   const show = (s: number) => {
