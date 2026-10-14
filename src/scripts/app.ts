@@ -97,7 +97,7 @@ mountCounters();
 /* ---------- preloader → hero entrance ---------- */
 const loader = document.querySelector<HTMLElement>(".loader");
 const heroLines = $$(".hero-title .ln > span");
-const heroRest = [$(".hero-lede"), ...$$(".hero .actions .btn")];
+const heroRest = [$(".hero-lede")];
 
 function heroEntrance(delay = 0) {
   const tl = gsap.timeline({ delay });

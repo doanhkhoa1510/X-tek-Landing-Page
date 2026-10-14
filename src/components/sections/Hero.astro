@@ -1,11 +1,10 @@
 ---
 /* 01 · Main: the four-line headline bottom-left, over the mountain; as the camera dives, what we do takes its place (#38). */
-import { localize } from "../../i18n/config";
 import { services } from "../../data/site";
 import { useT } from "../../i18n";
 
 const lang = Astro.currentLocale;
-const t = useT(lang, "hero"), tc = useT(lang, "common"), ts = useT(lang, "site");
+const t = useT(lang, "hero"), ts = useT(lang, "site");
 const lines = t("lines", { returnObjects: true });
 ---
 <section id="top" class="hero" data-on="dark" aria-labelledby="hero-title">
@@ -16,10 +15,6 @@ const lines = t("lines", { returnObjects: true });
         <span class="ln"><span class="accent">{t("accent")}</span></span>
       </h1>
       <p class="hero-lede">{t("lede")}</p>
-      <div class="actions">
-        <a class="btn btn-fill" href="#summit"><span class="scr">{tc("talk")}</span></a>
-        <a class="btn btn-line" href={`${localize("/about-us/", lang)}#mindset`}><span class="scr">{t("mindset")}</span></a>
-      </div>
     </div>
     <div class="hero-next">
       <p class="hero-next-label">{t("next.label")}</p>
