@@ -516,7 +516,7 @@ section { position: relative; color: var(--fg); }
 .ln { display: block; clip-path: inset(-0.6em -0.6em 0); padding-bottom: 0.06em; margin-bottom: -0.06em; }
 .ln > span { display: inline-block; max-width: 100%; } /* #79: a hero word wider than its column breaks at the edge instead of clipping */
 .accent { color: var(--amber); }
-.hero-lede { margin-top: 26px; max-width: 46ch; font-size: var(--fs-lede); color: var(--mist); }
+.hero-lede { margin-top: 26px; max-width: 60ch; font-size: var(--fs-lede); color: var(--mist); }
 .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; }
 /* the limb paints the bottom 90vh; the clear 110vh above it keeps the layer's top edge off screen at every step of the
    rise (the stage clips it), because a GPU can draw that edge as a white hairline across the night (#35).
