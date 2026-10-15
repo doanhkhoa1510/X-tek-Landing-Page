@@ -51,7 +51,7 @@ const here = unlocalize(Astro.url.pathname);
           {sections.map((id, i) => <a class="menu-sec" href={to(id)} style={`--i:${i}`}><span class="scr">{ts(`sections.${id}`)}</span></a>)}
           <i class="menu-rule" aria-hidden="true" style={`--i:${sections.length}`}></i>
           {pages.map(([href, key], i) => (
-            <a href={localize(href, lang)} style={`--i:${sections.length + 1 + i}`} aria-current={here.startsWith(href) ? "page" : undefined}><span class="scr">{ts(`pages.${key}`)}</span></a>
+            <a class="menu-page" href={localize(href, lang)} style={`--i:${sections.length + 1 + i};--j:${i}`} aria-current={here.startsWith(href) ? "page" : undefined}><span class="scr">{ts(`pages.${key}`)}</span></a>
           ))}
         </nav>
       </div>
@@ -60,3 +60,5 @@ const here = unlocalize(Astro.url.pathname);
   </div>
 </header>
 <div class="hdr-ground" aria-hidden="true"></div>
+{/* phones: the header has no room for the ask, so it waits in the bottom corner, in thumb reach */}
+{!here.startsWith("/contact-us/") && <a class="btn fab" href={home ? "#summit" : localize("/contact-us/", lang)}><span class="scr">{ts("pages.contact")}</span></a>}

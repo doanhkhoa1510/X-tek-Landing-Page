@@ -45,6 +45,20 @@ function popover(host: HTMLElement, button: HTMLButtonElement) {
 const setMenu = popover($(".menu"), $<HTMLButtonElement>(".menu-toggle"));
 const setLang = popover($(".lang"), $<HTMLButtonElement>(".lang-toggle"));
 
+/* phones: the corner contact button steps aside while the contact section, a closing band or the footer is on screen */
+const fab = document.querySelector<HTMLElement>(".fab");
+if (fab) {
+  const inView = new Set<Element>();
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) inView.add(e.target);
+      else inView.delete(e.target);
+    }
+    fab.classList.toggle("is-away", inView.size > 0);
+  });
+  $$(".summit, .page-cta, .foot").forEach((el) => io.observe(el));
+}
+
 /* the header's ground: the page's own backgrounds (sections, bands, limbs) repainted behind the row, clipped as on the
    page but without its content, so a ground's edge slides through the header in step with the scroll */
 const groundHost = $(".hdr-ground");
