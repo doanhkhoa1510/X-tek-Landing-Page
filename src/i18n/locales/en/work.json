@@ -30,7 +30,6 @@
       }
     },
     "details": "Product details",
-    "detailsFor": "Product details: {{name}}",
     "camp": "Products"
   },
   "customers": {

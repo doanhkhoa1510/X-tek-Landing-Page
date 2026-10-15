@@ -66,17 +66,14 @@ const clients = [
         <h3>{t("products.title")}</h3>
         <p>{t("products.text")}</p>
         <ul class="log">
-          {products.map((p) => {
-            const name = t(`products.items.${p.id}.name`);
-            return (
-              <li>
-                <h4>{name}</h4>
-                <p>{t(`products.items.${p.id}.text`)}</p>
-                <a class="cases-read" href={localize(`/products/#${p.anchor}`, lang)} aria-label={t("products.detailsFor", { name })}>{t("products.details")}</a>
-              </li>
-            );
-          })}
+          {products.map((p) => (
+            <li>
+              <h4><a class="log-link" href={localize(`/products/#${p.anchor}`, lang)}>{t(`products.items.${p.id}.name`)}</a></h4>
+              <p>{t(`products.items.${p.id}.text`)}</p>
+            </li>
+          ))}
         </ul>
+        <a class="cases-read stage-more" href={localize("/products/", lang)}>{t("products.details")}</a>
       </li>
       <li class="stage" data-camp={t("done.camp")}>
         <span class="stage-icon" data-icon="development"></span>
