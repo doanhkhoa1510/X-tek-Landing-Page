@@ -27,7 +27,7 @@ summary: "我们正在招募有才华的业务分析主管（Lead Business Analy
 - 有 Figma 设计经验者优先。
 - 有 Scrum Master 经验者优先。
 
-## 为什么选择 XionTechs？
+## 为什么选择 XionTech？
 
 - 在充满活力、氛围年轻的创业文化中，享受工作与生活的和谐。
 - 享有有竞争力的薪资、绩效奖金，以及按比例发放的第 13 个月薪资。

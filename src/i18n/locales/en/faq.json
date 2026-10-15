@@ -3,7 +3,7 @@
   "more": "Something else? Read <faqs>all FAQs</faqs>, or call <call>{{phone}}</call>.",
   "items": {
     "what": {
-      "q": "What does XionTechs do?",
+      "q": "What does XionTech do?",
       "a": "We are an AI-powered IT services and products team. We run five software engineering lines: digital product engineering, digital insights and analytics, embedded and AI robotics, co-creation development, and application managed services."
     },
     "different": {

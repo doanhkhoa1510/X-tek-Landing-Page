@@ -3,23 +3,23 @@
   "more": "Còn thắc mắc khác? Xem <faqs>tất cả câu hỏi thường gặp</faqs> hoặc gọi <call>{{phone}}</call>.",
   "items": {
     "what": {
-      "q": "XionTechs làm gì?",
+      "q": "XionTech làm gì?",
       "a": "Chúng tôi là đội ngũ cung cấp dịch vụ và sản phẩm CNTT ứng dụng AI. Chúng tôi vận hành năm mảng kỹ thuật phần mềm: kỹ thuật sản phẩm số, thông tin chuyên sâu và phân tích số, hệ thống nhúng và robot AI, phát triển đồng sáng tạo, và dịch vụ quản lý ứng dụng."
     },
     "different": {
-      "q": "XionTechs khác biệt ở điểm nào?",
+      "q": "XionTech khác biệt ở điểm nào?",
       "a": "Năm điều: tinh thần khởi nghiệp, năng lực triển khai xuất sắc ở mọi tầng của phần mềm, từ hệ thống nhúng đến ứng dụng doanh nghiệp, kết quả đo lường được để xác nhận ROI, nền tảng phát triển Agile ứng dụng AI, và quan hệ hợp tác tiết kiệm chi phí với đội ngũ kỹ sư lành nghề tại Việt Nam."
     },
     "where": {
-      "q": "Đội ngũ XionTechs làm việc ở đâu?",
+      "q": "Đội ngũ XionTech làm việc ở đâu?",
       "a": "Quý khách làm việc với chúng tôi tại Plano, Texas. Đội ngũ kỹ sư phát triển sản phẩm tại TP. Hồ Chí Minh và Đà Nẵng, Việt Nam."
     },
     "industries": {
-      "q": "XionTechs am hiểu sâu nhất những ngành nào?",
+      "q": "XionTech am hiểu sâu nhất những ngành nào?",
       "a": "EdTech (công nghệ giáo dục), y tế và logistics. Chúng tôi xây dựng chiến lược chuyển đổi số xoay quanh thách thức và cơ hội của từng ngành."
     },
     "process": {
-      "q": "XionTechs triển khai dự án như thế nào?",
+      "q": "XionTech triển khai dự án như thế nào?",
       "a": "Bằng một khung kỹ thuật hoàn chỉnh: Agile kết hợp BMAD-METHOD và V-Model, có các công cụ AI như AI tạo sinh và prompt engineering hỗ trợ. Dự án được quản lý dựa trên số liệu, nên quý khách theo dõi chất lượng và tiến độ bằng những con số cụ thể."
     },
     "start": {

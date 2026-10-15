@@ -12,7 +12,7 @@ Astro + Three.js (user choice). The 3D scene is a client-side island; the rest o
 
 ## Source of Truth
 
-Content comes from **newxion.com** (crawled 2026-09-30: Home, Services, Solutions, About us, Newsroom, Contact us). It replaces the old xiontechs.com copy. The page is for **XionTechs only**: XionTechs is the one company name on it. No parent group or sister company is named, and their offices, products, and service lines stay off the page (decided by the owner, 2026-09-30).
+Content comes from **newxion.com** (crawled 2026-09-30: Home, Services, Solutions, About us, Newsroom, Contact us). It replaces the old xiontechs.com copy. The page is for **XionTech only**: XionTech is the one company name on it. No parent group or sister company is named, and their offices, products, and service lines stay off the page (decided by the owner, 2026-09-30).
 
 ## Users
 
@@ -20,15 +20,15 @@ B2B decision makers: CTOs, founders, and product owners. They are looking for an
 
 ## Product Purpose
 
-XionTechs is an AI-powered IT services and products team. The landing page makes a visitor start a conversation ("Talk to our experts" / the brief) with the team.
+XionTech is an AI-powered IT services and products team. The landing page makes a visitor start a conversation ("Talk to our experts" / the brief) with the team.
 
 ## Positioning
 
-The mountain is a symbol and a goal. The name "Xion" is inspired by Mount Zion, but the page is not about that place: a group of pioneers founded the company in America to build a community that reaches a high place together. XionTechs is the team that takes a product from base camp to summit, with the tagline "Get IT Done". The US office is in Plano, Texas; the engineers build in Ho Chi Minh City and Da Nang. This gives US clients a US contact point and continuous build capacity across both time zones.
+The mountain is a symbol and a goal. The name "Xion" is inspired by Mount Zion, but the page is not about that place: a group of pioneers founded the company in America to build a community that reaches a high place together. XionTech is the team that takes a product from base camp to summit, with the tagline "Get IT Done". The US office is in Plano, Texas; the engineers build in Ho Chi Minh City and Da Nang. This gives US clients a US contact point and continuous build capacity across both time zones.
 
 ## Landing Flow
 
-Main → Services (what a buyer can hire us for, from newxion.com/services, #35) → Platform (the AI-powered platform for smart schools, layer by layer) → The log (what we have achieved, what we have done, products, customers) → Why XionTechs (four reasons, each with its proof) → FAQ → Contact (base camps, then the brief) → Footer. The story of Xion and the seven core values live on About us (#36), so the landing page leads with what XionTechs does.
+Main → Services (what a buyer can hire us for, from newxion.com/services, #35) → Platform (the AI-powered platform for smart schools, layer by layer) → The log (what we have achieved, what we have done, products, customers) → Why XionTech (four reasons, each with its proof) → FAQ → Contact (base camps, then the brief) → Footer. The story of Xion and the seven core values live on About us (#36), so the landing page leads with what XionTech does.
 
 ## Operating Context
 
@@ -50,7 +50,7 @@ Service lines (five, software engineering):
 4. Co-creation development (ideation, UX, prototype and MVP, launch, digital marketing)
 5. Application managed services (monitoring, troubleshooting, enhancement, DBA, CI/CD release management)
 
-Left off as not XionTechs' own (old xiontechs.com never listed them): Odoo ERP implementation and BeeSuite ERP. Restore only if the owner confirms.
+Left off as not XionTech's own (old xiontechs.com never listed them): Odoo ERP implementation and BeeSuite ERP. Restore only if the owner confirms.
 
 Services (landing Services section, from newxion.com/services, crawled 2026-10-07), one group:
 - Digital product engineering: UX/UI design, product engineering, low-code application development, testing, product sustenance and maintenance, DevOps/DevSecOps, product co-creation (ideation and concept, UX design, rapid prototype and MVP, launch, product digital marketing).
@@ -69,10 +69,10 @@ Delivery center of excellence, five pillars: domain knowledge, technologies, ski
 
 ## Brand Commitments
 
-- Name: XionTechs. Tagline: "Get IT Done". Headline line from newxion.com: "Where intelligence meets identity". Secondary line: "Get IT done. Make your mark."
+- Name: XionTech. Tagline: "Get IT Done". Headline line from newxion.com: "Where intelligence meets identity". Secondary line: "Get IT done. Make your mark."
 - Logo colors: navy `#103060` and amber `#F8C000`. The mark is an "X" with an amber swoosh.
 - The mountain metaphor is binding, as a symbol only (owner's call, 2026-09-30): the page is mountain-inspired, not about Mount Zion. The story names Mount Zion once as the inspiration for the name. No label, caption, chip, or coordinate names it, and the copy carries no religious text. The 3D mountain keeps its relief as a shape.
-- Pronunciation: XionTechs is said /siː.ɒn.teks/ ("see-on-teks"). Show it wherever the name needs teaching.
+- Pronunciation: XionTech is said /siː.ɒn.tek/ ("see-on-tek"). Show it wherever the name needs teaching.
 
 ## Evidence on Hand
 
@@ -80,7 +80,7 @@ Delivery center of excellence, five pillars: domain knowledge, technologies, ski
 - Offices: Plano base camp (7950 Legacy Drive, Suite 400, Plano, Texas 75024); HCMC base camp; Da Nang base camp. The two Vietnam base camps show **no street address** (owner's call, 2026-09-30: the sources disagree on them).
 - Contact: cellphone +1 469 322 9899, WhatsApp +1 469 439 9345, vinni.tran@xiontechs.com. No social links: the group's pages carry another name.
 - Domains: EdTech, Healthcare, Logistics.
-- Customer event (newsroom, unnamed client): a visit to the XionTechs delivery center in Ho Chi Minh City on AI and robotics in education (2025-10-10).
+- Customer event (newsroom, unnamed client): a visit to the XionTech delivery center in Ho Chi Minh City on AI and robotics in education (2025-10-10).
 - Leadership: Vinni Vu Tran (Founder and CEO), Thea Thu Nguyen (product marketing and UX).
 - Clients (named by the owner, #20, 2026-10-07):
   - Varkey Education (K–12 school group, Dubai): PXP, SXP, ESS. PXP is ParentXP, the parents' app with the Nova AI assistant (App Store, since 2025-08). SXP and ESS have no public detail, so they show by name only until the owner describes them.

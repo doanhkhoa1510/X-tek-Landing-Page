@@ -1,10 +1,10 @@
 {
   "title": "About us",
-  "description": "XionTechs distinguishes itself through its dedication to its people, processes, and technology: seven core values, one “Get IT Done” attitude.",
+  "description": "XionTech distinguishes itself through its dedication to its people, processes, and technology: seven core values, one “Get IT Done” attitude.",
   "head": { "a": "About us.", "b": "We build AI-powered software from Texas and Vietnam." },
-  "lede": "XionTechs distinguishes itself through its dedication to its people, processes, and technology, as the core values below show.",
+  "lede": "XionTech distinguishes itself through its dedication to its people, processes, and technology, as the core values below show.",
   "figures": {
-    "label": "XionTechs in figures",
+    "label": "XionTech in figures",
     "items": {
       "years": "Years in software engineering",
       "pillars": "Pillars of delivery excellence",
@@ -15,7 +15,7 @@
   },
   "why": {
     "title": { "a": "Why choose us.", "b": "Professional IT services, every aspect." },
-    "lede": "Choose XionTechs for integrated solutions and industry experience, with metric-driven delivery. We bring product ideas to life through collaborative creation and a “Get IT Done” attitude.",
+    "lede": "Choose XionTech for integrated solutions and industry experience, with metric-driven delivery. We bring product ideas to life through collaborative creation and a “Get IT Done” attitude.",
     "reasons": {
       "client": "Client centricity focus",
       "integrity": "Integrity and ethical standards",

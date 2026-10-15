@@ -27,7 +27,7 @@ summary: "We are seeking talented, Lead Business Analyst to join our team and co
 - Have Figma design experience is a plus.
 - Have experience as a Scrum Master is a plus.
 
-## Why XionTechs?
+## Why XionTech?
 
 - Enjoy work-life harmony in a dynamic start-up culture with a youthful environment.
 - Receive a competitive salary, performance bonuses, and a pro-rata 13th-month salary.

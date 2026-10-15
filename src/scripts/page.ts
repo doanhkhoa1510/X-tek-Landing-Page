@@ -1,4 +1,4 @@
-/* XionTechs · subpages. The shared chrome, plus the night head's contour map, the reading-position index, and quiet entrances. */
+/* XionTech · subpages. The shared chrome, plus the night head's contour map, the reading-position index, and quiet entrances. */
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

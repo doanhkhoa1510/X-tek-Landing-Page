@@ -1,11 +1,11 @@
 /* Shared brand data for the landing page and the subpages.
-   Content follows newxion.com (source of truth since 2026-09-30), kept to what is XionTechs' own: no other company is named.
+   Content follows newxion.com (source of truth since 2026-09-30), kept to what is XionTech's own: no other company is named.
    Structure lives here (ids, places, numbers, links); the words live in src/i18n/locales/<locale>/site.json under the same ids. */
 
 import { project } from "../scripts/dots";
 
 // the name and how it is said read the same in every language: constants, never translation keys
-export const brand = { name: "XionTechs", ipa: "/siː.ɒn.teks/", say: "see-on-techs", syllables: ["see", "on", "techs"], dict: "Xi·on·techs" } as const;
+export const brand = { name: "XionTech", ipa: "/siː.ɒn.tek/", say: "see-on-tech", syllables: ["see", "on", "tech"], dict: "Xi·on·tech" } as const;
 
 // the XT mark traced as SVG (viewBox 0 30 294 162); navy parts follow currentColor, the amber swoosh never changes
 export const mark = `<path fill="currentColor" d="M8 188C37 177 78 150 120 110L168 152Q171 157 165 157L148 157L120 132C92 156 47 179 8 188Z"/><path fill="#F8C000" d="M91 74L117 74L140 99C168 75 205 54 249 44C214 59 178 85 140 123Z"/><path fill="currentColor" d="M216 62L239 58L239 155Q239 158 236 158L219 158Q216 158 216 155Z"/><path fill="currentColor" d="M193 79C216 58 253 41 294 37C265 44 244 54 236 61L216 66C207 70 200 74 193 79Z"/>`;

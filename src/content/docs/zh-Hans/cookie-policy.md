@@ -1,7 +1,7 @@
 ---
 title: "Cookie 政策"
 kicker: "法律。"
-description: "说明什么是 Cookie、XionTechs 网站如何使用 Cookie，以及如何在浏览器中管理 Cookie。"
+description: "说明什么是 Cookie、XionTech 网站如何使用 Cookie，以及如何在浏览器中管理 Cookie。"
 lede: "本 Cookie 政策说明什么是 Cookie、我们如何使用它们、我们使用的 Cookie 类型（即我们通过 Cookie 收集哪些信息以及这些信息如何被使用），以及如何管理 Cookie 设置。"
 meta:
   - "适用于 xiontechs.com"

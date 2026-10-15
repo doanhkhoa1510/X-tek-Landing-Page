@@ -31,7 +31,7 @@ summary: "Nous recherchons un architecte technique très qualifié et tourné ve
 - Capacité à travailler efficacement dans un environnement dynamique et rythmé.
 - Excellentes compétences relationnelles et de communication orale et écrite en anglais, et capacité à collaborer efficacement avec des profils variés : clients, développeurs, responsables qualité, experts du domaine et architectes.
 
-## Pourquoi XionTechs ?
+## Pourquoi XionTech ?
 
 - Profitez d’une harmonie entre vie professionnelle et vie personnelle dans une culture startup dynamique, au sein d’un environnement jeune.
 - Recevez un salaire compétitif, des primes de performance et un 13e mois au prorata.

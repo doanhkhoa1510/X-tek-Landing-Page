@@ -31,7 +31,7 @@ summary: "Chúng tôi đang tìm kiếm một Kiến trúc sư kỹ thuật (Tec
 - Có khả năng làm việc hiệu quả trong môi trường năng động, nhịp độ nhanh.
 - Kỹ năng giao tiếp xuất sắc, tiếng Anh nói và viết tốt, và khả năng hợp tác hiệu quả với nhiều đối tượng khác nhau như khách hàng, lập trình viên, kiểm thử viên, chuyên gia nghiệp vụ và kiến trúc sư.
 
-## Vì sao chọn XionTechs?
+## Vì sao chọn XionTech?
 
 - Tận hưởng sự hài hòa giữa công việc và cuộc sống trong văn hóa khởi nghiệp năng động với môi trường trẻ trung.
 - Nhận mức lương cạnh tranh, thưởng hiệu suất và lương tháng thứ 13 theo tỷ lệ thời gian làm việc.

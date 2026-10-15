@@ -1,16 +1,16 @@
 {
   "title": "FAQs",
-  "description": "Answers about XionTechs services, collaboration across time zones, data security, and how we measure value.",
+  "description": "Answers about XionTech services, collaboration across time zones, data security, and how we measure value.",
   "head": { "a": "Frequently asked questions.", "b": "Talk to us about any question." },
   "aside": "Ten answers about how we work. Something else? Call <call>{{phone}}</call>.",
   "region": "Frequently asked questions",
   "items": {
     "services": {
-      "q": "What services does XionTechs offer?",
-      "a": "XionTechs offers digital product engineering, digital insights and analytics, product co-creation, and staffing services. These services use emerging technologies like AI/ML and generative AI. XionTechs focuses on industries such as EdTech, healthcare, logistics, and private equity."
+      "q": "What services does XionTech offer?",
+      "a": "XionTech offers digital product engineering, digital insights and analytics, product co-creation, and staffing services. These services use emerging technologies like AI/ML and generative AI. XionTech focuses on industries such as EdTech, healthcare, logistics, and private equity."
     },
     "collaboration": {
-      "q": "How does XionTechs collaborate across time zones?",
+      "q": "How does XionTech collaborate across time zones?",
       "a": "Through extensive time zone coverage that gives overlap between regions, including the USA as well as Europe and Australia. Collaborative tools make communication easy and give real-time project updates, wherever you are."
     },
     "needs": {
@@ -42,7 +42,7 @@
       "a": "We track metrics for speed, quality, product impact, and team autonomy. This metric-driven approach keeps us transparent and accountable, and the tangible results it shows validate ROI."
     },
     "trust": {
-      "q": "How does XionTechs build client trust?",
+      "q": "How does XionTech build client trust?",
       "a": "Through openness and reliability. Our steady commitment to client success shows in consistent performance and ethical practices, carried by a “Get IT Done” attitude."
     }
   }

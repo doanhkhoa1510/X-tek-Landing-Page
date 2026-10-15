@@ -1,6 +1,6 @@
 ---
-name: XionTechs
-description: The Night Ascent. A B2B landing page for an AI-powered IT services and products team, built as a climb from base camp to summit, with unitedcarriers.com-grade motion on the XionTechs navy and amber.
+name: XionTech
+description: The Night Ascent. A B2B landing page for an AI-powered IT services and products team, built as a climb from base camp to summit, with unitedcarriers.com-grade motion on the XionTech navy and amber.
 colors:
   night: "#030813"
   night-band: "#07101F"
@@ -265,13 +265,13 @@ components:
 
 <!-- v2.3 · 2026-09-30 · v2.3 adds the Symbol Rule: the mountain is a symbol and a goal, Mount Zion is named once in the story and in no label. v2.2 re-lays the landing page on newxion.com content: Main, Mindset and core values, The log (achieved, done, products, customers), FAQ, Contact (base camps, then the brief), Footer. v2.1 swapped the procedural massif for the real relief of Mount Zion and added the pronunciation. Recorded from the built page (src/pages/index.astro, src/styles/global.css, src/scripts/*.ts). Tokens here are normative; global.css :root mirrors them one to one. v1 was the pre-build target extracted from unitedcarriers.com. -->
 
-# Design System: XionTechs
+# Design System: XionTech
 
 ## Overview
 
 **Creative North Star: "The Night Ascent"**
 
-The mountain is XionTechs' symbol and goal, and the landing page is a climb up it. The name is inspired by Mount Zion, but the page is not about that place (the Symbol Rule: the story names Mount Zion once as the inspiration; no label, caption, chip, reading, or coordinate names it, and the copy carries no religious text). It opens at night at base camp: a Three.js mountain made of white particle dots under stars. The shape is not invented; the relief data is the real SRTM ground of Mount Zion (see the 3D spec), used as form only. An amber dawn glows behind the ridge and a glacier-blue rim light catches the lower slopes. Chips mark the camps where the team lives, Plano, TX and Ho Chi Minh City. As the visitor scrolls, the camera climbs toward the summit and dawn breaks. A curved atmospheric limb, glacier blue with an amber sunrise line, hands the page to snow-white daylight. From there the page reads in daylight: the story of Xion, the seven core values on a night band, and the log of the climb so far. The last night opens on the two base camps and ends on the summit, where the visitor names their project. The footer closes in daylight with the wordmark at mountain scale.
+The mountain is XionTech's symbol and goal, and the landing page is a climb up it. The name is inspired by Mount Zion, but the page is not about that place (the Symbol Rule: the story names Mount Zion once as the inspiration; no label, caption, chip, reading, or coordinate names it, and the copy carries no religious text). It opens at night at base camp: a Three.js mountain made of white particle dots under stars. The shape is not invented; the relief data is the real SRTM ground of Mount Zion (see the 3D spec), used as form only. An amber dawn glows behind the ridge and a glacier-blue rim light catches the lower slopes. Chips mark the camps where the team lives, Plano, TX and Ho Chi Minh City. As the visitor scrolls, the camera climbs toward the summit and dawn breaks. A curved atmospheric limb, glacier blue with an amber sunrise line, hands the page to snow-white daylight. From there the page reads in daylight: the story of Xion, the seven core values on a night band, and the log of the climb so far. The last night opens on the two base camps and ends on the summit, where the visitor names their project. The footer closes in daylight with the wordmark at mountain scale.
 
 The mechanics come from unitedcarriers.com (Awwwards Site of the Day, teardown in the appendix), because the user named it as the quality bar:
 - GSAP ScrollTrigger scenes scrubbed to scroll. UC's Lenis smooth scroll is not used: its 0.8s glide after each wheel step read as lag (UAT round 1, #40), so the page runs on the browser's native scroll.
@@ -281,14 +281,14 @@ The mechanics come from unitedcarriers.com (Awwwards Site of the Day, teardown i
 - A giant background type band over a dark service track.
 - Hairline grids, dot-matrix icons, and a strict dark and light rhythm joined by atmospheric horizons.
 
-Only the story and the palette are XionTechs': the globe becomes the mountain, freight lanes become routes to the summit, the KM/H speedometer becomes a climb altitude (read by the ridge rider and the contour maps), and UC's electric blue and orange become the logo navy and amber.
+Only the story and the palette are XionTech's: the globe becomes the mountain, freight lanes become routes to the summit, the KM/H speedometer becomes a climb altitude (read by the ridge rider and the contour maps), and UC's electric blue and orange become the logo navy and amber.
 
 The mood is heavy, exact, and confident. It is not soft; a pale-haze, rounded, sentence-case rewrite was tried and rejected. Density is low: sections run tall, type runs big, and a lot of the screen is left empty.
 
 **Key Characteristics:**
 - One continuous story: night, dawn, daylight, dusk, summit, daylight.
 - One mountain, a symbol: the same relief in 3D, as contours, and as the ridge silhouette, never labeled with a place name. The page's altitude reads its metres, from the 765 m summit down to 0.
-- The name teaches itself: /siː.ɒn.teks/ hangs under the wordmark, and the footer closes with a dictionary entry.
+- The name teaches itself: /siː.ɒn.tek/ hangs under the wordmark, and the footer closes with a dictionary entry.
 - Saira at 125% width, uppercase, carries every heading. Host Grotesk carries prose. Martian Mono carries every control, label, and reading.
 - Flat surfaces and 1px hairlines. No shadows, no cards with depth, no glass.
 - Pills for controls, a 2px radius for chips, square for everything else.
@@ -349,7 +349,7 @@ A live line that crosses copy is navy.
 
 **The One-Office-List Rule.** The offices are always Plano, Ho Chi Minh City, Da Nang, in that order, and every count matches the list ("Three offices. One team."). Plano carries an amber "US contact point" tag on the landing offices and on Contact us, because US buyers look for it first (UAT round 1, #43).
 
-**The Plain-Words Rule.** The mountain is the picture, not the vocabulary. Every heading, button, link, and nav label says what the section is or does in business words, so a visitor who never reads the story still knows what XionTechs sells ("Our work.", "Questions before you start.", "Start a project.", "Back to top"). Climbing words may stay in decoration only: the 3D chips, the rider reading, and the footer's dictionary entry (UAT round 1, #42).
+**The Plain-Words Rule.** The mountain is the picture, not the vocabulary. Every heading, button, link, and nav label says what the section is or does in business words, so a visitor who never reads the story still knows what XionTech sells ("Our work.", "Questions before you start.", "Start a project.", "Back to top"). Climbing words may stay in decoration only: the 3D chips, the rider reading, and the footer's dictionary entry (UAT round 1, #42).
 
 **The No-Placeholder Rule.** Visitors never see an internal note. Anything the user must still supply (customer names, quotes) stays off the page and is tracked as a GitHub issue (#20); an entry shows only the facts on hand. A placeholder that looks finished is a fabrication, and one that says "pending" tells a buyer we have nothing to show (UAT round 1, #37).
 
@@ -359,7 +359,7 @@ A live line that crosses copy is navy.
 **Body Font:** Host Grotesk Variable, weight 400 (fallback: Helvetica Neue, Arial, sans-serif)
 **Label/Mono Font:** Martian Mono Variable, weights 400–500 (fallback: ui-monospace, SFMono-Regular, monospace)
 
-**IPA Font:** Noto Sans Mono Variable, weight 400, used only for the pronunciation `/siː.ɒn.teks/` (token `--ipa`, falling back to the mono stack).
+**IPA Font:** Noto Sans Mono Variable, weight 400, used only for the pronunciation `/siː.ɒn.tek/` (token `--ipa`, falling back to the mono stack).
 
 All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/wdth.css`, `@fontsource-variable/martian-mono/wdth.css`, `@fontsource-variable/host-grotesk`, `@fontsource-variable/noto-sans-mono`. Saira ships a Vietnamese subset, so office addresses set correctly.
 
@@ -410,14 +410,14 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
   - Headings get more space above than below.
 - **Section order and fields:**
   1. Main: hero `#top` (night, 210vh with a sticky 100svh stage)
-  2. Services `#services` (snow): what a buyer can hire XionTechs for: the digital product engineering services (#35)
+  2. Services `#services` (snow): what a buyer can hire XionTech for: the digital product engineering services (#35)
   3. The log `#work` (snow, sticky head and dial): achieved, done, products, customers; each product links to its section on /products/ (#111)
-  4. Why XionTechs `#why` (snow): four reasons, each led by its proof
+  4. Why XionTech `#why` (snow): four reasons, each led by its proof
   5. FAQ `#faq` (ice)
   6. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
   7. Footer (snow)
   - The platform architecture chart (strata) lives on /products/ under the smart-schools section since #111; the landing keeps the products as the dial's summary.
-  - The story of Xion (`#mindset`) and the core values (`#values`) live on About us since #36: on the landing page they stood between the hero and what XionTechs does, and buyers lost the thread. The hero carries no buttons (#107): its "Talk to our experts" pill repeated the header CTA ("Start a project", to the brief), and the mindset pill told a buyer nothing.
+  - The story of Xion (`#mindset`) and the core values (`#values`) live on About us since #36: on the landing page they stood between the hero and what XionTech does, and buyers lost the thread. The hero carries no buttons (#107): its "Talk to our experts" pill repeated the header CTA ("Start a project", to the brief), and the mindset pill told a buyer nothing.
 - **Class names keep the mountain vocabulary** (`.intro`, `.routes`, `.gear`, `.strata`, `.ascent`, `.camps`, `.summit`); ids carry the content names.
 - **Breakpoints:** desktop ≥ 992px. Tablet 768–991px: headings and copy stack to full width, sticky heads go static, and the route strip moves to columns 1/3. Mobile ≤ 767px:
   - The header becomes a flex row (logo left, menu right), and the CTA, the ticker phones, and the 3D camp chips hide.
@@ -528,7 +528,7 @@ Character: heavy pills with a machine voice. The fill answers the pointer.
   - Right: the phone and WhatsApp links, then the language toggle (see Languages).
   - A hairline sits under it.
 - **Row (64px):**
-  - The logo: the mark plus XIONTECHS, with the pronunciation subtitle under the word (see Pronunciation subtitle). After 80px of scroll, "ION" and "ECHS" collapse through `grid-template-columns: 1fr → 0fr` over 0.7s, leaving **XT**, like UC's UNITEDCARRIERS → UC.
+  - The logo: the mark plus XIONTECH, with the pronunciation subtitle under the word (see Pronunciation subtitle). After 80px of scroll, "ION" and "ECH" collapse through `grid-template-columns: 1fr → 0fr` over 0.7s, leaving **XT**, like UC's UNITEDCARRIERS → UC.
   - The `•••• MENU` toggle: four 3px squares at opacity .24/.5/.7/1. On hover they go to 1 and the odd dots hop 2px. On open, MENU rolls up and CLOSE rolls in.
   - From 1280px, the six section links (Services to Offices, Micro-sized Button type, Fg Soft) sit in the row, centred, with `COMPANY ▾` last; that toggle opens the same panel holding only About us, Careers, and Support. Contact stays with the CTA. Below 1280px the `•••• MENU` toggle sits next to the CTA and opens the full list.
   - **Active marker:** the link of the section under the header takes Fg and a 2px amber rule that grows from the start (0.5s expo). On a company page, `COMPANY` carries the rule.
@@ -575,8 +575,8 @@ Two block spans in one H2, following the Two-Tone Rule. On night the fill runs D
 The figure (count-up from 0, 1s power1.out at `top 85%`, once) sits over a Label, with a top hairline. The row wipes in with clip-path from the left (1.2s expo, stagger 0.12). It sits three-up in the first log entry. The figures are real: 25+ years in software engineering, 5 pillars of delivery excellence, 3 offices.
 
 ### Gear (services)
-What a buyer can hire XionTechs for, straight under the hero, so the first daylight answers "what do you sell" (#35). Content from newxion.com/services: the Digital product engineering group only. Digital insights and analytics and Odoo ERP stay off (owner's call, 2026-10-07), and the source's third-party quotes are not carried over.
-- **Head:** a two-tone H2 at 1/8 ("Our services. / Engineering, data, and AI.") with a one-line intro at 8/13 on its baseline, like Why XionTechs.
+What a buyer can hire XionTech for, straight under the hero, so the first daylight answers "what do you sell" (#35). Content from newxion.com/services: the Digital product engineering group only. Digital insights and analytics and Odoo ERP stay off (owner's call, 2026-10-07), and the source's third-party quotes are not carried over.
+- **Head:** a two-tone H2 at 1/8 ("Our services. / Engineering, data, and AI.") with a one-line intro at 8/13 on its baseline, like Why XionTech.
 - **Group:** Digital product engineering (seven services), as one row: at 1/5 a top hairline, the group name (Title LG, max 14ch) and one Body Small line in Slate, sticky at `top: 130px` beside its list on desktop; the list at 5/13.
 - **List:** a hairline cell grid, two up (the 1px gaps are the rules, as in the subpage cells). A cell holds its index (`01`, Micro mono, Slate, tabular) in a 3ch column beside a Title (h4, max 22ch) over Body Small in Slate (max 46ch). The last service of an odd count spans the row. Hover tints Ice. Product co-creation carries its five steps as tags.
 - **No icons:** the source's icons say nothing a name does not, so the index is the only mark (Don't: an icon with no meaning). The index sits beside the name, never above it (no eyebrows).
@@ -584,8 +584,8 @@ What a buyer can hire XionTechs for, straight under the hero, so the first dayli
 - **Spacing:** the section has no bottom padding; the platform that follows pads one section, so the two daylight sections share one gap.
 - **Motion:** each list's contents rise 24px (1.1s expo, stagger 0.03) at `top 85%`. The cells themselves stay put, so their hairline ground never shows as a grey block while the text is still hidden.
 
-### Why XionTechs (reasons)
-- **Layout:** a two-tone H2 at 1/8 ("Why XionTechs. / Four reasons, each with proof.") with a one-line intro at 8/13 on its baseline; under it a four-up row (two-up on tablet, one-up on mobile). Each reason is a Stat (the proof figure over its Micro label), a Title, Body Small in Slate (max 36ch), and an optional Micro link with a navy underline to the section that shows the proof.
+### Why XionTech (reasons)
+- **Layout:** a two-tone H2 at 1/8 ("Why XionTech. / Four reasons, each with proof.") with a one-line intro at 8/13 on its baseline; under it a four-up row (two-up on tablet, one-up on mobile). Each reason is a Stat (the proof figure over its Micro label), a Title, Body Small in Slate (max 36ch), and an optional Micro link with a navy underline to the section that shows the proof.
 - **Content:** every figure is in PRODUCT.md › Evidence on Hand: 3 offices (US contact, Vietnam build team, both time zones), 25+ years, 5 pillars (Agile + BMAD-METHOD + V-Model, metric-driven), 2 products (the AI-powered development platform and our own AI products). No reason without a proof; no comparison table until the owner approves each claim (#47).
 - **Motion:** reasons rise 24px (1.1s expo, stagger 0.1) at `top 85%` of the row; figures count up like every Stat.
 
@@ -600,7 +600,7 @@ What a buyer can hire XionTechs for, straight under the hero, so the first dayli
 - **Reply promise:** `reply` in `site.ts` adds one line under every brief form ("{who} replies to every brief within {days} business days."). It stays off until the owner gives both values.
 
 ### Story and mission (mindset, on About us)
-- **Layout:** the topo tile and the sticky two-tone H2 at 1/7; the story at 8/13 as three Lede paragraphs. The H2 reads "Starting with a story. / A mountain is our symbol." The first paragraph names Mount Zion once, as the inspiration for the name; this is the only place the page names it (the Symbol Rule). XionTechs is the only company named (the One-Name Rule: no parent group, no sister company, anywhere on the page). The mission sits under a hairline: a Title head ("Our mission") over Body in Slate, max 46ch. One outline pill leads to the core values.
+- **Layout:** the topo tile and the sticky two-tone H2 at 1/7; the story at 8/13 as three Lede paragraphs. The H2 reads "Starting with a story. / A mountain is our symbol." The first paragraph names Mount Zion once, as the inspiration for the name; this is the only place the page names it (the Symbol Rule). XionTech is the only company named (the One-Name Rule: no parent group, no sister company, anywhere on the page). The mission sits under a hairline: a Title head ("Our mission") over Body in Slate, max 46ch. One outline pill leads to the core values.
 - **Entrance:** paragraphs, mission, and button rise 28px (1.1s expo, stagger 0.08).
 
 ### Value column (core values, on About us)
@@ -614,7 +614,7 @@ The section follows the story on About us (`story.ts`, called from `page.ts` bef
 
 ### Strata (platform chart, /products/ #smart-schools)
 The AI-powered platform for smart schools (from the newxion.com/solutions diagram), drawn as one architecture chart you read at a glance, not as steps. It speaks the page's survey language, never the source's yellow and black boxes.
-- **Head:** the two-tone H2 ("AI-powered platform / for smart schools.") at 1/8; a Lede and a Body paragraph in Slate at 8/13, bottom-aligned. XionTechs stays the only company named ("We built it").
+- **Head:** the two-tone H2 ("AI-powered platform / for smart schools.") at 1/8; a Lede and a Body paragraph in Slate at 8/13, bottom-aligned. XionTech stays the only company named ("We built it").
 - **Frame:** one bounded figure with a 1px hairline and padding clamp(20px, 2.4vw, 36px), on survey paper: Brand Navy dots at 12%, 1px, on a 16px pitch, quieter than any block. A Micro caption sits under it.
 - **Y-axis:** a hairline runs down the whole chart. The four tier names (Users and apps, Services, Infrastructure and data, Devices) sit left of it in a 128px column in mono Label, Slate, each with a 6px navy dot on the axis. Under 992px the names head their tiers in Navy Ink with the dot in front, so they outrank the group names.
 - **Blocks:** square, snow over the paper, a 1px Brand Navy outline at 20%, Host Grotesk 500 at 14px in Navy Ink; hover tints Ice. Roles are Title h4 centred over their column of app blocks, whose names centre too. Tiers stand 36px apart.
@@ -684,22 +684,22 @@ Under the summit copy: phone, WhatsApp, and email as Button-type links in Xion A
 
 ### Footer
 - **Top:** a snow field with a light dot map (columns 1–4) and four columns (Offices, Reach us, Explore, Company) with Label heads. Reach us holds the phone, WhatsApp, and email (may wrap).
-- **Wordmark:** the mark plus XIONTECHS at 11.4vw (10.2vw on mobile), Saira 800 125% in Brand Navy.
+- **Wordmark:** the mark plus XIONTECH at 12.5vw (11.2vw on mobile), Saira 800 125% in Brand Navy.
 - **Dictionary entry:** directly under the wordmark (see below).
 - **Legal:** a hairline row with © and "AI-powered IT services and products", the line "Get IT done. Make your mark.", the legal links, and "Back to base camp".
 
 ### Pronunciation subtitle (signature)
 Many people misread the name. The fix is to teach it the way a dictionary teaches a new word.
-- **Content:** `/siː.ɒn.teks/`, exactly as the owner specified (with the plural /s/ of Techs).
+- **Content:** `/siː.ɒn.tek/`, exactly as the owner specified.
 - **Placement:** under the wordmark in the preloader and the header, left-aligned to the word, 6px below it. It is absolutely positioned, so it adds no height and the preloader-to-header FLIP stays exact.
 - **Type:** IPA role, 11px, `currentColor` at 80%. It follows the header theme (snow on night, navy on daylight).
 - **Motion:** when the header compacts to XT, it fades out and lifts 4px (0.4s opacity, 0.5s expo translate). It returns with the full word.
-- **Accessibility:** the visual line is `aria-hidden`; the logo link says "XionTechs, said see-on-teks, back to the top".
+- **Accessibility:** the visual line is `aria-hidden`; the logo link says "XionTech, said see-on-tek, back to the top".
 
 ### Dictionary entry (footer)
 The name set as a dictionary headword, the page's last word.
-- **Markup:** a `<dl>` labelled "How to say XionTechs": `dt` headword, then `dd` rows for IPA, sound-out, and definition.
-- **Row:** headword **Xi·on·techs** (Saira 700 125%, Title LG, Brand Navy, mixed case like a real headword); IPA `/siː.ɒn.teks/` at 17px in Navy Ink with a `NOUN` part-of-speech tag (Micro, Slate); under it the sound-out **Say it: see · on · teks** (Label, Slate, syllables in Navy Ink 600); at the right, the definition (Body Small, max 46ch): "Inspired by a mountain. The team that takes a product from base camp to summit."
+- **Markup:** a `<dl>` labelled "How to say XionTech": `dt` headword, then `dd` rows for IPA, sound-out, and definition.
+- **Row:** headword **Xi·on·tech** (Saira 700 125%, Title LG, Brand Navy, mixed case like a real headword); IPA `/siː.ɒn.tek/` at 17px in Navy Ink with a `NOUN` part-of-speech tag (Micro, Slate); under it the sound-out **Say it: see · on · teks** (Label, Slate, syllables in Navy Ink 600); at the right, the definition (Body Small, max 46ch): "Inspired by a mountain. The team that takes a product from base camp to summit."
 - **Grid:** `auto auto 1fr minmax(0, 46ch)`, baseline-aligned, gap 10px 32px. On mobile it stacks in one column.
 - **Color:** no amber on snow. Every tag uses Slate, not Dim Ink, because Dim Ink fails 4.5:1 at these sizes.
 
@@ -784,7 +784,7 @@ The name set as a dictionary headword, the page's last word.
 - **Hidden decoration:** the 3D canvas, chips layer, preloader, giant type, and map canvases are all `aria-hidden`.
 - **Real controls:** every city on the map is a real button with its name. The FAQ uses `aria-expanded`, `aria-controls`, and `hidden`. The form has labels and `aria-live` status.
 - **Contrast:** body text meets at least 4.5:1 everywhere. Dim headline lines meet at least 3:1 at display sizes.
-- **Pronunciation:** screen readers get "said see-on-teks" in the logo's label and the full footer entry as a labelled `dl`; the visual IPA under the logo is hidden from them to avoid reading symbols aloud.
+- **Pronunciation:** screen readers get "said see-on-tek" in the logo's label and the full footer entry as a labelled `dl`; the visual IPA under the logo is hidden from them to avoid reading symbols aloud.
 - **Browser surfaces:** selection, caret, scrollbar, and underline offset are themed from the palette.
 
 ## File Map

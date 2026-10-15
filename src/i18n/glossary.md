@@ -8,7 +8,7 @@ The values below are read from `src/i18n/locales/*/` today. When a native review
 | Language | Buyer (landing page, Contact, FAQ, forms) | Job candidate (Careers, job posts) |
 |---|---|---|
 | en | "you" | "you" |
-| vi | **"quý khách"** (formal B2B). Never "bạn" or "các bạn" to a buyer. A question the buyer asks about us names us: "XionTechs triển khai dự án như thế nào?", not "Các bạn …?" | "bạn" |
+| vi | **"quý khách"** (formal B2B). Never "bạn" or "các bạn" to a buyer. A question the buyer asks about us names us: "XionTech triển khai dự án như thế nào?", not "Các bạn …?" | "bạn" |
 | zh-Hans | 您 | 你 |
 | ja | です/ます form; お客様 for the buyer | です/ます form; あなた sparingly |
 | ar | Modern Standard Arabic, formal singular أنت; no dialect | same |
@@ -17,7 +17,7 @@ The values below are read from `src/i18n/locales/*/` today. When a native review
 
 ## Rules
 
-- **Keep in Latin letters:** XionTechs, Get IT done, product names (Parent Hub, Buddy360, AI Curriculum Hub, IoT Teacher Coach), client and client-project names (Varkey Education, PXP, ParentXP, SXP, ESS, Nova, Cyberhive, Cyber Diagnostic, Threat Intel), method names (Agile, BMAD-METHOD, V-Model), and technical names a buyer searches for (AI, API gateway, MCP server, DevOps).
+- **Keep in Latin letters:** XionTech, Get IT done, product names (Parent Hub, Buddy360, AI Curriculum Hub, IoT Teacher Coach), client and client-project names (Varkey Education, PXP, ParentXP, SXP, ESS, Nova, Cyberhive, Cyber Diagnostic, Threat Intel), method names (Agile, BMAD-METHOD, V-Model), and technical names a buyer searches for (AI, API gateway, MCP server, DevOps).
 - **"Brief" means the project request form.** In Vietnamese it is "yêu cầu" (not "brief"); other languages keep the word they use for the form button.
 - **Plain words, not climbing words** (DESIGN.md › The Plain-Words Rule): headings, buttons, and links say what the section is. The mountain stays a picture.
 - **Numbers** come only from PRODUCT.md › Evidence on Hand: 25+ years, 5 pillars, 3 offices, 5 service lines, 2 products.
@@ -26,7 +26,7 @@ The values below are read from `src/i18n/locales/*/` today. When a native review
 
 | Term | en | vi | zh-Hans | ja | ar | fr | hi |
 |---|---|---|---|---|---|---|---|
-| Brand name | XionTechs | XionTechs | XionTechs | XionTechs | XionTechs | XionTechs | XionTechs |
+| Brand name | XionTech | XionTech | XionTech | XionTech | XionTech | XionTech | XionTech |
 | Tagline | Get IT done. | Get IT done. | Get IT done. | Get IT done. | Get IT done. | Get IT done. | Get IT done. |
 | Service line: Digital product engineering | Digital product engineering | Kỹ thuật sản phẩm số | 数字产品工程 | デジタルプロダクトエンジニアリング | هندسة المنتجات الرقمية | Ingénierie de produits numériques | डिजिटल प्रोडक्ट इंजीनियरिंग |
 | Service line: Digital insights and analytics | Digital insights and analytics | Thông tin chuyên sâu và phân tích số | 数字洞察与分析 | デジタルインサイトとアナリティクス | الرؤى والتحليلات الرقمية | Insights et analytique numériques | डिजिटल इनसाइट्स और एनालिटिक्स |

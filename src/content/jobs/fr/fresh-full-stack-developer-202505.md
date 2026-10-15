@@ -22,7 +22,7 @@ summary: "Nous recherchons des développeurs Full Stack débutants et talentueux
 - Une expérience en développement sur Azure Cloud est un plus.
 - Une bonne communication orale et écrite en anglais est un plus.
 
-## Pourquoi XionTechs ?
+## Pourquoi XionTech ?
 
 - Profitez d’une harmonie entre vie professionnelle et vie personnelle dans une culture startup dynamique, au sein d’un environnement jeune.
 - Recevez un salaire compétitif, des primes de performance et un 13e mois au prorata.

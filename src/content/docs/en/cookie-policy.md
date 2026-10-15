@@ -1,7 +1,7 @@
 ---
 title: "Cookie policy"
 kicker: "Legal."
-description: "What cookies are, how the XionTechs website uses them, and how to manage them in your browser."
+description: "What cookies are, how the XionTech website uses them, and how to manage them in your browser."
 lede: "This Cookie Policy explains what cookies are and how we use them, the types of cookies we use, i.e., the information we collect using cookies and how that information is used, and how to manage the cookie settings."
 meta:
   - "Applies to xiontechs.com"

@@ -1,7 +1,7 @@
 ---
 title: "クッキーポリシー"
 kicker: "法的情報。"
-description: "Cookieとは何か、XionTechsのウェブサイトがCookieをどのように使うか、そしてブラウザでCookieを管理する方法について説明します。"
+description: "Cookieとは何か、XionTechのウェブサイトがCookieをどのように使うか、そしてブラウザでCookieを管理する方法について説明します。"
 lede: "本Cookieポリシーでは、Cookieとは何か、そして当社がどのようにCookieを使用するかを説明します。あわせて、使用するCookieの種類、すなわちCookieを通じて収集する情報とその利用方法、そしてCookieの設定を管理する方法についても説明します。"
 meta:
   - "xiontechs.comに適用"

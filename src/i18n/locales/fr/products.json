@@ -1,12 +1,12 @@
 {
   "title": "Produits",
-  "description": "Deux produits développés par XionTechs : une plateforme propulsée par l’IA pour écoles intelligentes et une solution d’emplois du temps propulsée par l’IA.",
+  "description": "Deux produits développés par XionTech : une plateforme propulsée par l’IA pour écoles intelligentes et une solution d’emplois du temps propulsée par l’IA.",
   "head": { "a": "Nos produits.", "b": "L’IA pour écoles intelligentes et emplois du temps." },
   "keyFeatures": "Fonctionnalités clés",
   "school": {
     "title": { "a": "Plateforme propulsée par l’IA", "b": "pour écoles intelligentes" },
     "summary": "Un écosystème numérique intégré qui utilise l’IA pour améliorer l’apprentissage, simplifier l’administration et renforcer l’engagement des élèves.",
-    "body": "XionTechs a conçu cette plateforme pour proposer des parcours d’apprentissage personnalisés, des analyses en temps réel, une correction automatisée et une gestion intelligente des ressources, afin que les établissements offrent un enseignement plus efficace, plus adaptatif et tourné vers l’avenir."
+    "body": "XionTech a conçu cette plateforme pour proposer des parcours d’apprentissage personnalisés, des analyses en temps réel, une correction automatisée et une gestion intelligente des ressources, afin que les établissements offrent un enseignement plus efficace, plus adaptatif et tourné vers l’avenir."
   },
   "timetabling": {
     "title": { "a": "Emplois du temps", "b": "propulsés par l’IA" },

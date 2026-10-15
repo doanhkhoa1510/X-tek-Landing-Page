@@ -1,7 +1,7 @@
 ---
 title: "Chính sách cookie"
 kicker: "Pháp lý."
-description: "Cookie là gì, website XionTechs sử dụng cookie như thế nào và cách quản lý cookie trong trình duyệt của bạn."
+description: "Cookie là gì, website XionTech sử dụng cookie như thế nào và cách quản lý cookie trong trình duyệt của bạn."
 lede: "Chính sách cookie này giải thích cookie là gì và cách chúng tôi sử dụng chúng, các loại cookie chúng tôi dùng, tức là thông tin chúng tôi thu thập bằng cookie và cách thông tin đó được sử dụng, cũng như cách quản lý cài đặt cookie."
 meta:
   - "Áp dụng cho xiontechs.com"
