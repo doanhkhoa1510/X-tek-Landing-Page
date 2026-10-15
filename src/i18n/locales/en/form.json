@@ -8,11 +8,14 @@
   "optional": "optional",
   "sendBrief": "Send brief",
   "sendRequest": "Send request",
+  "privacy": "We use your details to reply to this brief. <link>Privacy policy</link>",
   "status": {
     "badEmail": "That email looks incomplete. Check it and send again.",
     "required": "Fill in all three required fields so we know where to start.",
     "sending": "Sending your brief…",
     "sent": "Brief sent. We reply by email.",
-    "failed": "The brief did not send. Try again, or call <call>{{phone}}</call>."
+    "sentReply": "Brief sent. {{who}} replies from <mail>{{email}}</mail> within {{days}} business days.",
+    "sentReplyOne": "Brief sent. {{who}} replies from <mail>{{email}}</mail> within one business day.",
+    "failed": "The brief did not send. Call <call>{{phone}}</call> or email <mail>{{email}}</mail>."
   }
 }

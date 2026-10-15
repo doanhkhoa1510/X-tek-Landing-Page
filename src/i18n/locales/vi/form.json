@@ -8,11 +8,14 @@
   "optional": "tùy chọn",
   "sendBrief": "Gửi yêu cầu",
   "sendRequest": "Gửi yêu cầu",
+  "privacy": "Chúng tôi sử dụng thông tin của quý khách để phản hồi yêu cầu này. <link>Chính sách quyền riêng tư</link>",
   "status": {
     "badEmail": "Email chưa đầy đủ. Vui lòng kiểm tra và gửi lại.",
     "required": "Vui lòng điền đủ ba trường bắt buộc để chúng tôi nắm được nhu cầu.",
     "sending": "Đang gửi yêu cầu…",
     "sent": "Đã gửi yêu cầu. Chúng tôi sẽ phản hồi qua email.",
-    "failed": "Chưa gửi được yêu cầu. Vui lòng thử lại hoặc gọi <call>{{phone}}</call>."
+    "sentReply": "Đã gửi yêu cầu. {{who}} sẽ phản hồi qua <mail>{{email}}</mail> trong vòng {{days}} ngày làm việc.",
+    "sentReplyOne": "Đã gửi yêu cầu. {{who}} sẽ phản hồi qua <mail>{{email}}</mail> trong vòng một ngày làm việc.",
+    "failed": "Chưa gửi được yêu cầu. Vui lòng gọi <call>{{phone}}</call> hoặc gửi email đến <mail>{{email}}</mail>."
   }
 }

@@ -2,5 +2,6 @@
   "title": { "a": "Ban lãnh đạo.", "b": "Những người quý khách làm việc cùng." },
   "roles": { "vinni": "Nhà sáng lập kiêm CEO" },
   "linkedin": "{{name}} trên LinkedIn",
-  "reply": "{{who}} phản hồi mọi yêu cầu trong vòng {{days}} ngày làm việc."
+  "reply": "{{who}} phản hồi mọi yêu cầu trong vòng {{days}} ngày làm việc.",
+  "replyOne": "{{who}} phản hồi mọi yêu cầu trong vòng một ngày làm việc."
 }

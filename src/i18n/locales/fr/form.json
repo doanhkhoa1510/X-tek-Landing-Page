@@ -8,11 +8,14 @@
   "optional": "facultatif",
   "sendBrief": "Envoyer le brief",
   "sendRequest": "Envoyer la demande",
+  "privacy": "Nous utilisons vos coordonnées pour répondre à ce brief. <link>Confidentialité</link>",
   "status": {
     "badEmail": "Cet e-mail semble incomplet. Vérifiez-le et renvoyez.",
     "required": "Remplissez les trois champs obligatoires pour que nous sachions par où commencer.",
     "sending": "Envoi de votre brief…",
     "sent": "Brief envoyé. Nous répondons par e-mail.",
-    "failed": "Le brief n’a pas été envoyé. Réessayez ou appelez le <call>{{phone}}</call>."
+    "sentReply": "Brief envoyé. {{who}} répond depuis <mail>{{email}}</mail> sous {{days}} jours ouvrés.",
+    "sentReplyOne": "Brief envoyé. {{who}} répond depuis <mail>{{email}}</mail> sous un jour ouvré.",
+    "failed": "Le brief n’a pas été envoyé. Appelez le <call>{{phone}}</call> ou écrivez à <mail>{{email}}</mail>."
   }
 }
