@@ -1,0 +1,46 @@
+{
+  "title": "Produits",
+  "description": "Deux produits développés par XionTechs : une plateforme propulsée par l’IA pour écoles intelligentes et une solution d’emplois du temps propulsée par l’IA.",
+  "head": { "a": "Nos produits.", "b": "L’IA pour écoles intelligentes et emplois du temps." },
+  "keyFeatures": "Fonctionnalités clés",
+  "school": {
+    "title": { "a": "Plateforme propulsée par l’IA", "b": "pour écoles intelligentes" },
+    "summary": "Un écosystème numérique intégré qui utilise l’IA pour améliorer l’apprentissage, simplifier l’administration et renforcer l’engagement des élèves.",
+    "body": "XionTechs a conçu cette plateforme pour proposer des parcours d’apprentissage personnalisés, des analyses en temps réel, une correction automatisée et une gestion intelligente des ressources, afin que les établissements offrent un enseignement plus efficace, plus adaptatif et tourné vers l’avenir.",
+    "diagram": {
+      "core": "Plateforme propulsée par l’IA",
+      "features": {
+        "learning": "Apprentissage personnalisé",
+        "classroom": "Gestion de classe intelligente",
+        "assessment": "Évaluation propulsée par l’IA",
+        "assistant": "Assistant pédagogique virtuel",
+        "insights": "Analyses fondées sur les données",
+        "scheduling": "Planification intelligente",
+        "communication": "Communication intelligente",
+        "security": "Sécurité et conformité",
+        "gamified": "Apprentissage ludique",
+        "integration": "Intégration et évolutivité"
+      }
+    }
+  },
+  "timetabling": {
+    "title": { "a": "Emplois du temps", "b": "propulsés par l’IA" },
+    "summary": "Une solution de planification intelligente qui automatise la création et l’optimisation des emplois du temps scolaires.",
+    "diagram": {
+      "label": "Fonctionnement",
+      "steps": {
+        "inputs": "Données et contraintes",
+        "generate": "Génération des emplois du temps",
+        "compare": "Comparaison des emplois du temps",
+        "analytics": "Analytique"
+      }
+    },
+    "features": {
+      "interface": "Une interface conviviale pour une expérience fluide et intuitive.",
+      "entry": "Aide les utilisateurs à saisir leurs données et explique les fonctionnalités de l’application selon les bonnes pratiques et les besoins de chacun.",
+      "compare": "Compare les emplois du temps générés à partir de données et de contraintes différentes.",
+      "guide": "Des échanges interactifs pour comprendre les objectifs de planification et guider vers les solutions optimales.",
+      "analytics": "Analytique : indicateurs sur les tendances de planification, le taux d’occupation des salles et la planification des capacités."
+    }
+  }
+}

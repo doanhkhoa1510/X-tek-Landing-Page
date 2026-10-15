@@ -1,0 +1,59 @@
+---
+import Sub from "../../layouts/Sub.astro";
+import Cta from "../../components/Cta.astro";
+import { localePaths } from "../../i18n/config";
+import { useT } from "../../i18n";
+
+export const getStaticPaths = localePaths;
+
+const lang = Astro.currentLocale;
+const t = useT(lang, "products"), tc = useT(lang, "common");
+
+// the ids are the anchors the dial's product rows link to (#111); the diagram keeps the platform in the middle of the ten features
+const schoolFeatures = ["learning", "classroom", "assessment", "assistant", "insights", "scheduling", "communication", "security", "gamified", "integration"] as const;
+const timetablingSteps = ["inputs", "generate", "compare", "analytics"] as const;
+const timetablingFeatures = ["interface", "entry", "compare", "guide", "analytics"] as const;
+---
+<Sub title={t("title")} description={t("description")} a={t("head.a")} b={t("head.b")}>
+  <section id="smart-schools" class="product" data-on="light" aria-labelledby="smart-schools-title">
+    <div class="wrap product-grid">
+      <h2 id="smart-schools-title" class="tt product-title"><span class="tt-a">{t("school.title.a")}</span> <span class="tt-b">{t("school.title.b")}</span></h2>
+      <div class="product-text">
+        <p class="lede">{t("school.summary")}</p>
+        <p>{t("school.body")}</p>
+      </div>
+      <div class="product-figure">
+        <p class="label product-label">{t("keyFeatures")}</p>
+        <div class="product-hub">
+          <p class="product-core">{t("school.diagram.core")}</p>
+          <ul class="product-features" role="list">
+            {schoolFeatures.map((id) => <li class="product-feature">{t(`school.diagram.features.${id}`)}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="timetabling" class="product" data-on="light" aria-labelledby="timetabling-title">
+    <div class="wrap product-grid">
+      <h2 id="timetabling-title" class="tt product-title"><span class="tt-a">{t("timetabling.title.a")}</span> <span class="tt-b">{t("timetabling.title.b")}</span></h2>
+      <div class="product-text">
+        <p class="lede">{t("timetabling.summary")}</p>
+      </div>
+      <div class="product-figure">
+        <p class="label product-label">{t("timetabling.diagram.label")}</p>
+        <ol class="product-flow">
+          {timetablingSteps.map((id) => <li class="product-step">{t(`timetabling.diagram.steps.${id}`)}</li>)}
+        </ol>
+      </div>
+      <div class="product-ticks-wrap">
+        <p class="label product-label">{t("keyFeatures")}</p>
+        <ul class="ticks">
+          {timetablingFeatures.map((id) => <li>{t(`timetabling.features.${id}`)}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Cta label={tc("talk")} />
+</Sub>

@@ -29,6 +29,8 @@
         "text": "An intelligent scheduling system that automates the creation and optimization of academic timetables, and compares timetables built from different inputs and constraints."
       }
     },
+    "details": "Product details",
+    "detailsFor": "Product details: {{name}}",
     "camp": "Products"
   },
   "customers": {

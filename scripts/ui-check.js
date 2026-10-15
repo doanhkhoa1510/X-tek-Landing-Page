@@ -7,8 +7,8 @@ const CFG = __CFG__; // { base, only, widths }
 const VIEWPORTS = { desktop: [1440, 900], tablet: [834, 1112], mobile: [390, 844] };
 const SECTIONS = ["top", "services", "platform", "work", "why", "faq", "camps", "summit"];
 // sections further down a subpage, shot like the landing sections (About us holds the story and the values since #36)
-const PAGE_SECTIONS = { "/about-us/": ["mindset", "values", "team"] };
-const PAGES = ["/about-us/", "/careers/", "/contact-us/", "/faqs/", "/support/", "/privacy-policy/", "/ar/"];
+const PAGE_SECTIONS = { "/about-us/": ["mindset", "values", "team"], "/products/": ["smart-schools", "timetabling"] };
+const PAGES = ["/about-us/", "/careers/", "/contact-us/", "/faqs/", "/products/", "/support/", "/privacy-policy/", "/ar/"];
 // fixed or shared chrome, captured as single elements
 const PARTS = { header: ".hdr", footer: "footer" };
 const SETTLE = 3000; // headless paint lags behind scroll

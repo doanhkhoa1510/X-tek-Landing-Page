@@ -20,6 +20,7 @@ import type loader from "./locales/en/loader.json";
 import type mindset from "./locales/en/mindset.json";
 import type notFound from "./locales/en/notFound.json";
 import type platform from "./locales/en/platform.json";
+import type products from "./locales/en/products.json";
 import type services from "./locales/en/services.json";
 import type site from "./locales/en/site.json";
 import type summit from "./locales/en/summit.json";
@@ -52,6 +53,7 @@ declare module "i18next" {
       mindset: typeof mindset;
       notFound: typeof notFound;
       platform: typeof platform;
+      products: typeof products;
       services: typeof services;
       site: typeof site;
       summit: typeof summit;

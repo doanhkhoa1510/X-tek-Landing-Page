@@ -1,0 +1,46 @@
+{
+  "title": "产品",
+  "description": "XionTechs 自有的两款产品：面向智慧校园的 AI 驱动平台，以及 AI 驱动的智能排课。",
+  "head": { "a": "我们的产品。", "b": "为智慧校园与排课而生的 AI。" },
+  "keyFeatures": "核心功能",
+  "school": {
+    "title": { "a": "面向智慧校园的", "b": "AI 驱动平台" },
+    "summary": "一个集成的数字生态系统，利用 AI 提升学习效果、简化管理流程并增强学生参与度。",
+    "body": "XionTechs 打造该平台，提供个性化学习路径、实时分析、自动评分和智能资源管理，帮助学校提供更高效、更具适应性、面向未来的教育。",
+    "diagram": {
+      "core": "AI 驱动平台",
+      "features": {
+        "learning": "个性化学习",
+        "classroom": "智慧课堂管理",
+        "assessment": "AI 驱动的评估",
+        "assistant": "虚拟教学助理",
+        "insights": "数据驱动洞察",
+        "scheduling": "智能排课",
+        "communication": "智能沟通",
+        "security": "安全与合规",
+        "gamified": "游戏化学习",
+        "integration": "集成与可扩展性"
+      }
+    }
+  },
+  "timetabling": {
+    "title": { "a": "AI 驱动的", "b": "智能排课" },
+    "summary": "一款智能排课方案，可自动创建并优化学术课表。",
+    "diagram": {
+      "label": "工作方式",
+      "steps": {
+        "inputs": "输入与约束",
+        "generate": "生成课表",
+        "compare": "比较课表",
+        "analytics": "分析"
+      }
+    },
+    "features": {
+      "interface": "界面友好，操作流畅直观。",
+      "entry": "协助用户录入数据，并根据最佳实践和个人需求说明应用功能。",
+      "compare": "比较由不同输入和约束条件生成的课表。",
+      "guide": "通过互动对话了解用户的排课目标，引导其找到最优方案。",
+      "analytics": "分析：洞察排课规律、教室利用率和容量规划。"
+    }
+  }
+}

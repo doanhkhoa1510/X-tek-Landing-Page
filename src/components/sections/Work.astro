@@ -10,7 +10,7 @@ const t = useT(lang, "work"), ts = useT(lang, "site"), tk = useT(lang, "cases");
 // case studies show only once owner-approved and NDA-checked (#49); none are, so the entry shows the domains and the visit
 const cases = (await publishedCases(lang)).slice(0, 3);
 const stats = [["years", 25, "+"], ["pillars", 5, ""], ["offices", 3, ""]] as const;
-const products = ["school", "timetabling"] as const;
+const products = [{ id: "school", anchor: "smart-schools" }, { id: "timetabling", anchor: "timetabling" }] as const;
 const domains = ["edtech", "healthcare", "logistics"] as const;
 // clients the owner named in #20; names stay in Latin letters in every language. A project with no public detail
 // shows its name only (owner's call), so `about: false` keeps any sentence off it
@@ -66,7 +66,16 @@ const clients = [
         <h3>{t("products.title")}</h3>
         <p>{t("products.text")}</p>
         <ul class="log">
-          {products.map((id) => <li><h4>{t(`products.items.${id}.name`)}</h4><p>{t(`products.items.${id}.text`)}</p></li>)}
+          {products.map((p) => {
+            const name = t(`products.items.${p.id}.name`);
+            return (
+              <li>
+                <h4>{name}</h4>
+                <p>{t(`products.items.${p.id}.text`)}</p>
+                <a class="cases-read" href={localize(`/products/#${p.anchor}`, lang)} aria-label={t("products.detailsFor", { name })}>{t("products.details")}</a>
+              </li>
+            );
+          })}
         </ul>
       </li>
       <li class="stage" data-camp={t("done.camp")}>
