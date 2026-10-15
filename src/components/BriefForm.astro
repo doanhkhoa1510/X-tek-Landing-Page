@@ -1,27 +1,30 @@
 ---
 /* The brief: name, work email, and what they are building; the contact page adds a subject and a phone.
    chrome.ts posts it to the mailer (mailer/, behind nginx at /api/contact) and reads the states' words, in the page's language, from data-status. */
-import { phones, reply, services } from "../data/site";
+import { email, phones, reply, services } from "../data/site";
 import { rich, useT } from "../i18n";
+import { localize } from "../i18n/config";
 
 interface Props { full?: boolean }
 const { full = false } = Astro.props;
 const lang = Astro.currentLocale;
 const t = useT(lang, "form"), ts = useT(lang, "site"), tt = useT(lang, "team");
 const call = (s: string) => `<a href="${phones.us.href}">${s}</a>`;
+const mail = (s: string) => `<a href="mailto:${email}">${s}</a>`;
 const status = {
   badEmail: t("status.badEmail"),
   required: t("status.required"),
   sending: t("status.sending"),
-  sent: t("status.sent"),
-  failed: rich(t("status.failed", { phone: phones.us.label }), { call }),
+  sent: reply ? rich(t(reply.days === 1 ? "status.sentReplyOne" : "status.sentReply", { who: reply.who, days: reply.days, email }), { mail }) : t("status.sent"),
+  failed: rich(t("status.failed", { phone: phones.us.label, email }), { call, mail }),
 };
 ---
 <form class:list={["brief", { "contact-form": full }]} novalidate data-endpoint="/api/contact" data-status={JSON.stringify(status)}>
+  {/* the same limits as the mailer (mailer/server.mjs), UAT #93 */}
   {full ? (
     <>
       <div class="brief-row">
-        <label>{t("name")}<input name="name" autocomplete="name" required /></label>
+        <label>{t("name")}<input name="name" autocomplete="name" maxlength={100} required /></label>
         <label>{t("email")}<input name="email" type="email" autocomplete="email" required /></label>
       </div>
       <div class="brief-row">
@@ -36,14 +39,15 @@ const status = {
     </>
   ) : (
     <>
-      <label>{t("name")}<input name="name" autocomplete="name" required /></label>
+      <label>{t("name")}<input name="name" autocomplete="name" maxlength={100} required /></label>
       <label>{t("email")}<input name="email" type="email" autocomplete="email" required /></label>
     </>
   )}
-  <label>{t("msg")}<textarea name="msg" rows={full ? 4 : 3} required></textarea></label>
+  <label>{t("msg")}<textarea name="msg" rows={full ? 4 : 3} maxlength={2000} required></textarea></label>
   {/* a trap for bots: hidden from people and screen readers; the mailer drops any brief that fills it */}
   <div class="brief-trap" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off" /></label></div>
-  <p class="form-status" role="status" aria-live="polite"></p>
+  <p class="form-status" tabindex="-1" role="status" aria-live="polite"></p>
   <button class="btn btn-fill" type="submit"><span class="scr">{t(full ? "sendRequest" : "sendBrief")}</span></button>
-  {reply && <p class="brief-reply">{tt("reply", { who: reply.who, days: reply.days })}</p>}
+  {reply && <p class="brief-reply">{tt(reply.days === 1 ? "replyOne" : "reply", { who: reply.who, days: reply.days })}</p>}
+  <p class="brief-privacy" set:html={rich(t("privacy"), { link: (s) => `<a href="${localize("/privacy-policy/", lang)}">${s}</a>` })} />
 </form>

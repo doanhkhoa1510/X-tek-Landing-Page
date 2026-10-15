@@ -669,13 +669,15 @@ Under the summit copy: phone, WhatsApp, and email as Button-type links in Xion A
 
 ### Inputs / Fields
 - **Label:** mono 12px in Mist, stacked above the field (UAT #84).
-- **Field:** Body 17px Snow text on transparent, with a single 1px bottom rule at 28% white (55% on hover). No box, no radius.
+- **Field:** Body 17px Snow text on transparent, with a single 1px bottom rule at 28% white (55% on hover). No box, no radius. Name stops at 100 characters and the message at 2000; the mailer checks the same limits (UAT #93).
 - **Focus:** the rule turns Xion Amber, plus a 1px amber underline.
-- **Error:** `aria-invalid` turns the rule Error, and a mono status names the problem and the fix.
+- **Error:** `aria-invalid` turns the rule Error, and the status names the problem and the fix.
 - **Submit:**
-  - The form POSTs JSON to `data-endpoint` (`/api/contact`, the mailer behind nginx), shows "Sending your brief…" with the button disabled, then either "Brief sent. We reply by email." or an error with a phone fallback. It claims receipt only on a 2xx, and a failure keeps the fields filled.
+  - The form POSTs JSON to `data-endpoint` (`/api/contact`, the mailer behind nginx), shows "Sending your brief…" with the button disabled, then either the sent line (who replies, from which email, within how many business days, from `reply` in `site.ts`) or a failure line with a phone and an email route, never "try again" (UAT #92, #94). It claims receipt only on a 2xx. A failure keeps the fields filled; a success resets them.
+  - The status is Body 17px, not mono (UAT #92). Keyboard focus moves to it when the send starts, so it never drops to the page (UAT #89). Editing a field clears it, so one attempt's message never stays for the next (UAT #85).
   - A hidden trap field (`.brief-trap`, `name="website"`) catches bots: no person or screen reader meets it, and the mailer drops any brief that fills it.
   - Status text is amber on success. An inline link in a status is Snow with an amber underline.
+  - Under the button: the reply promise, then a privacy line linking the privacy policy (UAT #87), both Body Small in Mist; the link is Snow with an amber underline.
 
 ### FAQ accordion
 - **Layout:** an Ice field with hairline rows. The question is a Title in a full-width button; the answer is Body in Slate, max 56ch.

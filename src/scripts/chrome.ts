@@ -258,8 +258,15 @@ $$<HTMLButtonElement>(".qa button").forEach((btn) => {
 /* ---------- brief forms: posted as JSON to the mailer (data-endpoint); the words come from data-status (BriefForm.astro) ---------- */
 $$<HTMLFormElement>(".brief").forEach((form) => {
   const status = $(".form-status", form);
+  const btn = $<HTMLButtonElement>("button[type=submit]", form);
   const say: Record<"badEmail" | "required" | "sending" | "sent" | "failed", string> = JSON.parse(form.dataset.status!);
-  form.addEventListener("input", (e) => (e.target as HTMLElement).removeAttribute("aria-invalid"));
+  // an edit clears the last reply, so one attempt's words never carry over (UAT #85); not mid-send, and not while another field is still marked wrong
+  form.addEventListener("input", (e) => {
+    (e.target as HTMLElement).removeAttribute("aria-invalid");
+    if (btn.disabled || $("[aria-invalid]", form)) return;
+    status.dataset.state = "";
+    status.textContent = "";
+  });
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     $$<HTMLInputElement>("input, textarea, select", form).forEach((f) => f.toggleAttribute("aria-invalid", !f.checkValidity()));
@@ -270,17 +277,18 @@ $$<HTMLFormElement>(".brief").forEach((form) => {
       bad.focus();
       return;
     }
-    const btn = $<HTMLButtonElement>("button[type=submit]", form);
-    btn.disabled = true;
     status.dataset.state = "";
     status.textContent = say.sending;
+    // focus stays on the reply: a disabled button would drop it to <body> (UAT #89)
+    status.focus();
+    btn.disabled = true;
     // the page's language rides along, so the reply can come in it
     const brief = { ...Object.fromEntries(new FormData(form)), lang: root.lang };
     fetch(form.dataset.endpoint!, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(brief) })
       .then((r) => {
         if (!r.ok) throw new Error(String(r.status));
         status.dataset.state = "ok";
-        status.textContent = say.sent;
+        status.innerHTML = say.sent;
         form.reset();
       })
       .catch(() => {

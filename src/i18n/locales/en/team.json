@@ -2,5 +2,6 @@
   "title": { "a": "Leadership.", "b": "The people you talk to." },
   "roles": { "vinni": "Founder and CEO" },
   "linkedin": "{{name}} on LinkedIn",
-  "reply": "{{who}} replies to every brief within {{days}} business days."
+  "reply": "{{who}} replies to every brief within {{days}} business days.",
+  "replyOne": "{{who}} replies to every brief within one business day."
 }

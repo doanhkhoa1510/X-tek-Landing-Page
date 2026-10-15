@@ -55,12 +55,13 @@ function readBrief(body) {
     msg: text(body.msg).replace(/\r\n?/g, "\n"),
     lang: line(body.lang),
   };
+  // the same maxlength values as src/components/BriefForm.astro
   const bad = [];
-  if (!brief.name || brief.name.length > 200) bad.push("name");
+  if (!brief.name || brief.name.length > 100) bad.push("name");
   if (brief.email.length > 254 || !emailRule.test(brief.email)) bad.push("email");
   if (brief.phone.length > 50) bad.push("phone");
   if (brief.subject.length > 60) bad.push("subject");
-  if (!brief.msg || brief.msg.length > 5000) bad.push("msg");
+  if (!brief.msg || brief.msg.length > 2000) bad.push("msg");
   if (!/^[A-Za-z-]{0,20}$/.test(brief.lang)) bad.push("lang");
   return bad.length ? { bad } : { brief };
 }
