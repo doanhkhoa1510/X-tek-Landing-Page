@@ -1,4 +1,4 @@
-/* XionTechs · The Night Ascent — the chrome every page shares.
+/* XionTech · The Night Ascent — the chrome every page shares.
    Native scroll, header, altitude, clocks, accordion, and forms; see DESIGN.md › Components.
    The landing page (app.ts) and the subpages (page.ts) both start here. */
 

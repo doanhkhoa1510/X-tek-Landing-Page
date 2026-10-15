@@ -1,12 +1,12 @@
 {
   "title": "Sản phẩm",
-  "description": "Hai sản phẩm do XionTechs phát triển: nền tảng ứng dụng AI cho trường học thông minh và phần mềm xếp thời khóa biểu ứng dụng AI.",
+  "description": "Hai sản phẩm do XionTech phát triển: nền tảng ứng dụng AI cho trường học thông minh và phần mềm xếp thời khóa biểu ứng dụng AI.",
   "head": { "a": "Sản phẩm của chúng tôi.", "b": "AI cho trường học thông minh và thời khóa biểu." },
   "keyFeatures": "Tính năng chính",
   "school": {
     "title": { "a": "Nền tảng ứng dụng AI", "b": "cho trường học thông minh" },
     "summary": "Một hệ sinh thái số tích hợp, sử dụng AI để nâng cao việc học, tinh gọn quản trị và tăng sự gắn kết của học sinh.",
-    "body": "XionTechs xây dựng nền tảng này để cung cấp lộ trình học tập cá nhân hóa, phân tích theo thời gian thực, chấm điểm tự động và quản lý tài nguyên thông minh, giúp trường học mang đến nền giáo dục hiệu quả hơn, linh hoạt hơn và sẵn sàng cho tương lai."
+    "body": "XionTech xây dựng nền tảng này để cung cấp lộ trình học tập cá nhân hóa, phân tích theo thời gian thực, chấm điểm tự động và quản lý tài nguyên thông minh, giúp trường học mang đến nền giáo dục hiệu quả hơn, linh hoạt hơn và sẵn sàng cho tương lai."
   },
   "timetabling": {
     "title": { "a": "Xếp thời khóa biểu", "b": "ứng dụng AI" },

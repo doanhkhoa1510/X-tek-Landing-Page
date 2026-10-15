@@ -1,6 +1,6 @@
 {
   "title": "FAQ",
-  "description": "Réponses sur les services de XionTechs, la collaboration entre fuseaux horaires, la sécurité des données et notre façon de mesurer la valeur.",
+  "description": "Réponses sur les services de XionTech, la collaboration entre fuseaux horaires, la sécurité des données et notre façon de mesurer la valeur.",
   "head": {
     "a": "Questions fréquentes.",
     "b": "Posez-nous toutes vos questions."
@@ -9,11 +9,11 @@
   "region": "Questions fréquentes",
   "items": {
     "services": {
-      "q": "Quels services XionTechs propose-t-elle ?",
-      "a": "XionTechs propose l’ingénierie de produits numériques, les insights et l’analytique numériques, la co-création de produits et des services de mise à disposition de personnel. Ces services s’appuient sur des technologies émergentes comme l’IA/ML et l’IA générative. XionTechs se concentre sur des secteurs tels que l’EdTech, la santé, la logistique et le capital-investissement."
+      "q": "Quels services XionTech propose-t-elle ?",
+      "a": "XionTech propose l’ingénierie de produits numériques, les insights et l’analytique numériques, la co-création de produits et des services de mise à disposition de personnel. Ces services s’appuient sur des technologies émergentes comme l’IA/ML et l’IA générative. XionTech se concentre sur des secteurs tels que l’EdTech, la santé, la logistique et le capital-investissement."
     },
     "collaboration": {
-      "q": "Comment XionTechs garantit-elle une collaboration fluide ?",
+      "q": "Comment XionTech garantit-elle une collaboration fluide ?",
       "a": "Grâce à une large couverture des fuseaux horaires qui crée des plages de recouvrement entre régions, notamment les États-Unis, l’Europe et l’Australie. Des outils collaboratifs facilitent la communication et donnent des mises à jour du projet en temps réel, où que vous soyez."
     },
     "needs": {
@@ -45,7 +45,7 @@
       "a": "Nous suivons des indicateurs de vitesse, de qualité, d’impact produit et d’autonomie des équipes. Cette approche pilotée par les indicateurs nous garde transparents et responsables, montre des résultats tangibles et valide le ROI."
     },
     "trust": {
-      "q": "Comment XionTechs bâtit-elle la confiance de ses clients ?",
+      "q": "Comment XionTech bâtit-elle la confiance de ses clients ?",
       "a": "Par l’ouverture, la fiabilité et un engagement constant envers la réussite des clients : une performance régulière, des pratiques éthiques et une attitude « Get IT Done »."
     }
   }

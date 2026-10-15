@@ -33,7 +33,7 @@ summary: "Chúng tôi đang tìm kiếm Lập trình viên di động Flutter Se
 - Từ 2 năm kinh nghiệm ở vai trò Technical Lead.
 - Có khả năng dẫn dắt và kèm cặp một nhóm lập trình viên.
 
-## Vì sao chọn XionTechs?
+## Vì sao chọn XionTech?
 
 - Tận hưởng sự hài hòa giữa công việc và cuộc sống trong văn hóa khởi nghiệp năng động với môi trường trẻ trung.
 - Nhận mức lương cạnh tranh, thưởng hiệu suất và lương tháng thứ 13 theo tỷ lệ thời gian làm việc.

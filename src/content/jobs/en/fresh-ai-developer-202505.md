@@ -23,7 +23,7 @@ summary: "We are seeking talented, Fresh AI Engineers to join our team and contr
 - Have experience in FastAPI, LangGraph, Azure LLM development is a plus.
 - Good in oral and writing English communication is a plus.
 
-## Why XionTechs?
+## Why XionTech?
 
 - Enjoy work-life harmony in a dynamic start-up culture with a youthful environment.
 - Receive a competitive salary, performance bonuses, and a pro-rata 13th-month salary.

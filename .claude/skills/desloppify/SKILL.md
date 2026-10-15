@@ -130,7 +130,7 @@ Read `PRODUCT.md` (Brand Commitments, Evidence on Hand) and `DESIGN.md` before e
 - Brand lines stay verbatim: "Get IT Done", "Where intelligence meets identity", "Get IT done. Make your mark." In the copy files they sit in `hero.json › lines` (the headline split one line per entry) and `hero.json › accent`, `footer.json › tagline`, `home.json › title`, and the “Get IT Done” attitude in `about.json`, `values.json`, `careers.json`, and `faqs.json`.
 - Never add facts. No new stats, customers, logos, testimonials, certifications, or prices. If a rewrite needs a fact the docs do not have, cut the claim or flag it.
 - The Two-Tone Rule: every H2 is two statements (`.tt-a` and `.tt-b`). Keep two lines, and keep each line short enough that the headline still fits its column.
-- The Symbol Rule and the One-Name Rule from DESIGN.md and PRODUCT.md: Mount Zion is named once, in the story; XionTechs is the only company named.
+- The Symbol Rule and the One-Name Rule from DESIGN.md and PRODUCT.md: Mount Zion is named once, in the story; XionTech is the only company named.
 - The climb and base-camp language is a deliberate metaphor. Keep it, but do not stack it into every sentence.
 
 ## Workflow

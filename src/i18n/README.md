@@ -29,7 +29,7 @@ You can leave a key out, or leave it as `""`. Either way the English text shows.
 - **Placeholders stay.** `{{phone}}`, `{{brand}}`, and every other `{{name}}` are filled in by the site. Move them where your grammar needs them, but do not translate or delete them.
 - **Tags stay.** `<call>…</call>` and `<faqs>…</faqs>` turn the words between them into a link. Translate the words inside the tags, and keep each pair.
 - **Lists can change length.** `hero.json › lines` holds one entry per headline line. Split the headline into as many lines as reads well in your language.
-- **The name stays.** Write `XionTechs` in Latin letters in every language. The pronunciation `/siː.ɒn.teks/` and the syllables "see · on · techs" are fixed in code and are not translated.
+- **The name stays.** Write `XionTech` in Latin letters in every language. The pronunciation `/siː.ɒn.tek/` and the syllables "see · on · tech" are fixed in code and are not translated.
 - **The tagline is yours to choose.** "Get IT done." is a key. Keep it in English, or adapt it.
 - **Digits stay Latin** (0–9), also in Arabic and Hindi.
 

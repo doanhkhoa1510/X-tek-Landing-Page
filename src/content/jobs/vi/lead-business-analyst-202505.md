@@ -27,7 +27,7 @@ summary: "Chúng tôi đang tìm kiếm một Lead Business Analyst tài năng g
 - Có kinh nghiệm thiết kế bằng Figma là một lợi thế.
 - Có kinh nghiệm làm Scrum Master là một lợi thế.
 
-## Vì sao chọn XionTechs?
+## Vì sao chọn XionTech?
 
 - Tận hưởng sự hài hòa giữa công việc và cuộc sống trong văn hóa khởi nghiệp năng động với môi trường trẻ trung.
 - Nhận mức lương cạnh tranh, thưởng hiệu suất và lương tháng thứ 13 theo tỷ lệ thời gian làm việc.

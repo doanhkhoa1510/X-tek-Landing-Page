@@ -27,7 +27,7 @@ summary: "Nous recherchons un Business Analyst senior (Lead) talentueux pour rej
 - Une expérience de conception avec Figma est un plus.
 - Une expérience de Scrum Master est un plus.
 
-## Pourquoi XionTechs ?
+## Pourquoi XionTech ?
 
 - Profitez d’une harmonie entre vie professionnelle et vie personnelle dans une culture startup dynamique, au sein d’un environnement jeune.
 - Recevez un salaire compétitif, des primes de performance et un 13e mois au prorata.

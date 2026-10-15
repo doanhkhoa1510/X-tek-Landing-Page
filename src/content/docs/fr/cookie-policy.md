@@ -1,7 +1,7 @@
 ---
 title: "Politique de cookies"
 kicker: "Juridique."
-description: "Ce que sont les cookies, comment le site web de XionTechs les utilise et comment les gérer dans votre navigateur."
+description: "Ce que sont les cookies, comment le site web de XionTech les utilise et comment les gérer dans votre navigateur."
 lede: "La présente Politique de cookies explique ce que sont les cookies et comment nous les utilisons, les types de cookies que nous employons, c’est-à-dire les informations que nous collectons à l’aide des cookies et l’usage qui en est fait, ainsi que la manière de gérer les paramètres des cookies."
 meta:
   - "S’applique à xiontechs.com"

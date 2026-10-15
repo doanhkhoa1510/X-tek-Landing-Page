@@ -1,4 +1,4 @@
-/* XionTechs mailer: turns a brief from the site's form into an email for the team.
+/* XionTech mailer: turns a brief from the site's form into an email for the team.
    The site's nginx proxies POST /api/contact here, and the mail leaves through the Postfix container (compose.yaml).
    Settings come from the environment; see .env.example. */
 
@@ -133,7 +133,7 @@ function briefHtml(brief, facts, chips, at) {
 <tr><td class="frame" align="center" style="padding:32px 12px">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#FFFFFF">
 <tr><td class="px" style="background:#030813;padding:10px 40px;border-bottom:1px solid #21262F;${mono(10, "#76839F")};letter-spacing:.05em">Plano <span style="color:#FFFFFF">${clock("America/Chicago", at)}</span> CT &nbsp;·&nbsp; HCMC <span style="color:#FFFFFF">${clock("Asia/Ho_Chi_Minh", at)}</span> ICT</td></tr>
-<tr><td class="px" style="background:#030813;padding:22px 40px 0"><img src="cid:lockup@xiontechs" width="163" height="43" alt="XionTechs" style="display:block;border:0;width:163px;height:43px;font-family:${font.display};font-size:17px;font-weight:bold;color:#FFFFFF"></td></tr>
+<tr><td class="px" style="background:#030813;padding:22px 40px 0"><img src="cid:lockup@xiontechs" width="150" height="43" alt="XionTech" style="display:block;border:0;width:150px;height:43px;font-family:${font.display};font-size:17px;font-weight:bold;color:#FFFFFF"></td></tr>
 <tr><td class="px" style="background:#030813;padding:44px 40px 0">
 <h1 class="h1" style="margin:0;font-family:${font.display};font-stretch:125%;font-size:40px;font-weight:760;line-height:.94;letter-spacing:-.01em;text-transform:uppercase;word-break:break-word"><span style="display:block;color:#76839F">New project brief</span><span style="display:block;color:#FFFFFF">${escapeHtml(brief.name)}</span></h1>
 ${chipRow ? `<div style="padding-top:20px">${chipRow}</div>` : ""}
@@ -148,13 +148,13 @@ ${chipRow ? `<div style="padding-top:20px">${chipRow}</div>` : ""}
 </td></tr>
 <tr><td class="px cta" style="padding:28px 40px 0">${actions.join(" ")}</td></tr>
 <tr><td class="px" style="padding:16px 40px 0;font-family:${font.body};font-size:15px;line-height:1.5;color:#4A5670">Replying to this email answers ${escapeHtml(brief.name)} directly.</td></tr>
-<tr><td class="px" style="padding:56px 40px 0"><div style="border-top:1px solid #E2E4E7;padding-top:28px"><img src="cid:wordmark@xiontechs" width="520" alt="XionTechs" style="display:block;border:0;width:100%;max-width:520px;height:auto;font-family:${font.display};font-size:40px;font-weight:bold;color:#103060"></div></td></tr>
+<tr><td class="px" style="padding:56px 40px 0"><div style="border-top:1px solid #E2E4E7;padding-top:28px"><img src="cid:wordmark@xiontechs" width="473" alt="XionTech" style="display:block;border:0;width:100%;max-width:473px;height:auto;font-family:${font.display};font-size:40px;font-weight:bold;color:#103060"></div></td></tr>
 <tr><td class="px" style="padding:22px 40px 0">
-<div><span style="font-family:${font.display};font-stretch:125%;font-size:22px;font-weight:700;line-height:1.04;color:#103060">Xi·on·techs</span>&nbsp;&nbsp;<span style="font-family:${font.ipa};font-size:16px;letter-spacing:.02em;color:#0B1A33">/siː.ɒn.teks/</span>&nbsp;&nbsp;<span style="${mono(10, "#4A5670")};letter-spacing:.05em">noun</span></div>
-<div style="padding-top:8px;${mono(11, "#4A5670")}">Say it: <b style="color:#0B1A33;font-weight:600">see</b> · <b style="color:#0B1A33;font-weight:600">on</b> · <b style="color:#0B1A33;font-weight:600">techs</b></div>
+<div><span style="font-family:${font.display};font-stretch:125%;font-size:22px;font-weight:700;line-height:1.04;color:#103060">Xi·on·tech</span>&nbsp;&nbsp;<span style="font-family:${font.ipa};font-size:16px;letter-spacing:.02em;color:#0B1A33">/siː.ɒn.tek/</span>&nbsp;&nbsp;<span style="${mono(10, "#4A5670")};letter-spacing:.05em">noun</span></div>
+<div style="padding-top:8px;${mono(11, "#4A5670")}">Say it: <b style="color:#0B1A33;font-weight:600">see</b> · <b style="color:#0B1A33;font-weight:600">on</b> · <b style="color:#0B1A33;font-weight:600">tech</b></div>
 <div style="padding-top:10px;max-width:46ch;font-family:${font.body};font-size:15px;line-height:1.5;color:#4A5670">Inspired by a mountain. The team that takes a product from base camp to summit.</div>
 </td></tr>
-<tr><td class="px" style="padding:32px 40px 32px"><div style="border-top:1px solid #E2E4E7;padding-top:14px;${mono(10, "#4A5670")};letter-spacing:.05em">© ${at.getFullYear()} XionTechs · Get IT done. Make your mark.</div></td></tr>
+<tr><td class="px" style="padding:32px 40px 32px"><div style="border-top:1px solid #E2E4E7;padding-top:14px;${mono(10, "#4A5670")};letter-spacing:.05em">© ${at.getFullYear()} XionTech · Get IT done. Make your mark.</div></td></tr>
 </table>
 </td></tr>
 </table>

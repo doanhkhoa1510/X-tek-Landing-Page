@@ -1,4 +1,4 @@
-/* XionTechs · The Night Ascent — landing page orchestration.
+/* XionTech · The Night Ascent — landing page orchestration.
    GSAP ScrollTrigger drives every scroll scene on the browser's native scroll; see DESIGN.md › Motion. The shared chrome lives in chrome.ts. */
 
 import { gsap } from "gsap";
@@ -70,7 +70,7 @@ mm.add({ motion: "(prefers-reduced-motion: no-preference)" }, (ctx) => {
     clipPath: rtl ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)", duration: 1.2, ease: "expo.out", stagger: 0.12,
     scrollTrigger: { trigger: ".stats", start: "top 85%" },
   });
-  // why XionTechs: each reason rises with its proof, then the figure counts up
+  // why XionTech: each reason rises with its proof, then the figure counts up
   gsap.from(".reason", { autoAlpha: 0, y: 24, duration: 1.1, ease: "expo.out", stagger: 0.1, scrollTrigger: { trigger: ".reasons", start: "top 85%" } });
   $$(".log").forEach((log) =>
     gsap.from(log.children, { autoAlpha: 0, y: 20, duration: 1, ease: "expo.out", stagger: 0.06, scrollTrigger: { trigger: log, start: "top 82%" } }),

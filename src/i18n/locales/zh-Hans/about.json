@@ -1,13 +1,13 @@
 {
   "title": "关于我们",
-  "description": "XionTechs 以对人才、流程与技术的执着而与众不同：七大核心价值观，一种“Get IT Done”的态度。",
+  "description": "XionTech 以对人才、流程与技术的执着而与众不同：七大核心价值观，一种“Get IT Done”的态度。",
   "head": {
     "a": "关于我们。",
     "b": "我们在德克萨斯州和越南打造 AI 驱动的软件。"
   },
-  "lede": "XionTechs 以对人才、流程与技术的执着而与众不同，下列核心价值观正是明证。",
+  "lede": "XionTech 以对人才、流程与技术的执着而与众不同，下列核心价值观正是明证。",
   "figures": {
-    "label": "数说 XionTechs",
+    "label": "数说 XionTech",
     "items": {
       "years": "年软件工程经验",
       "pillars": "交付卓越的支柱",
@@ -21,7 +21,7 @@
       "a": "为何选择我们。",
       "b": "专业 IT 服务，面面俱到。"
     },
-    "lede": "选择 XionTechs，您将获得集成式解决方案、行业经验和以指标为导向的交付。我们以协同共创和“Get IT Done”的态度，把产品创意变为现实。",
+    "lede": "选择 XionTech，您将获得集成式解决方案、行业经验和以指标为导向的交付。我们以协同共创和“Get IT Done”的态度，把产品创意变为现实。",
     "reasons": {
       "client": "以客户为中心",
       "integrity": "诚信与职业道德标准",

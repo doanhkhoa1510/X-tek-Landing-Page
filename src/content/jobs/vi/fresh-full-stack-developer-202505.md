@@ -22,7 +22,7 @@ summary: "Chúng tôi đang tìm kiếm các Lập trình viên Full Stack mới
 - Có kinh nghiệm phát triển trên Azure Cloud là một lợi thế.
 - Giao tiếp tiếng Anh tốt (nói và viết) là một lợi thế.
 
-## Vì sao chọn XionTechs?
+## Vì sao chọn XionTech?
 
 - Tận hưởng sự hài hòa giữa công việc và cuộc sống trong văn hóa khởi nghiệp năng động với môi trường trẻ trung.
 - Nhận mức lương cạnh tranh, thưởng hiệu suất và lương tháng thứ 13 theo tỷ lệ thời gian làm việc.

@@ -4,7 +4,7 @@ Branch `chore/improve-performance`, PR #25. Date: 2026-10-04.
 
 ## 1. Problem
 
-Opening 20+ XionTechs landing tabs made Chrome lag. One landing tab cost far more than a subpage tab, and the cost did not drop when the tab went to the background.
+Opening 20+ XionTech landing tabs made Chrome lag. One landing tab cost far more than a subpage tab, and the cost did not drop when the tab went to the background.
 
 ## 2. Investigation
 

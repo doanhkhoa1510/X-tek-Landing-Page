@@ -1,4 +1,4 @@
-/* XionTechs · the story of Xion and the seven core values, on About us (moved off the landing page, #36).
+/* XionTech · the story of Xion and the seven core values, on About us (moved off the landing page, #36).
    The topo tile's amber contour and the ridge rider follow the altimeter; the value track pins under the giant type. */
 
 import { gsap } from "gsap";

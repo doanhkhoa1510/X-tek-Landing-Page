@@ -1,6 +1,6 @@
 # Context
 
-- Read `PRODUCT.md` when a task needs XionTechs background or story (positioning, offices, services, brand commitments, what never to fabricate).
+- Read `PRODUCT.md` when a task needs XionTech background or story (positioning, offices, services, brand commitments, what never to fabricate).
 - Read `DESIGN.md` to verify a change against the design system (tokens, type, color, motion, components).
 
 # How to organize a task
