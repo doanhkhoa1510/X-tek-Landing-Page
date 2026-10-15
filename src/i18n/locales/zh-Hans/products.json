@@ -6,22 +6,7 @@
   "school": {
     "title": { "a": "面向智慧校园的", "b": "AI 驱动平台" },
     "summary": "一个集成的数字生态系统，利用 AI 提升学习效果、简化管理流程并增强学生参与度。",
-    "body": "XionTechs 打造该平台，提供个性化学习路径、实时分析、自动评分和智能资源管理，帮助学校提供更高效、更具适应性、面向未来的教育。",
-    "diagram": {
-      "core": "AI 驱动平台",
-      "features": {
-        "learning": "个性化学习",
-        "classroom": "智慧课堂管理",
-        "assessment": "AI 驱动的评估",
-        "assistant": "虚拟教学助理",
-        "insights": "数据驱动洞察",
-        "scheduling": "智能排课",
-        "communication": "智能沟通",
-        "security": "安全与合规",
-        "gamified": "游戏化学习",
-        "integration": "集成与可扩展性"
-      }
-    }
+    "body": "XionTechs 打造该平台，提供个性化学习路径、实时分析、自动评分和智能资源管理，帮助学校提供更高效、更具适应性、面向未来的教育。"
   },
   "timetabling": {
     "title": { "a": "AI 驱动的", "b": "智能排课" },

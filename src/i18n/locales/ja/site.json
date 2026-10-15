@@ -33,7 +33,6 @@
   },
   "sections": {
     "services": "サービス",
-    "platform": "プラットフォーム",
     "work": "実績",
     "why": "選ばれる理由",
     "faq": "FAQ",
@@ -41,6 +40,7 @@
     "summit": "お問い合わせ"
   },
   "pages": {
+    "products": "製品",
     "about": "私たちについて",
     "careers": "採用情報",
     "faqs": "よくある質問",

@@ -54,7 +54,6 @@
   },
   "sections": {
     "services": "服务",
-    "platform": "平台",
     "work": "成果",
     "why": "为何选择我们",
     "faq": "常见问题",
@@ -62,6 +61,7 @@
     "summit": "联系我们"
   },
   "pages": {
+    "products": "产品",
     "about": "关于我们",
     "careers": "加入我们",
     "faqs": "常见问题",

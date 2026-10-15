@@ -6,22 +6,7 @@
   "school": {
     "title": { "a": "AI-powered platform", "b": "for smart schools" },
     "summary": "An integrated digital ecosystem that uses AI to enhance learning, streamline administration, and improve student engagement.",
-    "body": "XionTechs built it to deliver personalized learning paths, real-time analytics, automated grading, and smart resource management, so schools can give a more efficient, adaptive, future-ready education.",
-    "diagram": {
-      "core": "AI-powered platform",
-      "features": {
-        "learning": "Personalized Learning",
-        "classroom": "Smart Classroom Management",
-        "assessment": "AI-Powered Assessment",
-        "assistant": "Virtual Teaching Assistant",
-        "insights": "Data-Driven Insights",
-        "scheduling": "Intelligent Scheduling",
-        "communication": "Smart Communication",
-        "security": "Security & Compliance",
-        "gamified": "Gamified Learning",
-        "integration": "Integration & Scalability"
-      }
-    }
+    "body": "XionTechs built it to deliver personalized learning paths, real-time analytics, automated grading, and smart resource management, so schools can give a more efficient, adaptive, future-ready education."
   },
   "timetabling": {
     "title": { "a": "AI-powered", "b": "timetabling" },

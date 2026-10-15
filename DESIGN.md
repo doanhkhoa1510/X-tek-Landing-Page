@@ -411,12 +411,12 @@ All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/w
 - **Section order and fields:**
   1. Main: hero `#top` (night, 210vh with a sticky 100svh stage)
   2. Services `#services` (snow): what a buyer can hire XionTechs for: the digital product engineering services (#35)
-  3. Platform `#platform` (snow): the smart-school product as one architecture chart, four tiers on a y-axis
-  4. The log `#work` (snow, sticky head and dial): achieved, done, products, customers
-  5. Why XionTechs `#why` (snow): four reasons, each led by its proof
-  6. FAQ `#faq` (ice)
-  7. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
-  8. Footer (snow)
+  3. The log `#work` (snow, sticky head and dial): achieved, done, products, customers; each product links to its section on /products/ (#111)
+  4. Why XionTechs `#why` (snow): four reasons, each led by its proof
+  5. FAQ `#faq` (ice)
+  6. Contact, one night: base camps `#camps` (night, dusk-ice limb in, fading out into the scene), then the summit `#summit` (transparent over the WebGL night, dawn limb out)
+  7. Footer (snow)
+  - The platform architecture chart (strata) lives on /products/ under the smart-schools section since #111; the landing keeps the products as the dial's summary.
   - The story of Xion (`#mindset`) and the core values (`#values`) live on About us since #36: on the landing page they stood between the hero and what XionTechs does, and buyers lost the thread. The hero carries no buttons (#107): its "Talk to our experts" pill repeated the header CTA ("Start a project", to the brief), and the mindset pill told a buyer nothing.
 - **Class names keep the mountain vocabulary** (`.intro`, `.routes`, `.gear`, `.strata`, `.ascent`, `.camps`, `.summit`); ids carry the content names.
 - **Breakpoints:** desktop ≥ 992px. Tablet 768–991px: headings and copy stack to full width, sticky heads go static, and the route strip moves to columns 1/3. Mobile ≤ 767px:
@@ -612,7 +612,7 @@ The section follows the story on About us (`story.ts`, called from `page.ts` bef
   - On mobile the track is `width: 100%`, so hairlines run edge to edge.
 - **Entrance:** the children rise 24px with a 0.035 stagger.
 
-### Strata (platform)
+### Strata (platform chart, /products/ #smart-schools)
 The AI-powered platform for smart schools (from the newxion.com/solutions diagram), drawn as one architecture chart you read at a glance, not as steps. It speaks the page's survey language, never the source's yellow and black boxes.
 - **Head:** the two-tone H2 ("AI-powered platform / for smart schools.") at 1/8; a Lede and a Body paragraph in Slate at 8/13, bottom-aligned. XionTechs stays the only company named ("We built it").
 - **Frame:** one bounded figure with a 1px hairline and padding clamp(20px, 2.4vw, 36px), on survey paper: Brand Navy dots at 12%, 1px, on a 16px pitch, quieter than any block. A Micro caption sits under it.
@@ -622,7 +622,7 @@ The AI-powered platform for smart schools (from the newxion.com/solutions diagra
 - **Wires:** Brand Navy at 35%, the dial's leader tone. A wire only stands for a real link and always runs frame to frame across the 20px gap, with a 5px navy node centred on each frame's border, drawn over the frames so nothing covers an end. No decorative wires between tiers. AI and app services link into the agents from either side (from below the agents under 1200px), and the two infrastructure frames link to each other (one over the other on mobile). From 1200px a trunk drops from the agents frame to the middle of that link: both sit on the chart's centre line. From 1360px the data platform runs as one row with a wire through its gaps: a pipeline.
 - **Hub:** the supervisor (Night Band, the one dark field) at the centre of a 3×3 grid with "Routes each request" under it; Policy, Buddy, and Academic reports above, Wellbeing and More agents below. Spokes are SVG lines in percent coordinates from the centre to each cell centre (`pathLength="1"`; no viewBox, so no non-scaling-stroke, which breaks the dash maths). Hover on an agent lights its spoke amber at 2px, and hover on the supervisor lights them all: a 2px amber line inside a bounded figure, so the No-Amber-On-Snow Rule holds. On mobile the hub folds into the supervisor, its note, and the agents two up, without spokes.
 - **Breakpoints:** services run AI | Agents | App at 2:5:2 from 1200px, then Agents over AI and App. Roles and devices run five-up, then two-up with the fifth spanning on mobile; device icons stack over their names from 768 to 1199px.
-- **Spacing:** the strata and the log are both daylight, so they share one gap: the strata section has no bottom padding, and the log that follows pads clamp(64px, 6vw, 96px) on top (its sticky head already sits 140px down), or one full section under 992px, where that head is static.
+- **Spacing:** the chart sits under the smart-schools copy inside its product section; the section padding frames it (#111).
 - **Entrance:** once per tier, no scroll-scrubbed states: each tier rises 24px (1.1s expo) with its frames and links, and the spokes draw out from the supervisor (dashoffset 1→0, 0.9s, stagger 0.06).
 
 ### The dial (the log)

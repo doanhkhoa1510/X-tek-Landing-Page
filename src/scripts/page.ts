@@ -35,6 +35,10 @@ mm.add("(prefers-reduced-motion: no-preference)", () => {
 
   $$(".tt").forEach((tt) => !tt.closest(".page-head") && twoTone(tt));
 
+  // platform chart (smart schools): the tiers build in tier by tier, and the spokes draw out from the supervisor
+  $$(".tier").forEach((tier) => gsap.from(tier, { autoAlpha: 0, y: 24, duration: 1.1, ease: "expo.out", scrollTrigger: { trigger: tier, start: "top 95%" } }));
+  gsap.fromTo(".spoke", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.9, ease: "power3.inOut", stagger: 0.06, delay: 0.1, scrollTrigger: { trigger: ".hub", start: "top 95%" } });
+
   // cells rise out of their own frames, as on the expedition log
   $$(".cells").forEach((list) =>
     gsap.from($$(".cell", list), { clipPath: "inset(100% 0 0 0)", duration: 1.1, stagger: 0.08, ease: "expo.out", scrollTrigger: { trigger: list, start: "top 82%" } }),

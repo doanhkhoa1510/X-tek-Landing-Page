@@ -3,7 +3,6 @@ import Base from "../../layouts/Base.astro";
 import Loader from "../../components/sections/Loader.astro";
 import Hero from "../../components/sections/Hero.astro";
 import Services from "../../components/sections/Services.astro";
-import Platform from "../../components/sections/Platform.astro";
 import Work from "../../components/sections/Work.astro";
 import Why from "../../components/sections/Why.astro";
 import Faq from "../../components/sections/Faq.astro";
@@ -16,7 +15,7 @@ import { SUMMIT_M } from "../../scripts/relief";
 
 export const getStaticPaths = localePaths;
 
-// content follows newxion.com; the flow is Main → Services → Platform → The log (customers, products, done, achieved) → Why XionTechs → FAQ → Contact.
+// content follows newxion.com; the flow is Main → Services → The log (customers, products, done, achieved) → Why XionTechs → FAQ → Contact.
 // The story of Xion and the seven core values live on About us (#36), so the landing page says what XionTechs does first.
 const lang = Astro.currentLocale;
 const t = useT(lang, "home"), ts = useT(lang, "site");
@@ -40,7 +39,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
   <Hero />
   <Services />
-  <Platform />
   <Work />
   <Why />
   <Faq />

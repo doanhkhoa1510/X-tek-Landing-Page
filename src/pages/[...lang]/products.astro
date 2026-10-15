@@ -1,6 +1,7 @@
 ---
 import Sub from "../../layouts/Sub.astro";
 import Cta from "../../components/Cta.astro";
+import PlatformChart from "../../components/PlatformChart.astro";
 import { localePaths } from "../../i18n/config";
 import { useT } from "../../i18n";
 
@@ -9,8 +10,7 @@ export const getStaticPaths = localePaths;
 const lang = Astro.currentLocale;
 const t = useT(lang, "products"), tc = useT(lang, "common");
 
-// the ids are the anchors the dial's product rows link to (#111); the diagram keeps the platform in the middle of the ten features
-const schoolFeatures = ["learning", "classroom", "assessment", "assistant", "insights", "scheduling", "communication", "security", "gamified", "integration"] as const;
+// the ids are the anchors the dial's product rows link to (#111); the smart-schools chart is the platform (PlatformChart)
 const timetablingSteps = ["inputs", "generate", "compare", "analytics"] as const;
 const timetablingFeatures = ["interface", "entry", "compare", "guide", "analytics"] as const;
 ---
@@ -22,15 +22,9 @@ const timetablingFeatures = ["interface", "entry", "compare", "guide", "analytic
         <p class="lede">{t("school.summary")}</p>
         <p>{t("school.body")}</p>
       </div>
-      <div class="product-figure">
-        <p class="label product-label">{t("keyFeatures")}</p>
-        <div class="product-hub">
-          <p class="product-core">{t("school.diagram.core")}</p>
-          <ul class="product-features" role="list">
-            {schoolFeatures.map((id) => <li class="product-feature">{t(`school.diagram.features.${id}`)}</li>)}
-          </ul>
-        </div>
-      </div>
+    </div>
+    <div class="wrap">
+      <PlatformChart />
     </div>
   </section>
 

@@ -54,7 +54,6 @@
   },
   "sections": {
     "services": "Services",
-    "platform": "Plateforme",
     "work": "Réalisations",
     "why": "Pourquoi nous",
     "faq": "FAQ",
@@ -62,6 +61,7 @@
     "summit": "Contact"
   },
   "pages": {
+    "products": "Produits",
     "about": "À propos",
     "careers": "Carrières",
     "faqs": "FAQ",

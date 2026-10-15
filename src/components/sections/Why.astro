@@ -1,6 +1,7 @@
 ---
 /* 04 · Why XionTechs: four reasons to pick the team, each led by the fact that backs it (#47).
    Every figure is in PRODUCT.md › Evidence on Hand; the links lead to the section that shows it. */
+import { localize } from "../../i18n/config";
 import { useT } from "../../i18n";
 
 const t = useT(Astro.currentLocale, "why");
@@ -9,7 +10,7 @@ const reasons = [
   ["zones", 3, "", "#camps"],
   ["years", 25, "+", "#work"],
   ["process", 5, "", ""],
-  ["ai", 2, "", "#platform"],
+  ["ai", 2, "", `${localize("/products/", Astro.currentLocale)}#smart-schools`],
 ] as const;
 ---
 <section id="why" class="why-us" data-on="light" aria-labelledby="why-title">

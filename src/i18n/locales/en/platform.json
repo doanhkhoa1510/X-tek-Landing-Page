@@ -1,10 +1,4 @@
 {
-  "title": {
-    "a": "AI-powered platform",
-    "b": "for smart schools."
-  },
-  "lede": "Everyone in the school opens a different app. Underneath, every one of them runs on the same AI agents and the same data.",
-  "text": "We built it so a supervisor agent reads each request and hands it to the agent made for that job. The devices in the classroom report into one data platform, so the apps work from what is happening in the room.",
   "tiers": {
     "users": "Users and apps",
     "services": "Services",

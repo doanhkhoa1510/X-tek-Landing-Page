@@ -6,22 +6,7 @@
   "school": {
     "title": { "a": "Plateforme propulsée par l’IA", "b": "pour écoles intelligentes" },
     "summary": "Un écosystème numérique intégré qui utilise l’IA pour améliorer l’apprentissage, simplifier l’administration et renforcer l’engagement des élèves.",
-    "body": "XionTechs a conçu cette plateforme pour proposer des parcours d’apprentissage personnalisés, des analyses en temps réel, une correction automatisée et une gestion intelligente des ressources, afin que les établissements offrent un enseignement plus efficace, plus adaptatif et tourné vers l’avenir.",
-    "diagram": {
-      "core": "Plateforme propulsée par l’IA",
-      "features": {
-        "learning": "Apprentissage personnalisé",
-        "classroom": "Gestion de classe intelligente",
-        "assessment": "Évaluation propulsée par l’IA",
-        "assistant": "Assistant pédagogique virtuel",
-        "insights": "Analyses fondées sur les données",
-        "scheduling": "Planification intelligente",
-        "communication": "Communication intelligente",
-        "security": "Sécurité et conformité",
-        "gamified": "Apprentissage ludique",
-        "integration": "Intégration et évolutivité"
-      }
-    }
+    "body": "XionTechs a conçu cette plateforme pour proposer des parcours d’apprentissage personnalisés, des analyses en temps réel, une correction automatisée et une gestion intelligente des ressources, afin que les établissements offrent un enseignement plus efficace, plus adaptatif et tourné vers l’avenir."
   },
   "timetabling": {
     "title": { "a": "Emplois du temps", "b": "propulsés par l’IA" },
