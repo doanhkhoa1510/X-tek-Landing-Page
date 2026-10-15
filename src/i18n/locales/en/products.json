@@ -1,0 +1,31 @@
+{
+  "title": "Products",
+  "description": "Two products of our own from XionTechs: an AI-powered platform for smart schools and AI-powered timetabling.",
+  "head": { "a": "Our products.", "b": "AI for smart schools and timetables." },
+  "keyFeatures": "Key features",
+  "school": {
+    "title": { "a": "AI-powered platform", "b": "for smart schools" },
+    "summary": "An integrated digital ecosystem that uses AI to enhance learning, streamline administration, and improve student engagement.",
+    "body": "XionTechs built it to deliver personalized learning paths, real-time analytics, automated grading, and smart resource management, so schools can give a more efficient, adaptive, future-ready education."
+  },
+  "timetabling": {
+    "title": { "a": "AI-powered", "b": "timetabling" },
+    "summary": "An intelligent scheduling solution that automates the creation and optimization of academic timetables.",
+    "diagram": {
+      "label": "How it works",
+      "steps": {
+        "inputs": "Inputs and constraints",
+        "generate": "Generate timetables",
+        "compare": "Compare timetables",
+        "analytics": "Analytics"
+      }
+    },
+    "features": {
+      "interface": "User-friendly interface for a seamless, intuitive experience.",
+      "entry": "Helps users with data entry and explains application features based on best practices and individual needs.",
+      "compare": "Compares timetables generated from different inputs and constraints.",
+      "guide": "Interactive conversations to understand users' scheduling goals and guide them to optimal solutions.",
+      "analytics": "Analytics: insights into scheduling patterns, room utilization, and capacity planning."
+    }
+  }
+}

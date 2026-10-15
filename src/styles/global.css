@@ -182,7 +182,7 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
 :is(.hero-title, .tt):is(:lang(vi), :lang(zh), :lang(ja)) { line-height: 1.12; }
 :is(.hero-title, .tt):is(:lang(ar), :lang(hi)) { line-height: 1.32; }
 :is(h3, h4, .log h4, .role-col h4, .office h2, .prose h2, .faq-page .qa h2, .stage h3):lang(vi) { line-height: 1.2; }
-:is(h3, h4, .log h4, .role-col h4, .office h2, .prose h2, .faq-page .qa h2, .stage h3):is(:lang(zh), :lang(ja), :lang(ar), :lang(hi)) { line-height: 1.3; }
+:is(h3, h4, .log h4, .role-col h4, .office h2, .prose h2, .faq-page .qa h2, .stage h3, .product-step):is(:lang(zh), :lang(ja), :lang(ar), :lang(hi)) { line-height: 1.3; }
 :is(body, .lede, .page-lede, p:not(.giant, .foot-word)):is(:lang(ar), :lang(hi)) { line-height: 1.7; }
 /* the giant type stands on the value band, its ink inside the sky above it. Latin capitals end at the baseline; other
    scripts reach below it (so they stand higher) and above the capitals (so they set smaller: --ink is the height from
@@ -601,7 +601,7 @@ section { position: relative; color: var(--fg); }
 
 /* ---------- gear (services) ---------- */
 /* what a buyer can hire us for (#35): each service group heads its own hairline list, two up; the last service of a group takes the whole row */
-/* the 1px overlap tucks the seam to the platform under snow: without it, the night showed through at the screen's edges */
+/* the 1px overlap tucks the seam to the work section under snow: without it, the night showed through at the screen's edges */
 .gear { padding-block: var(--section) 1px; margin-bottom: -1px; }
 .gear-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); align-items: end; }
 .gear-head .tt { grid-column: 1 / 8; }
@@ -628,15 +628,8 @@ section { position: relative; color: var(--fg); }
 .gear-item p { margin-top: 10px; font-size: var(--fs-small); line-height: 1.5; color: var(--fg-soft); max-width: 46ch; }
 .gear-item .tags { margin-top: 18px; }
 
-/* ---------- strata (platform) ---------- */
+/* ---------- platform chart (smart schools, PlatformChart.astro) ---------- */
 /* the smart-school platform as one architecture chart on survey paper: four tiers on a y-axis, the people on top, the devices at the ground */
-.strata { padding-block: var(--section) 0; }
-/* daylight runs on into the log: the two sections share one gap instead of stacking two section paddings */
-.strata + .ascent { padding-top: clamp(64px, 6vw, 96px); }
-.strata-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); align-items: end; }
-.strata-head .tt { grid-column: 1 / 8; }
-.strata-copy { grid-column: 8 / 13; }
-.strata-copy p:not(.lede) { margin-top: 16px; max-width: 46ch; color: var(--fg-soft); }
 .strata-chart { margin-top: clamp(56px, 6vw, 96px); }
 .strata-chart figcaption { margin-top: 14px; font: 400 var(--fs-micro) / 1.2 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); }
 .chart {
@@ -895,6 +888,12 @@ section { position: relative; color: var(--fg); }
 .cases p { font-size: var(--fs-small); color: var(--fg-soft); max-width: 46ch; }
 .cases-read { font: 500 11px / 1.3 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; text-decoration: underline; text-decoration-color: var(--navy); text-underline-offset: 4px; }
 .cases a:hover .cases-read { text-decoration-color: var(--amber); }
+/* the same link under each product row in the log (#111): padded for a 26px tap target */
+.stage-more { display: inline-block; margin-top: 16px; padding-block: 6px; }
+.stage-more:hover { text-decoration-color: var(--ink); }
+/* a product name in the log links to its /products/ section: plain at rest, underlined like a link on hover or focus (#111) */
+.log-link { color: inherit; text-decoration: none; }
+.log-link:is(:hover, :focus-visible) { text-decoration: underline; text-decoration-color: var(--navy); text-decoration-thickness: 2px; text-underline-offset: 0.12em; }
 
 /* ---------- faq ---------- */
 .faq { padding-block: var(--section); }
@@ -1192,6 +1191,38 @@ section { position: relative; color: var(--fg); }
 /* ---------- 404 ---------- */
 .page-actions { margin-top: 0; }
 
+/* ---------- products: a title, its summary under it at the right, then the diagram (#111) ---------- */
+.product { padding-block: clamp(96px, 10vw, 160px); border-top: 1px solid var(--line-light); scroll-margin-top: calc(var(--hdr-h) + 24px); }
+.product-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); }
+.product-title { grid-column: 1 / 10; }
+.product-text { grid-column: 8 / 13; display: grid; gap: 24px; align-content: start; }
+.product-text > p:not(.lede) { font-size: var(--fs-small); color: var(--fg-soft); }
+.product-figure, .product-ticks-wrap { grid-column: 1 / -1; margin-top: clamp(56px, 6vw, 96px); }
+.product-label { margin-bottom: 16px; color: var(--slate); }
+
+/* timetabling: four steps wired left to right, each wire the gap between two steps */
+.product-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); }
+.product-step {
+  position: relative; display: flex; align-items: center; min-height: 136px; padding: 20px 24px; border: 1px solid var(--line);
+  background: var(--snow); color: var(--fg);
+  font: 700 var(--fs-h3) / 1.1 var(--display); font-stretch: 125%; text-transform: uppercase;
+}
+.product-step:not(:first-child)::before {
+  content: ""; position: absolute; top: 50%; inset-inline-end: 100%; width: var(--gap); height: 1px; background: var(--navy);
+}
+
+@media (max-width: 991px) {
+  .product-title, .product-text { grid-column: 1 / -1; }
+  .product-text { margin-top: 32px; }
+  .product-flow { grid-template-columns: minmax(0, 1fr); }
+  .product-step:not(:first-child)::before { top: calc(-1 * var(--gap)); inset-inline-end: auto; inset-inline-start: calc(50% - 0.5px); width: 1px; height: var(--gap); }
+}
+@media (max-width: 767px) {
+  .product-step { min-height: 0; padding: 16px 20px; }
+  .product-step { padding: 20px; }
+  .product-figure, .product-ticks-wrap { margin-top: 56px; }
+}
+
 /* ---------- closing ask ---------- */
 .page-cta[data-on="light"] { background: var(--ice); padding-block: clamp(88px, 9vw, 150px); }
 .page-cta-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); align-items: end; }
@@ -1250,10 +1281,9 @@ section { position: relative; color: var(--fg); }
   .gear-group-head { position: static; }
   .gear-list { margin-top: 28px; }
   .reasons { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 48px; }
-  .intro-left, .intro-right, .camps-head .tt, .camps-copy, .strata-head .tt, .strata-copy, .faq-head, .faq-list, .summit-head, .brief { grid-column: 1 / -1; }
+  .intro-left, .intro-right, .camps-head .tt, .camps-copy, .faq-head, .faq-list, .summit-head, .brief { grid-column: 1 / -1; }
   .intro-right { margin-top: 48px; }
-  .camps-copy, .strata-copy { margin-top: 28px; }
-  .strata + .ascent { padding-top: var(--section); } /* the log head is static here, so it takes a full section gap */
+  .camps-copy { margin-top: 28px; }
   .faq-head, .ascent-head { position: static; }
   .faq-list { margin-top: 48px; }
   .brief { margin-top: 48px; }

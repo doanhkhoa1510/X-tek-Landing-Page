@@ -1,10 +1,4 @@
 {
-  "title": {
-    "a": "Nền tảng ứng dụng AI",
-    "b": "cho trường học thông minh."
-  },
-  "lede": "Mỗi người trong trường mở một ứng dụng khác nhau. Bên dưới, tất cả đều chạy trên cùng các agent AI và cùng một nguồn dữ liệu.",
-  "text": "Chúng tôi xây dựng nền tảng này để một agent điều phối đọc từng yêu cầu rồi giao cho agent chuyên trách việc đó. Các thiết bị trong lớp học báo về một nền tảng dữ liệu duy nhất, nên các ứng dụng làm việc dựa trên những gì đang diễn ra trong phòng.",
   "tiers": {
     "users": "Người dùng và ứng dụng",
     "services": "Dịch vụ",

@@ -1,10 +1,4 @@
 {
-  "title": {
-    "a": "Plateforme propulsée par l’IA",
-    "b": "pour écoles intelligentes."
-  },
-  "lede": "Chacun, à l’école, ouvre une application différente. Dessous, toutes reposent sur les mêmes agents d’IA et les mêmes données.",
-  "text": "Nous l’avons conçue pour qu’un agent superviseur lise chaque demande et la confie à l’agent fait pour cette tâche. Les appareils de la classe remontent leurs données vers une seule plateforme de données : les applications travaillent ainsi à partir de ce qui se passe dans la salle.",
   "tiers": {
     "users": "Utilisateurs et applications",
     "services": "Services",

@@ -10,7 +10,7 @@ const lang = Astro.currentLocale;
 const t = useT(lang, "header"), ts = useT(lang, "site"), tc = useT(lang, "common"), tf = useT(lang, "footer");
 // on the landing page the sections are in-page anchors; elsewhere they lead back to it
 const to = (id: string) => (home ? `#${id}` : `${localize("/", lang)}#${id}`);
-const pages = [["/about-us/", "about"], ["/careers/", "careers"], ["/support/", "support"]] as const;
+const pages = [["/products/", "products"], ["/about-us/", "about"], ["/careers/", "careers"], ["/support/", "support"]] as const;
 // wide screens show the sections in the row; Contact stays with the CTA, which goes there
 const inline = sections.filter((id) => id !== "summit");
 const here = unlocalize(Astro.url.pathname);

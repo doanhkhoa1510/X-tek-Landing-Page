@@ -54,7 +54,6 @@
   },
   "sections": {
     "services": "सेवाएँ",
-    "platform": "प्लेटफ़ॉर्म",
     "work": "कार्य",
     "why": "हम क्यों",
     "faq": "FAQ",
@@ -62,6 +61,7 @@
     "summit": "संपर्क"
   },
   "pages": {
+    "products": "उत्पाद",
     "about": "हमारे बारे में",
     "careers": "करियर",
     "faqs": "FAQ",

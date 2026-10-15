@@ -33,7 +33,6 @@
   },
   "sections": {
     "services": "Dịch vụ",
-    "platform": "Nền tảng",
     "work": "Dự án",
     "why": "Vì sao chọn chúng tôi",
     "faq": "Hỏi đáp",
@@ -41,6 +40,7 @@
     "summit": "Liên hệ"
   },
   "pages": {
+    "products": "Sản phẩm",
     "about": "Giới thiệu",
     "careers": "Tuyển dụng",
     "faqs": "Câu hỏi thường gặp",

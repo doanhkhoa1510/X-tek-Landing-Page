@@ -64,7 +64,7 @@ export const recruit = "recruit@xiontechs.com";
 export const services = ["engineering", "insights", "robotics", "cocreation", "managed"] as const;
 
 // landing sections; subpages reach them through "/"
-export const sections = ["services", "platform", "work", "why", "faq", "camps", "summit"] as const;
+export const sections = ["services", "work", "why", "faq", "camps", "summit"] as const;
 
 export const company = [
   ["/about-us/", "about"],

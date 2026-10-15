@@ -1,0 +1,31 @@
+{
+  "title": "Sản phẩm",
+  "description": "Hai sản phẩm do XionTechs phát triển: nền tảng ứng dụng AI cho trường học thông minh và phần mềm xếp thời khóa biểu ứng dụng AI.",
+  "head": { "a": "Sản phẩm của chúng tôi.", "b": "AI cho trường học thông minh và thời khóa biểu." },
+  "keyFeatures": "Tính năng chính",
+  "school": {
+    "title": { "a": "Nền tảng ứng dụng AI", "b": "cho trường học thông minh" },
+    "summary": "Một hệ sinh thái số tích hợp, sử dụng AI để nâng cao việc học, tinh gọn quản trị và tăng sự gắn kết của học sinh.",
+    "body": "XionTechs xây dựng nền tảng này để cung cấp lộ trình học tập cá nhân hóa, phân tích theo thời gian thực, chấm điểm tự động và quản lý tài nguyên thông minh, giúp trường học mang đến nền giáo dục hiệu quả hơn, linh hoạt hơn và sẵn sàng cho tương lai."
+  },
+  "timetabling": {
+    "title": { "a": "Xếp thời khóa biểu", "b": "ứng dụng AI" },
+    "summary": "Giải pháp xếp lịch thông minh, tự động tạo và tối ưu thời khóa biểu học vụ.",
+    "diagram": {
+      "label": "Cách hoạt động",
+      "steps": {
+        "inputs": "Đầu vào và ràng buộc",
+        "generate": "Tạo thời khóa biểu",
+        "compare": "So sánh thời khóa biểu",
+        "analytics": "Phân tích"
+      }
+    },
+    "features": {
+      "interface": "Giao diện thân thiện với người dùng, mang lại trải nghiệm liền mạch và trực quan.",
+      "entry": "Hỗ trợ người dùng nhập liệu và giải thích các tính năng của ứng dụng theo thực hành tốt nhất và nhu cầu riêng.",
+      "compare": "So sánh các thời khóa biểu được tạo từ những đầu vào và ràng buộc khác nhau.",
+      "guide": "Trò chuyện tương tác để hiểu mục tiêu xếp lịch và dẫn dắt đến phương án tối ưu.",
+      "analytics": "Phân tích: thông tin về mô hình xếp lịch, mức sử dụng phòng học và kế hoạch năng lực."
+    }
+  }
+}

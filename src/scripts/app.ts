@@ -58,10 +58,6 @@ mm.add({ motion: "(prefers-reduced-motion: no-preference)" }, (ctx) => {
     gsap.from(list.querySelectorAll(".gear-item > *"), { autoAlpha: 0, y: 24, duration: 1.1, ease: "expo.out", stagger: 0.03, scrollTrigger: { trigger: list, start: "top 85%" } }),
   );
 
-  // platform: the chart builds tier by tier, and the spokes draw out from the supervisor
-  $$(".tier").forEach((t) => gsap.from(t, { autoAlpha: 0, y: 24, duration: 1.1, ease: "expo.out", scrollTrigger: { trigger: t, start: "top 95%" } }));
-  gsap.fromTo(".spoke", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.9, ease: "power3.inOut", stagger: 0.06, delay: 0.1, scrollTrigger: { trigger: ".hub", start: "top 95%" } });
-
   // two-tone headlines: the ink line fills word by word, dim → glacier → ink
   $$(".tt").forEach(twoTone);
 
