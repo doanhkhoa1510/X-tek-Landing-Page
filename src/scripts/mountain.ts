@@ -67,14 +67,15 @@ function hash(x: number, y: number) {
 /* ---------- places on the mountain ---------- */
 
 // chip words come from the label layer's data-labels, in the page's language
-// three teams, three ways up, one summit: Plano straight up the south face from the Hinnom valley, Da Nang from the
-// north-west (the plateau by Jaffa Gate), Ho Chi Minh City from the north-east (the slope over the Kidron)
-// Plano stands right of the headline, not on the south-west ridge: the headline grows upward with its language
-// (Vietnamese, Japanese, Hindi run taller than English) and would cover a camp on its side; right to left, the mirror keeps it clear too
+// five waypoints, one summit: each is a service, a way up the hill (the offices wait for Contact)
+// none stands left of x -5.4 on the near slopes: the headline grows upward with its language (Vietnamese, Japanese,
+// Hindi run taller than English) and would cover it; right to left, the mirror keeps them clear too
 export const CAMPS = [
-  { id: "plano", x: 3, z: 3.5 },
-  { id: "hcmc", x: 8.8, z: -7.45 },
-  { id: "danang", x: -5.4, z: -4.1 },
+  { id: "cocreation", x: -5.4, z: -4.1 },
+  { id: "engineering", x: -1.5, z: 4.5 },
+  { id: "insights", x: 3, z: 3.5 },
+  { id: "robotics", x: 0.3, z: 2.5 },
+  { id: "managed", x: 8.8, z: -7.45 },
 ] as const;
 
 type Station = { pos: [number, number, number]; look: [number, number, number] };
@@ -317,7 +318,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     }
   }
   const words: Record<string, string> = JSON.parse(labelLayer.dataset.labels ?? "{}");
-  const anchors: { el: HTMLElement; pos: THREE.Vector3; id: string; kind: "camp" | "summit"; w: number; dx: number }[] = [];
+  const anchors: { el: HTMLElement; pos: THREE.Vector3; id: string; kind: "camp" | "summit"; w: number; th: number; dx: number; lift: number }[] = [];
   function chip(text: string, kind: string, id: string) {
     const el = document.createElement("div");
     el.className = `chip chip-${kind}`;
@@ -350,11 +351,11 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   CAMPS.forEach((c, i) => {
     const pos = new THREE.Vector3(c.x, heightAt(c.x, c.z) + 0.05, c.z);
     beacon(pos, c.id);
-    addArc(pos, 1.6 + i * 0.5, i / 3 + 0.1, campArcs);
-    anchors.push({ el: chip(words[c.id] ?? c.id, "camp", c.id), pos, id: c.id, kind: "camp", w: 0, dx: 0 });
+    addArc(pos, 1.6 + i * 0.5, i / CAMPS.length + 0.1, campArcs);
+    anchors.push({ el: chip(words[c.id] ?? c.id, "camp", c.id), pos, id: c.id, kind: "camp", w: 0, th: 0, dx: 0, lift: 0 });
   });
   beacon(summit, "summit");
-  anchors.push({ el: chip(words.summit ?? `${SUMMIT_M} m`, "summit", "summit"), pos: summit, id: "summit", kind: "summit", w: 0, dx: 0 });
+  anchors.push({ el: chip(words.summit ?? `${SUMMIT_M} m`, "summit", "summit"), pos: summit, id: "summit", kind: "summit", w: 0, th: 0, dx: 0, lift: 0 });
 
   /* a chip box never runs off the screen: it keeps EDGE px inside the label layer, its tag sliding sideways (--nudge)
      while the leader stays on the point it marks. Widths are read here (mount, fonts, resize), never per frame. */
@@ -362,7 +363,10 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   let layerW = 0;
   function measureChips() {
     layerW = labelLayer.clientWidth;
-    for (const a of anchors) a.w = a.el.offsetWidth;
+    for (const a of anchors) {
+      a.w = a.el.offsetWidth;
+      a.th = (a.el.firstElementChild as HTMLElement).offsetHeight;
+    }
   }
   measureChips();
   document.fonts.ready.then(measureChips);
@@ -546,6 +550,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     quietU.uView.value.set(w, h);
     gpu.quiet.enabled = quietU.uOn.value > 0; // past the first screen and at the summit the pass costs nothing
     massif.updateMatrixWorld();
+    const tags: { a: (typeof anchors)[number]; x: number; y: number }[] = [];
     for (const a of anchors) {
       v.copy(a.pos).applyMatrix4(massif.matrixWorld).project(camera);
       const onScreen = v.z < 1 && Math.abs(v.x) < 0.98 && Math.abs(v.y) < 0.95;
@@ -571,6 +576,27 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
         a.el.style.setProperty("--nudge", `${dx.toFixed(1)}px`);
       }
       a.el.style.transform = `translate3d(${sx.toFixed(1)}px, ${sy.toFixed(1)}px, 0)`;
+      if (a.kind === "camp") tags.push({ a, x: sx + dx, y: sy });
+    }
+    // two tags never stack on each other (short or narrow windows crowd the slopes): nearest the viewer first, a tag
+    // that would cover one already placed climbs above it on a longer leader (--lift), its beacon unmoved
+    tags.sort((p, q) => q.y - p.y);
+    const placed: { l: number; r: number; t: number; b: number }[] = [];
+    for (const { a, x, y } of tags) {
+      const l = x - a.w / 2 - 4, r = x + a.w / 2 + 4, bottom = y - 8 - 20 + 4; // 20: the leader and the grid gap
+      let lift = 0;
+      if (a.el.classList.contains("is-on")) {
+        for (let k = 0; k <= placed.length; k++) {
+          const hit = placed.find((p) => l < p.r && r > p.l && bottom - lift - a.th - 8 < p.b && bottom - lift > p.t);
+          if (!hit) break;
+          lift = bottom - hit.t;
+        }
+        placed.push({ l, r, t: bottom - lift - a.th - 8, b: bottom - lift });
+      }
+      if (lift !== a.lift) {
+        a.lift = lift;
+        a.el.style.setProperty("--lift", `${lift.toFixed(1)}px`);
+      }
     }
 
     gpu.composer.render();

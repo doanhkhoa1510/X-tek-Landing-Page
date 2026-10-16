@@ -1,5 +1,12 @@
 {
   "title": "{{brand}} - Get IT Done",
   "description": "XionTechは、AIを活用したITサービスとプロダクトのチームです。ソフトウェアエンジニアリング、アナリティクス、AIロボティクスを、テキサス州プレイノ、ホーチミン市、ダナンから提供します。",
-  "summit": "灯火 · {{m}} m"
+  "summit": "灯火 · {{m}} m",
+  "waypoints": {
+    "engineering": "プロダクトエンジニアリング",
+    "insights": "インサイトおよび分析",
+    "robotics": "AIロボティクス",
+    "cocreation": "共創型開発",
+    "managed": "管理サービス"
+  }
 }

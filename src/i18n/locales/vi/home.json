@@ -1,5 +1,12 @@
 {
   "title": "{{brand}} - Get IT Done",
   "description": "XionTech là đội ngũ cung cấp dịch vụ và sản phẩm CNTT ứng dụng AI: kỹ thuật phần mềm, phân tích dữ liệu và robot AI, từ Plano, Texas, TP. Hồ Chí Minh và Đà Nẵng.",
-  "summit": "Đài lửa · {{m}} m"
+  "summit": "Đài lửa · {{m}} m",
+  "waypoints": {
+    "engineering": "Kỹ thuật sản phẩm",
+    "insights": "Phân tích dữ liệu",
+    "robotics": "Robot AI",
+    "cocreation": "Đồng sáng tạo",
+    "managed": "Quản lý ứng dụng"
+  }
 }

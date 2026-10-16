@@ -299,7 +299,7 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
   transition: background-color var(--t-ui) var(--ui), color var(--t-ui) var(--ui);
 }
 .chip span .unit { all: unset; text-transform: none; }
-.chip i { translate: calc(-1 * var(--nudge, 0px)) 0; width: 1px; height: 14px; background: linear-gradient(var(--line-dark), var(--amber)); }
+.chip i { translate: calc(-1 * var(--nudge, 0px)) 0; width: 1px; height: calc(14px + var(--lift, 0px)); background: linear-gradient(var(--line-dark), var(--amber)); } /* --lift: mountain.ts raises a tag over a crowded one */
 .chip.is-on { opacity: 1; filter: blur(0); }
 .chip.is-focus span, .chip-summit span { background: var(--amber); color: var(--ink); border-color: var(--amber); }
 
