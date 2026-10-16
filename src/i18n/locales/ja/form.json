@@ -15,7 +15,7 @@
     "sending": "相談内容を送信しています…",
     "sent": "相談内容を送信しました。ご返信はメールでお送りします。",
     "sentReply": "相談内容を送信しました。{{who}}が<mail>{{email}}</mail>から{{days}}営業日以内に返信します。",
-    "sentReplyOne": "相談内容を送信しました。{{who}}が<mail>{{email}}</mail>から1営業日以内に返信します。",
+    "sentReplyOne": "相談内容を送信しました。{{who}}が<mail>{{email}}</mail>から24時間以内に返信します。",
     "failed": "相談内容を送信できませんでした。<call>{{phone}}</call>までお電話いただくか、<mail>{{email}}</mail>へメールでご連絡ください。"
   }
 }

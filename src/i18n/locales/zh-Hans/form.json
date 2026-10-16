@@ -15,7 +15,7 @@
     "sending": "正在发送您的需求说明……",
     "sent": "需求说明已发送。我们将通过电子邮件回复。",
     "sentReply": "需求说明已发送。{{who}} 会在 {{days}} 个工作日内通过 <mail>{{email}}</mail> 回复。",
-    "sentReplyOne": "需求说明已发送。{{who}} 会在一个工作日内通过 <mail>{{email}}</mail> 回复。",
+    "sentReplyOne": "需求说明已发送。{{who}} 会在24 小时内通过 <mail>{{email}}</mail> 回复。",
     "failed": "需求说明未能发送。请致电 <call>{{phone}}</call>，或发送邮件至 <mail>{{email}}</mail>。"
   }
 }

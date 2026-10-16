@@ -3,5 +3,5 @@
   "roles": { "vinni": "Founder and CEO" },
   "linkedin": "{{name}} on LinkedIn",
   "reply": "{{who}} replies to every brief within {{days}} business days.",
-  "replyOne": "{{who}} replies to every brief within one business day."
+  "replyOne": "{{who}} replies to every brief within 24 hours."
 }
