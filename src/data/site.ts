@@ -56,7 +56,7 @@ export const email = "vinni.tran@xiontechs.com";
 export const leaders = [
   { id: "vinni", name: "Vinni Vu Tran", photo: null as string | null, linkedin: null as string | null },
 ] as const;
-// what happens after a brief is sent: shown under the form; the owner set who replies and in how many business days on 2026-10-15 (UAT #92)
+// what happens after a brief is sent: shown under the form; the owner set who replies and in how many business days on 2026-10-15 (UAT #92); days: 1 reads as "within 24 hours", as on xiontechs.com/support
 export const reply = { who: "Vinni Vu Tran", days: 1 } as null | { who: string; days: number };
 export const recruit = "recruit@xiontechs.com";
 

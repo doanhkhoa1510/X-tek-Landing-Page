@@ -3,5 +3,5 @@
   "roles": { "vinni": "创始人兼首席执行官" },
   "linkedin": "{{name}} 的 LinkedIn",
   "reply": "{{who}} 会在 {{days}} 个工作日内回复每一份需求。",
-  "replyOne": "{{who}} 会在一个工作日内回复每一份需求。"
+  "replyOne": "{{who}} 会在24 小时内回复每一份需求。"
 }

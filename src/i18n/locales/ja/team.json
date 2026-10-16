@@ -3,5 +3,5 @@
   "roles": { "vinni": "創業者兼CEO" },
   "linkedin": "{{name}}のLinkedIn",
   "reply": "{{who}}が{{days}}営業日以内にすべてのご要望に返信します。",
-  "replyOne": "{{who}}が1営業日以内にすべてのご要望に返信します。"
+  "replyOne": "{{who}}が24時間以内にすべてのご要望に返信します。"
 }

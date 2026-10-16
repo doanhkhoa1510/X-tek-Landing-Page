@@ -15,7 +15,7 @@
     "sending": "Envoi de votre brief…",
     "sent": "Brief envoyé. Nous répondons par e-mail.",
     "sentReply": "Brief envoyé. {{who}} répond depuis <mail>{{email}}</mail> sous {{days}} jours ouvrés.",
-    "sentReplyOne": "Brief envoyé. {{who}} répond depuis <mail>{{email}}</mail> sous un jour ouvré.",
+    "sentReplyOne": "Brief envoyé. {{who}} répond depuis <mail>{{email}}</mail> sous 24 heures.",
     "failed": "Le brief n’a pas été envoyé. Appelez le <call>{{phone}}</call> ou écrivez à <mail>{{email}}</mail>."
   }
 }

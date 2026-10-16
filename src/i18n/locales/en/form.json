@@ -15,7 +15,7 @@
     "sending": "Sending your brief…",
     "sent": "Brief sent. We reply by email.",
     "sentReply": "Brief sent. {{who}} replies from <mail>{{email}}</mail> within {{days}} business days.",
-    "sentReplyOne": "Brief sent. {{who}} replies from <mail>{{email}}</mail> within one business day.",
+    "sentReplyOne": "Brief sent. {{who}} replies from <mail>{{email}}</mail> within 24 hours.",
     "failed": "The brief did not send. Call <call>{{phone}}</call> or email <mail>{{email}}</mail>."
   }
 }

@@ -15,7 +15,7 @@
     "sending": "جارٍ إرسال موجزك…",
     "sent": "أُرسل الموجز. نرد عليك عبر البريد الإلكتروني.",
     "sentReply": "أُرسل الموجز. يرد {{who}} من <mail>{{email}}</mail> خلال {{days}} أيام عمل.",
-    "sentReplyOne": "أُرسل الموجز. يرد {{who}} من <mail>{{email}}</mail> خلال يوم عمل واحد.",
+    "sentReplyOne": "أُرسل الموجز. يرد {{who}} من <mail>{{email}}</mail> خلال 24 ساعة.",
     "failed": "لم يُرسل الموجز. اتصل على <call>{{phone}}</call> أو راسلنا على <mail>{{email}}</mail>."
   }
 }

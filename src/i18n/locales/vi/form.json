@@ -15,7 +15,7 @@
     "sending": "Đang gửi yêu cầu…",
     "sent": "Đã gửi yêu cầu. Chúng tôi sẽ phản hồi qua email.",
     "sentReply": "Đã gửi yêu cầu. {{who}} sẽ phản hồi qua <mail>{{email}}</mail> trong vòng {{days}} ngày làm việc.",
-    "sentReplyOne": "Đã gửi yêu cầu. {{who}} sẽ phản hồi qua <mail>{{email}}</mail> trong vòng một ngày làm việc.",
+    "sentReplyOne": "Đã gửi yêu cầu. {{who}} sẽ phản hồi qua <mail>{{email}}</mail> trong vòng 24 giờ.",
     "failed": "Chưa gửi được yêu cầu. Vui lòng gọi <call>{{phone}}</call> hoặc gửi email đến <mail>{{email}}</mail>."
   }
 }
