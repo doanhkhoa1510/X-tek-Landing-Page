@@ -7,6 +7,7 @@ import { $, $$, goTo, hdr, mountCounters, onAltitude, reduce, root, rtl, syncHea
 import { mountMountain } from "./mountain";
 import { mountTopo } from "./topo";
 import { mountDial } from "./dial";
+import { mountLoaderKnot } from "./loader-knot";
 
 /* ---------- scene and maps ---------- */
 const scene = mountMountain($<HTMLCanvasElement>("#mountain"), $("#chips"), () => root.classList.add("no-webgl"));
@@ -148,15 +149,16 @@ async function boot() {
   sessionStorage.setItem("xt-camp", "1");
   const num = $(".loader-num"), count = { v: 0 };
   const show = () => (num.textContent = String(Math.round(count.v)));
+  // the neural knot grows with the count
+  const knot = mountLoaderKnot($(".loader-knot"), () => count.v / 100);
 
   gsap.timeline()
     .from(".loader-logo, .loader-count", { autoAlpha: 0, duration: 0.6, ease: "power3.inOut" }, 0)
     .from(".loader-map", { autoAlpha: 0, scale: 0.94, duration: 0.8, ease: "power3.inOut" }, 0.1)
-    .from(".loader-left li, .loader-right li", { autoAlpha: 0, y: 6, duration: 0.4, stagger: 0.03, ease: "power3.out" }, 0.2)
-    .from(".loader .map-dot", { scale: 0, duration: 0.5, stagger: 0.15, ease: "back.out(2)" }, 0.5);
-  const counting = gsap.to(count, { v: 90, duration: returning ? 0.5 : 1.6, ease: "power2.inOut", onUpdate: show });
-  await Promise.all([document.fonts?.ready, counting.then(), new Promise((r) => setTimeout(r, returning ? 500 : 1600))]);
-  await gsap.to(count, { v: 100, duration: 0.25, ease: "power1.out", onUpdate: show }).then();
+    .from(".loader-left li, .loader-right li", { autoAlpha: 0, y: 6, duration: 0.4, stagger: 0.03, ease: "power3.out" }, 0.2);
+  // one linear count to 100 (the knot builds on it at the same steady pace): 1.8s, or 1.5s on a repeat visit; it never runs under 1.5s
+  const counting = gsap.to(count, { v: 100, duration: returning ? 1.5 : 1.8, ease: "none", onUpdate: show });
+  await Promise.all([document.fonts?.ready, counting.then()]);
 
   // the loader logo travels into the header; the rest folds away
   const from = $(".loader-logo").getBoundingClientRect(), dest = $(".logo").getBoundingClientRect();
@@ -171,6 +173,7 @@ async function boot() {
     }, 1.1)
     .to(loader, { autoAlpha: 0, duration: 0.6, ease: "power2.out" }, 1.0)
     .add(() => {
+      knot?.destroy();
       loader.remove();
       holdScroll(false);
       ScrollTrigger.refresh();
