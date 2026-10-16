@@ -275,7 +275,7 @@ The mountain is XionTech's symbol and goal, and the landing page is a climb up i
 
 The mechanics come from unitedcarriers.com (Awwwards Site of the Day, teardown in the appendix), because the user named it as the quality bar:
 - GSAP ScrollTrigger scenes scrubbed to scroll. UC's Lenis smooth scroll is not used: its 0.8s glide after each wheel step read as lag (UAT round 1, #40), so the page runs on the browser's native scroll.
-- A preloader with a dot world map and a counter.
+- A preloader with a dot symbol and a counter (UC shows a dot world map; ours shows the neural knot, see Preloader).
 - Mono button labels that shuffle their own letters on hover.
 - Two-tone uppercase headlines whose ink line fills word by word.
 - A giant background type band over a dark service track.
@@ -329,7 +329,7 @@ The atmospheric limb between night and daylight always uses these five stops, in
 - **Dim Ink** (#858FA1): the dim first line of two-tone headlines on daylight (3.3:1, display sizes only).
 - **Dim Night** (#76839F): the dim first line on night, plus the loader lists and the day-bar axis (5.2:1, so it passes at micro sizes too).
 - **Giant Ink** (#E6EBF3): background type on snow. It is atmosphere, never the only carrier of meaning.
-- **Map Dot Night / Loader / Snow** (#1F3566, #2A3B63, #C9D2E3): the land dots of the world map on night, in the preloader, and in the footer. The map is always quieter than its amber beacons.
+- **Map Dot Night / Loader / Snow** (#1F3566, #2A3B63, #C9D2E3): the land dots of the world map on night and in the footer. The map is always quieter than its amber beacons. Map Dot Loader is unused since the preloader dropped its map for the neural knot (2026-10-16).
 - **Error** (#FF9A7A): form error text and invalid field rule on night (8.7:1).
 - **Hairlines:** `rgba(255,255,255,.12)` on night, `rgba(11,26,51,.12)` on daylight.
 
@@ -545,10 +545,19 @@ Character: heavy pills with a machine voice. The fill answers the pointer.
 - **Layout:**
   - Night field.
   - Row 1: the logo lockup at left; the counter (0→100, tabular) with an 8-dot spinner at right (steps(8), 1.1s).
-  - Row 2: a mono list of the three offices at left, the dot world map (max 520px) with amber city dots in the center, and the five service lines right-aligned at right.
+  - Row 2: a mono list of the three offices at left, the neural knot (max 520px, 2:1) in the center, and the five service lines right-aligned at right.
+  - Phones (under 768px): the knot takes its own full-width row; the two lists sit side by side under it, so the field glyphs stay legible.
+- **Neural knot** (`src/scripts/loader-knot.ts`, Three.js points in a 520×260 design box that scales with the column). It says what XionTech is before the page says it: an AI team whose work reaches its three fields.
+  - The AI is a neuron, never a literal icon (no sparkle or star, no "AI" letters, robot, brain, or chip; user, 2026-10-16). One amber hub neuron (with a soft halo that breathes) grows a tree on two shells: 9 inner and 18 outer neurons, joined by curved dotted dendrites that taper from the hub, plus a few short cross links. The tree turns on a tilted axis (0.14 rad/s), its outline squashed wide and steady. Neurons grow in without overshoot.
+  - Dots follow the hero mountain: small, sparse, soft. Each has a solid core and a soft rim (alpha eases out over the outer 60% of its radius), never under 1.5 device px (a smaller dot keeps 1.5px and fades by its area), so dots glide instead of snapping pixel to pixel on 1x screens. Dendrite dots sit 6.5px apart, axon dots 7px, glyph dots 3.4px: gaps everywhere, never solid strokes (user, 2026-10-16). The amber knot blends additively, so its core glows where dots crowd.
+  - The fields surround it, 120° apart: EdTech (graduation cap) top, Healthcare (heart pulse) bottom right, Logistics (truck) bottom left. They are Lucide glyphs sampled into Mist dots (56px, 3.4px pitch: a dotted outline that still keeps the cap's tassel), with no labels: the glyphs speak for themselves.
+  - Three amber axons run from the hub to the fields. Word-like tokens (capsules of 2–4 × 2 dots, Amber Hi) stream out along them: neurons fire inside, language flows out (neuron → LLM).
+  - Everything runs on the linear count (p = count / 100), so the whole build moves at one steady pace: the hub (p 0–0.06), inner branches (to 0.26), outer branches (to 0.39), then the axons at a constant speed from 0.3, 0.36 and 0.42 (0.16 each).
+  - Glyph birth (0.3 of p each, from the axon's arrival): the tip flashes as a 3-dot amber accent, then bursts into small amber pieces that leave it nearest first, scatter 4–11px, and settle into the glyph while cooling to Mist. The last glyph forms by p 0.88 and holds to the exit. Tokens start along an axon once its glyph has mostly formed; the dendrite pulses run from p 0.7.
+  - The renderer runs only while the loader is up and is disposed with it, before the hero needs the GPU. Full device pixel ratio, never lowered. Without WebGL the box stays empty and the lists and counter carry the loader.
 - **Timing:**
-  - It counts to 90 over 1.6s (0.5s on a repeat visit in the same session), waits for fonts, then finishes to 100.
-  - Exit (power3.inOut): lists fade up with a 0.02 stagger, the map scales to 0, the logo travels by FLIP into the header's exact logo slot, and the field fades out over 0.6s.
+  - It counts 0→100 linearly over 1.8s (1.5s on a repeat visit in the same session) and waits for fonts: the loader always shows at least 1.5s.
+  - Exit (power3.inOut): lists fade up with a 0.02 stagger, the knot scales to 0, the logo travels by FLIP into the header's exact logo slot, and the field fades out over 0.6s.
   - The hero entrance starts at 0.95s into the exit.
 - **Reduced motion:** there is no preloader.
 
@@ -654,7 +663,7 @@ UC's truck on its road, rebuilt as a climber on a ridge.
 - **Motion:** the rider climbs from the west base (6% across), over the shoulder and through the saddle, to the top of the dome (`ZION.peakAt`, 52% across), driven by the pinned track's scroll progress. On mobile it is driven by the section's pass. The same diamond then carries on down the ascent rail.
 
 ### Dot world map (base camps)
-- **Map:** a canvas raster in #1F3566 on night (#2A3B63 in the loader, #C9D2E3 on snow in the footer), with an SVG overlay in the same 180:68 space.
+- **Map:** a canvas raster in #1F3566 on night (#C9D2E3 on snow in the footer), with an SVG overlay in the same 180:68 space.
 - **Placement:** the base camps open the contact night, straight after the FAQ; the section's ground fades into the summit scene.
 - **Arcs:** each has a 30% amber base arc that draws in (1.8s power3.inOut) and a 2px amber head that travels on a loop (3.6s Plano→HCMC, 1.6s HCMC→Da Nang) while the map is on screen.
 - **Cities:** 10px amber dots with a ping ring, and Night Band chips with live local time. Hover or focus fills a chip amber.
@@ -793,6 +802,7 @@ The name set as a dictionary headword, the page's last word.
 - `src/data/site.ts`: shared facts (offices, contact lines, service lines, sections) and the SVG mark.
 - `src/styles/global.css`: every token in `:root`, the `[data-on]` theme contexts, and all components.
 - `src/scripts/app.ts`: ScrollTrigger scenes, the preloader, header, altitude, clocks, FAQ, and form.
+- `src/scripts/loader-knot.ts`: the preloader's neural knot (Three.js points; prototype and review rounds in `loader-options/`).
 - `src/scripts/mountain.ts`: `heightAt` over the Mount Zion grid, `unitsAt`, and the Three.js mountain, light, camps, arcs, chips, and cameras.
 - `src/scripts/zion-data.ts`: the generated Mount Zion relief. Regenerate with `node scripts/build-zion.mjs` (tiles cached in `.impeccable/zion-tiles/`).
 - `src/scripts/dots.ts`: dot-matrix icons (vector → 13×13 dots) and the dot world map painter.
