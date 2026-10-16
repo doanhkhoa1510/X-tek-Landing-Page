@@ -29,10 +29,15 @@ The values below are read from `src/i18n/locales/*/` today. When a native review
 | Brand name | XionTech | XionTech | XionTech | XionTech | XionTech | XionTech | XionTech |
 | Tagline | Get IT done. | Get IT done. | Get IT done. | Get IT done. | Get IT done. | Get IT done. | Get IT done. |
 | Service line: Digital product engineering | Digital product engineering | Kỹ thuật sản phẩm số | 数字产品工程 | デジタルプロダクトエンジニアリング | هندسة المنتجات الرقمية | Ingénierie de produits numériques | डिजिटल प्रोडक्ट इंजीनियरिंग |
-| Service line: Digital insights and analytics | Digital insights and analytics | Thông tin chuyên sâu và phân tích số | 数字洞察与分析 | デジタルインサイトとアナリティクス | الرؤى والتحليلات الرقمية | Insights et analytique numériques | डिजिटल इनसाइट्स और एनालिटिक्स |
-| Service line: Embedded and AI robotics | Embedded and AI robotics | Hệ thống nhúng và robot AI | 嵌入式与 AI 机器人 | 組み込みとAIロボティクス | الأنظمة المدمجة وروبوتات الذكاء الاصطناعي | Robotique embarquée et IA | एम्बेडेड और AI रोबोटिक्स |
-| Service line: Co-creation development | Co-creation development | Phát triển đồng sáng tạo | 共创开发 | 共創開発 | تطوير الإبداع المشترك | Développement en co-création | को-क्रिएशन डेवलपमेंट |
-| Service line: Application managed services | Application managed services | Dịch vụ quản lý ứng dụng | 应用托管服务 | アプリケーションマネージドサービス | خدمات التطبيقات المُدارة | Services applicatifs managés | एप्लिकेशन मैनेज्ड सर्विसेज़ |
+| Service line: Digital insights and analytics | Digital insights and analytics | Thông tin chuyên sâu và phân tích số | 数字洞察与分析 | デジタルインサイトおよび分析 | الرؤى والتحليلات الرقمية | Insights et analytique numériques | डिजिटल इनसाइट्स और एनालिटिक्स |
+| Service line: Embedded and AI robotics | Embedded and AI robotics | Hệ thống nhúng và robot AI | 嵌入式与 AI 机器人 | 組み込みシステムおよびAIロボティクス | الأنظمة المدمجة وروبوتات الذكاء الاصطناعي | Robotique embarquée et IA | एम्बेडेड और AI रोबोटिक्स |
+| Service line: Co-creation development | Co-creation development | Phát triển đồng sáng tạo | 共创开发 | 共創型開発 | تطوير الإبداع المشترك | Développement en co-création | को-क्रिएशन डेवलपमेंट |
+| Service line: Application managed services | Application managed services | Dịch vụ quản lý ứng dụng | 应用托管服务 | アプリケーション管理サービス | خدمات التطبيقات المُدارة | Services applicatifs managés | एप्लिकेशन मैनेज्ड सर्विसेज़ |
+| Service line, short (hero waypoint): Product engineering | Product engineering | Kỹ thuật sản phẩm | 产品工程 | プロダクトエンジニアリング | هندسة المنتجات | Ingénierie produit | प्रोडक्ट इंजीनियरिंग |
+| Service line, short (hero waypoint): Data analytics | Data analytics | Phân tích dữ liệu | 数据分析 | インサイトおよび分析 | تحليل البيانات | Analyse de données | डेटा एनालिटिक्स |
+| Service line, short (hero waypoint): AI robotics | AI robotics | Robot AI | AI 机器人 | AIロボティクス | الروبوتات الذكية | Robotique IA | AI रोबोटिक्स |
+| Service line, short (hero waypoint): Co-creation | Co-creation | Đồng sáng tạo | 共创 | 共創型開発 | الإبداع المشترك | Co-création | को-क्रिएशन |
+| Service line, short (hero waypoint): Managed services | Managed services | Quản lý ứng dụng | 托管服务 | 管理サービス | الخدمات المُدارة | Services managés | मैनेज्ड सर्विसेज़ |
 | Product: AI-powered platform for smart schools | AI-powered platform for smart schools | Nền tảng ứng dụng AI cho trường học thông minh | 面向智慧校园的 AI 驱动平台 | スマートスクール向けAI搭載プラットフォーム | منصة مدعومة بالذكاء الاصطناعي للمدارس الذكية | Plateforme propulsée par l’IA pour écoles intelligentes | स्मार्ट स्कूलों के लिए AI-संचालित प्लेटफ़ॉर्म |
 | Product: AI-powered timetabling | AI-powered timetabling | Xếp thời khóa biểu ứng dụng AI | AI 驱动的智能排课 | AI搭載の時間割作成 | جدولة مدعومة بالذكاء الاصطناعي | Emplois du temps propulsés par l’IA | AI-संचालित टाइमटेबलिंग |
 | Office: Plano office | Plano office | Văn phòng Plano | 普莱诺办公室 | プレイノ拠点 | مكتب بلانو | Bureau de Plano | प्लानो कार्यालय |
