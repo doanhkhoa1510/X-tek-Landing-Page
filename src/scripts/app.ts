@@ -144,6 +144,8 @@ async function boot() {
   gsap.set(heroLines, { yPercent: (_: number, el: Element) => parseFloat(getComputedStyle(el).getPropertyValue("--ln-from")) || 110 });
   gsap.set(heroRest, { autoAlpha: 0, y: 24 });
   if (scene) Object.assign(scene.rig, { scale: 0.6, shift: 7, glow: 0, arcs: 0 });
+  // the loader covers the night: no frames under it, so the knot has the device to itself
+  scene?.setHeld(true);
 
   const returning = sessionStorage.getItem("xt-camp") === "1";
   sessionStorage.setItem("xt-camp", "1");
@@ -152,14 +154,11 @@ async function boot() {
   // the neural knot grows with the count
   const knot = mountLoaderKnot($(".loader-knot"), () => count.v / 100);
 
-  gsap.timeline()
-    .from(".loader-logo, .loader-count", { autoAlpha: 0, duration: 0.6, ease: "power3.inOut" }, 0)
-    .from(".loader-map", { autoAlpha: 0, scale: 0.94, duration: 0.8, ease: "power3.inOut" }, 0.1)
-    .from(".loader-left li, .loader-right li", { autoAlpha: 0, y: 6, duration: 0.4, stagger: 0.03, ease: "power3.out" }, 0.2);
   // one linear count to 100 (the knot builds on it at the same steady pace): 1.8s, or 1.5s on a repeat visit; it never runs under 1.5s
   const counting = gsap.to(count, { v: 100, duration: returning ? 1.5 : 1.8, ease: "none", onUpdate: show });
   await Promise.all([document.fonts?.ready, counting.then()]);
 
+  scene?.setHeld(false);
   // the loader logo travels into the header; the rest folds away
   const from = $(".loader-logo").getBoundingClientRect(), dest = $(".logo").getBoundingClientRect();
   const out = gsap.timeline({ defaults: { ease: "power3.inOut" } });

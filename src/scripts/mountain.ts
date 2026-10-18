@@ -92,6 +92,8 @@ export type Scene = {
   setHero: (p: number) => void;
   setMode: (m: "hero" | "summit") => void;
   setActive: (on: boolean) => void;
+  /** held: the scene keeps its GPU and state but draws no frames (the loader covers it) */
+  setHeld: (on: boolean) => void;
   setFocus: (id: string | null) => void;
   labels: HTMLElement[];
 };
@@ -412,8 +414,12 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     let renderer: THREE.WebGLRenderer;
     try {
       // no antialias: the composer draws into its own targets, so an MSAA canvas buffer would only hold memory;
-      // the default GPU: "high-performance" wakes the discrete GPU on dual-GPU laptops for every open tab
-      renderer = new THREE.WebGLRenderer({ canvas, antialias: false });
+      // the default GPU: "high-performance" wakes the discrete GPU on dual-GPU laptops for every open tab;
+      // no GPU at all (software GL draws every frame on the CPU and stalls the page): the still night instead. The
+      // context is asked for here, so a refusal is quiet (three.js logs an error when it asks); three.js defaults otherwise
+      const context = canvas.getContext("webgl2", { alpha: false, antialias: false, failIfMajorPerformanceCaveat: true });
+      if (!context) throw new Error("no GPU");
+      renderer = new THREE.WebGLRenderer({ canvas, context });
     } catch {
       failed = true;
       onFail();
@@ -482,7 +488,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
 
   /* state */
   const rig: Rig = { scale: 1, shift: 0, glow: 1, arcs: 1 };
-  let hero = 0, mode: "hero" | "summit" = "hero", focus: string | null = null, active = true;
+  let hero = 0, mode: "hero" | "summit" = "hero", focus: string | null = null, active = true, held = false;
   const mouse = new THREE.Vector2(), lean = new THREE.Vector2();
   addEventListener("pointermove", (e) => mouse.set(e.clientX / innerWidth - 0.5, e.clientY / innerHeight - 0.5), { passive: true });
 
@@ -505,7 +511,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   let raf = 0;
   function frame() {
     raf = 0;
-    if (!active || document.hidden || !gpu?.ready) return;
+    if (!active || held || document.hidden || !gpu?.ready) return;
     const t = reduceMotion ? 0 : clock.getElapsedTime();
     target();
     const k = reduceMotion ? 1 : 0.07;
@@ -603,7 +609,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     raf = requestAnimationFrame(frame);
   }
   const kick = () => {
-    if (!raf && active && !document.hidden && gpu?.ready) raf = requestAnimationFrame(frame);
+    if (!raf && active && !held && !document.hidden && gpu?.ready) raf = requestAnimationFrame(frame);
   };
   const onVisibility = () => {
     if (!document.hidden) {
@@ -650,6 +656,10 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
       active = on;
       labelLayer.classList.toggle("is-hidden", !on);
       sync();
+    },
+    setHeld: (on) => {
+      held = on;
+      kick();
     },
     setFocus: (id) => (focus = id),
   };

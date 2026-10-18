@@ -16,7 +16,8 @@
   --ice: #f3f5f9;
   --mist: #a9b4cc;
   --slate: #4a5670;
-  --dim-ink: #858fa1;
+  --dim-ink: #818b9d; /* 3:1 on the ice (#f3f5f9), the floor for headline-size type */
+  --dim-text: #6d7585; /* 4.6:1 on snow (#ffffff), the floor for small text in an inactive log stage */
   --dim-night: #76839f;
   --error: #ff9a7a;
   --limb-deep: #10277a; /* horizon ramp: night side of the glow */
@@ -263,6 +264,14 @@ h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.04; letter-spacin
 .loader-map { position: relative; aspect-ratio: 180 / 68; }
 /* the neural knot: a 520 x 260 design box that scales with the column (src/scripts/loader-knot.ts) */
 .loader-knot { aspect-ratio: 2 / 1; }
+/* the loader comes in on its own, before the page script loads: mark and count, then the knot, then the lists one by one.
+   backwards fill only, so app.ts folds them away with inline styles once the count ends */
+@keyframes loader-in { from { opacity: 0; } }
+@keyframes loader-grow { from { opacity: 0; scale: 0.94; } }
+@keyframes loader-rise { from { opacity: 0; translate: 0 6px; } }
+.js :is(.loader-logo, .loader-count) { animation: loader-in 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) backwards; }
+.js .loader-map { animation: loader-grow 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s backwards; }
+.js :is(.loader-left, .loader-right) li { animation: loader-rise 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) calc(0.2s + var(--i) * 0.03s) backwards; }
 /* phones: the knot takes its own full-width row so the field glyphs stay legible; the two lists sit under it */
 @media (max-width: 767px) {
   .loader-inner { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto; gap: 32px 16px; }
@@ -803,10 +812,19 @@ section { position: relative; color: var(--fg); }
 .dial-chip.is-current { background: var(--amber); border-color: var(--amber); color: var(--ink); }
 .dial-chip.is-current b { color: var(--ink); }
 .stages { grid-column: 8 / 13; padding-bottom: calc(32vh - 160px); } /* room for the last stage to reach the first's line, so the dial completes in view */
-.stage { padding: 14vh 0; opacity: 0.32; transition: opacity 0.6s var(--ui); }
+.stage { padding: 14vh 0; }
 .stage:first-child { padding-top: calc(50vh + 80px); } /* the first entry opens level with the middle of the dial as the side pins; the fill starts there */
-.stage.is-on { opacity: 1; }
-.stage-icon { margin-bottom: 18px; }
+.stage :is(h3, h4, p, li, dt, dd, b, a, span) { transition: color 0.6s var(--ui), border-color 0.6s var(--ui), text-decoration-color 0.6s var(--ui); }
+/* the dial pins beside the entries from 992px: the ones not yet current dim by colour, never by opacity, so their text keeps AA; reduced motion shows them all */
+@media (min-width: 992px) and (prefers-reduced-motion: no-preference) {
+  .stage:not(.is-on) :is(h3, dd) { color: var(--dim-ink); } /* large text: 3:1 */
+  .stage:not(.is-on) :is(p, h4, li, dt, b, a, .projects span, .cases span) { color: var(--dim-text); } /* small text: 4.6:1 */
+  .stage:not(.is-on) .tags li { border-color: color-mix(in srgb, var(--dim-text) 32%, transparent); }
+  .stage:not(.is-on) .cases-read { text-decoration-color: var(--dim-text); }
+  .stage:not(.is-on) .stage-more:hover { text-decoration-color: var(--ink); }
+  .stage:not(.is-on) .stage-icon { opacity: 0.32; }
+}
+.stage-icon { margin-bottom: 18px; transition: opacity 0.6s var(--ui); }
 .stage h3 { font-size: var(--fs-stage); font-weight: 760; overflow-wrap: break-word; }
 .stage h3 + p { margin-top: 12px; color: var(--fg-soft); max-width: 40ch; }
 /* the log: what each camp holds */
@@ -1009,8 +1027,8 @@ section { position: relative; color: var(--fg); }
 .foot-langs a { text-decoration: none; transition: color var(--t-ui) var(--ui); }
 .foot-langs a:hover, .foot-langs a[aria-current] { color: var(--ink); }
 .foot-langs + .foot-legal { margin-top: 20px; }
-.foot-legal-links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
-.foot-legal-links a { text-decoration: none; transition: color var(--t-ui) var(--ui); }
+.foot-legal-links { display: flex; flex-wrap: wrap; gap: 10.5px 20px; }
+.foot-legal-links a { text-decoration: none; padding-block: 5.25px; margin-block: -5.25px; transition: color var(--t-ui) var(--ui); }
 .foot-legal-links a:hover { color: var(--ink); }
 
 /* =========================================================
@@ -1309,7 +1327,6 @@ section { position: relative; color: var(--fg); }
   .ascent-head { margin-bottom: 24px; }
   .dial { flex: none; height: calc(34vh + 28px); height: calc(34svh + 28px); min-height: 220px; }
   .stages { padding-bottom: 0; }
-  .stage { opacity: 1; } /* the dial no longer pins beside the entries, so none waits for its arc */
   .stage:first-child { padding-top: 6vh; }
   .foot-map { grid-column: 1 / -1; margin-bottom: 32px; }
   .foot-col, .foot-col:nth-child(2) { grid-column: span 3; }
@@ -1414,5 +1431,5 @@ section { position: relative; color: var(--fg); }
   *, *::before, *::after { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; transition-duration: 0.001s !important; }
   .hero { height: auto; }
   .hero-stage { position: relative; }
-  .stage { opacity: 1; }
+  .js .loader { display: none; } /* app.ts skips the loader; it never shows while the script loads */
 }

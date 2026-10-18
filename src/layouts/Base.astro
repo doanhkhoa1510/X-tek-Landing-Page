@@ -1,8 +1,5 @@
 ---
-import "@fontsource-variable/saira/wdth.css";
-import "@fontsource-variable/martian-mono/wdth.css";
-import "@fontsource-variable/host-grotesk";
-import "@fontsource-variable/noto-sans-mono"; // IPA glyphs (ɒ, ː) for the pronunciation; the three brand faces lack them
+import fontsSheet from "../styles/fonts.css?url";
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -36,6 +33,8 @@ const sheet = sheets[`../styles/locales/${locale.code}.css`];
   )}
   <meta name="theme-color" content="#030813" />
   <link rel="icon" href="/xiontechs-logo.png" />
+  {/* the home page applies its faces after the first frame (index.astro); under reduced motion there is no loader to cover the swap, so they block as on every other page */}
+  <link rel="stylesheet" href={fontsSheet} id="fonts" media={home ? "(prefers-reduced-motion: reduce)" : undefined} />
   {sheet && <link rel="stylesheet" href={sheet} />}
   <script is:inline>document.documentElement.classList.add("js");</script>
   <slot name="head" />

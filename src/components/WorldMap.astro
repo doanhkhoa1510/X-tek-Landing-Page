@@ -18,8 +18,8 @@ const Camp = buttons ? "button" : "div";
     <path class="arc-run arc-run-short" d={arc(hcm, dan, 30)} pathLength="1" />
   </svg>
   {cities.map((c) => (
-    <Camp class={`city city-${c.id}`} type={buttons ? "button" : undefined} data-camp={buttons ? c.id : undefined} style={`--x:${pct(c.x)};--y:${pct(c.y)}`}>
-      <span class="city-chip"><b>{ts(`cities.${c.id}.name`)}</b> <span data-clock={c.zone}>--:--</span> {c.abbr}</span>
+    <Camp class={`city city-${c.id}`} type={buttons ? "button" : undefined} data-camp={buttons ? c.id : undefined} aria-labelledby={buttons ? `camp-${c.id}` : undefined} style={`--x:${pct(c.x)};--y:${pct(c.y)}`}>
+      <span class="city-chip" id={buttons ? `camp-${c.id}` : undefined}><b>{ts(`cities.${c.id}.name`)}</b> <span data-clock={c.zone}>--:--</span> {c.abbr}</span>
       <i class="city-dot"></i>
     </Camp>
   ))}

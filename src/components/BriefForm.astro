@@ -19,6 +19,8 @@ const status = {
   failed: rich(t("status.failed", { phone: phones.us.label, email }), { call, mail }),
 };
 ---
+{/* the status words carry the email in an attribute, so Cloudflare skips the whole form */}
+<!--email_off-->
 <form class:list={["brief", { "contact-form": full }]} novalidate data-endpoint="/api/contact" data-status={JSON.stringify(status)}>
   {/* the same limits as the mailer (mailer/server.mjs), UAT #93 */}
   {full ? (
@@ -51,3 +53,4 @@ const status = {
   {reply && <p class="brief-reply">{tt(reply.days === 1 ? "replyOne" : "reply", { who: reply.who, days: reply.days })}</p>}
   <p class="brief-privacy" set:html={rich(t("privacy"), { link: (s) => `<a href="${localize("/privacy-policy/", lang)}">${s}</a>` })} />
 </form>
+<!--/email_off-->

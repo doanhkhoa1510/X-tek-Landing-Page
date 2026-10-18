@@ -8,12 +8,15 @@ interface Props { a?: string; b?: string; href?: string; label?: string; call?: 
 const lang = Astro.currentLocale;
 const t = useT(lang, "cta"), tc = useT(lang, "common");
 const { a = t("title.a"), b = t("title.b"), href = localize("/contact-us/", lang), label = t("send"), call = true } = Astro.props;
+const mail = href.startsWith("mailto:");
 ---
 <section class="page-cta" data-on="light" aria-labelledby="cta-title">
   <div class="wrap page-cta-grid">
     <h2 id="cta-title" class="tt"><span class="tt-a">{a}</span> <span class="tt-b">{b}</span></h2>
     <div class="actions">
+      {mail && <Fragment set:html={"<!--email_off-->"} />}
       <a class="btn btn-fill" href={href}><span class="scr">{label}</span></a>
+      {mail && <Fragment set:html={"<!--/email_off-->"} />}
       {call && <a class="btn btn-line" href={phones.us.href}><span class="scr">{tc("call", { phone: phones.us.label })}</span></a>}
     </div>
   </div>
