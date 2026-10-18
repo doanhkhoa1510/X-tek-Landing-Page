@@ -10,7 +10,10 @@ import { mountDial } from "./dial";
 import { mountLoaderKnot } from "./loader-knot";
 
 /* ---------- scene and maps ---------- */
-const scene = mountMountain($<HTMLCanvasElement>("#mountain"), $("#chips"), () => root.classList.add("no-webgl"));
+// a phone (touch, short side under 600px) gets the still night, as without a GPU: the live scene's glow held a 2019
+// phone to ~25 fps on scroll
+const phone = matchMedia("(pointer: coarse)").matches && Math.min(screen.width, screen.height) < 600;
+const scene = phone ? null : mountMountain($<HTMLCanvasElement>("#mountain"), $("#chips"), () => root.classList.add("no-webgl"));
 if (!scene) root.classList.add("no-webgl");
 const topoBg = mountTopo($<HTMLCanvasElement>(".ascent-bg canvas"), { minor: "rgba(16, 48, 96, 0.07)", major: "rgba(16, 48, 96, 0.15)", amber: 0, cover: true } /* no live line: it shifted on scroll behind the copy */);
 mountDial($(".dial-frame"), $(".stages"));
