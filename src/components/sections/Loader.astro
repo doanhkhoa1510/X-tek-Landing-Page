@@ -12,11 +12,11 @@ const t = useT(lang, "loader"), ts = useT(lang, "site");
     <div class="loader-logo"><svg viewBox="0 30 294 162" set:html={mark}></svg><span class="name">{brand.name}<span class="say">{brand.ipa}</span></span></div>
     <div class="loader-count"><span class="loader-num">0</span><span class="loader-spin"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
     <ul class="loader-left">
-      {cities.map((c) => <li>{ts(`cities.${c.id}.long`)}</li>)}<li>{t("check")}</li>
+      {cities.map((c, i) => <li style={`--i:${i}`}>{ts(`cities.${c.id}.long`)}</li>)}<li style={`--i:${cities.length}`}>{t("check")}</li>
     </ul>
     <div class="loader-map loader-knot"></div>
     <ul class="loader-right">
-      {services.map((id) => <li>{ts(`services.${id}.name`)}</li>)}
+      {services.map((id, i) => <li style={`--i:${cities.length + 1 + i}`}>{ts(`services.${id}.name`)}</li>)}
     </ul>
   </div>
 </div>

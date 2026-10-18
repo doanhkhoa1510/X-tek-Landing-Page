@@ -15,7 +15,7 @@ const t = useT(lang, "summit"), tc = useT(lang, "common");
       <ul class="summit-lines">
         <li><a href={phones.us.href}><span class="scr">{tc("call", { phone: phones.us.label })}</span></a></li>
         <li><a href={phones.wa.href} target="_blank" rel="noopener"><span class="scr">{tc("whatsapp", { phone: phones.wa.label })}</span></a></li>
-        <li><a href={`mailto:${email}`}><span class="scr">{email}</span></a></li>
+        <li><!--email_off--><a href={`mailto:${email}`}><span class="scr">{email}</span></a><!--/email_off--></li>
       </ul>
     </div>
     <BriefForm />

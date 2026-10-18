@@ -310,7 +310,7 @@ export function twoTone(tt: HTMLElement) {
     gsap.fromTo(spans, { filter: "blur(10px)", autoAlpha: 0.15 }, { filter: "blur(0px)", autoAlpha: 1, ease: "none", stagger: 0.12, scrollTrigger: { trigger: tt, start: "top 85%", end: "top 45%", scrub: true } });
     return;
   }
-  const from = dark ? "#76839f" : "#858fa1", mid = "#2e6bf0", to = dark ? "#ffffff" : "#0b1a33";
+  const from = dark ? "#76839f" : "#818b9d", mid = "#2e6bf0", to = dark ? "#ffffff" : "#0b1a33";
   gsap.set(spans, { color: from });
   const tl = gsap.timeline({ scrollTrigger: { trigger: tt, start: "top 85%", end: "top 40%", scrub: true } });
   spans.forEach((w, i) => tl.to(w, { color: mid, duration: 0.3, ease: "none" }, i * 0.14).to(w, { color: to, duration: 0.3, ease: "none" }, i * 0.14 + 0.3));

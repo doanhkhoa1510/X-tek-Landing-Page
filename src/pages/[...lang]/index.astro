@@ -47,7 +47,20 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
   <Fragment slot="script">
     <script>
-      import "../../scripts/app";
+      // the first frame paints before the scenes load: the loader (CSS only) and, under it, the hero copy
+      const start = () => requestAnimationFrame(() => setTimeout(() => {
+        document.getElementById("fonts")?.setAttribute("media", "all");
+        import("../../scripts/app");
+      }));
+      if (document.hidden) {
+        // a tab opened in the background runs nothing (no three.js, no GSAP) and holds the loader's entrance until it is shown
+        const held = document.getAnimations();
+        held.forEach((a) => a.pause());
+        document.addEventListener("visibilitychange", () => {
+          held.forEach((a) => a.play());
+          start();
+        }, { once: true });
+      } else start();
     </script>
   </Fragment>
 </Base>

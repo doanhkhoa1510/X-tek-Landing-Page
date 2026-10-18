@@ -30,7 +30,7 @@ const here = unlocalize(Astro.url.pathname);
     </div>
   </div>
   <div class="hdr-row">
-    <a class="logo" href={home ? "#top" : localize("/", lang)} aria-label={t(home ? "logoTop" : "logoHome", { brand: brand.name, say: brand.say })}>
+    <a class="logo" href={home ? "#top" : localize("/", lang)} aria-label={t(home ? "logoTop" : "logoHome", { brand: `${brand.name} ${brand.ipa}`, say: brand.say })}>
       <svg class="logo-mark" viewBox="0 30 294 162" aria-hidden="true" set:html={mark}></svg>
       <span class="name">
         <span class="logo-word" aria-hidden="true"><span>X</span><span class="fold"><span>ion</span></span><span>T</span><span class="fold"><span>ech</span></span></span>

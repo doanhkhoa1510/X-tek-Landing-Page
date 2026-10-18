@@ -13,7 +13,7 @@ const links = locales.map((l) => ({ ...l, href: localize(path, l.code), here: l.
 ---
 {variant === "menu" ? (
   <div class="lang">
-    <button class="lang-toggle" type="button" aria-expanded="false" aria-controls="lang-list" aria-label={`${tc("locale.label")}: ${current.name} (${current.short})`}>
+    <button class="lang-toggle" type="button" aria-expanded="false" aria-controls="lang-list" aria-label={`${current.short} ${tc("locale.label")}: ${current.name}`}>
       {current.short}<svg viewBox="0 0 8 5" aria-hidden="true"><path d="M.7.7 4 4 7.3.7" /></svg>
     </button>
     <ul id="lang-list" class="lang-list" aria-label={tc("locale.list")}>

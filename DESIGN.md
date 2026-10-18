@@ -14,7 +14,8 @@ colors:
   ice: "#F3F5F9"
   mist: "#A9B4CC"
   slate: "#4A5670"
-  dim-ink: "#858FA1"
+  dim-ink: "#818B9D"
+  dim-text: "#6D7585"
   dim-night: "#76839F"
   limb-deep: "#10277A"
   limb-mid: "#6F9AF5"
@@ -326,7 +327,8 @@ The atmospheric limb between night and daylight always uses these five stops, in
 - **Ice** (#F3F5F9): the FAQ field, subpage cell hovers, and the sky of the base camps' dusk limb.
 - **Mist** (#A9B4CC): secondary text on night (9.6:1).
 - **Slate** (#4A5670): secondary text and captions on snow (7.4:1).
-- **Dim Ink** (#858FA1): the dim first line of two-tone headlines on daylight (3.3:1, display sizes only).
+- **Dim Ink** (#818B9D): the dim first line of two-tone headlines on daylight (3.4:1 on snow, 3.1:1 on ice; display sizes only).
+- **Dim Text** (#6D7585): the dim body and label text of an inactive log stage on daylight (4.6:1 on snow; it fails 4.5:1 on ice, so use it on snow only).
 - **Dim Night** (#76839F): the dim first line on night, plus the loader lists and the day-bar axis (5.2:1, so it passes at micro sizes too).
 - **Giant Ink** (#E6EBF3): background type on snow. It is atmosphere, never the only carrier of meaning.
 - **Map Dot Night / Loader / Snow** (#1F3566, #2A3B63, #C9D2E3): the land dots of the world map on night and in the footer. The map is always quieter than its amber beacons. Map Dot Loader is unused since the preloader dropped its map for the neural knot (2026-10-16).
@@ -361,7 +363,9 @@ A live line that crosses copy is navy.
 
 **IPA Font:** Noto Sans Mono Variable, weight 400, used only for the pronunciation `/siː.ɒn.tek/` (token `--ipa`, falling back to the mono stack).
 
-All four are self-hosted through Fontsource (OFL): `@fontsource-variable/saira/wdth.css`, `@fontsource-variable/martian-mono/wdth.css`, `@fontsource-variable/host-grotesk`, `@fontsource-variable/noto-sans-mono`. Saira ships a Vietnamese subset, so office addresses set correctly.
+All four are self-hosted (OFL) through Fontsource, imported in `src/styles/fonts.css` (Saira and Martian Mono with their `wdth` axis). Keep the Fontsource files as they are: re-subset binaries rasterise glyph edges differently. Saira ships a Vietnamese subset, so office addresses set correctly.
+
+On the home page the font sheet applies after the first frame (`media` flips from `(prefers-reduced-motion: reduce)` to `all` when the page script starts), so the faces load under the loader, which fades in from transparent. Under reduced motion there is no loader, and the sheet blocks rendering as on every other page.
 
 **Character:** Saira at 125% width has the squared, rounded-corner forms of the XIONTECH wordmark, so the headings speak in the logo's voice. It does the job UC gives to BT Steinhart. Host Grotesk is a quiet Helvetica-class body that never competes. Martian Mono is wide and technical, like BT Steinhart Mono at UC, and it is the voice of the machine: buttons, clocks, coordinates, altitude, counters.
 
@@ -640,8 +644,8 @@ The record of the climb so far: four entries, one arc each. Drawn in the page's 
 - **Reading:** a big Saira 800 number (01..04, clamp(4rem, 22cqw, 7rem)) over a mono label naming the entry, in the middle of the ring. Each is a slot reel: a one-line window over a stack of every entry; a change spins the stack to the new entry over 0.8s and lands with a short bounce (back.out 1.3).
 - **Arcs:** one ring of four amber-filled arcs (3px stroke, round caps, 16 degree gaps), one per entry, read clockwise from the top. Each arc ends in a chevron tip in the leader tone (rgba(16,48,96,0.4)) that turns amber once its arc is full. Arc s is empty as entry s's title reaches the line and full as the next title does; the last is full a fifth of a screen (at least 160px) before the list's foot unpins the side, so the ring completes and rests while the panel still holds still.
 - **Chips:** each arc has a chip hung off its middle with the entry's number and name, styled like the hero and map chips (Martian Mono 10px uppercase, 2px radius). The chip in view turns amber. Chips hide on phones.
-- **Fill:** on wide screens the first entry opens level with the middle of the dial (padding-top 50vh + 80px), so the first fill starts there; the stage list keeps calc(32vh - 160px) below so the dial completes in view before the side unpins. Tablet and mobile: every entry shows at full opacity.
-- **Entries:** 32% opacity, then full: the first as its top passes `top 62%`, each later one as its arc turns current. Each entry, in order: a dot icon, a Stage title, Body, and its payload. No label trails the entry: the camp name lives in `data-camp`, and `dial.ts` reads it for the chips and the reading (a lone label under an entry read as a stray, #37).
+- **Fill:** on wide screens the first entry opens level with the middle of the dial (padding-top 50vh + 80px), so the first fill starts there; the stage list keeps calc(32vh - 160px) below so the dial completes in view before the side unpins. Tablet and mobile: every entry shows at full colour.
+- **Entries:** on wide screens an entry not yet current dims by colour, never opacity (headings to Dim Ink, body to Dim Text, icon at 32%), so its text keeps AA contrast. The first turns current as its top passes `top 62%`, each later one as its arc turns current. Each entry, in order: a dot icon, a Stage title, Body, and its payload. No label trails the entry: the camp name lives in `data-camp`, and `dial.ts` reads it for the chips and the reading (a lone label under an entry read as a stray, #37).
   1. **What we have achieved** (clock): the three-up stat row.
   2. **What we have done** (code): five log rows, one per service line.
   3. **Products** (box): two log rows.

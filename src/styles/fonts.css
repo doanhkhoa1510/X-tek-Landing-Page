@@ -1,0 +1,5 @@
+/* Brand faces in their own sheet, so the home page can apply it after the first frame (Base.astro, index.astro). */
+@import "@fontsource-variable/saira/wdth.css";
+@import "@fontsource-variable/martian-mono/wdth.css";
+@import "@fontsource-variable/host-grotesk";
+@import "@fontsource-variable/noto-sans-mono"; /* IPA glyphs (ɒ, ː) for the pronunciation; the three brand faces lack them */

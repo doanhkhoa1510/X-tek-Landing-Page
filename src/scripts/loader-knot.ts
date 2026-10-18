@@ -161,14 +161,17 @@ const flush = (c: Cloud) => {
 };
 
 /** Mounts the symbol in `host` (a box with a 2:1 aspect) and runs it until destroy(). getP returns load progress 0..1.
- *  Returns null when WebGL is missing (the loader then shows only its lists and counter). */
+ *  Returns null when WebGL is missing or software-only (the loader then shows only its lists and counter). */
 export function mountLoaderKnot(host: HTMLElement, getP: () => number) {
   const canvas = document.createElement("canvas");
   canvas.setAttribute("aria-hidden", "true");
   canvas.style.cssText = "position:absolute;inset:0;width:100%;height:100%;display:block";
   let renderer: THREE.WebGLRenderer;
   try {
-    renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    // no GPU (software GL): the loader keeps its lists and counter, as without WebGL; asked here, so the refusal is quiet
+    const context = canvas.getContext("webgl2", { alpha: true, antialias: true, failIfMajorPerformanceCaveat: true });
+    if (!context) return null;
+    renderer = new THREE.WebGLRenderer({ canvas, context });
   } catch {
     return null;
   }
