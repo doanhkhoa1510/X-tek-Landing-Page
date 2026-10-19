@@ -2,7 +2,6 @@ import * as THREE from "three";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
-import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { ZION } from "./zion-data";
 import { heightAt, PEAK, SUMMIT_M } from "./relief";
@@ -16,14 +15,65 @@ const REF_H = 960; // a 1080p screen at 100% zoom, the size the look is tuned at
 // whole slope wears a soft haze around a bright crest, not a thin lit line
 const BLOOM_H = REF_H * 2;
 
-/** bloom whose blur runs at a fixed height, so the glow spreads over the same share of the picture at any size */
+/* quiet oval (#38): behind the headline the frame fades toward the night before the bloom, the way a mask over the
+   finished picture would, so the words keep their contrast and no glow forms under them; full brightness outside.
+   The glow applies it as it reads the frame, and the output pass as it draws it: no full-screen pass of its own */
+type Quiet = { uQuiet: { value: THREE.Vector4 }; uOn: { value: number }; uView: { value: THREE.Vector2 }; uSky: { value: THREE.Color } };
+const QUIET = /* glsl */ `
+  uniform vec4 uQuiet;
+  uniform float uOn;
+  uniform vec2 uView;
+  uniform vec3 uSky;
+  vec3 quiet(vec3 c, vec2 uv) {
+    if (uOn <= 0.0) return c; // past the first screen and at the summit it costs nothing
+    float q = length((vec2(uv.x, 1.0 - uv.y) * uView - uQuiet.xy) / uQuiet.zw);
+    float k = mix(1.0, q < 0.55 ? mix(0.4, 0.55, q / 0.55) : mix(0.55, 1.0, min(1.0, (q - 0.55) / 0.45)), uOn);
+    // the eye sees light capped at white: cap it, then fade toward the night in display light, not linear light
+    vec3 seen = mix(c, min(c, vec3(1.0)), smoothstep(1.0, 0.55, k));
+    return mix(uSky, seen, pow(k, 2.2));
+  }`;
+
+/** a blur pass that reads a target of its own size takes two pixels per fetch: the sample sits between them where the
+    filter weighs them as the kernel does (half the fetches, the same sum) */
+function pairedBlur(m: THREE.ShaderMaterial) {
+  const c: number[] = m.uniforms.gaussianCoefficients.value, off: number[] = [], wt: number[] = [];
+  for (let i = 1; i < c.length; i += 2) {
+    const w = c[i] + (c[i + 1] ?? 0);
+    off.push((i * c[i] + (i + 1) * (c[i + 1] ?? 0)) / w);
+    wt.push(w);
+  }
+  return new THREE.ShaderMaterial({
+    defines: { PAIRS: off.length },
+    uniforms: { colorTexture: m.uniforms.colorTexture, invSize: m.uniforms.invSize, direction: m.uniforms.direction, uW0: { value: c[0] }, uOff: { value: off }, uWt: { value: wt } },
+    vertexShader: m.vertexShader,
+    fragmentShader: /* glsl */ `
+      varying vec2 vUv;
+      uniform sampler2D colorTexture;
+      uniform vec2 invSize, direction;
+      uniform float uW0, uOff[PAIRS], uWt[PAIRS];
+      void main() {
+        float weightSum = uW0;
+        vec3 diffuseSum = texture2D(colorTexture, vUv).rgb * uW0;
+        for (int i = 0; i < PAIRS; i++) {
+          vec2 uvOffset = direction * invSize * uOff[i];
+          diffuseSum += (texture2D(colorTexture, vUv + uvOffset).rgb + texture2D(colorTexture, vUv - uvOffset).rgb) * uWt[i];
+          weightSum += 2.0 * uWt[i];
+        }
+        gl_FragColor = vec4(diffuseSum / weightSum, 1.0);
+      }`,
+  });
+}
+
+/** bloom whose blur runs at a fixed height, so the glow spreads over the same share of the picture at any size. The
+    mips stay in their own targets for the output pass to sum and add: no composite or blend pass of its own */
 class SteadyBloom extends UnrealBloomPass {
   private read = { uStep: { value: new THREE.Vector2() }, uTaps: { value: 1 } };
-  constructor(...args: ConstructorParameters<typeof UnrealBloomPass>) {
+  private paired: THREE.ShaderMaterial[];
+  constructor(quiet: Quiet, ...args: ConstructorParameters<typeof UnrealBloomPass>) {
     super(...args);
     // a sharp screen holds more pixels than the glow reads: one sample per glow pixel caught a lone dot on some frames
     // and missed it on others, so dots flashed with a halo. The glow reads the average of every pixel it covers
-    Object.assign(this.highPassUniforms, this.read);
+    Object.assign(this.highPassUniforms, this.read, quiet);
     this.materialHighPassFilter.fragmentShader = /* glsl */ `
       uniform sampler2D tDiffuse;
       uniform vec3 defaultColor;
@@ -31,6 +81,22 @@ class SteadyBloom extends UnrealBloomPass {
       uniform vec2 uStep;
       uniform int uTaps;
       varying vec2 vUv;
+      ${QUIET}
+      // the frame as the quiet oval leaves it, read between pixels: each of the four is quieted at its own centre and
+      // then blended, the order a full-screen quiet pass before the glow gave
+      vec4 quietAt(vec2 uv) {
+        // a pixel's own centre sits within one pixel of uv: when all four are past the oval's edge it leaves them as
+        // they are, and one filtered fetch is the same picture
+        if (uOn <= 0.0 || length((vec2(uv.x, 1.0 - uv.y) * uView - uQuiet.xy) / uQuiet.zw) - length(uStep * uView) / min(uQuiet.z, uQuiet.w) >= 1.0)
+          return texture2D(tDiffuse, uv);
+        vec2 p = uv / uStep - 0.5, f = fract(p);
+        vec2 a = clamp((floor(p) + 0.5) * uStep, 0.5 * uStep, 1.0 - 0.5 * uStep), b = clamp(a + uStep, 0.5 * uStep, 1.0 - 0.5 * uStep);
+        vec4 c00 = texture2D(tDiffuse, a), c10 = texture2D(tDiffuse, vec2(b.x, a.y));
+        vec4 c01 = texture2D(tDiffuse, vec2(a.x, b.y)), c11 = texture2D(tDiffuse, b);
+        c00.rgb = quiet(c00.rgb, a); c10.rgb = quiet(c10.rgb, vec2(b.x, a.y));
+        c01.rgb = quiet(c01.rgb, vec2(a.x, b.y)); c11.rgb = quiet(c11.rgb, b);
+        return mix(mix(c00, c10, f.x), mix(c01, c11, f.x), f.y);
+      }
       void main() {
         vec4 texel = vec4(0.0);
         for (int i = 0; i < 4; i++) {
@@ -38,7 +104,7 @@ class SteadyBloom extends UnrealBloomPass {
           for (int j = 0; j < 4; j++) {
             if (j >= uTaps) break;
             // each tap falls between four pixels, so the filter averages them
-            texel += texture2D(tDiffuse, vUv + vec2(float(2 * i + 1 - uTaps), float(2 * j + 1 - uTaps)) * uStep);
+            texel += quietAt(vUv + vec2(float(2 * i + 1 - uTaps), float(2 * j + 1 - uTaps)) * uStep);
           }
         }
         texel /= float(uTaps * uTaps);
@@ -52,11 +118,85 @@ class SteadyBloom extends UnrealBloomPass {
       m.uniforms.gaussianCoefficients.value = Array.from({ length: n }, (_, x) => Math.exp((-0.5 * x * x) / (r * r)));
       m.needsUpdate = true;
     });
+    this.paired = this.separableBlurMaterials.map(pairedBlur);
   }
   setSize(width: number, height: number) {
     super.setSize(Math.round((width / height) * BLOOM_H), BLOOM_H);
     this.read.uStep.value.set(1 / width, 1 / height);
     this.read.uTaps.value = Math.min(4, Math.max(1, Math.ceil(height / BLOOM_H)));
+  }
+  /** the composite's uniforms: the mip textures, their weights and tints, kept current by render */
+  get glow() {
+    return this.compositeMaterial.uniforms;
+  }
+  /** three's render, less its final blend; each vertical blur, and the first horizontal one, read their own size */
+  render(renderer: THREE.WebGLRenderer, _write: THREE.WebGLRenderTarget, readBuffer: THREE.WebGLRenderTarget) {
+    const clear = renderer.getClearColor(new THREE.Color()), clearAlpha = renderer.getClearAlpha(), autoClear = renderer.autoClear;
+    renderer.autoClear = false;
+    renderer.setClearColor(this.clearColor, 0);
+    const draw = (m: THREE.Material, to: THREE.WebGLRenderTarget) => {
+      this.fsQuad.material = m;
+      renderer.setRenderTarget(to);
+      renderer.clear();
+      this.fsQuad.render(renderer);
+    };
+    const hp = this.highPassUniforms as Record<string, THREE.IUniform>;
+    hp.tDiffuse.value = readBuffer.texture;
+    hp.luminosityThreshold.value = this.threshold;
+    draw(this.materialHighPassFilter, this.renderTargetBright);
+    const dir = UnrealBloomPass as unknown as Record<"BlurDirectionX" | "BlurDirectionY", THREE.Vector2>; // three's types leave them out
+    let input = this.renderTargetBright;
+    for (let i = 0; i < this.nMips; i++) {
+      const u = this.separableBlurMaterials[i].uniforms; // shared with paired[i]
+      u.colorTexture.value = input.texture;
+      u.direction.value = dir.BlurDirectionX;
+      draw(i === 0 ? this.paired[i] : this.separableBlurMaterials[i], this.renderTargetsHorizontal[i]);
+      u.colorTexture.value = this.renderTargetsHorizontal[i].texture;
+      u.direction.value = dir.BlurDirectionY;
+      draw(this.paired[i], this.renderTargetsVertical[i]);
+      input = this.renderTargetsVertical[i];
+    }
+    const cu = this.compositeMaterial.uniforms;
+    cu.bloomStrength.value = this.strength;
+    cu.bloomRadius.value = this.radius;
+    cu.bloomTintColors.value = this.bloomTintColors;
+    renderer.setClearColor(clear, clearAlpha);
+    renderer.autoClear = autoClear;
+  }
+  dispose() {
+    super.dispose();
+    this.paired.forEach((m) => m.dispose());
+  }
+}
+
+/** three's bloom composite (UnrealBloomPass.getCompositeMaterial), read at the screen's own pixels */
+const GLOW = /* glsl */ `
+  uniform sampler2D blurTexture1, blurTexture2, blurTexture3, blurTexture4, blurTexture5;
+  uniform float bloomStrength, bloomRadius, bloomFactors[5];
+  uniform vec3 bloomTintColors[5];
+  float lerpBloomFactor(const in float factor) {
+    return mix(factor, 1.2 - factor, bloomRadius);
+  }
+  vec4 glowAt(vec2 uv) {
+    return bloomStrength * (lerpBloomFactor(bloomFactors[0]) * vec4(bloomTintColors[0], 1.0) * texture2D(blurTexture1, uv) +
+      lerpBloomFactor(bloomFactors[1]) * vec4(bloomTintColors[1], 1.0) * texture2D(blurTexture2, uv) +
+      lerpBloomFactor(bloomFactors[2]) * vec4(bloomTintColors[2], 1.0) * texture2D(blurTexture3, uv) +
+      lerpBloomFactor(bloomFactors[3]) * vec4(bloomTintColors[3], 1.0) * texture2D(blurTexture4, uv) +
+      lerpBloomFactor(bloomFactors[4]) * vec4(bloomTintColors[4], 1.0) * texture2D(blurTexture5, uv));
+  }`;
+
+/** three's output pass, which also adds the glow the way the bloom's blend did (its alpha weighs it) and the quiet
+    oval: one full-screen pass where there were three */
+class FinishPass extends OutputPass {
+  constructor(glow: Record<string, THREE.IUniform>, quiet: Quiet) {
+    super();
+    Object.assign(this.uniforms, quiet, glow);
+    const from = this.material.fragmentShader;
+    const to = from
+      .replace("void main() {", `${GLOW}\n${QUIET}\nvoid main() {`)
+      .replace("gl_FragColor = texture2D( tDiffuse, vUv );", "gl_FragColor = texture2D( tDiffuse, vUv ); vec4 glow = glowAt( vUv ); gl_FragColor.rgb = quiet( gl_FragColor.rgb, vUv ) + glow.rgb * glow.a;");
+    if (!to.includes("vec4 glowAt") || !to.includes("glowAt( vUv )")) throw new Error("OutputShader changed"); // three's shader text, checked on upgrade
+    this.material.fragmentShader = to;
   }
 }
 
@@ -320,7 +460,7 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     }
   }
   const words: Record<string, string> = JSON.parse(labelLayer.dataset.labels ?? "{}");
-  const anchors: { el: HTMLElement; pos: THREE.Vector3; id: string; kind: "camp" | "summit"; w: number; th: number; dx: number; lift: number }[] = [];
+  const anchors: { el: HTMLElement; pos: THREE.Vector3; id: string; kind: "camp" | "summit"; w: number; th: number; dx: number; lift: number; at?: string }[] = [];
   function chip(text: string, kind: string, id: string) {
     const el = document.createElement("div");
     el.className = `chip chip-${kind}`;
@@ -373,41 +513,18 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   measureChips();
   document.fonts.ready.then(measureChips);
 
-  /* quiet oval (#38): behind the headline the frame fades toward the night before the bloom, the way a mask over the
-     finished picture would, so the words keep their contrast and no glow forms under them; full brightness outside */
-  const quietU = {
-    tDiffuse: { value: null },
+  const quietU: Quiet = {
     uQuiet: { value: new THREE.Vector4(0, 0, 1, 1) },
     uOn: { value: 0 },
     uView: { value: new THREE.Vector2(innerWidth, innerHeight) },
     uSky: { value: new THREE.Color(0x030813) },
   };
-  const quietPass = () =>
-    new ShaderPass(new THREE.ShaderMaterial({
-      uniforms: quietU,
-      vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-      fragmentShader: /* glsl */ `
-        uniform sampler2D tDiffuse;
-        uniform vec4 uQuiet;
-        uniform float uOn;
-        uniform vec2 uView;
-        uniform vec3 uSky;
-        varying vec2 vUv;
-        void main() {
-          vec4 c = texture2D(tDiffuse, vUv);
-          float q = length((vec2(vUv.x, 1.0 - vUv.y) * uView - uQuiet.xy) / uQuiet.zw);
-          float k = mix(1.0, q < 0.55 ? mix(0.4, 0.55, q / 0.55) : mix(0.55, 1.0, min(1.0, (q - 0.55) / 0.45)), uOn);
-          // the eye sees light capped at white: cap it, then fade toward the night in display light, not linear light
-          vec3 seen = mix(c.rgb, min(c.rgb, vec3(1.0)), smoothstep(1.0, 0.55, k));
-          gl_FragColor = vec4(mix(uSky, seen, pow(k, 2.2)), c.a);
-        }`,
-    }));
 
   /* gpu: the renderer and its post chain hold hundreds of MB of GPU memory, so they exist only while the scene can be
      seen. A tab opened in the background builds nothing; a hidden tab frees them after RELEASE_MS. Scrolling away from
      the night keeps them: a rebuild costs ~0.1 s of main thread, a stall mid-scroll. The scene graph above stays in
      memory and uploads again on the next build. */
-  type Gpu = { renderer: THREE.WebGLRenderer; composer: EffectComposer; quiet: ShaderPass; ready: boolean };
+  type Gpu = { renderer: THREE.WebGLRenderer; composer: EffectComposer; ready: boolean };
   const RELEASE_MS = 10_000;
   let gpu: Gpu | null = null, failed = false, releaseTimer = 0;
   function build() {
@@ -430,12 +547,11 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     renderer.setClearColor(0x030813, 1);
     const composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
-    const quiet = quietPass();
-    composer.addPass(quiet);
     // tight radius and a high threshold: glow on the rim, the beacons, and the arcs only, never a sky-wide haze
-    composer.addPass(new SteadyBloom(new THREE.Vector2(innerWidth, innerHeight), small ? 0.48 : 0.52, 0.18, 0.72));
-    composer.addPass(new OutputPass());
-    const g: Gpu = (gpu = { renderer, composer, quiet, ready: false });
+    const bloom = new SteadyBloom(quietU, new THREE.Vector2(innerWidth, innerHeight), small ? 0.48 : 0.52, 0.18, 0.72);
+    composer.addPass(bloom);
+    composer.addPass(new FinishPass(bloom.glow, quietU));
+    const g: Gpu = (gpu = { renderer, composer, ready: false });
     // the browser may take the context back (too many tabs): free ours, and build again when the scene is wanted
     canvas.addEventListener("webglcontextlost", () => {
       if (gpu !== g) return;
@@ -554,7 +670,6 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
     quietU.uOn.value = head.length && mode === "hero" ? 1 - Math.min(1, Math.max(0, (hero - 0.16) / 0.26)) : 0;
     if (head.length) quietU.uQuiet.value.set((qL + qR) / 2, (qT + qB) / 2, Math.max((qR - qL) * 0.76, 1), Math.max((qB - qT) * 0.92, h * 0.2));
     quietU.uView.value.set(w, h);
-    gpu.quiet.enabled = quietU.uOn.value > 0; // past the first screen and at the summit the pass costs nothing
     massif.updateMatrixWorld();
     const tags: { a: (typeof anchors)[number]; x: number; y: number }[] = [];
     for (const a of anchors) {
@@ -581,7 +696,8 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
         a.dx = dx;
         a.el.style.setProperty("--nudge", `${dx.toFixed(1)}px`);
       }
-      a.el.style.transform = `translate3d(${sx.toFixed(1)}px, ${sy.toFixed(1)}px, 0)`;
+      const at = `translate3d(${sx.toFixed(1)}px, ${sy.toFixed(1)}px, 0)`;
+      if (at !== a.at) a.el.style.transform = a.at = at; // a still chip is not written, so its style is not recomputed
       if (a.kind === "camp") tags.push({ a, x: sx + dx, y: sy });
     }
     // two tags never stack on each other (short or narrow windows crowd the slopes): nearest the viewer first, a tag
@@ -621,15 +737,23 @@ export function mountMountain(canvas: HTMLCanvasElement, labelLayer: HTMLElement
   document.addEventListener("visibilitychange", onVisibility);
   onVisibility();
 
+  // each setSize reallocates the canvas and every target of the post chain: a resize that changes nothing (the phone's
+  // toolbar fires them mid-scroll) sizes nothing, and setPixelRatio, which sizes again itself, runs only on a new ratio
+  const drawn = new THREE.Vector2();
   function fit() {
     measureChips();
     camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
     terrainMat.uniforms.uDot.value = dotScale();
-    gpu?.renderer.setPixelRatio(ratio());
-    gpu?.renderer.setSize(innerWidth, innerHeight, false);
-    gpu?.composer.setPixelRatio(ratio());
-    gpu?.composer.setSize(innerWidth, innerHeight);
+    if (!gpu) return;
+    const { renderer, composer } = gpu, r = ratio();
+    renderer.getSize(drawn);
+    if (r !== renderer.getPixelRatio()) {
+      renderer.setPixelRatio(r);
+      composer.setPixelRatio(r);
+    } else if (drawn.x === innerWidth && drawn.y === innerHeight) return;
+    renderer.setSize(innerWidth, innerHeight, false);
+    composer.setSize(innerWidth, innerHeight);
   }
   addEventListener("resize", fit);
   // browser zoom, or a move to another screen, changes the pixel ratio, and not always with a resize

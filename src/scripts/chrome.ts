@@ -17,7 +17,10 @@ export const $ = <T extends HTMLElement = HTMLElement>(s: string, r: ParentNode 
 export const $$ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => [...r.querySelectorAll<T>(s)];
 
 /* ---------- scroll: the browser's own (no smoothing: the page stops when the hand stops) ---------- */
-const scrollMax = () => Math.max(1, root.scrollHeight - innerHeight);
+/* the scroll range is read once and kept: reading scrollHeight in the frame would force a layout. It is cleared on
+   resize, ScrollTrigger's refresh and any change to the body's size, the moments the page's height can change */
+let maxScrollPx = 0;
+const scrollMax = () => maxScrollPx || (maxScrollPx = Math.max(1, root.scrollHeight - innerHeight));
 
 /* ---------- icons, maps ---------- */
 mountIcons();
@@ -95,12 +98,14 @@ function readGrounds() {
     return [{ el, image, color: cs.backgroundColor, clips }];
   });
 }
-function paintGround() {
+type Tile = { g: Ground; x: number; y: number; gw: number; gh: number; t: number; b: number; l: number; rt: number };
+/** where each ground's tile sits now: reads only, so the frame lays out once, before any header write */
+function planGround(): Tile[] {
   grounds ??= readGrounds();
   const h = groundHost.offsetHeight, w = root.clientWidth; // the header ends at the native scrollbar
   // edges on whole device pixels, as the page paints its boxes, so two grounds meet without a seam
   const px = devicePixelRatio, snap = (v: number) => Math.round(v * px) / px;
-  const tiles: { g: Ground; x: number; y: number; gw: number; gh: number; t: number; b: number; l: number; rt: number }[] = [];
+  const tiles: Tile[] = [];
   for (const g of grounds) {
     const r = g.el.getBoundingClientRect();
     const x = snap(r.left), y = snap(r.top), gw = snap(r.right) - x, gh = snap(r.bottom) - y;
@@ -113,26 +118,44 @@ function paintGround() {
     }
     if (b > t && rt > l) tiles.push({ g, x, y, gw, gh, t, b, l, rt });
   }
+  return tiles;
+}
+/** the css each tile was last given: a tile whose css is unchanged is not written again */
+const groundCss: string[] = [];
+/** writes only */
+function paintGround(tiles: Tile[]) {
   // later grounds paint over earlier ones, as on the page
   tiles.forEach(({ g, x, y, gw, gh, t, b, l, rt }, i) => {
-    const tile = (groundTiles[i] ??= groundHost.appendChild(document.createElement("i")));
     const size = `${gw}px ${gh}px`, pos = `${x - l}px ${y - t}px`;
-    tile.style.cssText =
+    const css =
       `left:${l}px;top:${t}px;width:${rt - l}px;height:${b - t}px;background-color:${g.color};` +
       (g.image.length ? `background-image:${g.image.join(",")};background-size:${g.image.map(() => size).join(",")};background-position:${g.image.map(() => pos).join(",")};` : "");
+    if (groundCss[i] === css) return;
+    groundCss[i] = css;
+    const tile = (groundTiles[i] ??= groundHost.appendChild(document.createElement("i")));
+    tile.style.cssText = css;
   });
-  for (let i = tiles.length; i < groundTiles.length; i++) groundTiles[i].style.cssText = "display:none";
+  for (let i = tiles.length; i < groundTiles.length; i++) {
+    if (groundCss[i] === "display:none") continue;
+    groundCss[i] = "display:none";
+    groundTiles[i].style.cssText = "display:none";
+  }
 }
 
 const navLinks = $$<HTMLAnchorElement>('.hdr-nav a[href^="#"]');
 let themeQueued = false;
+/** toggles a class only when it changes, so a frame with nothing new writes nothing */
+const setClass = (el: Element, name: string, on: boolean) => {
+  if (el.classList.contains(name) !== on) el.classList.toggle(name, on);
+};
 export function syncHeader() {
   themeQueued = false;
   const y = scrollY;
-  hdr.classList.toggle("is-scrolled", y > 40);
+  // header writes first, then every read (one layout for the frame), then only the writes that changed
+  setClass(hdr, "is-scrolled", y > 40);
   if (y > 40) setLang(false); // the list leaves with the ticker
-  hdr.classList.toggle("is-compact", y > 80);
-  paintGround();
+  setClass(hdr, "is-compact", y > 80);
+  const tiles = planGround();
   const py = hdr.classList.contains("is-scrolled") ? 32 : 64;
   const probe = document.elementsFromPoint(innerWidth / 2, py);
   const under = probe.find((el) => !el.closest(".hdr, .hdr-ground, .skip") && el.closest("[data-on]"));
@@ -147,11 +170,13 @@ export function syncHeader() {
     if (limb.matches(".dawn, .hero-dawn") ? t > flip : t < flip) on = on === "dark" ? "light" : "dark";
     if (Math.abs(t - flip) < (parseFloat(cs.getPropertyValue("--mid")) || 0.06)) mid = true;
   });
-  hdr.dataset.on = on;
-  hdr.classList.toggle("is-mid", mid);
+  // the header's writes: the ground, the theme, and the section marker
+  paintGround(tiles);
+  if (hdr.dataset.on !== on) hdr.dataset.on = on;
+  setClass(hdr, "is-mid", mid);
   // on the landing page the row marks the section under the header
   const here = under?.closest<HTMLElement>("section[id]")?.id;
-  for (const a of navLinks) a.classList.toggle("is-here", a.dataset.section === here);
+  for (const a of navLinks) setClass(a, "is-here", a.dataset.section === here);
 }
 const queueHeader = () => {
   if (!themeQueued) {
@@ -163,9 +188,13 @@ const queueHeader = () => {
 // listener, and the frame has not painted yet, so the ground never trails the page
 addEventListener("scroll", queueHeader, { passive: true });
 addEventListener("resize", () => {
-  grounds = null;
+  grounds = null; // the grounds' gradients are sized in vh, so a height change (the phone's toolbar) moves them too
+  maxScrollPx = 0;
   queueHeader();
 });
+/* the scroll range moves when the page's height does: any change to the body, and ScrollTrigger's own refresh */
+new ResizeObserver(() => (maxScrollPx = 0)).observe(document.body);
+ScrollTrigger.addEventListener("refresh", () => (maxScrollPx = 0));
 
 /* anchors: smooth, offset past the horizon bands and the header, focus moved for keyboard users */
 export function goTo(target: HTMLElement | null, immediate = false) {
